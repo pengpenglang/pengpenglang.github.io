@@ -243,6 +243,152 @@
 
 
   
+    <article id="post-查找总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/02/%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/">查找总结</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/02/%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-04-02T00:47:38.605Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>查找：根据给定的某个值，在==查找表==中确定一个关键字的等于给定值的数据元素（或记录）</strong></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> KeyType;<span class="comment">//关键字类型</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RecordType</span>&#123;</span><span class="comment">//定义每个记录（数据元素）的结构</span></span><br><span class="line">	KeyType key;<span class="comment">//关键字</span></span><br><span class="line">	InfoType otherinfor;<span class="comment">//其他数据项</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SqList</span>&#123;</span></span><br><span class="line">	RecordType r[maxn+<span class="number">1</span>];<span class="comment">//r[0]不用于存储，一般用于哨兵</span></span><br><span class="line">	<span class="keyword">int</span> length;<span class="comment">//顺序表的长度</span></span><br><span class="line">&#125;L;</span><br></pre></td></tr></table></figure>
+
+<h1 id="查找分类"><a href="#查找分类" class="headerlink" title="查找分类"></a>查找分类</h1><ul>
+<li><p>静态查找：</p>
+</li>
+<li><p>动态查找：在查找表中存在删除和插入的操作</p>
+</li>
+</ul>
+<p><img src="%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97picture/image-20200402090508490.png" alt="image-20200402090508490"></p>
+<h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><p>操作：从查找表尾开始依次将扫描到的节点关键字与给定值value比较，相等则结束扫描并返还下标值。若返还值为非0则查找成功，否则表示查找失败。</p>
+<p><img src="%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97picture/image-20200402091039929.png" alt="image-20200402091039929"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=L.length;L.r[i].key!=value;i--)</span><br><span class="line"><span class="keyword">return</span> i;</span><br></pre></td></tr></table></figure>
+
+<h1 id="插值查找"><a href="#插值查找" class="headerlink" title="插值查找"></a>插值查找</h1><p><strong>注意：下述所有的查找方法只适用于有序顺序表</strong></p>
+<h2 id="折半查找"><a href="#折半查找" class="headerlink" title="折半查找"></a>折半查找</h2><p>操作：用给定的value先与中间节点的关键字比较，中间节点把线性表分为两个子表，若是相等则查找成功；若是不相等，再根据k与该中间节点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或者查找结果发现没有这样的节点。</p>
+<p><img src="%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97picture/image-20200402091621527.png" alt="image-20200402091621527"></p>
+<p>写法一：非递归式</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch1</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> low,high,mid;</span><br><span class="line">	<span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">		mid=(high+low)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(L.r[mid]==value)<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(L.r[mid]&gt;value)high=mid<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">else</span> low=mid+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止条件，low&gt;high</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写法二：递归式（关键字，左右边界）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch2</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> value,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(low&gt;high)<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止条件</span></span><br><span class="line">	<span class="keyword">int</span> mid=low+(high-low)/<span class="number">2</span>;<span class="comment">//和(high+low)/2效果一样</span></span><br><span class="line">	<span class="keyword">if</span>(L.r[mid]==value)<span class="keyword">return</span> mid;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(L.r[mid]&gt;value)<span class="keyword">return</span> BinarySearch2(L,value,low,mid<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> BinarySearch2(L,value,mid+<span class="number">1</span>,high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="插值查找-1"><a href="#插值查找-1" class="headerlink" title="插值查找"></a>插值查找</h2><p>引入：基于二分查找，但是做了一些改进。因为二分查找总是从中间开始找，所以每次查找都重复扫描了许多区段。</p>
+<p>操作：可以通过自适应大致先确定关键字在有序表中所处的位置，然后在通过mid值变化靠近关键字从而间接减少了比较次数。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190708101039685.png" alt="img"></p>
+<p>二分查找mid初始值的确定：$$mid=(low+high)/2$$即$$mid=low+(high-low)/2$$</p>
+<p>所以自适应后mid初始值的确定：$$mid=low+(key-a[low])/(a[high]-a[low])*(high-low)$$</p>
+<blockquote>
+<p>按数值比例确定mid所在的大致区段</p>
+</blockquote>
+<h2 id="斐波那契查找"><a href="#斐波那契查找" class="headerlink" title="斐波那契查找"></a>斐波那契查找</h2><blockquote>
+<p>斐波那契数列，又称黄金分割数列，指的是这样一个数列：1、1、2、3、5、8、13、21、····，在数学上，斐波那契被递归方法如下定义：F(1)=1，F(2)=1，F(n)=f(n-1)+F(n-2) （n&gt;=2）。该数列越往后相邻的两个数的比值越趋向于黄金比例值（0.618）</p>
+<p>斐波那契查找就是在二分查找的基础上根据斐波那契数列进行分割的。在斐波那契数列找一个等于略大于查找表中元素个数的数F[n]，将原查找表扩展为长度为F[n](如果要补充元素，则补充重复最后一个元素，直到满足F[n]个元素)，完成后进行斐波那契分割，即F[n]个元素分割为前半部分F[n-1]个元素，后半部分F[n-2]个元素，找出要查找的元素在那一部分并递归，直到找到。</p>
+<p><strong>斐波那契查找的时间复杂度还是O(log 2 n )，但是 与折半查找相比，斐波那契查找的优点是它只涉及加法和减法运算，而不用除法，而除法比加减法要占用更多的时间，因此，斐波那契查找的运行时间理论上比折半查找小，但是还是得视具体情况而定。</strong></p>
+</blockquote>
+<p>操作：前提是数列的长度满足某个斐波那契数，然后根据斐波那契额序列的特点对有序表进行分割</p>
+<p><img src="%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0%E6%97%A5%E5%BF%97picture/image-20200402093428204.png" alt="image-20200402093428204"></p>
+<img src="算法学习日志picture/image-20200402093600103.png" alt="image-20200402093600103" style="zoom:67%;" />
+
+<img src="算法学习日志picture/image-20200402093646910.png" alt="image-20200402093646910" style="zoom:67%;" />
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 20  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">*产生斐波那契数列</span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> *f)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    f[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    f[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">2</span>; i &lt; MAXN; ++i)</span><br><span class="line">        f[i] = f[i - <span class="number">2</span>] + f[i - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 查找</span></span><br><span class="line"><span class="comment">* */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Fibonacci_Search</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> key, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, low = <span class="number">0</span>, high = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> F[MAXN];</span><br><span class="line">    Fibonacci(F);</span><br><span class="line">    <span class="keyword">while</span> (n &gt; F[k] - <span class="number">1</span>)          <span class="comment">//计算出n在斐波那契中的数列  </span></span><br><span class="line">        ++k;</span><br><span class="line">    <span class="keyword">for</span> (i = n; i &lt; F[k] - <span class="number">1</span>; ++i) <span class="comment">//把数组补全  </span></span><br><span class="line">        a[i] = a[high];</span><br><span class="line">    <span class="keyword">while</span> (low &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        mid = low + F[k - <span class="number">1</span>] - <span class="number">1</span>;  <span class="comment">//根据斐波那契数列进行黄金分割  </span></span><br><span class="line">        <span class="keyword">if</span> (a[mid] &gt; key)</span><br><span class="line">        &#123;</span><br><span class="line">            high = mid - <span class="number">1</span>;</span><br><span class="line">            k = k - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (a[mid] &lt; key)</span><br><span class="line">        &#123;</span><br><span class="line">            low = mid + <span class="number">1</span>;</span><br><span class="line">            k = k - <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (mid &lt;= high) <span class="comment">//如果为真则找到相应的位置  </span></span><br><span class="line">                <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[MAXN] = &#123; <span class="number">5</span>, <span class="number">15</span>, <span class="number">19</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">31</span>, <span class="number">38</span>, <span class="number">41</span>, <span class="number">45</span>, <span class="number">49</span>, <span class="number">52</span>, <span class="number">55</span>, <span class="number">57</span> &#125;;</span><br><span class="line">    <span class="keyword">int</span> k, res = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"请输入要查找的数字:\n"</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;k);</span><br><span class="line">    res = Fibonacci_Search(a, k, <span class="number">13</span>);</span><br><span class="line">    <span class="keyword">if</span> (res != <span class="number">-1</span>)</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"在数组的第%d个位置找到元素:%d\n"</span>, res + <span class="number">1</span>, k);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"未在数组中找到元素:%d\n"</span>, k);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="库函数查找"><a href="#库函数查找" class="headerlink" title="库函数查找"></a>库函数查找</h2><p>STL模板库中关于查找函数的：find()、find_if()、binary_search()</p>
+<h3 id="find"><a href="#find" class="headerlink" title="find()"></a>find()</h3><p>作用：在区间查找序列中存在的某个关键值</p>
+<p>格式：find(start,end,key) </p>
+<p>函数返回值：地址或迭代器，若是查找不到key就返还end</p>
+<p>传入参数：数据集合的左端点，数据集合的右端点后一个位置，查找的值</p>
+<blockquote>
+<p>因为函数的查找是在[l,r)的左开半闭区间，所以区间要往后多开一位</p>
+</blockquote>
+<h3 id="find-if"><a href="#find-if" class="headerlink" title="find_if()"></a>find_if()</h3><p>作用：在序列中找到符合某条件的第一个关键值</p>
+<p>格式：find_if(start,end,pred)，其中pred是自定义的一元bool判断函数</p>
+<p>函数返回值：地址或迭代器，若是查找不到key就返还end</p>
+<p>传入参数：数据集合的左端点，数据集合的右端点后一个位置，查找的值</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pred</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x%<span class="number">5</span>?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iLocation=find_if(iVect.begin(),iVect.end(),pred);</span><br><span class="line"><span class="keyword">if</span>(iLocation!=iVect.end())&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"第一个被5整除的元素："</span>&lt;&lt;*iLocation&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"元素的索引位置："</span>&lt;&lt;iLocation-iVect.begin()&lt;&lt;end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="lower-bound-、upper-bound-、binary-search"><a href="#lower-bound-、upper-bound-、binary-search" class="headerlink" title="lower_bound()、upper_bound()、binary_search()"></a>lower_bound()、upper_bound()、binary_search()</h3><p>==<strong>和上述的函数不同，这些函数使用前提是序列有序</strong>==</p>
+<p>格式：find(start,end,key) </p>
+<table>
+<thead>
+<tr>
+<th>lower_bound()</th>
+<th>upper_bound()</th>
+<th>binary_search()</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>返还第一个大于等于key值的地址或迭代器</td>
+<td>返还第一个大于key值的地址或迭代器</td>
+<td>判断序列中是否存在key值</td>
+</tr>
+<tr>
+<td>int型</td>
+<td>int型</td>
+<td>bool型</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>配合使用可以实现二分查找,另外函数最后还可以加上比较函数使原有用法变反</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">int</span> data[...];</span><br><span class="line">sort(data,data+n);<span class="comment">//升序排序</span></span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;lower_bound(data,data+n,key)-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个大于等于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">sort(data,data+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;upper_bound(data,data+n,key,greater&lt;<span class="keyword">int</span>&gt;())-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个小于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/02/%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
   
 
 
