@@ -2,16 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/2020/07/19/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/</loc>
     
-    <lastmod>2020-07-19T09:01:46.746Z</lastmod>
+    <lastmod>2020-07-19T14:24:32.874Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://yoursite.com/categories/index.html</loc>
     
-    <lastmod>2020-07-19T08:57:14.690Z</lastmod>
+    <lastmod>2020-07-19T13:10:38.373Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/post_font-matter.html</loc>
+    
+    <lastmod>2020-07-19T12:59:00.364Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/page_font-matter.html</loc>
+    
+    <lastmod>2020-07-19T12:53:59.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/about/index.html</loc>
+    
+    <lastmod>2020-07-19T09:01:46.746Z</lastmod>
     
   </url>
   
@@ -33,13 +54,6 @@
     <loc>http://yoursite.com/gallery/index.html</loc>
     
     <lastmod>2020-07-19T03:13:15.253Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/07/18/firt/</loc>
-    
-    <lastmod>2020-07-19T03:07:31.708Z</lastmod>
     
   </url>
   
