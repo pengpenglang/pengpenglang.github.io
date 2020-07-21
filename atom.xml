@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Pengpenglang的博客</title>
+  <title>pengpenglang的博客</title>
   
-  <subtitle>一个小白的成长之路</subtitle>
+  <subtitle>一个程序猿的青春修炼手册</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
