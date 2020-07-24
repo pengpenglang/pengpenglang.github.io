@@ -1502,10 +1502,10 @@
 <p>默认情况下元素不浮动</p>
 </blockquote>
 <h4 id="定义图片与文字间距"><a class="markdownIt-Anchor" href="#定义图片与文字间距"></a> 定义图片与文字间距</h4>
-<p>浮动布局默认状态下图片和文字都是紧挨在一起的，可以应用盒子模型的margin（外边距）来控制间距。</p>
+<p>浮动布局默认状态下图片和文字都是紧挨在一起的，可以应用盒子模型的<code>margin</code>（外边距）来控制间距。</p>
 <h2 id="列表样式"><a class="markdownIt-Anchor" href="#列表样式"></a> 列表样式</h2>
 <h3 id="列表项符号list-style-type"><a class="markdownIt-Anchor" href="#列表项符号list-style-type"></a> 列表项符号<code>list-style-type</code></h3>
-<p>CSS诞生后主张样式和标签分离，所以原先HTML定义列表项符号样式改为使用list-style-type属性设置</p>
+<p><code>CSS</code>诞生后主张样式和标签分离，所以原先<code>HTML</code>定义列表项符号样式改为使用<code>list-style-type</code>属性设置</p>
 <p><strong>有序列表属性取值</strong></p>
 <table>
 <thead>
@@ -1670,7 +1670,7 @@
 <p>图中比较粗的那条黑线就是盒子的边框</p>
 </blockquote>
 <ul>
-<li>内容区是<mark>CSS盒子模型的中心</mark>，呈现主要的内容。内容区是盒子模型的<mark>必备组成部分</mark>，其他三个部分可选。</li>
+<li>内容区是<code>CSS</code>盒子模型的中心，呈现主要的内容。内容区是盒子模型的<mark>必备组成部分</mark>，其他三个部分可选。</li>
 </ul>
 <blockquote>
 <p>内容区有三个属性：<code>weight</code>、<code>height</code>、<code>overflow</code>分别辅助。<code>overflow</code>主要是用于当内容信息超过太多的时候可以掩藏溢出部分</p>
@@ -1801,7 +1801,7 @@
 <p><strong>参考对象</strong>：</p>
 <ul>
 <li><code>absolute</code>的参考对象是父对象，如果父对象没有定位设置则参照<code>body</code>对象，这里的定位设置意思就是，<code>absolute</code>的父对象一定要设置<code>position:relative</code>才有效</li>
-<li><code>absolute</code>属性对象的上一个兄弟元素有float浮动属性，则要清除浮动，否则，此对象不会显示</li>
+<li><code>absolute</code>属性对象的上一个兄弟元素有<code>float</code>浮动属性，则要清除浮动，否则，此对象不会显示</li>
 </ul>
 <h3 id="静态定位static"><a class="markdownIt-Anchor" href="#静态定位static"></a> 静态定位<code>static</code></h3>
 <p>没有指定元素的<code>position</code>属性值的（也就是默认情况下）元素是静态定位，只要是支持<code>position</code>属性的<code>HTML</code>对象都是默认<code>static</code>，它表示保留在原本应该在的位置不会重新定位</p>
