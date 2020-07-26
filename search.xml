@@ -20,6 +20,123 @@
 ]]></content>
   </entry>
   <entry>
+    <title>画册</title>
+    <url>/2020/07/24/%E7%94%BB%E5%86%8C/</url>
+    <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<p><strong>鲁迅先生曾说：“是人他就得有爱好，没爱好的就是白痴。”为了向前人看起我决定重新拾起绘画的乐趣，也算是为了弥补打游戏的空虚。争取每月画几张摸摸鱼。</strong></p>
+<h1 id="工具"><a class="markdownIt-Anchor" href="#工具"></a> 工具</h1>
+<p>人靠衣服马靠鞍，技术不行装备来凑（等待装备的更新ing）</p>
+<blockquote>
+<p>画够100张就换新的工具，冲啊~~</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>当下一代工具</th>
+<th>目标二代工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>国产山寨touch80色动漫设计马克笔</td>
+<td>美卡勒软头480色马克笔</td>
+</tr>
+<tr>
+<td>touch mark30色肤色套装马克笔</td>
+<td>美卡勒72色肤色软头马克笔</td>
+</tr>
+<tr>
+<td>得力48色油性彩铅</td>
+<td>霹雳马油性彩铅</td>
+</tr>
+<tr>
+<td>马克36色油性彩铅笔</td>
+<td>辉柏嘉水溶性马克笔</td>
+</tr>
+<tr>
+<td>樱花针管笔+樱花高光笔</td>
+<td>樱花针管笔+三菱高光笔</td>
+</tr>
+<tr>
+<td>赠的垃圾透水马克纸</td>
+<td>荷兰白卡300g</td>
+</tr>
+<tr>
+<td>使用6年的0.5自动铅笔+破旧的4B橡皮</td>
+<td>樱花金属0.3自动笔+樱花橡皮</td>
+</tr>
+</tbody>
+</table>
+<p>其他的攒钱再买吧：亚力克马克笔架，线稿临摹LED灯</p>
+<h1 id="2019年归档"><a class="markdownIt-Anchor" href="#2019年归档"></a> 2019年归档</h1>
+<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/draw1.jpg">
+<blockquote>
+<p>第一张板绘线稿（用的100多元的wacom），由于中图换电脑了SAI软件丢了所以就画了这一张，也可能是太懒了</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>耗时</th>
+<th>自我评价</th>
+<th>改进</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一下午</td>
+<td>4星吧（毕竟第一次画好歹是个人样）</td>
+<td>线条又虚又乱，左边头发还忘了涂了。。</td>
+</tr>
+</tbody>
+</table>
+<h1 id="2020年归档"><a class="markdownIt-Anchor" href="#2020年归档"></a> 2020年归档</h1>
+<h2 id="4月"><a class="markdownIt-Anchor" href="#4月"></a> 4月</h2>
+<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/draw2.jpg" style="zoom: 33%;">
+<blockquote>
+<p>第一次画二次元线稿啊，就两只勾线笔一根特细一根特粗，不过画的还是可以的（画女生不擅长）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>耗时</th>
+<th>自我评价</th>
+<th>改进</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一天</td>
+<td>4星</td>
+<td>画成坦克了，有点胖了</td>
+</tr>
+</tbody>
+</table>
+<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/draw3.jpg" style="zoom: 33%;">
+<blockquote>
+<p>怎么说呢，线稿还是很好看的。但是上完色有点小炸了，上色太着急了细节颜色都没注意</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>耗时</th>
+<th>自我评价</th>
+<th>改进</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一天</td>
+<td>3星</td>
+<td>上色质量太差了</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>画册</category>
+      </categories>
+  </entry>
+  <entry>
     <title>常见查找总结</title>
     <url>/2020/07/24/%E5%B8%B8%E8%A7%81%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<p><strong>查找：根据给定的某个值，在<mark>查找表</mark>中确定一个关键字的等于给定值的数据元素（或记录）</strong></p>
@@ -113,11 +230,12 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">int</span> data[...];</span><br><span class="line">sort(data,data+n);<span class="comment">//升序排序</span></span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;lower_bound(data,data+n,key)-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个大于等于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">sort(data,data+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;upper_bound(data,data+n,key,greater&lt;<span class="keyword">int</span>&gt;())-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个小于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>算法与数据</category>
+        <category>大学计算机学习</category>
+        <category>C++</category>
       </categories>
       <tags>
         <tag>C++</tag>
-        <tag>算法与数据</tag>
+        <tag>算法与数据结构</tag>
         <tag>查找</tag>
       </tags>
   </entry>
@@ -817,6 +935,7 @@
 <img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-2.png" style="zoom:67%;">]]></content>
       <categories>
         <category>Web学习</category>
+        <category>HTML</category>
       </categories>
       <tags>
         <tag>Web前端</tag>
@@ -1910,6 +2029,7 @@
 ]]></content>
       <categories>
         <category>Web学习</category>
+        <category>CSS3</category>
       </categories>
       <tags>
         <tag>Web前端</tag>
@@ -2641,7 +2761,8 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">BOOL <span class="title">BogoSort</span><span class="params">(datatype *<span class="built_in">array</span>, <span class="keyword">int</span> size)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">int</span> tag;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">array</span> == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> FALSE;</span><br><span class="line">    &#125;</span><br><span class="line">    srand((<span class="keyword">unsigned</span> <span class="keyword">int</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">    <span class="keyword">while</span>(TRUE) &#123;</span><br><span class="line">        tag = TRUE;</span><br><span class="line">        <span class="comment">//检测</span></span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; size; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">array</span>[i] &lt; <span class="built_in">array</span>[i<span class="number">-1</span>]) &#123;</span><br><span class="line">                tag = FALSE;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果有序，则排序完成</span></span><br><span class="line">        <span class="keyword">if</span>(tag) &#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//随机打乱</span></span><br><span class="line">        <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; size; i++) &#123;</span><br><span class="line">            j = rand() % size;</span><br><span class="line">            Swap(<span class="built_in">array</span> + i, <span class="built_in">array</span> + j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>计算机学习</category>
+        <category>大学计算机学习</category>
+        <category>C++</category>
       </categories>
       <tags>
         <tag>C++</tag>
@@ -2819,8 +2940,8 @@
       </categories>
       <tags>
         <tag>C++</tag>
-        <tag>查找</tag>
         <tag>算法与数据结构</tag>
+        <tag>查找</tag>
         <tag>二叉树</tag>
       </tags>
   </entry>
@@ -3836,7 +3957,8 @@
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">stringstream</span> sstream;</span><br><span class="line">    <span class="built_in">string</span> s, str;</span><br><span class="line">    getline(<span class="built_in">cin</span>, s);</span><br><span class="line">    sstream&lt;&lt;s;</span><br><span class="line">    <span class="keyword">while</span>(sstream&gt;&gt;str)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;str&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输入：asd asd asd</span></span><br><span class="line"><span class="comment">输出：asd</span></span><br><span class="line"><span class="comment">asd</span></span><br><span class="line"><span class="comment">asd</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>计算机学习</category>
+        <category>大学计算机学习</category>
+        <category>C++</category>
       </categories>
       <tags>
         <tag>C++</tag>
