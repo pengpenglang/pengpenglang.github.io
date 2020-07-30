@@ -187,7 +187,7 @@ if (autoChangeMode === '1') {
 <td><code>i=3,str[nex[2]+1]==str[3],nex[3]=1</code></td>
 </tr>
 <tr>
-<td><mark>ab</mark>==<strong>a</strong>==<strong>ba</strong></td>
+<td><mark>ab</mark>A<strong>ba</strong></td>
 <td><code>i=4,str[nex[3]+1]==str[4],nex[4]=2</code></td>
 </tr>
 <tr>
@@ -245,14 +245,14 @@ if (autoChangeMode === '1') {
 </ul>
 <h2 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h2>
 <p>字典树的两种基本操作分别是<strong>建树和查询</strong>。其中建树操作就是把一个新单词插入到字典树里。查询操作就是查询给定单词是否在字典树上</p>
-<p>**初始化：**⼀颗空的字典树仅包含⼀个指向空的根节点</p>
-<p>**插入：**当需要插⼊⼀个字符串<code>S</code>时，令⼀个指针<code>P</code>从根节点开始，依次扫描<code>S</code>中的每⼀个字符<code>c</code></p>
+<p><strong>初始化</strong>：⼀颗空的字典树仅包含⼀个指向空的根节点</p>
+<p><strong>插入</strong>：当需要插⼊⼀个字符串<code>S</code>时，令⼀个指针<code>P</code>从根节点开始，依次扫描<code>S</code>中的每⼀个字符<code>c</code></p>
 <ul>
 <li>如果c字符的指针指向⼀个已经存在的节点Q，则令<code>P</code> =<code>Q</code></li>
 <li>如果c字符的指针指向空，那么新建⼀个<code>Q</code>节点，令<code>P</code>的<code>c</code>字符指针指向<code>Q</code>，然后令<code>P=Q</code></li>
 </ul>
 <p>每次插入的最后将插入的字符串末尾的节点标记表示走到当前节点路径上的字符串存在</p>
-<p>**查询：**开始检索之前，令⼀个指针<code>P</code>指向根节点，然后依次扫描<code>S</code></p>
+<p><strong>查询</strong>：开始检索之前，令⼀个指针<code>P</code>指向根节点，然后依次扫描<code>S</code></p>
 <ul>
 <li>若<code>P</code>的<code>C</code>字符指针指向空，说明<code>S</code>不在<code>Trie</code>中。</li>
 <li>若<code>P</code>的<code>C</code>字符指针指向⼀个已经存在的节点<code>Q</code>，令<code>P=Q</code></li>
