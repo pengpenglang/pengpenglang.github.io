@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/07/17/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>二分与三分查找</title>
     <url>/2020/07/29/%E4%BA%8C%E5%88%86%E4%B8%8E%E4%B8%89%E5%88%86%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[<p><strong>查找</strong>：分为整数查找和浮点数查找，方法是通过控制循环次数或者精度来终止</p>
@@ -107,6 +88,129 @@
         <tag>查找</tag>
         <tag>二分</tag>
         <tag>三分</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/07/17/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>常见查找总结</title>
+    <url>/2020/07/24/%E5%B8%B8%E8%A7%81%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p><strong>查找：根据给定的某个值，在<mark>查找表</mark>中确定一个关键字的等于给定值的数据元素（或记录）</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> KeyType;<span class="comment">//关键字类型</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RecordType</span>&#123;</span><span class="comment">//定义每个记录（数据元素）的结构</span></span><br><span class="line">	KeyType key;<span class="comment">//关键字</span></span><br><span class="line">	InfoType otherinfor;<span class="comment">//其他数据项</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SqList</span>&#123;</span></span><br><span class="line">	RecordType r[maxn+<span class="number">1</span>];<span class="comment">//r[0]不用于存储，一般用于哨兵</span></span><br><span class="line">	<span class="keyword">int</span> length;<span class="comment">//顺序表的长度</span></span><br><span class="line">&#125;L;</span><br></pre></td></tr></table></figure>
+<h1 id="查找分类"><a class="markdownIt-Anchor" href="#查找分类"></a> 查找分类</h1>
+<ul>
+<li>
+<p>静态查找</p>
+</li>
+<li>
+<p>动态查找：在查找表中存在删除和插入的操作</p>
+</li>
+</ul>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-1.png" alt></p>
+<h1 id="顺序查找"><a class="markdownIt-Anchor" href="#顺序查找"></a> 顺序查找</h1>
+<p><strong>操作</strong>：从查找表尾开始依次将扫描到的节点关键字与给定值value比较，相等则结束扫描并返还下标值。若返还值为非0则查找成功，否则表示查找失败。</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-2.png" alt></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=L.length;L.r[i].key!=value;i--)</span><br><span class="line"><span class="keyword">return</span> i;</span><br></pre></td></tr></table></figure>
+<h1 id="插值查找"><a class="markdownIt-Anchor" href="#插值查找"></a> 插值查找</h1>
+<p><strong>注意：下述所有的查找方法只适用于有序顺序表</strong></p>
+<h2 id="折半查找"><a class="markdownIt-Anchor" href="#折半查找"></a> 折半查找</h2>
+<p><strong>操作</strong>：用给定的value先与中间节点的关键字比较，中间节点把线性表分为两个子表，若是相等则查找成功；若是不相等，再根据k与该中间节点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或者查找结果发现没有这样的节点。</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-3.png" alt></p>
+<p>写法一：非递归式</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch1</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> low,high,mid;</span><br><span class="line">	<span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">		mid=(high+low)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(L.r[mid]==value)<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(L.r[mid]&gt;value)high=mid<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">else</span> low=mid+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止条件，low&gt;high</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写法二：递归式（关键字，左右边界）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch2</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> value,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(low&gt;high)<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止条件</span></span><br><span class="line">	<span class="keyword">int</span> mid=low+(high-low)/<span class="number">2</span>;<span class="comment">//和(high+low)/2效果一样</span></span><br><span class="line">	<span class="keyword">if</span>(L.r[mid]==value)<span class="keyword">return</span> mid;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(L.r[mid]&gt;value)<span class="keyword">return</span> BinarySearch2(L,value,low,mid<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> BinarySearch2(L,value,mid+<span class="number">1</span>,high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="插值查找-2"><a class="markdownIt-Anchor" href="#插值查找-2"></a> 插值查找</h2>
+<p><strong>引入</strong>：基于二分查找，但是做了一些改进。因为二分查找总是从中间开始找，所以每次查找都重复扫描了许多区段。</p>
+<p><strong>操作</strong>：可以通过自适应大致先确定关键字在有序表中所处的位置，然后在通过mid值变化靠近关键字从而间接减少了比较次数。</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-4.png" alt></p>
+<p><strong>二分查找<code>mid</code>初始值的确定</strong>：</p>
+<p><code>mid=(low+high)/2​</code>即​<code>mid=low+(high-low)/2​</code></p>
+<p>所以自适应后mid初始值的确定：<code>mid=low+(key-a[low])/(a[high]-a[low])*(high-low)​</code></p>
+<blockquote>
+<p>按数值比例确定mid所在的大致区段</p>
+</blockquote>
+<h2 id="斐波那契查找"><a class="markdownIt-Anchor" href="#斐波那契查找"></a> 斐波那契查找</h2>
+<blockquote>
+<p>斐波那契数列，又称黄金分割数列，指的是这样一个数列：1、1、2、3、5、8、13、21、····，在数学上，斐波那契被递归方法如下定义：<code>F(1)=1,F(2)=1,F(n)=f(n-1)+F(n-2)(n&gt;=2)</code>。该数列越往后相邻的两个数的比值越趋向于黄金比例值（0.618）</p>
+<p>斐波那契查找就是在二分查找的基础上根据斐波那契数列进行分割的。在斐波那契数列找一个等于略大于查找表中元素个数的数F[n]，将原查找表扩展为长度为<code>F[n]</code>（如果要补充元素，则补充重复最后一个元素，直到满足<code>F[n]</code>个元素），完成后进行斐波那契分割，即<code>F[n]</code>个元素分割为前半部分<code>F[n-1]</code>个元素，后半部分F[n-2]个元素，找出要查找的元素在那一部分并递归，直到找到。</p>
+<p><strong>斐波那契查找的时间复杂度还是O(log2n )，但是 与折半查找相比，斐波那契查找的优点是它只涉及加法和减法运算，而不用除法，而除法比加减法要占用更多的时间，因此，斐波那契查找的运行时间理论上比折半查找小，但是还是得视具体情况而定。</strong></p>
+</blockquote>
+<p><strong>操作</strong>：前提是数列的长度满足某个斐波那契数，然后根据斐波那契额序列的特点对有序表进行分割</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-5.png" alt></p>
+<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-6.png" style="zoom: 67%;">
+<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-7.png" style="zoom: 67%;">
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 20  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//产生斐波那契数列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> *f)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;MAXN;++i)</span><br><span class="line">        f[i]=f[i<span class="number">-2</span>]+f[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查找</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Fibonacci_Search</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> key,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,low=<span class="number">0</span>,high=n<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> F[MAXN];</span><br><span class="line">    Fibonacci(F);</span><br><span class="line">    <span class="keyword">while</span>(n &gt;F[k]<span class="number">-1</span>)          <span class="comment">//计算出n在斐波那契中的数列  </span></span><br><span class="line">    ++k;</span><br><span class="line">    <span class="keyword">for</span>(i =n;i&lt;F[k]<span class="number">-1</span>;++i) <span class="comment">//把数组补全  </span></span><br><span class="line">    a[i]=a[high];</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">        mid=low+F[k<span class="number">-1</span>]<span class="number">-1</span>;  <span class="comment">//根据斐波那契数列进行黄金分割  </span></span><br><span class="line">        <span class="keyword">if</span>(a[mid]&gt;key)&#123;</span><br><span class="line">            high=mid<span class="number">-1</span>;</span><br><span class="line">            k=k<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[mid]&lt;key)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">            k=k<span class="number">-2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(mid&lt;=high)<span class="comment">//如果为真则找到相应的位置  </span></span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[MAXN]=&#123;<span class="number">5</span>,<span class="number">15</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">31</span>,<span class="number">38</span>,<span class="number">41</span>,<span class="number">45</span>,<span class="number">49</span>,<span class="number">52</span>,<span class="number">55</span>,<span class="number">57</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> k,res=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"请输入要查找的数字:\n"</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</span><br><span class="line">    res=Fibonacci_Search(a,k,<span class="number">13</span>);</span><br><span class="line">    <span class="keyword">if</span>(res!=<span class="number">-1</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"在数组的第%d个位置找到元素:%d\n"</span>,res+<span class="number">1</span>,k);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"未在数组中找到元素:%d\n"</span>, k);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="库函数查找"><a class="markdownIt-Anchor" href="#库函数查找"></a> 库函数查找</h2>
+<p><code>STL</code>模板库中关于查找函数的：<code>find()</code>、<code>find_if()</code>、<code>binary_search()</code></p>
+<h3 id="find"><a class="markdownIt-Anchor" href="#find"></a> <code>find</code>()</h3>
+<p><strong>作用</strong>：在区间查找序列中存在的某个关键值</p>
+<p><strong>格式</strong>：<code>find(start,end,key)</code></p>
+<p><strong>函数返回值</strong>：地址或迭代器，若是查找不到<code>key</code>就返还<code>end</code></p>
+<p><strong>传入参数</strong>：数据集合的左端点，数据集合的右端点后一个位置，查找的值</p>
+<blockquote>
+<p>因为函数的查找是在<code>[l,r)</code>的左开半闭区间，所以区间要往后多开一位</p>
+</blockquote>
+<h3 id="find_if"><a class="markdownIt-Anchor" href="#find_if"></a> <code>find_if()</code></h3>
+<p><strong>作用</strong>：在序列中找到符合某条件的第一个关键值</p>
+<p><strong>格式</strong>：<code>find_if(start,end,pred)</code>，其中<code>pred</code>是自定义的一元<code>bool</code>判断函数</p>
+<p><strong>函数返回值</strong>：地址或迭代器，若是查找不到<code>key</code>就返还<code>end</code></p>
+<p><strong>传入参数</strong>：数据集合的左端点，数据集合的右端点后一个位置，查找的值</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pred</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x%<span class="number">5</span>?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iLocation=find_if(iVect.begin(),iVect.end(),pred);</span><br><span class="line"><span class="keyword">if</span>(iLocation!=iVect.end())&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"第一个被5整除的元素："</span>&lt;&lt;*iLocation&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"元素的索引位置："</span>&lt;&lt;iLocation-iVect.begin()&lt;&lt;end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="lower_bound-upper_bound-binary_search"><a class="markdownIt-Anchor" href="#lower_bound-upper_bound-binary_search"></a> <code>lower_bound()</code>、<code>upper_bound()</code>、<code>binary_search()</code></h3>
+<p><strong>注意：和上述的函数不同，这些函数使用前提是序列有序</strong></p>
+<p><strong>格式</strong>：<code>find(start,end,key)</code></p>
+<table>
+<thead>
+<tr>
+<th><code>lower_bound()</code></th>
+<th><code>upper_bound()</code></th>
+<th>``binary_search()`</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>返还第一个大于等于<code>key</code>值的地址或迭代器</td>
+<td>返还第一个大于<code>key</code>值的地址或迭代器</td>
+<td>判断序列中是否存在<code>key</code>值</td>
+</tr>
+<tr>
+<td><code>int</code>型</td>
+<td><code>int</code>型</td>
+<td><code>bool</code>型</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>配合使用可以实现二分查找,另外函数最后还可以加上比较函数使原有用法变反</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">int</span> data[...];</span><br><span class="line">sort(data,data+n);<span class="comment">//升序排序</span></span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;lower_bound(data,data+n,key)-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个大于等于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">sort(data,data+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;upper_bound(data,data+n,key,greater&lt;<span class="keyword">int</span>&gt;())-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个小于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>大学计算机学习</category>
+        <category>C++</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+        <tag>查找</tag>
       </tags>
   </entry>
   <entry>
@@ -548,293 +652,6 @@
       <categories>
         <category>画册</category>
       </categories>
-  </entry>
-  <entry>
-    <title>常见查找总结</title>
-    <url>/2020/07/24/%E5%B8%B8%E8%A7%81%E6%9F%A5%E6%89%BE%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<p><strong>查找：根据给定的某个值，在<mark>查找表</mark>中确定一个关键字的等于给定值的数据元素（或记录）</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">20</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span> KeyType;<span class="comment">//关键字类型</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RecordType</span>&#123;</span><span class="comment">//定义每个记录（数据元素）的结构</span></span><br><span class="line">	KeyType key;<span class="comment">//关键字</span></span><br><span class="line">	InfoType otherinfor;<span class="comment">//其他数据项</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SqList</span>&#123;</span></span><br><span class="line">	RecordType r[maxn+<span class="number">1</span>];<span class="comment">//r[0]不用于存储，一般用于哨兵</span></span><br><span class="line">	<span class="keyword">int</span> length;<span class="comment">//顺序表的长度</span></span><br><span class="line">&#125;L;</span><br></pre></td></tr></table></figure>
-<h1 id="查找分类"><a class="markdownIt-Anchor" href="#查找分类"></a> 查找分类</h1>
-<ul>
-<li>
-<p>静态查找</p>
-</li>
-<li>
-<p>动态查找：在查找表中存在删除和插入的操作</p>
-</li>
-</ul>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-1.png" alt></p>
-<h1 id="顺序查找"><a class="markdownIt-Anchor" href="#顺序查找"></a> 顺序查找</h1>
-<p><strong>操作</strong>：从查找表尾开始依次将扫描到的节点关键字与给定值value比较，相等则结束扫描并返还下标值。若返还值为非0则查找成功，否则表示查找失败。</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-2.png" alt></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=L.length;L.r[i].key!=value;i--)</span><br><span class="line"><span class="keyword">return</span> i;</span><br></pre></td></tr></table></figure>
-<h1 id="插值查找"><a class="markdownIt-Anchor" href="#插值查找"></a> 插值查找</h1>
-<p><strong>注意：下述所有的查找方法只适用于有序顺序表</strong></p>
-<h2 id="折半查找"><a class="markdownIt-Anchor" href="#折半查找"></a> 折半查找</h2>
-<p><strong>操作</strong>：用给定的value先与中间节点的关键字比较，中间节点把线性表分为两个子表，若是相等则查找成功；若是不相等，再根据k与该中间节点关键字的比较结果确定下一步查找哪个子表，这样递归进行，直到查找到或者查找结果发现没有这样的节点。</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-3.png" alt></p>
-<p>写法一：非递归式</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch1</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> value)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> low,high,mid;</span><br><span class="line">	<span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">		mid=(high+low)/<span class="number">2</span>;</span><br><span class="line">		<span class="keyword">if</span>(L.r[mid]==value)<span class="keyword">return</span> mid;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(L.r[mid]&gt;value)high=mid<span class="number">-1</span>;</span><br><span class="line">		<span class="keyword">else</span> low=mid+<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止条件，low&gt;high</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>写法二：递归式（关键字，左右边界）</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch2</span><span class="params">(SqList &amp;L,<span class="keyword">int</span> value,<span class="keyword">int</span> low,<span class="keyword">int</span> high)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(low&gt;high)<span class="keyword">return</span> <span class="number">0</span>;<span class="comment">//终止条件</span></span><br><span class="line">	<span class="keyword">int</span> mid=low+(high-low)/<span class="number">2</span>;<span class="comment">//和(high+low)/2效果一样</span></span><br><span class="line">	<span class="keyword">if</span>(L.r[mid]==value)<span class="keyword">return</span> mid;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(L.r[mid]&gt;value)<span class="keyword">return</span> BinarySearch2(L,value,low,mid<span class="number">-1</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">return</span> BinarySearch2(L,value,mid+<span class="number">1</span>,high);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="插值查找-2"><a class="markdownIt-Anchor" href="#插值查找-2"></a> 插值查找</h2>
-<p><strong>引入</strong>：基于二分查找，但是做了一些改进。因为二分查找总是从中间开始找，所以每次查找都重复扫描了许多区段。</p>
-<p><strong>操作</strong>：可以通过自适应大致先确定关键字在有序表中所处的位置，然后在通过mid值变化靠近关键字从而间接减少了比较次数。</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-4.png" alt></p>
-<p><strong>二分查找<code>mid</code>初始值的确定</strong>：</p>
-<p><code>mid=(low+high)/2​</code>即​<code>mid=low+(high-low)/2​</code></p>
-<p>所以自适应后mid初始值的确定：<code>mid=low+(key-a[low])/(a[high]-a[low])*(high-low)​</code></p>
-<blockquote>
-<p>按数值比例确定mid所在的大致区段</p>
-</blockquote>
-<h2 id="斐波那契查找"><a class="markdownIt-Anchor" href="#斐波那契查找"></a> 斐波那契查找</h2>
-<blockquote>
-<p>斐波那契数列，又称黄金分割数列，指的是这样一个数列：1、1、2、3、5、8、13、21、····，在数学上，斐波那契被递归方法如下定义：<code>F(1)=1,F(2)=1,F(n)=f(n-1)+F(n-2)(n&gt;=2)</code>。该数列越往后相邻的两个数的比值越趋向于黄金比例值（0.618）</p>
-<p>斐波那契查找就是在二分查找的基础上根据斐波那契数列进行分割的。在斐波那契数列找一个等于略大于查找表中元素个数的数F[n]，将原查找表扩展为长度为<code>F[n]</code>（如果要补充元素，则补充重复最后一个元素，直到满足<code>F[n]</code>个元素），完成后进行斐波那契分割，即<code>F[n]</code>个元素分割为前半部分<code>F[n-1]</code>个元素，后半部分F[n-2]个元素，找出要查找的元素在那一部分并递归，直到找到。</p>
-<p><strong>斐波那契查找的时间复杂度还是O(log2n )，但是 与折半查找相比，斐波那契查找的优点是它只涉及加法和减法运算，而不用除法，而除法比加减法要占用更多的时间，因此，斐波那契查找的运行时间理论上比折半查找小，但是还是得视具体情况而定。</strong></p>
-</blockquote>
-<p><strong>操作</strong>：前提是数列的长度满足某个斐波那契数，然后根据斐波那契额序列的特点对有序表进行分割</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-5.png" alt></p>
-<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-6.png" style="zoom: 67%;">
-<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/search-7.png" style="zoom: 67%;">
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 20  </span></span><br><span class="line"></span><br><span class="line"><span class="comment">//产生斐波那契数列</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Fibonacci</span><span class="params">(<span class="keyword">int</span> *f)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    f[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;MAXN;++i)</span><br><span class="line">        f[i]=f[i<span class="number">-2</span>]+f[i<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//查找</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Fibonacci_Search</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> key,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,low=<span class="number">0</span>,high=n<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> F[MAXN];</span><br><span class="line">    Fibonacci(F);</span><br><span class="line">    <span class="keyword">while</span>(n &gt;F[k]<span class="number">-1</span>)          <span class="comment">//计算出n在斐波那契中的数列  </span></span><br><span class="line">    ++k;</span><br><span class="line">    <span class="keyword">for</span>(i =n;i&lt;F[k]<span class="number">-1</span>;++i) <span class="comment">//把数组补全  </span></span><br><span class="line">    a[i]=a[high];</span><br><span class="line">    <span class="keyword">while</span>(low&lt;=high)&#123;</span><br><span class="line">        mid=low+F[k<span class="number">-1</span>]<span class="number">-1</span>;  <span class="comment">//根据斐波那契数列进行黄金分割  </span></span><br><span class="line">        <span class="keyword">if</span>(a[mid]&gt;key)&#123;</span><br><span class="line">            high=mid<span class="number">-1</span>;</span><br><span class="line">            k=k<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[mid]&lt;key)&#123;</span><br><span class="line">            low=mid+<span class="number">1</span>;</span><br><span class="line">            k=k<span class="number">-2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(mid&lt;=high)<span class="comment">//如果为真则找到相应的位置  </span></span><br><span class="line">            <span class="keyword">return</span> mid;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[MAXN]=&#123;<span class="number">5</span>,<span class="number">15</span>,<span class="number">19</span>,<span class="number">20</span>,<span class="number">25</span>,<span class="number">31</span>,<span class="number">38</span>,<span class="number">41</span>,<span class="number">45</span>,<span class="number">49</span>,<span class="number">52</span>,<span class="number">55</span>,<span class="number">57</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> k,res=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"请输入要查找的数字:\n"</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;k);</span><br><span class="line">    res=Fibonacci_Search(a,k,<span class="number">13</span>);</span><br><span class="line">    <span class="keyword">if</span>(res!=<span class="number">-1</span>)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"在数组的第%d个位置找到元素:%d\n"</span>,res+<span class="number">1</span>,k);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"未在数组中找到元素:%d\n"</span>, k);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="库函数查找"><a class="markdownIt-Anchor" href="#库函数查找"></a> 库函数查找</h2>
-<p><code>STL</code>模板库中关于查找函数的：<code>find()</code>、<code>find_if()</code>、<code>binary_search()</code></p>
-<h3 id="find"><a class="markdownIt-Anchor" href="#find"></a> <code>find</code>()</h3>
-<p><strong>作用</strong>：在区间查找序列中存在的某个关键值</p>
-<p><strong>格式</strong>：<code>find(start,end,key)</code></p>
-<p><strong>函数返回值</strong>：地址或迭代器，若是查找不到<code>key</code>就返还<code>end</code></p>
-<p><strong>传入参数</strong>：数据集合的左端点，数据集合的右端点后一个位置，查找的值</p>
-<blockquote>
-<p>因为函数的查找是在<code>[l,r)</code>的左开半闭区间，所以区间要往后多开一位</p>
-</blockquote>
-<h3 id="find_if"><a class="markdownIt-Anchor" href="#find_if"></a> <code>find_if()</code></h3>
-<p><strong>作用</strong>：在序列中找到符合某条件的第一个关键值</p>
-<p><strong>格式</strong>：<code>find_if(start,end,pred)</code>，其中<code>pred</code>是自定义的一元<code>bool</code>判断函数</p>
-<p><strong>函数返回值</strong>：地址或迭代器，若是查找不到<code>key</code>就返还<code>end</code></p>
-<p><strong>传入参数</strong>：数据集合的左端点，数据集合的右端点后一个位置，查找的值</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">pred</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x%<span class="number">5</span>?<span class="number">0</span>:<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">iLocation=find_if(iVect.begin(),iVect.end(),pred);</span><br><span class="line"><span class="keyword">if</span>(iLocation!=iVect.end())&#123;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"第一个被5整除的元素："</span>&lt;&lt;*iLocation&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">"元素的索引位置："</span>&lt;&lt;iLocation-iVect.begin()&lt;&lt;end;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="lower_bound-upper_bound-binary_search"><a class="markdownIt-Anchor" href="#lower_bound-upper_bound-binary_search"></a> <code>lower_bound()</code>、<code>upper_bound()</code>、<code>binary_search()</code></h3>
-<p><strong>注意：和上述的函数不同，这些函数使用前提是序列有序</strong></p>
-<p><strong>格式</strong>：<code>find(start,end,key)</code></p>
-<table>
-<thead>
-<tr>
-<th><code>lower_bound()</code></th>
-<th><code>upper_bound()</code></th>
-<th>``binary_search()`</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>返还第一个大于等于<code>key</code>值的地址或迭代器</td>
-<td>返还第一个大于<code>key</code>值的地址或迭代器</td>
-<td>判断序列中是否存在<code>key</code>值</td>
-</tr>
-<tr>
-<td><code>int</code>型</td>
-<td><code>int</code>型</td>
-<td><code>bool</code>型</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>配合使用可以实现二分查找,另外函数最后还可以加上比较函数使原有用法变反</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">bool</span> flag=<span class="literal">false</span>;</span><br><span class="line"><span class="keyword">int</span> data[...];</span><br><span class="line">sort(data,data+n);<span class="comment">//升序排序</span></span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;lower_bound(data,data+n,key)-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个大于等于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">sort(data,data+n,greater&lt;<span class="keyword">int</span>&gt;());</span><br><span class="line">flag=binary_search(data,data+n,key);<span class="comment">//判断是否存在</span></span><br><span class="line"><span class="keyword">if</span>(flag)<span class="built_in">cout</span>&lt;&lt;upper_bound(data,data+n,key,greater&lt;<span class="keyword">int</span>&gt;())-data&lt;&lt;<span class="built_in">endl</span>;<span class="comment">//返还第一个小于key的位置</span></span><br><span class="line"><span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="string">"don't find"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>大学计算机学习</category>
-        <category>C++</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法与数据结构</tag>
-        <tag>查找</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>KMP&amp;字典树&amp;AC自动机</title>
-    <url>/2020/07/30/KMP&amp;%E5%AD%97%E5%85%B8%E6%A0%91&amp;AC%E8%87%AA%E5%8A%A8%E6%9C%BA/</url>
-    <content><![CDATA[<h1 id="kmp算法"><a class="markdownIt-Anchor" href="#kmp算法"></a> <code>KMP</code>算法</h1>
-<blockquote>
-<p>第一次学不好理解需要多看看几篇好的博客：<a href="https://blog.csdn.net/yearn520/article/details/6729426" target="_blank" rel="noopener">前缀数组讲解</a>和<a href="https://blog.csdn.net/dark_cy/article/details/88698736" target="_blank" rel="noopener">KMP回退讲解</a> <a href="https://www.bilibili.com/video/BV1Ys411d7yh/?spm_id_from=333.788.videocard.1" target="_blank" rel="noopener">印度阿三视频演示</a></p>
-</blockquote>
-<p><strong>声明：本文所有的字符串和指针下标都是从0开始</strong></p>
-<h2 id="算法引入"><a class="markdownIt-Anchor" href="#算法引入"></a> 算法引入</h2>
-<p>假设有字符串<code>s1</code>和<code>s2</code>，长度分别为<code>n</code>和<code>m</code>。求解<code>s2</code>是否为<code>s1</code>的子串这个问题中，可称为<code>s1</code>为匹配串，<code>s2</code>为模式串。即解决模式串<code>s2</code>是否能够在匹配串<code>s1</code>成功匹配问题</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-1.png" alt></p>
-<p>朴素算法就是单纯的暴力枚举尝试匹配从左到右一个个匹配，如果这个过程中有某个字符不匹配，就跳回去，将模式串向右移动一位，分别为两个字符串设两个匹配指针</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-2.png" alt></p>
-<p>之后我们只需要比较<code>i</code>指针指向的字符和<code>j</code>指针指向的字符是否一致。如果一致就都向后移动，如果不一致如图</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-3.png" alt></p>
-<p><code>A</code>和<code>E</code>不一致，那就把<code>i</code>指针移回开始匹配位置的后一位（这里是第1位），<code>j</code>移动到模式串的第0位，然后又重新开始下一轮的匹配</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-4.png" alt></p>
-<p>朴素算法简单但是太慢，时间复杂度高达O(n*m)。如果是人为进行寻找绝对不会吧<code>i</code>移动到第1位进行匹配尝试，因为先前尝试的时候模式串的前三位都成功匹配了而且模式串只有开头一个<code>A</code>，所以不难知道匹配第2，3位肯定不和模式串的<code>A</code>匹配（移动过去肯定不匹配）。那么如果能够忽略这种无意义的匹配尝试减少<code>i</code>的回溯不就可以加快匹配了吗？</p>
-<p>KMP算法就是利用这个想法产生的，它的时间复杂度仅为O(n+m)的算法，既可以<strong>求出字符串<code>s2</code>是不是字符串<code>s1</code>的子串</strong>，又可以<strong>求出字符串<code>s2</code>在字符串<code>s1</code>中的出现的次数，每次出现在什么位置</strong></p>
-<p>该算法主要有两个操作：首先用O(m)的复杂度求出一个<code>next</code>数组，记录了关于模式串<code>s2</code>的信息，再用O(n)的复杂度快速求出模式串串<code>s2</code>在匹配串<code>s1</code>出现的位置</p>
-<h2 id="步骤一求next数组"><a class="markdownIt-Anchor" href="#步骤一求next数组"></a> 步骤一：求<code>next</code>数组</h2>
-<p><strong>注意：在<code>KMP</code>算法中，有很多定义<code>next</code>数组的方式。这里只选一种讲解，其他的几种可以使相似的方法，在使用<code>KMP</code>算法的时候一定要注意<code>next</code>数组的定义</strong></p>
-<p><code>next</code>数组处理对象是模式串自身，具体什么作用看了体会就知道了</p>
-<p>本文采用的定义是：若<code>next[j]==k</code>,则<code>k</code>为满足以下条件的最大值：<code>s2[0..k]</code>与<code>s2[j-k+1..j]</code>相同，且<code>s2[k+1]</code>与<code>s2[j+1]</code>不同。若不存在这样的<code>k</code>，则<code>next[j]==-1</code>。</p>
-<blockquote>
-<p><code>next</code>数组若是从<code>-1</code>开始一般记录的是匹配前缀末尾元素在模式串中的位置，若是从<code>0</code>开始一般记录的就是匹配的前缀的长度</p>
-</blockquote>
-<p>以模式串<code>ababaab</code>为例</p>
-<table>
-<thead>
-<tr>
-<th>模式串子串</th>
-<th><code>next</code>数组</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a</td>
-<td><code>nex[0]=-1</code></td>
-</tr>
-<tr>
-<td>ab</td>
-<td><code>nex[1]=-1</code></td>
-</tr>
-<tr>
-<td><mark>a</mark>b<strong>a</strong></td>
-<td><code>nex[2]=0</code></td>
-</tr>
-<tr>
-<td><mark>ab</mark><strong>ab</strong></td>
-<td><code>nex[3]=1</code></td>
-</tr>
-<tr>
-<td><mark>ab</mark>==<strong>a</strong>==<strong>ba</strong></td>
-<td><code>nex[4]=2</code></td>
-</tr>
-<tr>
-<td><mark>a</mark>baba<strong>a</strong></td>
-<td><code>nex[5]=0</code></td>
-</tr>
-<tr>
-<td><mark>ab</mark>aba<strong>ab</strong></td>
-<td><code>nex[6]=1</code></td>
-</tr>
-</tbody>
-</table>
-<p>在求解<code>next</code>数组时，暴⼒的算法效率不满⾜要求，这⾥使⽤递推的思想求解，也就是已知第0位的值为<code>-1</code>，计算当前位置的<code>next</code>值时，要根据前⼀个字符的最⻓前后的值来判断，这基于<code>next</code>数组的意义，它的值始终是该子串的最长匹配前缀的最后⼀位下标</p>
-<p>更具体的说，每当我们要计算当前长度子串的<code>next</code>值，我们已经知道上⼀位的<code>next</code>值<br>
-如果此时新增的字符和上⼀位最长前缀的下⼀个字符相同，那么无疑<code>nex[i]=nex[i-1]+1</code>，这样可以保证<code>nex</code>值最大，否则新增的字符不匹配了，我们就要找次长的匹配前缀了，直到找到的前长度的下⼀位和新增的字符相等</p>
-<table>
-<thead>
-<tr>
-<th>模式串子串</th>
-<th><code>next</code>数组</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>a</td>
-<td><code>i=0,nex[0]=-1</code></td>
-</tr>
-<tr>
-<td>ab</td>
-<td><code>i=1,str[nex[0]+1]!=str[1],nex[1]=-1</code></td>
-</tr>
-<tr>
-<td><mark>a</mark>b<strong>a</strong></td>
-<td><code>i=2,str[nex[1]+1]==str[2],nex[2]=0</code></td>
-</tr>
-<tr>
-<td><mark>ab</mark><strong>ab</strong></td>
-<td><code>i=3,str[nex[2]+1]==str[3],nex[3]=1</code></td>
-</tr>
-<tr>
-<td><mark>ab</mark>A<strong>ba</strong></td>
-<td><code>i=4,str[nex[3]+1]==str[4],nex[4]=2</code></td>
-</tr>
-<tr>
-<td><mark>a</mark>baba<strong>a</strong></td>
-<td><code>i=5,str[nex[4]+1]!=str[5]-&gt;str[nex[0]+1]==str[5],nex[5]=0</code></td>
-</tr>
-<tr>
-<td><mark>ab</mark>aba<strong>ab</strong></td>
-<td><code>i=6,str[nex[5]+1]==str[6],nex[6]=1</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>以<code>ababa</code>子串求<code>nex[4]</code>为例，<code>nex[3]=1</code>并且此时最长前缀的末尾元素的后一个字符为<code>a</code>恰好和当前新增字符<code>a</code>相同，所以<code>nex[4]=nex[3]+1=2</code></p>
-<p>再以<code>ababaa</code>求<code>nex[5]</code>子串为，nex[4]=2但是此时最长前缀的末尾元素的后一个字符<code>b</code>和当前新增字符<code>a</code>不同，所以再向前找次为的最长前缀<code>nex[nex[4]]=0</code>并且此时最长前缀的末尾元素的后一个字符为<code>a</code>和新增字符相同了所以<code>nex[5]=nex[0]+1=0</code></p>
-</blockquote>
-<h3 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> nex[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getnex</span><span class="params">(<span class="keyword">char</span> str[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	nex[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=<span class="number">-1</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;str[i]!=str[j+<span class="number">1</span>])j=nex[j];<span class="comment">//不符合回退 </span></span><br><span class="line">		<span class="keyword">if</span>(str[i]==str[j+<span class="number">1</span>])j++;<span class="comment">//符合前进 </span></span><br><span class="line">		nex[i]=j;<span class="comment">//记录当前位置的最长前缀的最后一个字符的位置 </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="步骤二匹配模式串和匹配串"><a class="markdownIt-Anchor" href="#步骤二匹配模式串和匹配串"></a> 步骤二：匹配模式串和匹配串</h2>
-<p>借助求出的关于模式串<code>nex</code>数组进行如下操作：<strong>利用已经部分匹配这个有效信息，保持<code>i</code>指针不回溯，通过修改<code>j</code>指针，让模式串尽量地移动到有效的位置</strong></p>
-<p>所以，整个KMP的重点就在于<strong>当某一个字符与主串不匹配时，我们应该知道j指针要移动到哪</strong>？而<code>nex</code>数组的存在恰好解决了这个问题。看两个例子就找到规律了：</p>
-<p>例子一：</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-5.png" alt></p>
-<p><code>C</code>和<code>D</code>不匹配了，保持<code>i</code>不回溯，我们显然要把<code>j</code>移动到第1位，为什么？因为前面有一个A相同可以匹配上</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-6.png" alt></p>
-<p>例子二：</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-7.png" alt></p>
-<p><code>C</code>与<code>B</code>不匹配了，保持<code>i</code>不回溯，把<code>j</code>指针移动到第2位，因为前面有两个字母是一样的</p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-8.png" alt></p>
-<p>其实<code>j</code>的移动就是移到了之前求出的nex[]的位置，但是有点区别，本文转移应该按照新增字符的前一个位置的<code>nex</code>转移，所以不妨让<code>j</code>指针错一个位置也就是从<code>-1</code>位置开始，尝试匹配的是<code>tex=[i]</code>和<code>patt[j+1]</code>。</p>
-<h3 id="模板-2"><a class="markdownIt-Anchor" href="#模板-2"></a> 模板</h3>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断是否是子串</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">kmp1</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt);</span><br><span class="line">	<span class="comment">//预处理求出patt的前缀函数</span></span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="comment">//如果不匹配</span></span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="comment">//匹配到了，那么下一个</span></span><br><span class="line">		<span class="keyword">if</span>(tex[i]==patt[j+<span class="number">1</span>])j++;</span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计patt在tex中出现的次数 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp2</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt),cnt=<span class="number">0</span>;</span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="keyword">if</span>(patt[j+<span class="number">1</span>]==tex[i])j++;</span><br><span class="line">		<span class="comment">//匹配成功后次数+1，同时j回推继续匹配</span></span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)cnt++,j=nex[j]; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//变式：如果题目要求匹配的字符串位置不能重叠，那么匹配成功后j就不能回溯</span></span><br></pre></td></tr></table></figure>
-<h2 id="模板-3"><a class="markdownIt-Anchor" href="#模板-3"></a> 模板</h2>
-<p><a href="https://vjudge.net/problem/LibreOJ-103" target="_blank" rel="noopener">模板题</a>：给定一个字符串<code>A</code>和一个字符串<code>B</code>，求<code>B</code>在<code>A</code>中的出现次数。<code>A</code>和<code>B</code>中的字符均为英语大写字母或小写字母。<code>A</code>中不同位置出现的<code>B</code>可重叠。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> nex[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getnex</span><span class="params">(<span class="keyword">char</span> str[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	nex[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=<span class="number">-1</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;str[i]!=str[j+<span class="number">1</span>])j=nex[j];<span class="comment">//不符合回退 </span></span><br><span class="line">		<span class="keyword">if</span>(str[i]==str[j+<span class="number">1</span>])j++;<span class="comment">//符合前进 </span></span><br><span class="line">		nex[i]=j;<span class="comment">//记录当前位置的最长前缀的最后一个字符的位置 </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否是子串</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">kmp1</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt);</span><br><span class="line">	<span class="comment">//预处理求出patt的前缀函数</span></span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="comment">//如果不匹配</span></span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="comment">//匹配到了，那么下一个</span></span><br><span class="line">		<span class="keyword">if</span>(tex[i]==patt[j+<span class="number">1</span>])j++;</span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp2</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt),cnt=<span class="number">0</span>;</span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="keyword">if</span>(patt[j+<span class="number">1</span>]==tex[i])j++;</span><br><span class="line">		<span class="comment">//匹配成功后次数+1，同时j回推继续匹配</span></span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)cnt++,j=nex[j]; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">char</span> a[N],b[N];</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    getnex(b,<span class="built_in">strlen</span>(b));</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;kmp2(a,b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//system("pause");</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="拓展kmp算法"><a class="markdownIt-Anchor" href="#拓展kmp算法"></a> 拓展<code>KMP</code>算法</h1>
-<p>等过段时间明白了<a href="https://segmentfault.com/a/1190000008663857" target="_blank" rel="noopener">讲解</a>再整理</p>
-<h2 id="模板-4"><a class="markdownIt-Anchor" href="#模板-4"></a> 模板</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 求解T中next[],注释参考GetExtend()*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetNext</span><span class="params">(<span class="built_in">string</span> &amp;T,<span class="keyword">int</span> &amp;m,<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">0</span>,p=<span class="number">0</span>;</span><br><span class="line">    next[<span class="number">0</span>]=m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;=p||i+next[i-a]&gt;=p)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;=p)p=i;</span><br><span class="line">            <span class="keyword">while</span>(p&lt;m&amp;&amp;T[p]==T[p-i])p++;</span><br><span class="line">            next[i]=p-i;</span><br><span class="line">            a=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> next[i]=next[i-a];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 求解extend[]*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetExtend</span><span class="params">(<span class="built_in">string</span> &amp;S,<span class="keyword">int</span> &amp;n,<span class="built_in">string</span> &amp;T,<span class="keyword">int</span> &amp;m,<span class="keyword">int</span> extend[],<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">0</span>,p=<span class="number">0</span>;</span><br><span class="line">    GetNext(T,m,next);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;=p||i+next[i-a]&gt;=p)&#123;<span class="comment">//i&gt;=p的作用:举个典型例子,S和T无一字符相同</span></span><br><span class="line">            <span class="keyword">if</span>(i&gt;=p)p=i;</span><br><span class="line">            <span class="keyword">while</span>(p&lt;n&amp;&amp;p-i&lt;m&amp;&amp;S[p]==T[p-i])p++;</span><br><span class="line">            extend[i]=p-i;</span><br><span class="line">            a=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> extend[i] = next[i - a];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> next[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">int</span> extend[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">string</span> S,T;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span>&gt;&gt;S&gt;&gt;T)&#123;<span class="comment">//匹配串和模式串</span></span><br><span class="line">        n=S.size();</span><br><span class="line">        m=T.size();</span><br><span class="line">        GetExtend(S,n,T,m,extend,next);</span><br><span class="line">        <span class="comment">//打印next</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="string">"next:   "</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;next[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        <span class="comment">//打印extend</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="string">"\nextend: "</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;extend[i]&lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="comment">//extend[i]==m的就是匹配成功</span></span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="trie字典树"><a class="markdownIt-Anchor" href="#trie字典树"></a> <code>Trie</code>（字典树）</h1>
-<p>字典树，顾名思义就是一个像字典一样的树。</p>
-<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/trie-1.png" style="zoom: 50%;">
-<p><strong>定义</strong>：<code>Trie</code>是⼀种⽤于实现字符串快速检索的多叉树结构。<code>Trie</code>的每个节点都拥有若⼲个字符指针，若在插⼊或检索字符串时扫描到⼀个字符串<code>c</code>，就沿着当前节点的<code>c</code>这个这个字符指针，⾛向该指针指向的节点</p>
-<blockquote>
-<p>借用这样的数据结构，我们可以方便存取大量字符串，大幅度优化空间复杂度</p>
-</blockquote>
-<p><strong>操作</strong>：它是首先建立一个<code>root</code>根节点，然后在读取后来的字符串的同时，从根节点出发，查找字符串每一位的节点是否存在。若存在，就从这一位出发继续查找下一位；若不存在，就建立这个节点。反复以上过程。</p>
-<p><strong>注意：<code>Trie</code>树是将字符转换为<code>ASCii</code>码存取需要转换</strong></p>
-<p><strong>特点</strong>：</p>
-<ul>
-<li>根节点不包含字符，除根节点外每一个节点都只包含一个字符</li>
-<li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串</li>
-<li>在字典树中查找某一个关键字的时间和树种包含的节点数无关，而取决去组成关键字的字符数，也就是查询关键字的时间复杂度O(s.length)</li>
-<li>实际上每一个节点指向的是下一个字符的<code>ASCii</code>码（节点相当于是辅助）真正记录字符的在边上</li>
-</ul>
-<h2 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h2>
-<p>字典树的两种基本操作分别是<strong>建树和查询</strong>。其中建树操作就是把一个新单词插入到字典树里。查询操作就是查询给定单词是否在字典树上</p>
-<p><strong>初始化</strong>：⼀颗空的字典树仅包含⼀个指向空的根节点</p>
-<p><strong>插入</strong>：当需要插⼊⼀个字符串<code>S</code>时，令⼀个指针<code>P</code>从根节点开始，依次扫描<code>S</code>中的每⼀个字符<code>c</code></p>
-<ul>
-<li>如果c字符的指针指向⼀个已经存在的节点Q，则令<code>P</code> =<code>Q</code></li>
-<li>如果c字符的指针指向空，那么新建⼀个<code>Q</code>节点，令<code>P</code>的<code>c</code>字符指针指向<code>Q</code>，然后令<code>P=Q</code></li>
-</ul>
-<p>每次插入的最后将插入的字符串末尾的节点标记表示走到当前节点路径上的字符串存在</p>
-<p><strong>查询</strong>：开始检索之前，令⼀个指针<code>P</code>指向根节点，然后依次扫描<code>S</code></p>
-<ul>
-<li>若<code>P</code>的<code>C</code>字符指针指向空，说明<code>S</code>不在<code>Trie</code>中。</li>
-<li>若<code>P</code>的<code>C</code>字符指针指向⼀个已经存在的节点<code>Q</code>，令<code>P=Q</code></li>
-</ul>
-<p>扫描完毕时如果<code>P</code>被标记为字符串的末尾，则说明<code>S</code>存在，否则说明不在<code>Trie</code>中</p>
-<p><strong>图示</strong>：依次插入<code>cab</code>、<code>cat</code>、<code>rain</code></p>
-<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/trie-2.png" alt></p>
-<blockquote>
-<p>上图的<code>Trie</code>插⼊的均是⼩写字符，所以每个节点最多有26个指针。底部的绿⾊节点代表⼀个字符串的结尾。可以发 现在<code>Tire</code>中，所有字符保存在树的指针（边）上，⽽节点存储的是⼀些辅助信息</p>
-</blockquote>
-<h2 id="模板-5"><a class="markdownIt-Anchor" href="#模板-5"></a> 模板</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>;<span class="comment">//插入字符串的最大字符数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> trie[N][<span class="number">26</span>];</span><br><span class="line"><span class="keyword">bool</span> ed[N];<span class="comment">//字典树[当前指针][指向指针]和结尾标记</span></span><br><span class="line"><span class="keyword">int</span> tot;<span class="comment">//寄存指针,根节点从1开始，可以统计有多少个节点，值-1就是字符数 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">char</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-<span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(trie,<span class="number">0</span>,<span class="keyword">sizeof</span> trie);</span><br><span class="line">	<span class="built_in">memset</span>(ed,<span class="number">0</span>,<span class="keyword">sizeof</span> ed);</span><br><span class="line">	tot=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> str[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=<span class="built_in">strlen</span>(str),p=<span class="number">1</span>;<span class="comment">//从根节点1开始往下存</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> ch=cal(str[i]);</span><br><span class="line">		<span class="keyword">if</span>(trie[p][ch]==<span class="number">0</span>)trie[p][ch]=++tot;</span><br><span class="line">		p=trie[p][ch];</span><br><span class="line">	&#125;</span><br><span class="line">	ed[p]=<span class="literal">true</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="keyword">char</span> str[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=<span class="built_in">strlen</span>(str),p=<span class="number">1</span>;<span class="comment">//这里的str[]为待查询的字符串 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> ch=cal(str[i]);</span><br><span class="line">		p=trie[p][ch];</span><br><span class="line">		<span class="keyword">if</span>(p==<span class="number">0</span>)<span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//没有存储字符串的字符 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ed[p];</span><br><span class="line">	<span class="comment">//关键：若确实到了结尾就返还true,否则说明可能只是字典树里的某个字符串的子串，那也是没找到 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">	<span class="keyword">int</span> n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">100005</span>];</span><br><span class="line">	<span class="comment">//插入字符串</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;s,insert(s);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查询字符串</span></span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;s)</span><br><span class="line">	search(s);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="优化边插入边查询"><a class="markdownIt-Anchor" href="#优化边插入边查询"></a> 优化：边插入边查询</h2>
-<p><a href="https://vjudge.net/problem/HDU-1305" target="_blank" rel="noopener">模板题</a>：给你一系列字符串，以9为分割线，判断在某个集合里的字符串有没有作为其他字符串的前缀出现</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="拓展字典树异或操作"><a class="markdownIt-Anchor" href="#拓展字典树异或操作"></a> 拓展：字典树异或操作</h2>
-<p><a href="https://vjudge.net/problem/LibreOJ-10050" target="_blank" rel="noopener">模板题</a>：在给定的<code>N</code>个整数<code>A1,A2,…,AN</code>中选出两个进行异或运算，得到的结果最大是多少</p>
-<blockquote>
-<p>思路：先把所有的数插入到字典树。根据贪心原理：尽可能出现多的1，1数量相同的情况下尽量往高处放。所以插入的时候数从高位到低位的顺序插入。因此在查询操作中对每一个数尝试将每个为0的位变为1（前提是字典树内存在对应的点，因为只有存在对应的点才存在这个数）</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line">ll a[<span class="number">100005</span>],trie[<span class="number">100005</span>*<span class="number">31</span>][<span class="number">2</span>];<span class="comment">//只有01取值所以开第二维开两个空间</span></span><br><span class="line">ll tot=<span class="number">1</span>;<span class="comment">//寄存指针</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//插入N个31位的数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    ll p=<span class="number">1</span>;<span class="comment">//根节点从1开始</span></span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">30</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        ll ch=(x&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(trie[p][ch]==<span class="number">0</span>)trie[p][ch]=++tot;</span><br><span class="line">        p=trie[p][ch];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    ll res=<span class="number">0</span>;<span class="comment">//记录查找的最大异或数的数值</span></span><br><span class="line">    ll p=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">30</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        ll ch=(x&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(trie[p][!ch]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            p=trie[p][!ch];</span><br><span class="line">            res=res*<span class="number">2</span>+!ch;<span class="comment">//向前进一位然后加上新的一位</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            p=trie[p][ch];</span><br><span class="line">            res=res*<span class="number">2</span>+ch;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    ll n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        insert(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    ll cnt=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cnt=max(cnt,query(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;cnt&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//system("pause");</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
   </entry>
   <entry>
     <title>HTML知识汇总</title>
@@ -1537,6 +1354,207 @@
       <tags>
         <tag>Web前端</tag>
         <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>KMP&amp;字典树&amp;AC自动机</title>
+    <url>/2020/07/30/KMP&amp;%E5%AD%97%E5%85%B8%E6%A0%91&amp;AC%E8%87%AA%E5%8A%A8%E6%9C%BA/</url>
+    <content><![CDATA[<h1 id="kmp算法"><a class="markdownIt-Anchor" href="#kmp算法"></a> <code>KMP</code>算法</h1>
+<blockquote>
+<p>第一次学不好理解需要多看看几篇好的博客：<a href="https://blog.csdn.net/yearn520/article/details/6729426" target="_blank" rel="noopener">前缀数组讲解</a>和<a href="https://blog.csdn.net/dark_cy/article/details/88698736" target="_blank" rel="noopener">KMP回退讲解</a> <a href="https://www.bilibili.com/video/BV1Ys411d7yh/?spm_id_from=333.788.videocard.1" target="_blank" rel="noopener">印度阿三视频演示</a></p>
+</blockquote>
+<p><strong>声明：本文所有的字符串和指针下标都是从0开始</strong></p>
+<h2 id="算法引入"><a class="markdownIt-Anchor" href="#算法引入"></a> 算法引入</h2>
+<p>假设有字符串<code>s1</code>和<code>s2</code>，长度分别为<code>n</code>和<code>m</code>。求解<code>s2</code>是否为<code>s1</code>的子串这个问题中，可称为<code>s1</code>为匹配串，<code>s2</code>为模式串。即解决模式串<code>s2</code>是否能够在匹配串<code>s1</code>成功匹配问题</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-1.png" alt></p>
+<p>朴素算法就是单纯的暴力枚举尝试匹配从左到右一个个匹配，如果这个过程中有某个字符不匹配，就跳回去，将模式串向右移动一位，分别为两个字符串设两个匹配指针</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-2.png" alt></p>
+<p>之后我们只需要比较<code>i</code>指针指向的字符和<code>j</code>指针指向的字符是否一致。如果一致就都向后移动，如果不一致如图</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-3.png" alt></p>
+<p><code>A</code>和<code>E</code>不一致，那就把<code>i</code>指针移回开始匹配位置的后一位（这里是第1位），<code>j</code>移动到模式串的第0位，然后又重新开始下一轮的匹配</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-4.png" alt></p>
+<p>朴素算法简单但是太慢，时间复杂度高达O(n*m)。如果是人为进行寻找绝对不会吧<code>i</code>移动到第1位进行匹配尝试，因为先前尝试的时候模式串的前三位都成功匹配了而且模式串只有开头一个<code>A</code>，所以不难知道匹配第2，3位肯定不和模式串的<code>A</code>匹配（移动过去肯定不匹配）。那么如果能够忽略这种无意义的匹配尝试减少<code>i</code>的回溯不就可以加快匹配了吗？</p>
+<p>KMP算法就是利用这个想法产生的，它的时间复杂度仅为O(n+m)的算法，既可以<strong>求出字符串<code>s2</code>是不是字符串<code>s1</code>的子串</strong>，又可以<strong>求出字符串<code>s2</code>在字符串<code>s1</code>中的出现的次数，每次出现在什么位置</strong></p>
+<p>该算法主要有两个操作：首先用O(m)的复杂度求出一个<code>next</code>数组，记录了关于模式串<code>s2</code>的信息，再用O(n)的复杂度快速求出模式串串<code>s2</code>在匹配串<code>s1</code>出现的位置</p>
+<h2 id="步骤一求next数组"><a class="markdownIt-Anchor" href="#步骤一求next数组"></a> 步骤一：求<code>next</code>数组</h2>
+<p><strong>注意：在<code>KMP</code>算法中，有很多定义<code>next</code>数组的方式。这里只选一种讲解，其他的几种可以使相似的方法，在使用<code>KMP</code>算法的时候一定要注意<code>next</code>数组的定义</strong></p>
+<p><code>next</code>数组处理对象是模式串自身，具体什么作用看了体会就知道了</p>
+<p>本文采用的定义是：若<code>next[j]==k</code>,则<code>k</code>为满足以下条件的最大值：<code>s2[0..k]</code>与<code>s2[j-k+1..j]</code>相同，且<code>s2[k+1]</code>与<code>s2[j+1]</code>不同。若不存在这样的<code>k</code>，则<code>next[j]==-1</code>。</p>
+<blockquote>
+<p><code>next</code>数组若是从<code>-1</code>开始一般记录的是匹配前缀末尾元素在模式串中的位置，若是从<code>0</code>开始一般记录的就是匹配的前缀的长度</p>
+</blockquote>
+<p>以模式串<code>ababaab</code>为例</p>
+<table>
+<thead>
+<tr>
+<th>模式串子串</th>
+<th><code>next</code>数组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td><code>nex[0]=-1</code></td>
+</tr>
+<tr>
+<td>ab</td>
+<td><code>nex[1]=-1</code></td>
+</tr>
+<tr>
+<td><mark>a</mark>b<strong>a</strong></td>
+<td><code>nex[2]=0</code></td>
+</tr>
+<tr>
+<td><mark>ab</mark><strong>ab</strong></td>
+<td><code>nex[3]=1</code></td>
+</tr>
+<tr>
+<td><mark>ab</mark>A<strong>ba</strong></td>
+<td><code>nex[4]=2</code></td>
+</tr>
+<tr>
+<td><mark>a</mark>baba<strong>a</strong></td>
+<td><code>nex[5]=0</code></td>
+</tr>
+<tr>
+<td><mark>ab</mark>aba<strong>ab</strong></td>
+<td><code>nex[6]=1</code></td>
+</tr>
+</tbody>
+</table>
+<p>在求解<code>next</code>数组时，暴⼒的算法效率不满⾜要求，这⾥使⽤递推的思想求解，也就是已知第0位的值为<code>-1</code>，计算当前位置的<code>next</code>值时，要根据前⼀个字符的最⻓前后的值来判断，这基于<code>next</code>数组的意义，它的值始终是该子串的最长匹配前缀的最后⼀位下标</p>
+<p>更具体的说，每当我们要计算当前长度子串的<code>next</code>值，我们已经知道上⼀位的<code>next</code>值<br>
+如果此时新增的字符和上⼀位最长前缀的下⼀个字符相同，那么无疑<code>nex[i]=nex[i-1]+1</code>，这样可以保证<code>nex</code>值最大，否则新增的字符不匹配了，我们就要找次长的匹配前缀了，直到找到的前长度的下⼀位和新增的字符相等</p>
+<table>
+<thead>
+<tr>
+<th>模式串子串</th>
+<th><code>next</code>数组</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a</td>
+<td><code>i=0,nex[0]=-1</code></td>
+</tr>
+<tr>
+<td>ab</td>
+<td><code>i=1,str[nex[0]+1]!=str[1],nex[1]=-1</code></td>
+</tr>
+<tr>
+<td><mark>a</mark>b<strong>a</strong></td>
+<td><code>i=2,str[nex[1]+1]==str[2],nex[2]=0</code></td>
+</tr>
+<tr>
+<td><mark>ab</mark><strong>ab</strong></td>
+<td><code>i=3,str[nex[2]+1]==str[3],nex[3]=1</code></td>
+</tr>
+<tr>
+<td><mark>ab</mark>A<strong>ba</strong></td>
+<td><code>i=4,str[nex[3]+1]==str[4],nex[4]=2</code></td>
+</tr>
+<tr>
+<td><mark>a</mark>baba<strong>a</strong></td>
+<td><code>i=5,str[nex[4]+1]!=str[5]-&gt;str[nex[0]+1]==str[5],nex[5]=0</code></td>
+</tr>
+<tr>
+<td><mark>ab</mark>aba<strong>ab</strong></td>
+<td><code>i=6,str[nex[5]+1]==str[6],nex[6]=1</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>以<code>ababa</code>子串求<code>nex[4]</code>为例，<code>nex[3]=1</code>并且此时最长前缀的末尾元素的后一个字符为<code>a</code>恰好和当前新增字符<code>a</code>相同，所以<code>nex[4]=nex[3]+1=2</code></p>
+<p>再以<code>ababaa</code>求<code>nex[5]</code>子串为，nex[4]=2但是此时最长前缀的末尾元素的后一个字符<code>b</code>和当前新增字符<code>a</code>不同，所以再向前找次为的最长前缀<code>nex[nex[4]]=0</code>并且此时最长前缀的末尾元素的后一个字符为<code>a</code>和新增字符相同了所以<code>nex[5]=nex[0]+1=0</code></p>
+</blockquote>
+<h3 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> nex[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getnex</span><span class="params">(<span class="keyword">char</span> str[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	nex[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=<span class="number">-1</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;str[i]!=str[j+<span class="number">1</span>])j=nex[j];<span class="comment">//不符合回退 </span></span><br><span class="line">		<span class="keyword">if</span>(str[i]==str[j+<span class="number">1</span>])j++;<span class="comment">//符合前进 </span></span><br><span class="line">		nex[i]=j;<span class="comment">//记录当前位置的最长前缀的最后一个字符的位置 </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="步骤二匹配模式串和匹配串"><a class="markdownIt-Anchor" href="#步骤二匹配模式串和匹配串"></a> 步骤二：匹配模式串和匹配串</h2>
+<p>借助求出的关于模式串<code>nex</code>数组进行如下操作：<strong>利用已经部分匹配这个有效信息，保持<code>i</code>指针不回溯，通过修改<code>j</code>指针，让模式串尽量地移动到有效的位置</strong></p>
+<p>所以，整个KMP的重点就在于<strong>当某一个字符与主串不匹配时，我们应该知道j指针要移动到哪</strong>？而<code>nex</code>数组的存在恰好解决了这个问题。看两个例子就找到规律了：</p>
+<p>例子一：</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-5.png" alt></p>
+<p><code>C</code>和<code>D</code>不匹配了，保持<code>i</code>不回溯，我们显然要把<code>j</code>移动到第1位，为什么？因为前面有一个A相同可以匹配上</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-6.png" alt></p>
+<p>例子二：</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-7.png" alt></p>
+<p><code>C</code>与<code>B</code>不匹配了，保持<code>i</code>不回溯，把<code>j</code>指针移动到第2位，因为前面有两个字母是一样的</p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/kmp-8.png" alt></p>
+<p>其实<code>j</code>的移动就是移到了之前求出的nex[]的位置，但是有点区别，本文转移应该按照新增字符的前一个位置的<code>nex</code>转移，所以不妨让<code>j</code>指针错一个位置也就是从<code>-1</code>位置开始，尝试匹配的是<code>tex=[i]</code>和<code>patt[j+1]</code>。</p>
+<h3 id="模板-2"><a class="markdownIt-Anchor" href="#模板-2"></a> 模板</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//判断是否是子串</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">kmp1</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt);</span><br><span class="line">	<span class="comment">//预处理求出patt的前缀函数</span></span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="comment">//如果不匹配</span></span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="comment">//匹配到了，那么下一个</span></span><br><span class="line">		<span class="keyword">if</span>(tex[i]==patt[j+<span class="number">1</span>])j++;</span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//统计patt在tex中出现的次数 </span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp2</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt),cnt=<span class="number">0</span>;</span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="keyword">if</span>(patt[j+<span class="number">1</span>]==tex[i])j++;</span><br><span class="line">		<span class="comment">//匹配成功后次数+1，同时j回推继续匹配</span></span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)cnt++,j=nex[j]; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//变式：如果题目要求匹配的字符串位置不能重叠，那么匹配成功后j就不能回溯</span></span><br></pre></td></tr></table></figure>
+<h2 id="模板-3"><a class="markdownIt-Anchor" href="#模板-3"></a> 模板</h2>
+<p><a href="https://vjudge.net/problem/LibreOJ-103" target="_blank" rel="noopener">模板题</a>：给定一个字符串<code>A</code>和一个字符串<code>B</code>，求<code>B</code>在<code>A</code>中的出现次数。<code>A</code>和<code>B</code>中的字符均为英语大写字母或小写字母。<code>A</code>中不同位置出现的<code>B</code>可重叠。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e6</span>+<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> nex[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getnex</span><span class="params">(<span class="keyword">char</span> str[],<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">	nex[<span class="number">0</span>]=<span class="number">-1</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,j=<span class="number">-1</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;str[i]!=str[j+<span class="number">1</span>])j=nex[j];<span class="comment">//不符合回退 </span></span><br><span class="line">		<span class="keyword">if</span>(str[i]==str[j+<span class="number">1</span>])j++;<span class="comment">//符合前进 </span></span><br><span class="line">		nex[i]=j;<span class="comment">//记录当前位置的最长前缀的最后一个字符的位置 </span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//判断是否是子串</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">kmp1</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt);</span><br><span class="line">	<span class="comment">//预处理求出patt的前缀函数</span></span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="comment">//如果不匹配</span></span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="comment">//匹配到了，那么下一个</span></span><br><span class="line">		<span class="keyword">if</span>(tex[i]==patt[j+<span class="number">1</span>])j++;</span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)<span class="keyword">return</span> <span class="literal">true</span>; </span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">kmp2</span><span class="params">(<span class="keyword">char</span> tex[],<span class="keyword">char</span> patt[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len1=<span class="built_in">strlen</span>(tex),len2=<span class="built_in">strlen</span>(patt),cnt=<span class="number">0</span>;</span><br><span class="line">	getnex(patt,len2);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">-1</span>;i&lt;len1;i++)&#123;</span><br><span class="line">		<span class="keyword">while</span>(j!=<span class="number">-1</span>&amp;&amp;tex[i]!=patt[j+<span class="number">1</span>])j=nex[j];</span><br><span class="line">		<span class="keyword">if</span>(patt[j+<span class="number">1</span>]==tex[i])j++;</span><br><span class="line">		<span class="comment">//匹配成功后次数+1，同时j回推继续匹配</span></span><br><span class="line">		<span class="keyword">if</span>(j==len2<span class="number">-1</span>)cnt++,j=nex[j]; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">char</span> a[N],b[N];</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    getnex(b,<span class="built_in">strlen</span>(b));</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;kmp2(a,b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//system("pause");</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="拓展kmp算法"><a class="markdownIt-Anchor" href="#拓展kmp算法"></a> 拓展<code>KMP</code>算法</h1>
+<p>过段时间明白了<a href="https://segmentfault.com/a/1190000008663857" target="_blank" rel="noopener">讲解</a>再整理</p>
+<blockquote>
+<p>拓展<code>KMP</code>算法时间复杂度也是O(n+m)，它是由<code>KMP</code>算法拓展而来的而另一种快速匹配方法，同样是先求模式串本身的<code>next</code>数组但是匹配是在借助<code>next</code>数组计算出来的<code>extend</code>数组中寻找满足<code>extend[i]==m</code></p>
+</blockquote>
+<h2 id="模板-4"><a class="markdownIt-Anchor" href="#模板-4"></a> 模板</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 求解T中next[],注释参考GetExtend()*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetNext</span><span class="params">(<span class="built_in">string</span> &amp;T,<span class="keyword">int</span> &amp;m,<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">0</span>,p=<span class="number">0</span>;</span><br><span class="line">    next[<span class="number">0</span>]=m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;=p||i+next[i-a]&gt;=p)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;=p)p=i;</span><br><span class="line">            <span class="keyword">while</span>(p&lt;m&amp;&amp;T[p]==T[p-i])p++;</span><br><span class="line">            next[i]=p-i;</span><br><span class="line">            a=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> next[i]=next[i-a];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 求解extend[]*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetExtend</span><span class="params">(<span class="built_in">string</span> &amp;S,<span class="keyword">int</span> &amp;n,<span class="built_in">string</span> &amp;T,<span class="keyword">int</span> &amp;m,<span class="keyword">int</span> extend[],<span class="keyword">int</span> next[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">0</span>,p=<span class="number">0</span>;</span><br><span class="line">    GetNext(T,m,next);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;=p||i+next[i-a]&gt;=p)&#123;<span class="comment">//i&gt;=p的作用:举个典型例子,S和T无一字符相同</span></span><br><span class="line">            <span class="keyword">if</span>(i&gt;=p)p=i;</span><br><span class="line">            <span class="keyword">while</span>(p&lt;n&amp;&amp;p-i&lt;m&amp;&amp;S[p]==T[p-i])p++;</span><br><span class="line">            extend[i]=p-i;</span><br><span class="line">            a=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> extend[i] = next[i - a];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> next[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">int</span> extend[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">string</span> S,T;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">cin</span>&gt;&gt;S&gt;&gt;T)&#123;<span class="comment">//匹配串和模式串</span></span><br><span class="line">        n=S.size();</span><br><span class="line">        m=T.size();</span><br><span class="line">        GetExtend(S,n,T,m,extend,next);</span><br><span class="line">        <span class="comment">//打印next</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="string">"next:   "</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;next[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        <span class="comment">//打印extend</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt; <span class="string">"\nextend: "</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;extend[i]&lt;&lt; <span class="string">" "</span>;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="comment">//extend[i]==m的就是匹配成功</span></span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="trie字典树"><a class="markdownIt-Anchor" href="#trie字典树"></a> <code>Trie</code>（字典树）</h1>
+<p>字典树，顾名思义就是一个像字典一样的树。</p>
+<img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/trie-1.png" style="zoom: 50%;">
+<p><strong>定义</strong>：<code>Trie</code>是⼀种⽤于实现字符串快速检索的多叉树结构。<code>Trie</code>的每个节点都拥有若⼲个字符指针，若在插⼊或检索字符串时扫描到⼀个字符串<code>c</code>，就沿着当前节点的<code>c</code>这个这个字符指针，⾛向该指针指向的节点</p>
+<blockquote>
+<p>借用这样的数据结构，我们可以方便存取大量字符串，大幅度优化空间复杂度</p>
+</blockquote>
+<p><strong>操作</strong>：它是首先建立一个<code>root</code>根节点，然后在读取后来的字符串的同时，从根节点出发，查找字符串每一位的节点是否存在。若存在，就从这一位出发继续查找下一位；若不存在，就建立这个节点。反复以上过程。</p>
+<p><strong>注意：<code>Trie</code>树是将字符转换为<code>ASCii</code>码存取需要转换</strong></p>
+<p><strong>特点</strong>：</p>
+<ul>
+<li>根节点不包含字符，除根节点外每一个节点都只包含一个字符</li>
+<li>从根节点到某一个节点，路径上经过的字符连接起来，为该节点对应的字符串</li>
+<li>在字典树中查找某一个关键字的时间和树种包含的节点数无关，而取决去组成关键字的字符数，也就是查询关键字的时间复杂度O(s.length)</li>
+<li>实际上每一个节点指向的是下一个字符的<code>ASCii</code>码（节点相当于是辅助）真正记录字符的在边上</li>
+</ul>
+<h2 id="代码实现"><a class="markdownIt-Anchor" href="#代码实现"></a> 代码实现</h2>
+<p>字典树的两种基本操作分别是<strong>建树和查询</strong>。其中建树操作就是把一个新单词插入到字典树里。查询操作就是查询给定单词是否在字典树上</p>
+<p><strong>初始化</strong>：⼀颗空的字典树仅包含⼀个指向空的根节点</p>
+<p><strong>插入</strong>：当需要插⼊⼀个字符串<code>S</code>时，令⼀个指针<code>P</code>从根节点开始，依次扫描<code>S</code>中的每⼀个字符<code>c</code></p>
+<ul>
+<li>如果c字符的指针指向⼀个已经存在的节点Q，则令<code>P</code> =<code>Q</code></li>
+<li>如果c字符的指针指向空，那么新建⼀个<code>Q</code>节点，令<code>P</code>的<code>c</code>字符指针指向<code>Q</code>，然后令<code>P=Q</code></li>
+</ul>
+<p>每次插入的最后将插入的字符串末尾的节点标记表示走到当前节点路径上的字符串存在</p>
+<p><strong>查询</strong>：开始检索之前，令⼀个指针<code>P</code>指向根节点，然后依次扫描<code>S</code></p>
+<ul>
+<li>若<code>P</code>的<code>C</code>字符指针指向空，说明<code>S</code>不在<code>Trie</code>中。</li>
+<li>若<code>P</code>的<code>C</code>字符指针指向⼀个已经存在的节点<code>Q</code>，令<code>P=Q</code></li>
+</ul>
+<p>扫描完毕时如果<code>P</code>被标记为字符串的末尾，则说明<code>S</code>存在，否则说明不在<code>Trie</code>中</p>
+<p><strong>图示</strong>：依次插入<code>cab</code>、<code>cat</code>、<code>rain</code></p>
+<p><img src= "/img/loading.gif" data-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/trie-2.png" alt></p>
+<blockquote>
+<p>上图的<code>Trie</code>插⼊的均是⼩写字符，所以每个节点最多有26个指针。底部的绿⾊节点代表⼀个字符串的结尾。可以发 现在<code>Tire</code>中，所有字符保存在树的指针（边）上，⽽节点存储的是⼀些辅助信息</p>
+</blockquote>
+<h2 id="模板-5"><a class="markdownIt-Anchor" href="#模板-5"></a> 模板</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>;<span class="comment">//插入字符串的最大字符数</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> trie[N][<span class="number">26</span>];</span><br><span class="line"><span class="keyword">bool</span> ed[N];<span class="comment">//字典树[当前指针][指向指针]和结尾标记</span></span><br><span class="line"><span class="keyword">int</span> tot;<span class="comment">//寄存指针,根节点从1开始，可以统计有多少个节点，值-1就是字符数 </span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cal</span><span class="params">(<span class="keyword">char</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> x-<span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(trie,<span class="number">0</span>,<span class="keyword">sizeof</span> trie);</span><br><span class="line">	<span class="built_in">memset</span>(ed,<span class="number">0</span>,<span class="keyword">sizeof</span> ed);</span><br><span class="line">	tot=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> str[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=<span class="built_in">strlen</span>(str),p=<span class="number">1</span>;<span class="comment">//从根节点1开始往下存</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> ch=cal(str[i]);</span><br><span class="line">		<span class="keyword">if</span>(trie[p][ch]==<span class="number">0</span>)trie[p][ch]=++tot;</span><br><span class="line">		p=trie[p][ch];</span><br><span class="line">	&#125;</span><br><span class="line">	ed[p]=<span class="literal">true</span>;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="keyword">char</span> str[])</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len=<span class="built_in">strlen</span>(str),p=<span class="number">1</span>;<span class="comment">//这里的str[]为待查询的字符串 </span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)&#123;</span><br><span class="line">		<span class="keyword">int</span> ch=cal(str[i]);</span><br><span class="line">		p=trie[p][ch];</span><br><span class="line">		<span class="keyword">if</span>(p==<span class="number">0</span>)<span class="keyword">return</span> <span class="literal">false</span>;<span class="comment">//没有存储字符串的字符 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ed[p];</span><br><span class="line">	<span class="comment">//关键：若确实到了结尾就返还true,否则说明可能只是字典树里的某个字符串的子串，那也是没找到 </span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    init();</span><br><span class="line">	<span class="keyword">int</span> n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">	<span class="keyword">char</span> s[<span class="number">100005</span>];</span><br><span class="line">	<span class="comment">//插入字符串</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	<span class="built_in">cin</span>&gt;&gt;s,insert(s);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//查询字符串</span></span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;s)</span><br><span class="line">	search(s);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="优化边插入边查询"><a class="markdownIt-Anchor" href="#优化边插入边查询"></a> 优化：边插入边查询</h2>
+<p><a href="https://vjudge.net/problem/HDU-1305" target="_blank" rel="noopener">模板题</a>：给你一系列字符串，以9为分割线，判断在某个集合里的字符串有没有作为其他字符串的前缀出现</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="拓展字典树异或操作"><a class="markdownIt-Anchor" href="#拓展字典树异或操作"></a> 拓展：字典树异或操作</h2>
+<p><a href="https://vjudge.net/problem/LibreOJ-10050" target="_blank" rel="noopener">模板题</a>：在给定的<code>N</code>个整数<code>A1,A2,…,AN</code>中选出两个进行异或运算，得到的结果最大是多少</p>
+<blockquote>
+<p>思路：先把所有的数插入到字典树。根据贪心原理：尽可能出现多的1，1数量相同的情况下尽量往高处放。所以插入的时候数从高位到低位的顺序插入。因此在查询操作中对每一个数尝试将每个为0的位变为1（前提是字典树内存在对应的点，因为只有存在对应的点才存在这个数）</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line">ll a[<span class="number">100005</span>],trie[<span class="number">100005</span>*<span class="number">31</span>][<span class="number">2</span>];<span class="comment">//只有01取值所以开第二维开两个空间</span></span><br><span class="line">ll tot=<span class="number">1</span>;<span class="comment">//寄存指针</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//插入N个31位的数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    ll p=<span class="number">1</span>;<span class="comment">//根节点从1开始</span></span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">30</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        ll ch=(x&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(trie[p][ch]==<span class="number">0</span>)trie[p][ch]=++tot;</span><br><span class="line">        p=trie[p][ch];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">query</span><span class="params">(ll x)</span></span>&#123;</span><br><span class="line">    ll res=<span class="number">0</span>;<span class="comment">//记录查找的最大异或数的数值</span></span><br><span class="line">    ll p=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">30</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        ll ch=(x&gt;&gt;i)&amp;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(trie[p][!ch]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            p=trie[p][!ch];</span><br><span class="line">            res=res*<span class="number">2</span>+!ch;<span class="comment">//向前进一位然后加上新的一位</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            p=trie[p][ch];</span><br><span class="line">            res=res*<span class="number">2</span>+ch;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;   </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    ll n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        insert(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    ll cnt=<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cnt=max(cnt,query(a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;cnt&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//system("pause");</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="ac自动机"><a class="markdownIt-Anchor" href="#ac自动机"></a> <code>AC</code>自动机</h1>
+<p>看这个<a href="https://bestsort.cn/2019/04/28/402/" target="_blank" rel="noopener">博客</a>讲解足够了解大概思想，<code>AC</code>自动机主要是用于多个模式串同时匹配</p>
+<h2 id="模板-6"><a class="markdownIt-Anchor" href="#模板-6"></a> 模板</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn =  <span class="number">2e6</span>+<span class="number">9</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> trie[maxn][<span class="number">26</span>];<span class="comment">//字典树</span></span><br><span class="line"><span class="keyword">int</span> cntword[maxn];<span class="comment">//记录该单词出现次数</span></span><br><span class="line"><span class="keyword">int</span> fail[maxn];<span class="comment">//失败时的回溯指针</span></span><br><span class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> root=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.size();i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> next=s[i]-<span class="string">'a'</span>;</span><br><span class="line">        <span class="keyword">if</span>(!trie[root][next])</span><br><span class="line">            trie[root][next]=++cnt;</span><br><span class="line">        root=trie[root][next];</span><br><span class="line">    &#125;</span><br><span class="line">    cntword[root]++;<span class="comment">//当前节点单词数+1</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getFail</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;<span class="comment">//将第二层所有出现了的字母扔进队列</span></span><br><span class="line">        <span class="keyword">if</span>(trie[<span class="number">0</span>][i])&#123;</span><br><span class="line">            fail[trie[<span class="number">0</span>][i]] = <span class="number">0</span>;</span><br><span class="line">            q.push(trie[<span class="number">0</span>][i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//fail[now]-&gt;当前节点now的失败指针指向的地方</span></span><br><span class="line"><span class="comment">//tire[now][i]-&gt;下一个字母为i+'a'的节点的下标为tire[now][i]</span></span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        <span class="keyword">int</span> now=q.front();</span><br><span class="line">        q.pop();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;<span class="comment">//查询26个字母</span></span><br><span class="line">            <span class="keyword">if</span>(trie[now][i])&#123;</span><br><span class="line">                <span class="comment">//如果有这个子节点为字母i+'a',则</span></span><br><span class="line">                <span class="comment">//让这个节点的失败指针指向(((他父亲节点)的失败指针所指向的那个节点)的下一个节点)</span></span><br><span class="line">                <span class="comment">//有点绕,为了方便理解特意加了括号</span></span><br><span class="line"></span><br><span class="line">                fail[trie[now][i]] = trie[fail[now]][i];</span><br><span class="line">                q.push(trie[now][i]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span><span class="comment">//否则就让当前节点的这个子节点</span></span><br><span class="line">                <span class="comment">//指向当前节点fail指针的这个子节点</span></span><br><span class="line">                trie[now][i] = trie[fail[now]][i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> now=<span class="number">0</span>,ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.size();i++)&#123;<span class="comment">//遍历文本串</span></span><br><span class="line">        now=trie[now][s[i]-<span class="string">'a'</span>];<span class="comment">//从s[i]点开始寻找</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=now;j&amp;&amp;cntword[j]!=<span class="number">-1</span>;j=fail[j])&#123;</span><br><span class="line">            <span class="comment">//一直向下寻找,直到匹配失败(失败指针指向根或者当前节点已找过).</span></span><br><span class="line">            ans+=cntword[j];</span><br><span class="line">            cntword[j]=<span class="number">-1</span>;<span class="comment">//将遍历国后的节点标记,防止重复计算</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;<span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="built_in">string</span> s;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;<span class="comment">//存入多组模式串</span></span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;s ;</span><br><span class="line">        insert(s);</span><br><span class="line">    &#125;</span><br><span class="line">    fail[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    getFail();</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;s;<span class="comment">//存入匹配串(文本串)</span></span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;query(s)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM学习</category>
+        <category>字符串</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+        <tag>KMP</tag>
+        <tag>字典树</tag>
+        <tag>AC自动机</tag>
       </tags>
   </entry>
   <entry>
