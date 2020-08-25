@@ -2145,6 +2145,9 @@ blockquote footer cite:before {
   -ms-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
+#aside_content .card-categories .card-category-list > .parent + .child {
+  display: none;
+}
 #aside_content .card-webinfo .webinfo {
   padding: 0.2rem 1rem;
 }
@@ -2178,7 +2181,7 @@ blockquote footer cite:before {
 }
 @media screen and (min-width: 900px) {
   #aside_content .card-widget {
-    margin-right: 15px;
+    margin-left: 15px;
   }
 }
 .category-content ol,
@@ -3325,22 +3328,6 @@ _:future,
   }
   #recent-posts .recent-post-item .recent-post-info .content {
     height: auto;
-  }
-}
-@media screen and (min-width: 900px) {
-  #recent-posts,
-  #page,
-  .category-content,
-  #archive,
-  .tag-cloud,
-  #tag,
-  #category {
-    -webkit-box-ordinal-group: 2;
-    -moz-box-ordinal-group: 2;
-    -o-box-ordinal-group: 2;
-    -ms-flex-order: 2;
-    -webkit-order: 2;
-    order: 2;
   }
 }
 @media screen and (max-width: 900px) {
