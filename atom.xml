@@ -103,9 +103,9 @@
     
       <category term="算法与数据结构" scheme="https://pengpenglang.gitee.io/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="权值线段树" scheme="https://pengpenglang.gitee.io/tags/%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
-    
       <category term="逆序对" scheme="https://pengpenglang.gitee.io/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
+    
+      <category term="权值线段树" scheme="https://pengpenglang.gitee.io/tags/%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91/"/>
     
   </entry>
   
@@ -403,13 +403,13 @@
     
       <category term="算法与数据结构" scheme="https://pengpenglang.gitee.io/tags/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
-      <category term="逆序对" scheme="https://pengpenglang.gitee.io/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
-    
       <category term="并查集" scheme="https://pengpenglang.gitee.io/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/"/>
     
       <category term="树状数组" scheme="https://pengpenglang.gitee.io/tags/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/"/>
     
       <category term="离散化" scheme="https://pengpenglang.gitee.io/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/"/>
+    
+      <category term="逆序对" scheme="https://pengpenglang.gitee.io/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/"/>
     
   </entry>
   
