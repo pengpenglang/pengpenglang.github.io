@@ -8,6 +8,7 @@ for (var i = 0; i < menus_item_child.length; i++) {
     menus_expand[i].className += " menus-closed";
 }
 
-
-
-
+var xiaokang = new xkTool("","true");
+xiaokang.cheatTitle([leaveTitle, backTitle, leaveIcon, backIcon]);
+xiaokang.magicCirle([radius, densety, color, clearOffset]);
+xiaokang.footFish();
