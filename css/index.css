@@ -4432,15 +4432,15 @@ img {
   transition: all 0.2s ease-in-out;
 }
 #sidebar .sidebar-toc .toc-link.active {
-  border-right-color: #c27e7b;
-  background: #dbb3b1;
+  border-right-color: #df755c;
+  background: #ecad9e;
   color: #fff;
 }
 #sidebar .sidebar-toc__progress {
   position: relative;
   margin-bottom: 0.3rem;
   padding-left: 0.6rem;
-  color: #dbb3b1;
+  color: #ecad9e;
 }
 #sidebar .sidebar-toc__progress .progress-notice {
   margin-right: 0.4rem;
@@ -4452,7 +4452,7 @@ img {
 #sidebar .sidebar-toc__progress-bar {
   width: 0;
   height: 1px;
-  background: #dbb3b1;
+  background: #ecad9e;
 }
 #vcomment .vbtn {
   border: none;
