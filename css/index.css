@@ -242,7 +242,7 @@ hr:before,
   --tab-button-active-bg: #fff;
   --card-bg: #fff;
   --sidebar-bg: #f6f8fa;
-  --btn-hover-color: #ff7242;
+  --btn-hover-color: #ff8c00;
   --btn-color: #fff;
   --btn-bg: #69c;
   --text-bg-hover: #69c;
@@ -2463,7 +2463,7 @@ blockquote footer cite:before {
   line-height: 0.3rem;
 }
 .category-content ul li:hover:before {
-  border-color: #ff7242;
+  border-color: #ff8c00;
 }
 #post-comment .comment-head {
   margin-bottom: 1rem;
@@ -3377,7 +3377,7 @@ _:future,
   line-height: 1;
 }
 .article-sort-title:hover:before {
-  border-color: #ff7242;
+  border-color: #ff8c00;
 }
 .article-sort-title:before {
   position: absolute;
@@ -3419,7 +3419,7 @@ _:future,
   transition: all 0.2s ease-in-out;
 }
 .article-sort-item:hover:before {
-  border-color: #ff7242;
+  border-color: #ff8c00;
 }
 .article-sort-item:before {
   position: absolute;
@@ -3471,7 +3471,7 @@ _:future,
 }
 .article-sort-item.year:before {
   top: 0.7rem;
-  border-color: #ff7242;
+  border-color: #ff8c00;
 }
 .article-sort-item-time {
   color: #858585;
@@ -3928,7 +3928,7 @@ _:future,
   padding: 0.1rem 0.2rem 0.1rem 1rem;
 }
 #article-container.post-content ul > li:not(.tab):hover:before {
-  border-color: #ff7242;
+  border-color: #ff8c00;
 }
 #article-container.post-content ul > li:not(.tab):before {
   top: 10px;
@@ -4432,15 +4432,15 @@ img {
   transition: all 0.2s ease-in-out;
 }
 #sidebar .sidebar-toc .toc-link.active {
-  border-right-color: #ff4747;
-  background: #f99;
+  border-right-color: #c27e7b;
+  background: #dbb3b1;
   color: #fff;
 }
 #sidebar .sidebar-toc__progress {
   position: relative;
   margin-bottom: 0.3rem;
   padding-left: 0.6rem;
-  color: #f99;
+  color: #dbb3b1;
 }
 #sidebar .sidebar-toc__progress .progress-notice {
   margin-right: 0.4rem;
@@ -4452,7 +4452,7 @@ img {
 #sidebar .sidebar-toc__progress-bar {
   width: 0;
   height: 1px;
-  background: #f99;
+  background: #dbb3b1;
 }
 #vcomment .vbtn {
   border: none;
@@ -5610,7 +5610,7 @@ blockquote.pullquote.right {
   line-height: 1.7;
 }
 #local-search .local-search__hit-item:hover:before {
-  border-color: #ff7242;
+  border-color: #ff8c00;
 }
 #local-search .local-search__hit-item:before {
   position: absolute;
