@@ -112,3 +112,14 @@ img {
     color: #fff;
     background-color: #49b1f5;
   }
+
+  /* 页脚footer */
+#footer #footer-wrap {
+  color: rgb(#eeeeee);
+}
+#footer-wrap {
+  position: relative;
+  padding: 2rem 1rem;
+  color: var(--light-grey);
+  text-align: center;
+}
