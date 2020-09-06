@@ -3911,11 +3911,11 @@ function bot_ui_ini() {
                         }).then(function () {
                             botui.message.add({
                                 delay: 1500,
-                                content: "同时也在校内ACM队学习算法与数据结构"
+                                content: "同时也在校内 ACM 队学习算法与数据结构"
                             }).then(function () {
                                 botui.message.add({
                                     delay: 1800,
-                                    content: "喜欢玩手游和绘画，也是一个标准的二刺猿"
+                                    content: "喜欢玩手游📱，也是个标准的二刺猿🙈"
                                 }).then(function () {
                                     botui.action.button({
                                         delay: 1100,
@@ -3936,12 +3936,12 @@ function bot_ui_ini() {
         thirdpart = function () {
             botui.message.add({
                 delay: 1e3,
-                content: "因为小时候注册的第一个邮箱是 pengpenglang 并且本人懒得再起一个名字了"
+                content: "因为小时候注册的第一个邮箱是 pengpenglang 并且本人懒得再起一个名字了😬 "
             }).then(function () {
                 botui.action.button({
                     delay: 1500,
                     action: [{
-                        text: "为什么要写这个博客呢",
+                        text: "为什么要写这个博客呢 ",
                         value: "why-cat"
                     }]
                 }).then(function (a) {
@@ -3956,7 +3956,7 @@ function bot_ui_ini() {
             }).then(function () {
                 botui.message.add({
                     delay: 1100,
-                    content: "也顺便记录下大学四年的学习时光，哈哈哈"
+                    content: "也顺便记录下大学四年的学习时光，哈哈哈😝 "
                 }).then(function () {
                     botui.action.button({
                         delay: 1500,
@@ -3973,7 +3973,7 @@ function bot_ui_ini() {
         fifthpart = function () {
             botui.message.add({
                 delay: 1e3,
-                content: "emmmmm，绘画、游泳、羽毛球、动漫、音乐许许多多"
+                content: "emmmmm，绘画、游泳、羽毛球、动漫、音乐都有接触"
             }).then(function () {
                 botui.message.add({
                     delay: 1600,
