@@ -12,10 +12,6 @@ xiaokang.bannerList = [
 //页面背景
 xiaokang.bgPage();
 xiaokang.randomBanner(false); // true为使用滤镜，不写或者false为不使用滤镜
-//Mac代码框绿色按钮放大
-xiaokang.codeFull();
-//点击目录输出锚点
-xiaokang.consoleAnchor();
 //欺诈标题
 //xiaokang.cheatTitle("网页3秒后即将关闭。。","骗你的啦");
 //魔幻圆圈
