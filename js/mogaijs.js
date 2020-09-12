@@ -1,25 +1,3 @@
-//手机侧边栏默认不展开
-var mobile_sidebar_menus = document.getElementById("mobile-sidebar-menus");
-var menus_item_child = mobile_sidebar_menus.getElementsByClassName(
-    "menus_item_child"
-);
-var menus_expand = mobile_sidebar_menus.getElementsByClassName("menus-expand");
-for (var i = 0; i < menus_item_child.length; i++) {
-    menus_item_child[i].style.display = "none";
-    menus_expand[i].className += " menus-closed";
-}
-
-//社交板块svg图标引用
-$(".card-info-social-icons").append(
-    '<a class="social-icon" href="https://github.com/pengpenglang" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-githubcolor"></use></svg></a>',
-    '<a class="social-icon" href="https://gitee.com/pengpenglang" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gitee"></use></svg></a>',
-    '<a class="social-icon" href="https://gitee.com/pengpenglang/blogimg/raw/master/img/qq.jpg" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq"></use></svg></a>',
-    '<a class="social-icon" href="https://gitee.com/pengpenglang/blogimg/raw/master/img/wechat.png" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixin"></use></svg></a>',
-    '<a class="social-icon" href="https://gitee.com/pengpenglang/blogimg/raw/master/img/wangyi.jpg" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wangyiyunyinleclick"></use></svg></a>',
-    '<a class="social-icon" href="mailto:2300546456@qq.com" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xin"></use></svg></a>',
-    '<a class="social-icon" href="/atom.xml" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a>'
-);
-
 //创建对象
 var xiaokang = new xkTool();
 //随机背景
@@ -40,3 +18,14 @@ xiaokang.randomBanner(false); // true为使用滤镜，不写或者false为不�
 xiaokang.magicCirle("8","0.05","random","0.5");
 //页脚养鱼
 //xiaokang.footFish();
+
+//社交板块svg图标引用
+$(".card-info-social-icons").append(
+    '<a class="social-icon" href="https://github.com/pengpenglang" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-githubcolor"></use></svg></a>',
+    '<a class="social-icon" href="https://gitee.com/pengpenglang" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-gitee"></use></svg></a>',
+    '<a class="social-icon" href="https://gitee.com/pengpenglang/blogimg/raw/master/img/qq.jpg" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-qq"></use></svg></a>',
+    '<a class="social-icon" href="https://gitee.com/pengpenglang/blogimg/raw/master/img/wechat.png" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-weixin"></use></svg></a>',
+    '<a class="social-icon" href="https://gitee.com/pengpenglang/blogimg/raw/master/img/wangyi.jpg" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-wangyiyunyinleclick"></use></svg></a>',
+    '<a class="social-icon" href="mailto:2300546456@qq.com" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xin"></use></svg></a>',
+    '<a class="social-icon" href="/atom.xml" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a>'
+);
