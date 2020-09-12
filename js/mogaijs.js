@@ -29,3 +29,4 @@ $(".card-info-social-icons").append(
     '<a class="social-icon" href="mailto:2300546456@qq.com" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-xin"></use></svg></a>',
     '<a class="social-icon" href="/atom.xml" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a>'
 );
+
