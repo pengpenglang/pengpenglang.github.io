@@ -32,3 +32,7 @@ $(".card-info-social-icons").append(
     '<a class="social-icon" href="/atom.xml" target="_blank"><svg class="icon" aria-hidden="true"><use xlink:href="#icon-rss"></use></svg></a>'
 );
 
+$(document).ready(function(e){
+    $('.copyright').html('©2020 <i style="color:#FF6A6A;animation: announ_animation 0.8s linear infinite;" class="fa fa-heartbeat"></i> pengpenglang');
+})
+
