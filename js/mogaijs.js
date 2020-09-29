@@ -4,14 +4,13 @@ var xiaokang = new xkTool();
 // 添加图片，背景图片会在这里随机选取一个设置为banner
 xiaokang.bannerList = [
     //"https://gitee.com/pengpenglang/blogimg/raw/master/img/60.jpg",
-    //"https://gitee.com/pengpenglang/blogimg/raw/master/img/74.jpg",
-    //"https://gitee.com/pengpenglang/blogimg/raw/master/img/76.jpg",
+    "https://gitee.com/pengpenglang/blogimg/raw/master/img/74.jpg",
+    "https://gitee.com/pengpenglang/blogimg/raw/master/img/76.jpg",
     //"https://gitee.com/pengpenglang/blogimg/raw/master/img/77.jpg",
     //"https://gitee.com/pengpenglang/blogimg/raw/master/img/78.jpg",
-    //"https://gitee.com/pengpenglang/blogimg/raw/master/img/86.jpg",
-    //"https://gitee.com/pengpenglang/blogimg/raw/master/img/87.jpg"
-    "https://gitee.com/pengpenglang/blogimg/raw/master/img/97.png",
-    "https://gitee.com/pengpenglang/blogimg/raw/master/img/98.png"
+    "https://gitee.com/pengpenglang/blogimg/raw/master/img/86.jpg",
+    "https://gitee.com/pengpenglang/blogimg/raw/master/img/87.jpg",
+    "https://gitee.com/pengpenglang/blogimg/raw/master/img/97.png"
 ];
 //页面背景
 xiaokang.bgPage();
