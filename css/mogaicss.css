@@ -139,12 +139,12 @@ img {
 /*阅读模式*/
 .read-mode{
   /* 字体大小 */
-  font-size:17px;
+  font-size: 14px;
   /* 可以在这里引入自定义字体，具体方法请自行百度css引入字体 */
 }
 .read-mode #web_bg{
   /* 背景颜色 */
-  background: #d5c6ac;/*#fdf6e3;*/
+  background: #FFF2E2;/*#fdf6e3;*/
 }
 
 /* TAG Link */
