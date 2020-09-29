@@ -368,13 +368,6 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://pengpenglang.gitee.io/tags/%E6%9D%83%E5%80%BC%E7%BA%BF%E6%AE%B5%E6%A0%91/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
@@ -383,6 +376,34 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/tags/%E9%80%86%E5%BA%8F%E5%AF%B9/</loc>
+    <lastmod>2020-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/tags/%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91/</loc>
+    <lastmod>2020-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/tags/Web%E5%89%8D%E7%AB%AF/</loc>
+    <lastmod>2020-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/tags/CSS3/</loc>
+    <lastmod>2020-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/tags/HTML/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -404,27 +425,6 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/tags/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/tags/Web%E5%89%8D%E7%AB%AF/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/tags/HTML/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/tags/CSS3/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -480,13 +480,6 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/tags/%E6%95%B0%E8%AE%BA/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://pengpenglang.gitee.io/tags/%E5%88%86%E5%9D%97/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
@@ -495,6 +488,13 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/</loc>
+    <lastmod>2020-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/tags/%E6%95%B0%E8%AE%BA/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -636,6 +636,13 @@
   </url>
   
   <url>
+    <loc>https://pengpenglang.gitee.io/categories/%E7%94%BB%E5%86%8C/</loc>
+    <lastmod>2020-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
@@ -657,13 +664,6 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E8%AE%BA/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
@@ -671,14 +671,7 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/%E7%94%BB%E5%86%8C/</loc>
-    <lastmod>2020-09-29</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
+    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E5%9B%BE%E8%AE%BA/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -692,7 +685,14 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</loc>
+    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E5%AD%97%E7%AC%A6%E4%B8%B2/</loc>
+    <lastmod>2020-09-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/categories/Web%E5%AD%A6%E4%B9%A0/CSS3/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -706,7 +706,7 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/Web%E5%AD%A6%E4%B9%A0/CSS3/</loc>
+    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2020-09-29</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
