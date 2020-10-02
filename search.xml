@@ -42,19 +42,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2020CCPC网络赛</title>
-    <url>/2020/09/26/2020CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>OJ题库</category>
-        <category>Vjudge</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法与数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2020联想杯网络赛</title>
     <url>/2020/09/26/2020%E8%81%94%E6%83%B3%E6%9D%AF%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
     <content><![CDATA[<h1 id="aarchmage思维"><a class="markdownIt-Anchor" href="#aarchmage思维"></a> A.<a href="https://vjudge.net/problem/Gym-102623A">Archmage</a>—思维</h1>
@@ -80,6 +67,19 @@
 <p><strong>思路</strong>：先不讨论结果为一位数的情况。那么不难想到其实能否整除 4 最多和后两位有关，要想数尽可能的大那么就应该保证最后来两位能整除 4 的同时用到的数尽可能的小，这样高位的数可以选择更大的数。这样先把两位数的情况按照优先级高的打表，贪心选择合适的就可以了。对于结果为个位的情况，单独看看有没有 8 4 0，有其中一个就输出（注意判断顺序）。难点在于结尾为 00 的情况，它也可以整除 4，但是不能存入打表的容器所以要特判，其次光判断是否有 2 个 0 还不行，因为前面必须有其他的数否则就出现前导 0 情况了。具体实现看代码</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="comment">//一位数特殊处理，两位数及以上的只要后两位满足整除4即可，然后后两位用的每个数尽可能的小</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec=&#123;</span><br><span class="line">	<span class="number">20</span>,<span class="number">12</span>,<span class="number">32</span>,<span class="number">40</span>,<span class="number">24</span>,<span class="number">44</span>,<span class="number">52</span>,<span class="number">60</span>,<span class="number">16</span>,<span class="number">36</span>,<span class="number">64</span>,<span class="number">56</span>,<span class="number">72</span>,<span class="number">76</span>,<span class="number">80</span>,<span class="number">28</span>,<span class="number">84</span>,<span class="number">68</span>,<span class="number">88</span>,<span class="number">92</span>,<span class="number">96</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>],b[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="comment">//匹配函数</span></span><br><span class="line">	<span class="keyword">while</span>(x)&#123;</span><br><span class="line">		<span class="keyword">int</span> y=x%<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">if</span>(b[y]==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span> --b[y];</span><br><span class="line">		x/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span> a);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(a[<span class="number">0</span>]&gt;<span class="number">0</span>&amp;&amp;a[<span class="number">1</span>]+a[<span class="number">2</span>]+a[<span class="number">3</span>]+a[<span class="number">4</span>]+a[<span class="number">5</span>]+a[<span class="number">6</span>]+a[<span class="number">7</span>]+a[<span class="number">8</span>]+a[<span class="number">9</span>]==<span class="number">0</span>)&#123;<span class="comment">//只有0的情况,防止后面选择 00 出现前导0</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//以下就是存在非0的情况</span></span><br><span class="line">	<span class="keyword">int</span> flag=<span class="number">0</span>;<span class="keyword">int</span> ret=<span class="number">0</span>;<span class="comment">//判断是不是找到了相符的尾数</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> x:vec)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)<span class="comment">//复制一份保护原有a</span></span><br><span class="line">			b[i]=a[i];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(a[<span class="number">0</span>]&gt;=<span class="number">2</span>)&#123;<span class="comment">//特判两位数00,vector存不了</span></span><br><span class="line">			flag=<span class="number">2</span>;</span><br><span class="line">			b[<span class="number">0</span>]-=<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(check(x)==<span class="number">1</span>)&#123;<span class="comment">//贪心选小较小的两位数做结尾</span></span><br><span class="line">			flag=<span class="number">1</span>;ret=x;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(flag==<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">10</span>;i&gt;=<span class="number">0</span>;i--)<span class="comment">//说明是某个能整除4的两位数组成的数</span></span><br><span class="line">			<span class="keyword">while</span>(b[i])&#123;</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;i;</span><br><span class="line">				b[i]--;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ret&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(flag==<span class="number">2</span>)&#123;<span class="comment">//说明是100的倍数</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">10</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">			<span class="keyword">while</span>(b[i])&#123;</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;i;</span><br><span class="line">				b[i]--;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;00&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;<span class="comment">//可能只有一位数也可能组成不了</span></span><br><span class="line">		<span class="keyword">if</span>(a[<span class="number">8</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">8</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a[<span class="number">4</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">4</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a[<span class="number">0</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>OJ题库</category>
+        <category>Vjudge</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2020CCPC网络赛</title>
+    <url>/2020/09/26/2020CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
+    <content><![CDATA[]]></content>
       <categories>
         <category>OJ题库</category>
         <category>Vjudge</category>
@@ -315,28 +315,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2020/07/17/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
-<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="更新番剧页面数据"><a class="markdownIt-Anchor" href="#更新番剧页面数据"></a> 更新番剧页面数据</h3>
-<p>防止请求次数过多插件不再自动获取番剧数据，所以请根据自己的需要在 <code>hexo generate 或 hexo deploy</code> 之前使用<code>hexo bangumi -u</code> 命令更新番剧数据！</p>
-<p>删除数据命令: <code>hexo bangumi -d</code></p>
-]]></content>
-  </entry>
-  <entry>
     <title>RMQ问题——ST算法</title>
     <url>/2020/08/06/RMQ%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94ST%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<blockquote>
@@ -394,6 +372,28 @@
         <tag>算法与数据结构</tag>
         <tag>ST</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/07/17/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h3 id="更新番剧页面数据"><a class="markdownIt-Anchor" href="#更新番剧页面数据"></a> 更新番剧页面数据</h3>
+<p>防止请求次数过多插件不再自动获取番剧数据，所以请根据自己的需要在 <code>hexo generate 或 hexo deploy</code> 之前使用<code>hexo bangumi -u</code> 命令更新番剧数据！</p>
+<p>删除数据命令: <code>hexo bangumi -d</code></p>
+]]></content>
   </entry>
   <entry>
     <title>二分与三分查找</title>
