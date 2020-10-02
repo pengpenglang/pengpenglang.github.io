@@ -338,3 +338,8 @@ div.timenode:hover .meta:after {
   color: #fff;
   background-color: #e58a8a;
 }
+
+/*TOC收放开关位置更改*/
+#toggle-sidebar {
+  bottom: 80px
+}
