@@ -341,5 +341,5 @@ div.timenode:hover .meta:after {
 
 /*TOC收放开关位置更改*/
 #toggle-sidebar {
-  bottom: 80px
+  left: 100px
 }

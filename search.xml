@@ -396,6 +396,52 @@
 ]]></content>
   </entry>
   <entry>
+    <title>变量名大全</title>
+    <url>/2020/08/28/%E5%8F%98%E9%87%8F%E5%90%8D%E5%A4%A7%E5%85%A8/</url>
+    <content><![CDATA[<blockquote>
+<p>最近总是为变量名命名头疼，不妨来总结一下本身习惯的常用变量名名字。当然为了让代码看起来更加规范，在结合自己的习惯同时也借鉴了科学的命名规则</p>
+</blockquote>
+<h1 id="cc-变量名命名规则"><a class="markdownIt-Anchor" href="#cc-变量名命名规则"></a> C/C++ 变量名命名规则</h1>
+<h2 id="基本要求"><a class="markdownIt-Anchor" href="#基本要求"></a> 基本要求</h2>
+<ul>
+<li>变量名只能是字母 <code>A~Z,a~z</code> 和数字 <code>0~9</code> 或者下划线 <code>_</code> 组成</li>
+<li>第一个字母只能是字母或者下划线</li>
+<li>变量名区分大小写</li>
+<li>不能使用 C++ 的关键字来命名变量以免冲突</li>
+</ul>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/name-1.jpg" style="zoom: 18%;">
+<h2 id="遵从原则"><a class="markdownIt-Anchor" href="#遵从原则"></a> 遵从原则</h2>
+<ul>
+<li>尽量用最短的字符表示最准确的含义</li>
+<li>尽量使用变量的前缀以包含明显的语义</li>
+<li>有很多种变量名命名法：<code>Pascal</code> 拼写法、骆驼拼写法、匈牙利表示法等等但是不够简洁，一般工程类代码用的上，写 OJ 题还是怎么舒服怎么来吧</li>
+</ul>
+<h1 id="常用变量名"><a class="markdownIt-Anchor" href="#常用变量名"></a> 常用变量名</h1>
+<p><strong>常用整型数</strong>：<code>num</code> 、<code>x</code> 、<code>y</code> 、<code>z</code> 、<code>n</code> 、<code>m</code></p>
+<p><strong>常用浮点数</strong>：<code>f</code> 、<code>d</code></p>
+<p><strong>常用字符</strong>：<code>ch</code> 、<code>c</code></p>
+<p><strong>常用字符串</strong>：<code>s</code> 、<code>str</code></p>
+<p><strong>常用布尔型数</strong>：<code>flag</code> 、<code>b</code></p>
+<p><strong>常用指针</strong>：<code>p</code>（遍历指针）、<code>q</code>、<code>r</code> 、<code>zz</code> 、<code>tot</code>（寄存指针）</p>
+<p><strong>常用迭代指针</strong>：<code>i</code>、<code>j</code> 、<code>k</code> 、<code>e</code>、<code>it</code></p>
+<p><strong>常用数组</strong>：<code>num</code>、<code>a</code> 、<code>b</code> 、<code>f</code>（函数值）、<code>arr</code> 、<code>vis</code>（标记数组）、<code>val</code>（权值）、<code>dir</code>、<code>dis</code>（距离）、<code>dp</code>（状态）、<code>pre</code>（前缀）、<code>suf</code>（后缀）、<code>fa</code>（父辈）、<code>path</code>（路径）、<code>road</code>（道路）、<code>maze</code>（迷宫）、<code>chest</code>（棋盘）</p>
+<p><strong>存图常用</strong>：<code>u</code> 、<code>v</code> 、<code>w</code> 、<code>val</code> 、<code>st</code>（起点）、<code>ed</code>（终点）</p>
+<p><strong>存树常用</strong>：<code>l</code> 、<code>r</code>、<code>root</code> 、<code>lc</code> 、<code>rc</code> 、<code>lchild</code> 、<code>rchild</code> 、<code>tag</code>（懒标记）</p>
+<p><strong>结构体常用</strong>：<code>node</code>（点）、<code>pos</code>（位置）、<code>tree</code>（树）</p>
+<p><strong>计时器\计数器</strong>：<code>j</code> 、<code>cnt</code> 、<code>sum</code></p>
+<p><strong>辅助函数</strong>：<code>judge()</code>、<code>check()</code> 、<code>cmp()</code>、 <code>getsum()</code> 、<code>getval()</code> 、<code>push()</code>（传递函数）</p>
+<p><strong>样例统计</strong>：<code>t</code>（样例数）、<code>cases</code>（当前执行的样例数）</p>
+<p><strong>选择常用</strong>：<code>opt</code>（操作）、<code>psd</code>（密码）、<code>choice</code>（选项）</p>
+<p><strong>临时常量</strong>：<code>alpha</code> 、<code>beta</code>、<code>temp</code>、<code>tot</code>、<code>now</code>、<code>nex</code></p>
+<p><strong>常用结果</strong>：<code>ans</code> 、<code>result</code></p>
+<p><strong>常用参数</strong>：<code>x</code>（记录横坐标）、<code>y</code>（记录纵坐标）、<code>val</code>（记录权值）、<code>time</code>（记录耗时）</p>
+<p><strong>常用容器名</strong>：<code>vec</code> 、<code>seta</code> 、<code>mp</code> 、<code>sta</code>、<code>q/que</code></p>
+]]></content>
+      <categories>
+        <category>杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>二分与三分查找</title>
     <url>/2020/07/29/%E4%BA%8C%E5%88%86%E4%B8%8E%E4%B8%89%E5%88%86%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[<p><strong>查找</strong>：分为整数查找和浮点数查找，方法是通过控制循环次数或者精度来终止</p>
@@ -484,52 +530,6 @@
         <tag>二分</tag>
         <tag>三分</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>变量名大全</title>
-    <url>/2020/08/28/%E5%8F%98%E9%87%8F%E5%90%8D%E5%A4%A7%E5%85%A8/</url>
-    <content><![CDATA[<blockquote>
-<p>最近总是为变量名命名头疼，不妨来总结一下本身习惯的常用变量名名字。当然为了让代码看起来更加规范，在结合自己的习惯同时也借鉴了科学的命名规则</p>
-</blockquote>
-<h1 id="cc-变量名命名规则"><a class="markdownIt-Anchor" href="#cc-变量名命名规则"></a> C/C++ 变量名命名规则</h1>
-<h2 id="基本要求"><a class="markdownIt-Anchor" href="#基本要求"></a> 基本要求</h2>
-<ul>
-<li>变量名只能是字母 <code>A~Z,a~z</code> 和数字 <code>0~9</code> 或者下划线 <code>_</code> 组成</li>
-<li>第一个字母只能是字母或者下划线</li>
-<li>变量名区分大小写</li>
-<li>不能使用 C++ 的关键字来命名变量以免冲突</li>
-</ul>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/name-1.jpg" style="zoom: 18%;">
-<h2 id="遵从原则"><a class="markdownIt-Anchor" href="#遵从原则"></a> 遵从原则</h2>
-<ul>
-<li>尽量用最短的字符表示最准确的含义</li>
-<li>尽量使用变量的前缀以包含明显的语义</li>
-<li>有很多种变量名命名法：<code>Pascal</code> 拼写法、骆驼拼写法、匈牙利表示法等等但是不够简洁，一般工程类代码用的上，写 OJ 题还是怎么舒服怎么来吧</li>
-</ul>
-<h1 id="常用变量名"><a class="markdownIt-Anchor" href="#常用变量名"></a> 常用变量名</h1>
-<p><strong>常用整型数</strong>：<code>num</code> 、<code>x</code> 、<code>y</code> 、<code>z</code> 、<code>n</code> 、<code>m</code></p>
-<p><strong>常用浮点数</strong>：<code>f</code> 、<code>d</code></p>
-<p><strong>常用字符</strong>：<code>ch</code> 、<code>c</code></p>
-<p><strong>常用字符串</strong>：<code>s</code> 、<code>str</code></p>
-<p><strong>常用布尔型数</strong>：<code>flag</code> 、<code>b</code></p>
-<p><strong>常用指针</strong>：<code>p</code>（遍历指针）、<code>q</code>、<code>r</code> 、<code>zz</code> 、<code>tot</code>（寄存指针）</p>
-<p><strong>常用迭代指针</strong>：<code>i</code>、<code>j</code> 、<code>k</code> 、<code>e</code>、<code>it</code></p>
-<p><strong>常用数组</strong>：<code>num</code>、<code>a</code> 、<code>b</code> 、<code>f</code>（函数值）、<code>arr</code> 、<code>vis</code>（标记数组）、<code>val</code>（权值）、<code>dir</code>、<code>dis</code>（距离）、<code>dp</code>（状态）、<code>pre</code>（前缀）、<code>suf</code>（后缀）、<code>fa</code>（父辈）、<code>path</code>（路径）、<code>road</code>（道路）、<code>maze</code>（迷宫）、<code>chest</code>（棋盘）</p>
-<p><strong>存图常用</strong>：<code>u</code> 、<code>v</code> 、<code>w</code> 、<code>val</code> 、<code>st</code>（起点）、<code>ed</code>（终点）</p>
-<p><strong>存树常用</strong>：<code>l</code> 、<code>r</code>、<code>root</code> 、<code>lc</code> 、<code>rc</code> 、<code>lchild</code> 、<code>rchild</code> 、<code>tag</code>（懒标记）</p>
-<p><strong>结构体常用</strong>：<code>node</code>（点）、<code>pos</code>（位置）、<code>tree</code>（树）</p>
-<p><strong>计时器\计数器</strong>：<code>j</code> 、<code>cnt</code> 、<code>sum</code></p>
-<p><strong>辅助函数</strong>：<code>judge()</code>、<code>check()</code> 、<code>cmp()</code>、 <code>getsum()</code> 、<code>getval()</code> 、<code>push()</code>（传递函数）</p>
-<p><strong>样例统计</strong>：<code>t</code>（样例数）、<code>cases</code>（当前执行的样例数）</p>
-<p><strong>选择常用</strong>：<code>opt</code>（操作）、<code>psd</code>（密码）、<code>choice</code>（选项）</p>
-<p><strong>临时常量</strong>：<code>alpha</code> 、<code>beta</code>、<code>temp</code>、<code>tot</code>、<code>now</code>、<code>nex</code></p>
-<p><strong>常用结果</strong>：<code>ans</code> 、<code>result</code></p>
-<p><strong>常用参数</strong>：<code>x</code>（记录横坐标）、<code>y</code>（记录纵坐标）、<code>val</code>（记录权值）、<code>time</code>（记录耗时）</p>
-<p><strong>常用容器名</strong>：<code>vec</code> 、<code>seta</code> 、<code>mp</code> 、<code>sta</code>、<code>q/que</code></p>
-]]></content>
-      <categories>
-        <category>杂项</category>
-      </categories>
   </entry>
   <entry>
     <title>小纸条</title>
