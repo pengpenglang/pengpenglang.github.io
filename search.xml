@@ -42,19 +42,6 @@
       </tags>
   </entry>
   <entry>
-    <title>2020CCPC网络赛</title>
-    <url>/2020/09/26/2020CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>OJ题库</category>
-        <category>Vjudge</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法与数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>2020联想杯网络赛</title>
     <url>/2020/09/26/2020%E8%81%94%E6%83%B3%E6%9D%AF%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
     <content><![CDATA[<h1 id="aarchmage思维"><a class="markdownIt-Anchor" href="#aarchmage思维"></a> A.<a href="https://vjudge.net/problem/Gym-102623A">Archmage</a>—思维</h1>
@@ -80,6 +67,19 @@
 <p><strong>思路</strong>：先不讨论结果为一位数的情况。那么不难想到其实能否整除 4 最多和后两位有关，要想数尽可能的大那么就应该保证最后来两位能整除 4 的同时用到的数尽可能的小，这样高位的数可以选择更大的数。这样先把两位数的情况按照优先级高的打表，贪心选择合适的就可以了。对于结果为个位的情况，单独看看有没有 8 4 0，有其中一个就输出（注意判断顺序）。难点在于结尾为 00 的情况，它也可以整除 4，但是不能存入打表的容器所以要特判，其次光判断是否有 2 个 0 还不行，因为前面必须有其他的数否则就出现前导 0 情况了。具体实现看代码</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="comment">//一位数特殊处理，两位数及以上的只要后两位满足整除4即可，然后后两位用的每个数尽可能的小</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec=&#123;</span><br><span class="line">	<span class="number">20</span>,<span class="number">12</span>,<span class="number">32</span>,<span class="number">40</span>,<span class="number">24</span>,<span class="number">44</span>,<span class="number">52</span>,<span class="number">60</span>,<span class="number">16</span>,<span class="number">36</span>,<span class="number">64</span>,<span class="number">56</span>,<span class="number">72</span>,<span class="number">76</span>,<span class="number">80</span>,<span class="number">28</span>,<span class="number">84</span>,<span class="number">68</span>,<span class="number">88</span>,<span class="number">92</span>,<span class="number">96</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>],b[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="comment">//匹配函数</span></span><br><span class="line">	<span class="keyword">while</span>(x)&#123;</span><br><span class="line">		<span class="keyword">int</span> y=x%<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">if</span>(b[y]==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span> --b[y];</span><br><span class="line">		x/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span> a);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(a[<span class="number">0</span>]&gt;<span class="number">0</span>&amp;&amp;a[<span class="number">1</span>]+a[<span class="number">2</span>]+a[<span class="number">3</span>]+a[<span class="number">4</span>]+a[<span class="number">5</span>]+a[<span class="number">6</span>]+a[<span class="number">7</span>]+a[<span class="number">8</span>]+a[<span class="number">9</span>]==<span class="number">0</span>)&#123;<span class="comment">//只有0的情况,防止后面选择 00 出现前导0</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//以下就是存在非0的情况</span></span><br><span class="line">	<span class="keyword">int</span> flag=<span class="number">0</span>;<span class="keyword">int</span> ret=<span class="number">0</span>;<span class="comment">//判断是不是找到了相符的尾数</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> x:vec)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)<span class="comment">//复制一份保护原有a</span></span><br><span class="line">			b[i]=a[i];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(a[<span class="number">0</span>]&gt;=<span class="number">2</span>)&#123;<span class="comment">//特判两位数00,vector存不了</span></span><br><span class="line">			flag=<span class="number">2</span>;</span><br><span class="line">			b[<span class="number">0</span>]-=<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(check(x)==<span class="number">1</span>)&#123;<span class="comment">//贪心选小较小的两位数做结尾</span></span><br><span class="line">			flag=<span class="number">1</span>;ret=x;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(flag==<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">10</span>;i&gt;=<span class="number">0</span>;i--)<span class="comment">//说明是某个能整除4的两位数组成的数</span></span><br><span class="line">			<span class="keyword">while</span>(b[i])&#123;</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;i;</span><br><span class="line">				b[i]--;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ret&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(flag==<span class="number">2</span>)&#123;<span class="comment">//说明是100的倍数</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">10</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">			<span class="keyword">while</span>(b[i])&#123;</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;i;</span><br><span class="line">				b[i]--;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;00&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;<span class="comment">//可能只有一位数也可能组成不了</span></span><br><span class="line">		<span class="keyword">if</span>(a[<span class="number">8</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">8</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a[<span class="number">4</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">4</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a[<span class="number">0</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
+      <categories>
+        <category>OJ题库</category>
+        <category>Vjudge</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2020CCPC网络赛</title>
+    <url>/2020/09/26/2020CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
+    <content><![CDATA[]]></content>
       <categories>
         <category>OJ题库</category>
         <category>Vjudge</category>
@@ -396,52 +396,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>变量名大全</title>
-    <url>/2020/08/28/%E5%8F%98%E9%87%8F%E5%90%8D%E5%A4%A7%E5%85%A8/</url>
-    <content><![CDATA[<blockquote>
-<p>最近总是为变量名命名头疼，不妨来总结一下本身习惯的常用变量名名字。当然为了让代码看起来更加规范，在结合自己的习惯同时也借鉴了科学的命名规则</p>
-</blockquote>
-<h1 id="cc-变量名命名规则"><a class="markdownIt-Anchor" href="#cc-变量名命名规则"></a> C/C++ 变量名命名规则</h1>
-<h2 id="基本要求"><a class="markdownIt-Anchor" href="#基本要求"></a> 基本要求</h2>
-<ul>
-<li>变量名只能是字母 <code>A~Z,a~z</code> 和数字 <code>0~9</code> 或者下划线 <code>_</code> 组成</li>
-<li>第一个字母只能是字母或者下划线</li>
-<li>变量名区分大小写</li>
-<li>不能使用 C++ 的关键字来命名变量以免冲突</li>
-</ul>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/name-1.jpg" style="zoom: 18%;">
-<h2 id="遵从原则"><a class="markdownIt-Anchor" href="#遵从原则"></a> 遵从原则</h2>
-<ul>
-<li>尽量用最短的字符表示最准确的含义</li>
-<li>尽量使用变量的前缀以包含明显的语义</li>
-<li>有很多种变量名命名法：<code>Pascal</code> 拼写法、骆驼拼写法、匈牙利表示法等等但是不够简洁，一般工程类代码用的上，写 OJ 题还是怎么舒服怎么来吧</li>
-</ul>
-<h1 id="常用变量名"><a class="markdownIt-Anchor" href="#常用变量名"></a> 常用变量名</h1>
-<p><strong>常用整型数</strong>：<code>num</code> 、<code>x</code> 、<code>y</code> 、<code>z</code> 、<code>n</code> 、<code>m</code></p>
-<p><strong>常用浮点数</strong>：<code>f</code> 、<code>d</code></p>
-<p><strong>常用字符</strong>：<code>ch</code> 、<code>c</code></p>
-<p><strong>常用字符串</strong>：<code>s</code> 、<code>str</code></p>
-<p><strong>常用布尔型数</strong>：<code>flag</code> 、<code>b</code></p>
-<p><strong>常用指针</strong>：<code>p</code>（遍历指针）、<code>q</code>、<code>r</code> 、<code>zz</code> 、<code>tot</code>（寄存指针）</p>
-<p><strong>常用迭代指针</strong>：<code>i</code>、<code>j</code> 、<code>k</code> 、<code>e</code>、<code>it</code></p>
-<p><strong>常用数组</strong>：<code>num</code>、<code>a</code> 、<code>b</code> 、<code>f</code>（函数值）、<code>arr</code> 、<code>vis</code>（标记数组）、<code>val</code>（权值）、<code>dir</code>、<code>dis</code>（距离）、<code>dp</code>（状态）、<code>pre</code>（前缀）、<code>suf</code>（后缀）、<code>fa</code>（父辈）、<code>path</code>（路径）、<code>road</code>（道路）、<code>maze</code>（迷宫）、<code>chest</code>（棋盘）</p>
-<p><strong>存图常用</strong>：<code>u</code> 、<code>v</code> 、<code>w</code> 、<code>val</code> 、<code>st</code>（起点）、<code>ed</code>（终点）</p>
-<p><strong>存树常用</strong>：<code>l</code> 、<code>r</code>、<code>root</code> 、<code>lc</code> 、<code>rc</code> 、<code>lchild</code> 、<code>rchild</code> 、<code>tag</code>（懒标记）</p>
-<p><strong>结构体常用</strong>：<code>node</code>（点）、<code>pos</code>（位置）、<code>tree</code>（树）</p>
-<p><strong>计时器\计数器</strong>：<code>j</code> 、<code>cnt</code> 、<code>sum</code></p>
-<p><strong>辅助函数</strong>：<code>judge()</code>、<code>check()</code> 、<code>cmp()</code>、 <code>getsum()</code> 、<code>getval()</code> 、<code>push()</code>（传递函数）</p>
-<p><strong>样例统计</strong>：<code>t</code>（样例数）、<code>cases</code>（当前执行的样例数）</p>
-<p><strong>选择常用</strong>：<code>opt</code>（操作）、<code>psd</code>（密码）、<code>choice</code>（选项）</p>
-<p><strong>临时常量</strong>：<code>alpha</code> 、<code>beta</code>、<code>temp</code>、<code>tot</code>、<code>now</code>、<code>nex</code></p>
-<p><strong>常用结果</strong>：<code>ans</code> 、<code>result</code></p>
-<p><strong>常用参数</strong>：<code>x</code>（记录横坐标）、<code>y</code>（记录纵坐标）、<code>val</code>（记录权值）、<code>time</code>（记录耗时）</p>
-<p><strong>常用容器名</strong>：<code>vec</code> 、<code>seta</code> 、<code>mp</code> 、<code>sta</code>、<code>q/que</code></p>
-]]></content>
-      <categories>
-        <category>杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>二分与三分查找</title>
     <url>/2020/07/29/%E4%BA%8C%E5%88%86%E4%B8%8E%E4%B8%89%E5%88%86%E6%9F%A5%E6%89%BE/</url>
     <content><![CDATA[<p><strong>查找</strong>：分为整数查找和浮点数查找，方法是通过控制循环次数或者精度来终止</p>
@@ -530,6 +484,52 @@
         <tag>二分</tag>
         <tag>三分</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>变量名大全</title>
+    <url>/2020/08/28/%E5%8F%98%E9%87%8F%E5%90%8D%E5%A4%A7%E5%85%A8/</url>
+    <content><![CDATA[<blockquote>
+<p>最近总是为变量名命名头疼，不妨来总结一下本身习惯的常用变量名名字。当然为了让代码看起来更加规范，在结合自己的习惯同时也借鉴了科学的命名规则</p>
+</blockquote>
+<h1 id="cc-变量名命名规则"><a class="markdownIt-Anchor" href="#cc-变量名命名规则"></a> C/C++ 变量名命名规则</h1>
+<h2 id="基本要求"><a class="markdownIt-Anchor" href="#基本要求"></a> 基本要求</h2>
+<ul>
+<li>变量名只能是字母 <code>A~Z,a~z</code> 和数字 <code>0~9</code> 或者下划线 <code>_</code> 组成</li>
+<li>第一个字母只能是字母或者下划线</li>
+<li>变量名区分大小写</li>
+<li>不能使用 C++ 的关键字来命名变量以免冲突</li>
+</ul>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/name-1.jpg" style="zoom: 18%;">
+<h2 id="遵从原则"><a class="markdownIt-Anchor" href="#遵从原则"></a> 遵从原则</h2>
+<ul>
+<li>尽量用最短的字符表示最准确的含义</li>
+<li>尽量使用变量的前缀以包含明显的语义</li>
+<li>有很多种变量名命名法：<code>Pascal</code> 拼写法、骆驼拼写法、匈牙利表示法等等但是不够简洁，一般工程类代码用的上，写 OJ 题还是怎么舒服怎么来吧</li>
+</ul>
+<h1 id="常用变量名"><a class="markdownIt-Anchor" href="#常用变量名"></a> 常用变量名</h1>
+<p><strong>常用整型数</strong>：<code>num</code> 、<code>x</code> 、<code>y</code> 、<code>z</code> 、<code>n</code> 、<code>m</code></p>
+<p><strong>常用浮点数</strong>：<code>f</code> 、<code>d</code></p>
+<p><strong>常用字符</strong>：<code>ch</code> 、<code>c</code></p>
+<p><strong>常用字符串</strong>：<code>s</code> 、<code>str</code></p>
+<p><strong>常用布尔型数</strong>：<code>flag</code> 、<code>b</code></p>
+<p><strong>常用指针</strong>：<code>p</code>（遍历指针）、<code>q</code>、<code>r</code> 、<code>zz</code> 、<code>tot</code>（寄存指针）</p>
+<p><strong>常用迭代指针</strong>：<code>i</code>、<code>j</code> 、<code>k</code> 、<code>e</code>、<code>it</code></p>
+<p><strong>常用数组</strong>：<code>num</code>、<code>a</code> 、<code>b</code> 、<code>f</code>（函数值）、<code>arr</code> 、<code>vis</code>（标记数组）、<code>val</code>（权值）、<code>dir</code>、<code>dis</code>（距离）、<code>dp</code>（状态）、<code>pre</code>（前缀）、<code>suf</code>（后缀）、<code>fa</code>（父辈）、<code>path</code>（路径）、<code>road</code>（道路）、<code>maze</code>（迷宫）、<code>chest</code>（棋盘）</p>
+<p><strong>存图常用</strong>：<code>u</code> 、<code>v</code> 、<code>w</code> 、<code>val</code> 、<code>st</code>（起点）、<code>ed</code>（终点）</p>
+<p><strong>存树常用</strong>：<code>l</code> 、<code>r</code>、<code>root</code> 、<code>lc</code> 、<code>rc</code> 、<code>lchild</code> 、<code>rchild</code> 、<code>tag</code>（懒标记）</p>
+<p><strong>结构体常用</strong>：<code>node</code>（点）、<code>pos</code>（位置）、<code>tree</code>（树）</p>
+<p><strong>计时器\计数器</strong>：<code>j</code> 、<code>cnt</code> 、<code>sum</code></p>
+<p><strong>辅助函数</strong>：<code>judge()</code>、<code>check()</code> 、<code>cmp()</code>、 <code>getsum()</code> 、<code>getval()</code> 、<code>push()</code>（传递函数）</p>
+<p><strong>样例统计</strong>：<code>t</code>（样例数）、<code>cases</code>（当前执行的样例数）</p>
+<p><strong>选择常用</strong>：<code>opt</code>（操作）、<code>psd</code>（密码）、<code>choice</code>（选项）</p>
+<p><strong>临时常量</strong>：<code>alpha</code> 、<code>beta</code>、<code>temp</code>、<code>tot</code>、<code>now</code>、<code>nex</code></p>
+<p><strong>常用结果</strong>：<code>ans</code> 、<code>result</code></p>
+<p><strong>常用参数</strong>：<code>x</code>（记录横坐标）、<code>y</code>（记录纵坐标）、<code>val</code>（记录权值）、<code>time</code>（记录耗时）</p>
+<p><strong>常用容器名</strong>：<code>vec</code> 、<code>seta</code> 、<code>mp</code> 、<code>sta</code>、<code>q/que</code></p>
+]]></content>
+      <categories>
+        <category>杂项</category>
+      </categories>
   </entry>
   <entry>
     <title>小纸条</title>
