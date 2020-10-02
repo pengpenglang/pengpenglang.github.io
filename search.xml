@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>2020CCPC网络赛</title>
+    <url>/2020/09/26/2020CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>OJ题库</category>
+        <category>Vjudge</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2019CCPC网络赛</title>
     <url>/2020/09/19/2019CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
     <content><![CDATA[<h1 id="a思维"><a class="markdownIt-Anchor" href="#a思维"></a> A.<a href="https://vjudge.net/problem/HDU-6702">^&amp;^</a>—思维</h1>
@@ -67,19 +80,6 @@
 <p><strong>思路</strong>：先不讨论结果为一位数的情况。那么不难想到其实能否整除 4 最多和后两位有关，要想数尽可能的大那么就应该保证最后来两位能整除 4 的同时用到的数尽可能的小，这样高位的数可以选择更大的数。这样先把两位数的情况按照优先级高的打表，贪心选择合适的就可以了。对于结果为个位的情况，单独看看有没有 8 4 0，有其中一个就输出（注意判断顺序）。难点在于结尾为 00 的情况，它也可以整除 4，但是不能存入打表的容器所以要特判，其次光判断是否有 2 个 0 还不行，因为前面必须有其他的数否则就出现前导 0 情况了。具体实现看代码</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="comment">//一位数特殊处理，两位数及以上的只要后两位满足整除4即可，然后后两位用的每个数尽可能的小</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec=&#123;</span><br><span class="line">	<span class="number">20</span>,<span class="number">12</span>,<span class="number">32</span>,<span class="number">40</span>,<span class="number">24</span>,<span class="number">44</span>,<span class="number">52</span>,<span class="number">60</span>,<span class="number">16</span>,<span class="number">36</span>,<span class="number">64</span>,<span class="number">56</span>,<span class="number">72</span>,<span class="number">76</span>,<span class="number">80</span>,<span class="number">28</span>,<span class="number">84</span>,<span class="number">68</span>,<span class="number">88</span>,<span class="number">92</span>,<span class="number">96</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">10</span>],b[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">bool</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="comment">//匹配函数</span></span><br><span class="line">	<span class="keyword">while</span>(x)&#123;</span><br><span class="line">		<span class="keyword">int</span> y=x%<span class="number">10</span>;</span><br><span class="line">		<span class="keyword">if</span>(b[y]==<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">else</span> --b[y];</span><br><span class="line">		x/=<span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(a,<span class="number">0</span>,<span class="keyword">sizeof</span> a);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(a[<span class="number">0</span>]&gt;<span class="number">0</span>&amp;&amp;a[<span class="number">1</span>]+a[<span class="number">2</span>]+a[<span class="number">3</span>]+a[<span class="number">4</span>]+a[<span class="number">5</span>]+a[<span class="number">6</span>]+a[<span class="number">7</span>]+a[<span class="number">8</span>]+a[<span class="number">9</span>]==<span class="number">0</span>)&#123;<span class="comment">//只有0的情况,防止后面选择 00 出现前导0</span></span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">return</span> ;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//以下就是存在非0的情况</span></span><br><span class="line">	<span class="keyword">int</span> flag=<span class="number">0</span>;<span class="keyword">int</span> ret=<span class="number">0</span>;<span class="comment">//判断是不是找到了相符的尾数</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">auto</span> x:vec)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)<span class="comment">//复制一份保护原有a</span></span><br><span class="line">			b[i]=a[i];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(a[<span class="number">0</span>]&gt;=<span class="number">2</span>)&#123;<span class="comment">//特判两位数00,vector存不了</span></span><br><span class="line">			flag=<span class="number">2</span>;</span><br><span class="line">			b[<span class="number">0</span>]-=<span class="number">2</span>;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">if</span>(check(x)==<span class="number">1</span>)&#123;<span class="comment">//贪心选小较小的两位数做结尾</span></span><br><span class="line">			flag=<span class="number">1</span>;ret=x;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span>(flag==<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">10</span>;i&gt;=<span class="number">0</span>;i--)<span class="comment">//说明是某个能整除4的两位数组成的数</span></span><br><span class="line">			<span class="keyword">while</span>(b[i])&#123;</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;i;</span><br><span class="line">				b[i]--;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ret&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(flag==<span class="number">2</span>)&#123;<span class="comment">//说明是100的倍数</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">10</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">			<span class="keyword">while</span>(b[i])&#123;</span><br><span class="line">				<span class="built_in">cout</span>&lt;&lt;i;</span><br><span class="line">				b[i]--;</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;00&quot;</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span>&#123;<span class="comment">//可能只有一位数也可能组成不了</span></span><br><span class="line">		<span class="keyword">if</span>(a[<span class="number">8</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">8</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a[<span class="number">4</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">4</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(a[<span class="number">0</span>]&gt;<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;<span class="number">-1</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		solve();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
-      <categories>
-        <category>OJ题库</category>
-        <category>Vjudge</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法与数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2020CCPC网络赛</title>
-    <url>/2020/09/26/2020CCPC%E7%BD%91%E7%BB%9C%E8%B5%9B/</url>
-    <content><![CDATA[]]></content>
       <categories>
         <category>OJ题库</category>
         <category>Vjudge</category>
@@ -1997,6 +1997,709 @@
       </tags>
   </entry>
   <entry>
+    <title>HTML知识汇总</title>
+    <url>/2020/07/23/HTML%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>由于<code>typora</code>非代码区<code>HTML</code>格式冲突，标签不再加<code>&lt;/&gt;</code></strong></p>
+</blockquote>
+<h2 id="html基本结构"><a class="markdownIt-Anchor" href="#html基本结构"></a> <code>HTML</code>基本结构</h2>
+<h3 id="html结构"><a class="markdownIt-Anchor" href="#html结构"></a> <code>HTML结构</code></h3>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>html</code>标签的作用是向浏览器指明网页的开始和结束，代码声明网页使用的是W3C组织的XHTML标准</li>
+<li><code>head</code>标签内部只能定义一些特殊内容</li>
+</ul>
+<blockquote>
+<p>通常放置和网页相关信息，如title、meta等不会直接显示在网页上的标签信息</p>
+</blockquote>
+<ul>
+<li><code>body</code>标签是背部编写绝大多数标签代码</li>
+</ul>
+<h3 id="head标签"><a class="markdownIt-Anchor" href="#head标签"></a> <code>head</code>标签</h3>
+<p><strong>title标签</strong>：唯一作用就是定义网页的标题，显示在浏览器上栏的标题</p>
+<p><strong>meta标签</strong>：又称“元信息标签”，一般定义页面的关键字和描述信息有助于搜索引擎搜索界面</p>
+<ul>
+<li><code>name</code>属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>keywords</code></td>
+<td>网页关键字（可多个用英文逗号隔开）</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>网页描述</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>网页作者</td>
+</tr>
+<tr>
+<td><code>copyright</code></td>
+<td>版权信息</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>http-equiv</code>属性
+<ul>
+<li>定义页面使用的语言</li>
+<li>定义页面自动刷新跳转</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=gb2312&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器该页面使用的字符集是国际汉子码--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;秒数;url=网址&quot;</span>;/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器经过多少秒刷新（整数）跳转至网址--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong><code>link</code>标签</strong>：引用外部<code>CSS</code>样式</p>
+<p><strong><code>style</code>标签</strong>：用于定义<code>CSS</code>样式</p>
+<p><strong><code>script</code>标签</strong>：用于定义<code>JavaScript</code>代码</p>
+<h2 id="段落与文字"><a class="markdownIt-Anchor" href="#段落与文字"></a> 段落与文字</h2>
+<h3 id="常用总结"><a class="markdownIt-Anchor" href="#常用总结"></a> 常用总结</h3>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h1</code>~<code>h6</code></td>
+<td>标题</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>段落</td>
+</tr>
+<tr>
+<td><code>br</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>hr</code></td>
+<td>水平线</td>
+</tr>
+<tr>
+<td><code>div</code></td>
+<td>分隔</td>
+</tr>
+<tr>
+<td><code>span</code></td>
+<td>区域</td>
+</tr>
+<tr>
+<td>strong</td>
+<td>加粗文本</td>
+</tr>
+<tr>
+<td><code>em</code></td>
+<td>斜体文本</td>
+</tr>
+<tr>
+<td><code>sup</code></td>
+<td>上标</td>
+</tr>
+<tr>
+<td><code>sub</code></td>
+<td>下标</td>
+</tr>
+<tr>
+<td><code>small</code>、<code>big</code></td>
+<td>用于版权声明</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>删除线</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>标题元素根据需要再用，对于网页的搜索引擎优化极其重要</li>
+<li><code>p</code>标签会自动换行，段落与段落之间有一定的缝隙</li>
+<li><code>br</code>给文字换行不会出现缝隙，为<mark>自闭合标签</mark></li>
+</ul>
+<h3 id="特殊符号"><a class="markdownIt-Anchor" href="#特殊符号"></a> 特殊符号</h3>
+<table>
+<thead>
+<tr>
+<th>特殊符号</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空格</td>
+<td><code>&amp;nbsp;</code></td>
+</tr>
+<tr>
+<td>双引号（英）</td>
+<td><code>&amp;quot;</code></td>
+</tr>
+<tr>
+<td>左单引号</td>
+<td><code>&amp;lsquo;</code></td>
+</tr>
+<tr>
+<td>右单引号</td>
+<td><code>&amp;rsquo;</code></td>
+</tr>
+<tr>
+<td>乘号</td>
+<td><code>&amp;times;</code></td>
+</tr>
+<tr>
+<td>除号</td>
+<td><code>&amp;divide;</code></td>
+</tr>
+<tr>
+<td>小于号</td>
+<td><code>&amp;it;</code></td>
+</tr>
+<tr>
+<td>大于号</td>
+<td><code>&amp;gt;</code></td>
+</tr>
+<tr>
+<td>与符号</td>
+<td><code>&amp;amp;</code></td>
+</tr>
+<tr>
+<td>长破折号</td>
+<td><code>&amp;mdash;</code></td>
+</tr>
+<tr>
+<td>竖线</td>
+<td><code>&amp;#124;</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>想在网页中显示特殊符号有两种方法：</p>
+<ul>
+<li>直接在网页中输入该特殊符号</li>
+<li>在网页中输入该特殊符号对应的HTML代码</li>
+</ul>
+</blockquote>
+<h3 id="自闭合标签"><a class="markdownIt-Anchor" href="#自闭合标签"></a> 自闭合标签</h3>
+<p><code>HTML</code>标签分为两类：一般标签和自闭合标签</p>
+<p><strong>一般标签</strong>：有开始和结束符号，标签内部可以插入其他标签或者文字</p>
+<p><strong>自闭和标签</strong>：没有结束符号，只能定义自身的一些属性</p>
+<blockquote>
+<p>常见自闭和标签，其他的都是一般标签</p>
+<table>
+<thead>
+<tr>
+<th>自闭和标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mata</code></td>
+<td>信息</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>连接外部文件</td>
+</tr>
+<tr>
+<td><code>br</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>hr</code></td>
+<td>水平线</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>表单</td>
+</tr>
+<tr>
+<td><code>img</code></td>
+<td>图像</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="行内元素和块元素"><a class="markdownIt-Anchor" href="#行内元素和块元素"></a> 行内元素和块元素</h3>
+<table>
+<thead>
+<tr>
+<th>行内元素</th>
+<th>块元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>与其他元素位于一行</td>
+<td>独占一行</td>
+</tr>
+<tr>
+<td>可以容纳行内元素但不可容纳块元素</td>
+<td>容他其他行内元素和块元素</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>常见行内元素</th>
+<th>常见块元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strong</code>、<code>em</code>、<code>s</code>、<code>u</code>、<code>a</code>、<code>span</code>、<code>img</code>、<code>input</code></td>
+<td><code>h1</code>~<code>h6</code>、<code>p</code>、<code>br</code>、<code>hr</code>、<code>div</code>、<code>span</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="列表"><a class="markdownIt-Anchor" href="#列表"></a> 列表</h2>
+<p><strong>注意：在<code>CSS</code>中改用<code>list-style-type</code>定义列表项样式，<code>type</code>属性弃用</strong></p>
+<h3 id="有序列表"><a class="markdownIt-Anchor" href="#有序列表"></a> 有序列表</h3>
+<p>从<code>&lt;ol&gt;</code>开始到<code>&lt;/ol&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
+<p><strong>type属性</strong>：更改列表项序号</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>序号类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>数字1、2、3</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>小写英文字母</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>大写英文字母</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>小写罗马字母</td>
+</tr>
+<tr>
+<td><code>ii</code></td>
+<td>大写罗马字母</td>
+</tr>
+</tbody>
+</table>
+<h3 id="无序列表"><a class="markdownIt-Anchor" href="#无序列表"></a> 无序列表</h3>
+<p>从<code>&lt;ul&gt;</code>开始到<code>&lt;/ul&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
+<p><strong>注意：对于<code>ul</code>元素内部的子元素只能是<code>li</code>，而不能是其他的元素。对于<code>ul</code>内部的文本，也只能是在<code>li</code>元素内添加，而不能在<code>li</code>元素外部添加</strong></p>
+<p><strong>type属性</strong>：更改列表项样式</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>序列类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disc</code></td>
+<td>默认实心圆</td>
+</tr>
+<tr>
+<td><code>circle</code></td>
+<td>空心圆</td>
+</tr>
+<tr>
+<td><code>square</code></td>
+<td>实心正方形</td>
+</tr>
+</tbody>
+</table>
+<h3 id="定义列表"><a class="markdownIt-Anchor" href="#定义列表"></a> 定义列表</h3>
+<p>在实际开发用的不多，一般分为两类：定义条件和定义描述</p>
+<ul>
+<li><code>dl</code>定义列表的开始和结束</li>
+<li><code>dt</code>后面添加要解释的对象</li>
+<li><code>dd</code>后面添加改名词的具体解释（会自动缩进文本）</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span>定义名词<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>定义描述<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--可多对dt和dd--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> 表格</h2>
+<blockquote>
+<p>因为基本被淘汰所以不再做笔记了</p>
+</blockquote>
+<h3 id="基本构成"><a class="markdownIt-Anchor" href="#基本构成"></a> 基本构成</h3>
+<ul>
+<li><code>table</code>标签（表格）、<code>tr</code>标签（行）、<code>td</code>标签（单元格）</li>
+<li><code>tr</code>和<code>td</code>标签必须放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>标签对内才有效</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">caption</span>&gt;</span>表格标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表头--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>一个表头单元格<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表身--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的开始--&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="name">td</span>&gt;</span>一个单元格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的结尾--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表脚--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>默认情况下表格是没有边框的。<code>table</code>布局已经完全被淘汰，往后改用<code>DIV+CSS</code>布局</p>
+</blockquote>
+<h2 id="图像"><a class="markdownIt-Anchor" href="#图像"></a> 图像</h2>
+<h3 id="img标签"><a class="markdownIt-Anchor" href="#img标签"></a> img标签</h3>
+<p>在<code>HTML</code>中图像使用<code>&lt;img/&gt;</code>自闭合标签并掌握三个属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src</code></td>
+<td>图像文件地址</td>
+</tr>
+<tr>
+<td><code>alt</code></td>
+<td>图片显示不出来是提示的文字</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>鼠标移动到图片上的提示文字</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>src</code>和<code>alt</code>两个属性必不可少，<code>title</code>可有可无</strong></p>
+<h3 id="图像标签"><a class="markdownIt-Anchor" href="#图像标签"></a> 图像标签</h3>
+<p>绝对路径：就从根目录开始一直写到引用对象</p>
+<p>相对路径：从当前文件和要引用文件的共同位置<mark>往后开始写</mark>,开头用<code>../</code></p>
+<h3 id="图片格式"><a class="markdownIt-Anchor" href="#图片格式"></a> 图片格式</h3>
+<ul>
+<li><code>JPG</code>：网页、相册一般常用</li>
+<li><code>PNG</code>：转为<code>Web</code>设计的图像，可以<mark>悬浮在其他页面文件和图像之上</mark>，并且体积小无损压缩保证了网页的打开速度，小的<code>logo</code>图片首选</li>
+<li><code>GIF</code>：效果差但是动态</li>
+</ul>
+<h2 id="超链接"><a class="markdownIt-Anchor" href="#超链接"></a> 超链接</h2>
+<p>外部链和内部链接(<strong>锚点链接</strong>)</p>
+<h3 id="a标签"><a class="markdownIt-Anchor" href="#a标签"></a> <code>a</code>标签</h3>
+<p><strong>对于无论是图片还是文字，通通放在<code>&lt;a&gt;</code>和<code>&lt;a/&gt;</code>中就可以了（行内元素）</strong></p>
+<p>链接地址放在<code>href</code>里，如果是内部文件之间链接就是路径引用</p>
+<p><code>&lt;a href=&quot;www.baidu.com&quot; target=&quot;_blank&quot;&gt;&lt;img/&gt;&lt;/a&gt;</code></p>
+<p>a标签只用掌握target属性（控制目标窗口打开方式）</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_self</code></td>
+<td>默认方式，当前窗口打开</td>
+</tr>
+<tr>
+<td><code>_blank</code></td>
+<td>在全新的空白窗口打开</td>
+</tr>
+<tr>
+<td><code>_top</code></td>
+<td>顶层的框架中打开</td>
+</tr>
+<tr>
+<td><code>_parent</code></td>
+<td>当前框架打开</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>只用记前两个，别忘了加上’_’</p>
+</blockquote>
+<h3 id="锚点链接"><a class="markdownIt-Anchor" href="#锚点链接"></a> 锚点链接</h3>
+<p>一种内部链接，不过他的链接对象是当前页面内部的某个区块，可以方便用户查看较长的文档中的内容</p>
+<p><strong>定义</strong>：目标锚点的<code>id</code>和超链接部分</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#music&quot;</span>&gt;</span>音乐<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#movie&quot;</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    ...<span class="comment">&lt;!--一堆其他的内容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;music&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;movie&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>简单的很，就是注意<strong>链接对象必须是<code>id</code></strong></p>
+</blockquote>
+<h2 id="表单"><a class="markdownIt-Anchor" href="#表单"></a> 表单</h2>
+<p>最常用最核心的部分了，作用就是在客户端收集用户的信息交给服务器处理</p>
+<p><strong>常说的表单就是指文本框、按钮和下拉列表等的总称</strong></p>
+<h3 id="form标签"><a class="markdownIt-Anchor" href="#form标签"></a> <code>form</code>标签</h3>
+<p>就和表格类似，表格的内容大放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>中，那表单的内容就放在<code>&lt;form&gt;</code>和<code>&lt;form/&gt;</code>中</p>
+<p><strong>值的注意的是不是所有的表单对象都要放在<code>form</code>标签对中，需要向后端提交的数据放在<code>form</code>标签中，若是不需要的话没必要放</strong></p>
+<h4 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h4>
+<blockquote>
+<p>和<code>head</code>一样比较抽象、缺乏操作性，和后端有关，其中提交<code>action</code>属性和传送方法<code>method</code>属性不记了被淘汰了，还有编码方式<code>enctype</code>属性用的少也不记了</p>
+</blockquote>
+<ul>
+<li>表单名称<code>name</code>属性</li>
+</ul>
+<p>为了区分同一个网页之间不同的表单得给他们取个名字防止在提交后在后端出现混乱</p>
+<ul>
+<li>目标显示方式<code>target</code>属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_self</code></td>
+<td>默认方式，当前窗口打开</td>
+</tr>
+<tr>
+<td><code>_blank</code></td>
+<td>在全新的空白窗口打开</td>
+</tr>
+<tr>
+<td><code>_top</code></td>
+<td>顶层的框架中打开</td>
+</tr>
+<tr>
+<td><code>_parent</code></td>
+<td>当前框架打开</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>和超链接的<code>target</code>属性一样</p>
+</blockquote>
+<h3 id="表单对象"><a class="markdownIt-Anchor" href="#表单对象"></a> 表单对象</h3>
+<blockquote>
+<p>表单的<code>value</code>属性值就是用来方便后端传数据的，<strong>很重要的</strong></p>
+</blockquote>
+<h4 id="使用input标签表单"><a class="markdownIt-Anchor" href="#使用input标签表单"></a> 使用<code>input</code>标签表单</h4>
+<p>自闭合标签，表单类型不同在于<code>type</code>属性不同取值</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-1.png" style="zoom:67%;">
+<h5 id="单行文本框text"><a class="markdownIt-Anchor" href="#单行文本框text"></a> 单行文本框<code>text</code></h5>
+<p><strong>作用</strong>：用户登录注册</p>
+<p><code>&lt;input type=&quot;text&quot; value=&quot;&quot; size=&quot;&quot; maxlength=&quot;&quot;/&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td>定义文本框默认值，也就是文本框内初始内容</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>定义文本框的长度，以字符为单位</td>
+</tr>
+<tr>
+<td><code>maxlength</code></td>
+<td>设置文本框中最多可以输入的字符数</td>
+</tr>
+</tbody>
+</table>
+<h5 id="密码文本框password"><a class="markdownIt-Anchor" href="#密码文本框password"></a> 密码文本框<code>password</code></h5>
+<p><strong>作用</strong>：遮住输入字符</p>
+<blockquote>
+<p>和单行文本框用法一样</p>
+</blockquote>
+<h5 id="单选按钮radio"><a class="markdownIt-Anchor" href="#单选按钮radio"></a> 单选按钮<code>radio</code></h5>
+<p><strong>作用</strong>：单选按钮只能从选项列表中选择一项，选项与选项之间是互斥的</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>单选按钮所在组名</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>单选按钮的取值</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：两个属性缺一不可，同一个问题的不同单选之间的name必须相同，不然做不到排斥</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    性别：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;boy&quot;</span>&gt;</span>男<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;girl&quot;</span>&gt;</span>女</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>单选按钮也可以像下面复选框的选项一样选择设定checked属性</strong></p>
+</blockquote>
+<h5 id="复选框checkbox"><a class="markdownIt-Anchor" href="#复选框checkbox"></a> 复选框<code>checkbox</code></h5>
+<p><strong>作用</strong>：可以从选项列表中选择多个选项</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>checked</code></td>
+<td>是否选中</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>按钮的取值</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>checked=“checked&quot;</code>加上按钮默认是选中的，不加就是未选中的</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    最爱的歌曲：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music1&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox1&quot;</span>&gt;</span>歌曲1<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox2&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music2&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span>歌曲2<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：复选框必须用label标签，具体原因和JavaScript</strong></p>
+<h5 id="表单按钮"><a class="markdownIt-Anchor" href="#表单按钮"></a> 表单按钮</h5>
+<p><code>HTML</code>中按钮分为三种：普通按钮<code>button</code>、提交按钮<code>submit</code>、重置按钮<code>reset</code></p>
+<h6 id="普通按钮button"><a class="markdownIt-Anchor" href="#普通按钮button"></a> 普通按钮<code>button</code></h6>
+<p><code>&lt;input type=&quot;button&quot; value=&quot;普通按钮取值&quot; onclick=&quot;JavaScript脚本程序&quot;/&gt;</code></p>
+<h6 id="提交按钮submit"><a class="markdownIt-Anchor" href="#提交按钮submit"></a> 提交按钮<code>submit</code></h6>
+<p><strong>作用</strong>：提交按钮<code>submit</code>真正的用处是把表单内容提交给后台服务器处理，和后端有关</p>
+<p><code>&lt;input type=&quot;submit&quot; value=&quot;提交按钮的取值&quot;/&gt;</code></p>
+<h6 id="重置按钮reset"><a class="markdownIt-Anchor" href="#重置按钮reset"></a> 重置按钮<code>reset</code></h6>
+<p><strong>作用</strong>：重置按钮<code>reset</code>可以看做是一种具有特殊功能的普通按钮，可以清除用户在用户在<mark>当前表单</mark>中输入的信息，对当前表单之外的表单无影响</p>
+<p><code>&lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt;</code></p>
+<h5 id="隐藏域hidden"><a class="markdownIt-Anchor" href="#隐藏域hidden"></a> 隐藏域hidden</h5>
+<p><code>&lt;input typde=&quot;hidden&quot; value=&quot;10&quot;&gt;</code></p>
+<p><strong>作用</strong>：一些前端传向后端的数据不想让客户看见可以通过隐藏域遮盖让这些数据不在浏览器中显示</p>
+<blockquote>
+<p>前端用不到，后端常见。虽然看不见数据但是查看HTML代码还是会看到的，所以不能用来隐藏敏感信息（手机号、密码之类的）</p>
+</blockquote>
+<h5 id="文件域file"><a class="markdownIt-Anchor" href="#文件域file"></a> 文件域file</h5>
+<p><strong>作用</strong>：网盘、邮箱等文件的上传</p>
+<p><strong>注意</strong>：再使用文件域的时候必须在form<code>标签中说明编码方式``enctype=&quot;multipart/form-data&quot;</code>，否则服务器不能正常接收文件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;myform&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="textarea多行文本框"><a class="markdownIt-Anchor" href="#textarea多行文本框"></a> textarea多行文本框</h4>
+<p>单行文本框只能输入一行信息，多行文本框就输入多行信息，但是<strong>不再用<code>inut</code>标签而是<code>textarea</code>标签</strong></p>
+<p><code>&lt;textarea rows=&quot;函行数&quot; cols=&quot;列数&quot;&gt;默认内容&lt;textarea/&gt;</code></p>
+<h4 id="下拉列表select"><a class="markdownIt-Anchor" href="#下拉列表select"></a> 下拉列表select</h4>
+<p><strong>作用</strong>：节省页面空间的选择方式，单击下拉菜单打开菜单后才会看到全部的选项</p>
+<p><strong>特点</strong>：和列表类似，由<code>select</code>和<code>option</code>两个标签配合使用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>jQuary<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="slelect标签属性"><a class="markdownIt-Anchor" href="#slelect标签属性"></a> slelect标签属性</h5>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>multiple</code></td>
+<td>可选属性，也只有这一个属性。默认情况下列表只能选择一项，当设置为<code>mutiple=&quot;mutiple&quot;</code>时下拉列表可以选择多项</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>下拉列表展开之后可见列表项的数目</td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;selsect multiple=&quot;multiple&quot; size=&quot;&quot;&gt;&lt;select/&gt;</code></p>
+<h5 id="option标签属性"><a class="markdownIt-Anchor" href="#option标签属性"></a> <code>option</code>标签属性</h5>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td>选项值</td>
+</tr>
+<tr>
+<td><code>selected</code></td>
+<td>初始是否选中</td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;option value=&quot;选项值&quot; selected=&quot;selected&quot;&gt;&lt;option/&gt;</code></p>
+<blockquote>
+<p>selected和单选按钮<code>radio</code>的<code>checked</code>属性是一样的意思</p>
+</blockquote>
+<h2 id="多媒体"><a class="markdownIt-Anchor" href="#多媒体"></a> 多媒体</h2>
+<h3 id="插入音频-视频和flash"><a class="markdownIt-Anchor" href="#插入音频-视频和flash"></a> 插入音频、视频和<code>Flash</code></h3>
+<p><strong>作用</strong>：对于在线的音频和视频常用<code>HTML5</code>新增的自闭和标签<code>embed</code>实现。<strong><code>src</code>属性写明引用路径就可以了</strong>。</p>
+<p><code>&lt;embed src=&quot;&quot;&gt;</code></p>
+<blockquote>
+<p><code>embed</code>标签会有一个放有几个简单功能的播放界面</p>
+</blockquote>
+<p><strong>支持格式</strong>：<code>mp4</code>、<code>avi</code>、<code>rmvb</code>等等主流视频格式，不行的话就转码</p>
+<h3 id="插入背景音乐"><a class="markdownIt-Anchor" href="#插入背景音乐"></a> 插入背景音乐</h3>
+<p>在<code>embed</code>标签的基础上多了几个属性（还是<code>src</code>写明引用地址）</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明（取值为<code>true</code>/<code>false</code>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hidden</code></td>
+<td>是否显示播放器</td>
+</tr>
+<tr>
+<td><code>autostart</code></td>
+<td>是否一进页面自动播放</td>
+</tr>
+<tr>
+<td><code>loop</code></td>
+<td>是否循环播放</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>HTML5</code>还新增了<code>audio</code>、<code>video</code>标签等用于多媒体开发的标签</p>
+</blockquote>
+<h2 id="框架"><a class="markdownIt-Anchor" href="#框架"></a> 框架</h2>
+<p><strong>作用</strong>：<code>HTML5</code>新增一个标签<code>iframe</code>浮动框架（它是在浏览器窗口中嵌套的子窗口），<code>iframe</code>框架可以<mark>完全由设定者定义高度和宽度</mark>，并且可以放置在网页的任何位置，极大地扩展框架页面的应用范围</p>
+<p><code>&lt;iframe src=&quot;源文件地址&quot; width=&quot;浮动框架的宽&quot; height=&quot;浮动框架的高&quot; scrolling=&quot;滚动条设置&quot;&gt;</code></p>
+<blockquote>
+<p>在普通框架结构中，由于框架就是整个浏览器的窗口，因此不需要设置大小。但是浮动框架<code>iframe</code>是插入到普通<code>HTML</code>中的，所以可以调整框架的大小。<strong>浮动框架的宽度和高度都是以像素（<code>px</code>)为单位的。<code>width</code>和<code>height</code>都是可选属性</strong></p>
+</blockquote>
+<h3 id="滚动条设置"><a class="markdownIt-Anchor" href="#滚动条设置"></a> 滚动条设置</h3>
+<p><code>iframe</code>的<code>scrolling</code>属性来控制滚动条三种形态：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code></td>
+<td>默认值，整个表格在浏览器中左对齐（根据需要显示）</td>
+</tr>
+<tr>
+<td><code>yes</code></td>
+<td>总是显示滚动条</td>
+</tr>
+<tr>
+<td><code>no</code></td>
+<td>不显示滚动条</td>
+</tr>
+</tbody>
+</table>
+<h2 id="语义化标签表"><a class="markdownIt-Anchor" href="#语义化标签表"></a> 语义化标签表</h2>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-2.png" style="zoom:67%;">]]></content>
+      <categories>
+        <category>Web学习</category>
+        <category>HTML</category>
+      </categories>
+      <tags>
+        <tag>Web前端</tag>
+        <tag>HTML</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>CSS3知识汇总</title>
     <url>/2020/07/23/CSS3%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h2 id="css注释"><a class="markdownIt-Anchor" href="#css注释"></a> <code>CSS</code>注释</h2>
@@ -3088,709 +3791,6 @@
       <tags>
         <tag>Web前端</tag>
         <tag>CSS3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTML知识汇总</title>
-    <url>/2020/07/23/HTML%E7%9F%A5%E8%AF%86%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>由于<code>typora</code>非代码区<code>HTML</code>格式冲突，标签不再加<code>&lt;/&gt;</code></strong></p>
-</blockquote>
-<h2 id="html基本结构"><a class="markdownIt-Anchor" href="#html基本结构"></a> <code>HTML</code>基本结构</h2>
-<h3 id="html结构"><a class="markdownIt-Anchor" href="#html结构"></a> <code>HTML结构</code></h3>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>html</code>标签的作用是向浏览器指明网页的开始和结束，代码声明网页使用的是W3C组织的XHTML标准</li>
-<li><code>head</code>标签内部只能定义一些特殊内容</li>
-</ul>
-<blockquote>
-<p>通常放置和网页相关信息，如title、meta等不会直接显示在网页上的标签信息</p>
-</blockquote>
-<ul>
-<li><code>body</code>标签是背部编写绝大多数标签代码</li>
-</ul>
-<h3 id="head标签"><a class="markdownIt-Anchor" href="#head标签"></a> <code>head</code>标签</h3>
-<p><strong>title标签</strong>：唯一作用就是定义网页的标题，显示在浏览器上栏的标题</p>
-<p><strong>meta标签</strong>：又称“元信息标签”，一般定义页面的关键字和描述信息有助于搜索引擎搜索界面</p>
-<ul>
-<li><code>name</code>属性</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>keywords</code></td>
-<td>网页关键字（可多个用英文逗号隔开）</td>
-</tr>
-<tr>
-<td><code>description</code></td>
-<td>网页描述</td>
-</tr>
-<tr>
-<td><code>author</code></td>
-<td>网页作者</td>
-</tr>
-<tr>
-<td><code>copyright</code></td>
-<td>版权信息</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><code>http-equiv</code>属性
-<ul>
-<li>定义页面使用的语言</li>
-<li>定义页面自动刷新跳转</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=gb2312&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器该页面使用的字符集是国际汉子码--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;秒数;url=网址&quot;</span>;/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器经过多少秒刷新（整数）跳转至网址--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong><code>link</code>标签</strong>：引用外部<code>CSS</code>样式</p>
-<p><strong><code>style</code>标签</strong>：用于定义<code>CSS</code>样式</p>
-<p><strong><code>script</code>标签</strong>：用于定义<code>JavaScript</code>代码</p>
-<h2 id="段落与文字"><a class="markdownIt-Anchor" href="#段落与文字"></a> 段落与文字</h2>
-<h3 id="常用总结"><a class="markdownIt-Anchor" href="#常用总结"></a> 常用总结</h3>
-<table>
-<thead>
-<tr>
-<th>标签</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>h1</code>~<code>h6</code></td>
-<td>标题</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>段落</td>
-</tr>
-<tr>
-<td><code>br</code></td>
-<td>换行</td>
-</tr>
-<tr>
-<td><code>hr</code></td>
-<td>水平线</td>
-</tr>
-<tr>
-<td><code>div</code></td>
-<td>分隔</td>
-</tr>
-<tr>
-<td><code>span</code></td>
-<td>区域</td>
-</tr>
-<tr>
-<td>strong</td>
-<td>加粗文本</td>
-</tr>
-<tr>
-<td><code>em</code></td>
-<td>斜体文本</td>
-</tr>
-<tr>
-<td><code>sup</code></td>
-<td>上标</td>
-</tr>
-<tr>
-<td><code>sub</code></td>
-<td>下标</td>
-</tr>
-<tr>
-<td><code>small</code>、<code>big</code></td>
-<td>用于版权声明</td>
-</tr>
-<tr>
-<td><code>s</code></td>
-<td>删除线</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>标题元素根据需要再用，对于网页的搜索引擎优化极其重要</li>
-<li><code>p</code>标签会自动换行，段落与段落之间有一定的缝隙</li>
-<li><code>br</code>给文字换行不会出现缝隙，为<mark>自闭合标签</mark></li>
-</ul>
-<h3 id="特殊符号"><a class="markdownIt-Anchor" href="#特殊符号"></a> 特殊符号</h3>
-<table>
-<thead>
-<tr>
-<th>特殊符号</th>
-<th>代码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>空格</td>
-<td><code>&amp;nbsp;</code></td>
-</tr>
-<tr>
-<td>双引号（英）</td>
-<td><code>&amp;quot;</code></td>
-</tr>
-<tr>
-<td>左单引号</td>
-<td><code>&amp;lsquo;</code></td>
-</tr>
-<tr>
-<td>右单引号</td>
-<td><code>&amp;rsquo;</code></td>
-</tr>
-<tr>
-<td>乘号</td>
-<td><code>&amp;times;</code></td>
-</tr>
-<tr>
-<td>除号</td>
-<td><code>&amp;divide;</code></td>
-</tr>
-<tr>
-<td>小于号</td>
-<td><code>&amp;it;</code></td>
-</tr>
-<tr>
-<td>大于号</td>
-<td><code>&amp;gt;</code></td>
-</tr>
-<tr>
-<td>与符号</td>
-<td><code>&amp;amp;</code></td>
-</tr>
-<tr>
-<td>长破折号</td>
-<td><code>&amp;mdash;</code></td>
-</tr>
-<tr>
-<td>竖线</td>
-<td><code>&amp;#124;</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>想在网页中显示特殊符号有两种方法：</p>
-<ul>
-<li>直接在网页中输入该特殊符号</li>
-<li>在网页中输入该特殊符号对应的HTML代码</li>
-</ul>
-</blockquote>
-<h3 id="自闭合标签"><a class="markdownIt-Anchor" href="#自闭合标签"></a> 自闭合标签</h3>
-<p><code>HTML</code>标签分为两类：一般标签和自闭合标签</p>
-<p><strong>一般标签</strong>：有开始和结束符号，标签内部可以插入其他标签或者文字</p>
-<p><strong>自闭和标签</strong>：没有结束符号，只能定义自身的一些属性</p>
-<blockquote>
-<p>常见自闭和标签，其他的都是一般标签</p>
-<table>
-<thead>
-<tr>
-<th>自闭和标签</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>mata</code></td>
-<td>信息</td>
-</tr>
-<tr>
-<td><code>link</code></td>
-<td>连接外部文件</td>
-</tr>
-<tr>
-<td><code>br</code></td>
-<td>换行</td>
-</tr>
-<tr>
-<td><code>hr</code></td>
-<td>水平线</td>
-</tr>
-<tr>
-<td><code>input</code></td>
-<td>表单</td>
-</tr>
-<tr>
-<td><code>img</code></td>
-<td>图像</td>
-</tr>
-</tbody>
-</table>
-</blockquote>
-<h3 id="行内元素和块元素"><a class="markdownIt-Anchor" href="#行内元素和块元素"></a> 行内元素和块元素</h3>
-<table>
-<thead>
-<tr>
-<th>行内元素</th>
-<th>块元素</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>与其他元素位于一行</td>
-<td>独占一行</td>
-</tr>
-<tr>
-<td>可以容纳行内元素但不可容纳块元素</td>
-<td>容他其他行内元素和块元素</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>常见行内元素</th>
-<th>常见块元素</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>strong</code>、<code>em</code>、<code>s</code>、<code>u</code>、<code>a</code>、<code>span</code>、<code>img</code>、<code>input</code></td>
-<td><code>h1</code>~<code>h6</code>、<code>p</code>、<code>br</code>、<code>hr</code>、<code>div</code>、<code>span</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="列表"><a class="markdownIt-Anchor" href="#列表"></a> 列表</h2>
-<p><strong>注意：在<code>CSS</code>中改用<code>list-style-type</code>定义列表项样式，<code>type</code>属性弃用</strong></p>
-<h3 id="有序列表"><a class="markdownIt-Anchor" href="#有序列表"></a> 有序列表</h3>
-<p>从<code>&lt;ol&gt;</code>开始到<code>&lt;/ol&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
-<p><strong>type属性</strong>：更改列表项序号</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>序号类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>1</code></td>
-<td>数字1、2、3</td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>小写英文字母</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>大写英文字母</td>
-</tr>
-<tr>
-<td><code>i</code></td>
-<td>小写罗马字母</td>
-</tr>
-<tr>
-<td><code>ii</code></td>
-<td>大写罗马字母</td>
-</tr>
-</tbody>
-</table>
-<h3 id="无序列表"><a class="markdownIt-Anchor" href="#无序列表"></a> 无序列表</h3>
-<p>从<code>&lt;ul&gt;</code>开始到<code>&lt;/ul&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
-<p><strong>注意：对于<code>ul</code>元素内部的子元素只能是<code>li</code>，而不能是其他的元素。对于<code>ul</code>内部的文本，也只能是在<code>li</code>元素内添加，而不能在<code>li</code>元素外部添加</strong></p>
-<p><strong>type属性</strong>：更改列表项样式</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>序列类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>disc</code></td>
-<td>默认实心圆</td>
-</tr>
-<tr>
-<td><code>circle</code></td>
-<td>空心圆</td>
-</tr>
-<tr>
-<td><code>square</code></td>
-<td>实心正方形</td>
-</tr>
-</tbody>
-</table>
-<h3 id="定义列表"><a class="markdownIt-Anchor" href="#定义列表"></a> 定义列表</h3>
-<p>在实际开发用的不多，一般分为两类：定义条件和定义描述</p>
-<ul>
-<li><code>dl</code>定义列表的开始和结束</li>
-<li><code>dt</code>后面添加要解释的对象</li>
-<li><code>dd</code>后面添加改名词的具体解释（会自动缩进文本）</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span>定义名词<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>定义描述<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--可多对dt和dd--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> 表格</h2>
-<blockquote>
-<p>因为基本被淘汰所以不再做笔记了</p>
-</blockquote>
-<h3 id="基本构成"><a class="markdownIt-Anchor" href="#基本构成"></a> 基本构成</h3>
-<ul>
-<li><code>table</code>标签（表格）、<code>tr</code>标签（行）、<code>td</code>标签（单元格）</li>
-<li><code>tr</code>和<code>td</code>标签必须放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>标签对内才有效</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">caption</span>&gt;</span>表格标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表头--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>一个表头单元格<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表身--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的开始--&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="name">td</span>&gt;</span>一个单元格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的结尾--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表脚--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>默认情况下表格是没有边框的。<code>table</code>布局已经完全被淘汰，往后改用<code>DIV+CSS</code>布局</p>
-</blockquote>
-<h2 id="图像"><a class="markdownIt-Anchor" href="#图像"></a> 图像</h2>
-<h3 id="img标签"><a class="markdownIt-Anchor" href="#img标签"></a> img标签</h3>
-<p>在<code>HTML</code>中图像使用<code>&lt;img/&gt;</code>自闭合标签并掌握三个属性</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>src</code></td>
-<td>图像文件地址</td>
-</tr>
-<tr>
-<td><code>alt</code></td>
-<td>图片显示不出来是提示的文字</td>
-</tr>
-<tr>
-<td><code>title</code></td>
-<td>鼠标移动到图片上的提示文字</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>src</code>和<code>alt</code>两个属性必不可少，<code>title</code>可有可无</strong></p>
-<h3 id="图像标签"><a class="markdownIt-Anchor" href="#图像标签"></a> 图像标签</h3>
-<p>绝对路径：就从根目录开始一直写到引用对象</p>
-<p>相对路径：从当前文件和要引用文件的共同位置<mark>往后开始写</mark>,开头用<code>../</code></p>
-<h3 id="图片格式"><a class="markdownIt-Anchor" href="#图片格式"></a> 图片格式</h3>
-<ul>
-<li><code>JPG</code>：网页、相册一般常用</li>
-<li><code>PNG</code>：转为<code>Web</code>设计的图像，可以<mark>悬浮在其他页面文件和图像之上</mark>，并且体积小无损压缩保证了网页的打开速度，小的<code>logo</code>图片首选</li>
-<li><code>GIF</code>：效果差但是动态</li>
-</ul>
-<h2 id="超链接"><a class="markdownIt-Anchor" href="#超链接"></a> 超链接</h2>
-<p>外部链和内部链接(<strong>锚点链接</strong>)</p>
-<h3 id="a标签"><a class="markdownIt-Anchor" href="#a标签"></a> <code>a</code>标签</h3>
-<p><strong>对于无论是图片还是文字，通通放在<code>&lt;a&gt;</code>和<code>&lt;a/&gt;</code>中就可以了（行内元素）</strong></p>
-<p>链接地址放在<code>href</code>里，如果是内部文件之间链接就是路径引用</p>
-<p><code>&lt;a href=&quot;www.baidu.com&quot; target=&quot;_blank&quot;&gt;&lt;img/&gt;&lt;/a&gt;</code></p>
-<p>a标签只用掌握target属性（控制目标窗口打开方式）</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>语义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>_self</code></td>
-<td>默认方式，当前窗口打开</td>
-</tr>
-<tr>
-<td><code>_blank</code></td>
-<td>在全新的空白窗口打开</td>
-</tr>
-<tr>
-<td><code>_top</code></td>
-<td>顶层的框架中打开</td>
-</tr>
-<tr>
-<td><code>_parent</code></td>
-<td>当前框架打开</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>只用记前两个，别忘了加上’_’</p>
-</blockquote>
-<h3 id="锚点链接"><a class="markdownIt-Anchor" href="#锚点链接"></a> 锚点链接</h3>
-<p>一种内部链接，不过他的链接对象是当前页面内部的某个区块，可以方便用户查看较长的文档中的内容</p>
-<p><strong>定义</strong>：目标锚点的<code>id</code>和超链接部分</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#music&quot;</span>&gt;</span>音乐<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#movie&quot;</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    ...<span class="comment">&lt;!--一堆其他的内容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;music&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;movie&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>简单的很，就是注意<strong>链接对象必须是<code>id</code></strong></p>
-</blockquote>
-<h2 id="表单"><a class="markdownIt-Anchor" href="#表单"></a> 表单</h2>
-<p>最常用最核心的部分了，作用就是在客户端收集用户的信息交给服务器处理</p>
-<p><strong>常说的表单就是指文本框、按钮和下拉列表等的总称</strong></p>
-<h3 id="form标签"><a class="markdownIt-Anchor" href="#form标签"></a> <code>form</code>标签</h3>
-<p>就和表格类似，表格的内容大放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>中，那表单的内容就放在<code>&lt;form&gt;</code>和<code>&lt;form/&gt;</code>中</p>
-<p><strong>值的注意的是不是所有的表单对象都要放在<code>form</code>标签对中，需要向后端提交的数据放在<code>form</code>标签中，若是不需要的话没必要放</strong></p>
-<h4 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h4>
-<blockquote>
-<p>和<code>head</code>一样比较抽象、缺乏操作性，和后端有关，其中提交<code>action</code>属性和传送方法<code>method</code>属性不记了被淘汰了，还有编码方式<code>enctype</code>属性用的少也不记了</p>
-</blockquote>
-<ul>
-<li>表单名称<code>name</code>属性</li>
-</ul>
-<p>为了区分同一个网页之间不同的表单得给他们取个名字防止在提交后在后端出现混乱</p>
-<ul>
-<li>目标显示方式<code>target</code>属性</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>语义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>_self</code></td>
-<td>默认方式，当前窗口打开</td>
-</tr>
-<tr>
-<td><code>_blank</code></td>
-<td>在全新的空白窗口打开</td>
-</tr>
-<tr>
-<td><code>_top</code></td>
-<td>顶层的框架中打开</td>
-</tr>
-<tr>
-<td><code>_parent</code></td>
-<td>当前框架打开</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>和超链接的<code>target</code>属性一样</p>
-</blockquote>
-<h3 id="表单对象"><a class="markdownIt-Anchor" href="#表单对象"></a> 表单对象</h3>
-<blockquote>
-<p>表单的<code>value</code>属性值就是用来方便后端传数据的，<strong>很重要的</strong></p>
-</blockquote>
-<h4 id="使用input标签表单"><a class="markdownIt-Anchor" href="#使用input标签表单"></a> 使用<code>input</code>标签表单</h4>
-<p>自闭合标签，表单类型不同在于<code>type</code>属性不同取值</p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-1.png" style="zoom:67%;">
-<h5 id="单行文本框text"><a class="markdownIt-Anchor" href="#单行文本框text"></a> 单行文本框<code>text</code></h5>
-<p><strong>作用</strong>：用户登录注册</p>
-<p><code>&lt;input type=&quot;text&quot; value=&quot;&quot; size=&quot;&quot; maxlength=&quot;&quot;/&gt;</code></p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>value</code></td>
-<td>定义文本框默认值，也就是文本框内初始内容</td>
-</tr>
-<tr>
-<td><code>size</code></td>
-<td>定义文本框的长度，以字符为单位</td>
-</tr>
-<tr>
-<td><code>maxlength</code></td>
-<td>设置文本框中最多可以输入的字符数</td>
-</tr>
-</tbody>
-</table>
-<h5 id="密码文本框password"><a class="markdownIt-Anchor" href="#密码文本框password"></a> 密码文本框<code>password</code></h5>
-<p><strong>作用</strong>：遮住输入字符</p>
-<blockquote>
-<p>和单行文本框用法一样</p>
-</blockquote>
-<h5 id="单选按钮radio"><a class="markdownIt-Anchor" href="#单选按钮radio"></a> 单选按钮<code>radio</code></h5>
-<p><strong>作用</strong>：单选按钮只能从选项列表中选择一项，选项与选项之间是互斥的</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>name</code></td>
-<td>单选按钮所在组名</td>
-</tr>
-<tr>
-<td><code>value</code></td>
-<td>单选按钮的取值</td>
-</tr>
-</tbody>
-</table>
-<p><strong>注意：两个属性缺一不可，同一个问题的不同单选之间的name必须相同，不然做不到排斥</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    性别：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;boy&quot;</span>&gt;</span>男<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;girl&quot;</span>&gt;</span>女</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>单选按钮也可以像下面复选框的选项一样选择设定checked属性</strong></p>
-</blockquote>
-<h5 id="复选框checkbox"><a class="markdownIt-Anchor" href="#复选框checkbox"></a> 复选框<code>checkbox</code></h5>
-<p><strong>作用</strong>：可以从选项列表中选择多个选项</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>checked</code></td>
-<td>是否选中</td>
-</tr>
-<tr>
-<td><code>value</code></td>
-<td>按钮的取值</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><code>checked=“checked&quot;</code>加上按钮默认是选中的，不加就是未选中的</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    最爱的歌曲：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music1&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox1&quot;</span>&gt;</span>歌曲1<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox2&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music2&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span>歌曲2<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意：复选框必须用label标签，具体原因和JavaScript</strong></p>
-<h5 id="表单按钮"><a class="markdownIt-Anchor" href="#表单按钮"></a> 表单按钮</h5>
-<p><code>HTML</code>中按钮分为三种：普通按钮<code>button</code>、提交按钮<code>submit</code>、重置按钮<code>reset</code></p>
-<h6 id="普通按钮button"><a class="markdownIt-Anchor" href="#普通按钮button"></a> 普通按钮<code>button</code></h6>
-<p><code>&lt;input type=&quot;button&quot; value=&quot;普通按钮取值&quot; onclick=&quot;JavaScript脚本程序&quot;/&gt;</code></p>
-<h6 id="提交按钮submit"><a class="markdownIt-Anchor" href="#提交按钮submit"></a> 提交按钮<code>submit</code></h6>
-<p><strong>作用</strong>：提交按钮<code>submit</code>真正的用处是把表单内容提交给后台服务器处理，和后端有关</p>
-<p><code>&lt;input type=&quot;submit&quot; value=&quot;提交按钮的取值&quot;/&gt;</code></p>
-<h6 id="重置按钮reset"><a class="markdownIt-Anchor" href="#重置按钮reset"></a> 重置按钮<code>reset</code></h6>
-<p><strong>作用</strong>：重置按钮<code>reset</code>可以看做是一种具有特殊功能的普通按钮，可以清除用户在用户在<mark>当前表单</mark>中输入的信息，对当前表单之外的表单无影响</p>
-<p><code>&lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt;</code></p>
-<h5 id="隐藏域hidden"><a class="markdownIt-Anchor" href="#隐藏域hidden"></a> 隐藏域hidden</h5>
-<p><code>&lt;input typde=&quot;hidden&quot; value=&quot;10&quot;&gt;</code></p>
-<p><strong>作用</strong>：一些前端传向后端的数据不想让客户看见可以通过隐藏域遮盖让这些数据不在浏览器中显示</p>
-<blockquote>
-<p>前端用不到，后端常见。虽然看不见数据但是查看HTML代码还是会看到的，所以不能用来隐藏敏感信息（手机号、密码之类的）</p>
-</blockquote>
-<h5 id="文件域file"><a class="markdownIt-Anchor" href="#文件域file"></a> 文件域file</h5>
-<p><strong>作用</strong>：网盘、邮箱等文件的上传</p>
-<p><strong>注意</strong>：再使用文件域的时候必须在form<code>标签中说明编码方式``enctype=&quot;multipart/form-data&quot;</code>，否则服务器不能正常接收文件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;myform&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="textarea多行文本框"><a class="markdownIt-Anchor" href="#textarea多行文本框"></a> textarea多行文本框</h4>
-<p>单行文本框只能输入一行信息，多行文本框就输入多行信息，但是<strong>不再用<code>inut</code>标签而是<code>textarea</code>标签</strong></p>
-<p><code>&lt;textarea rows=&quot;函行数&quot; cols=&quot;列数&quot;&gt;默认内容&lt;textarea/&gt;</code></p>
-<h4 id="下拉列表select"><a class="markdownIt-Anchor" href="#下拉列表select"></a> 下拉列表select</h4>
-<p><strong>作用</strong>：节省页面空间的选择方式，单击下拉菜单打开菜单后才会看到全部的选项</p>
-<p><strong>特点</strong>：和列表类似，由<code>select</code>和<code>option</code>两个标签配合使用</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>jQuary<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="slelect标签属性"><a class="markdownIt-Anchor" href="#slelect标签属性"></a> slelect标签属性</h5>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>multiple</code></td>
-<td>可选属性，也只有这一个属性。默认情况下列表只能选择一项，当设置为<code>mutiple=&quot;mutiple&quot;</code>时下拉列表可以选择多项</td>
-</tr>
-<tr>
-<td><code>size</code></td>
-<td>下拉列表展开之后可见列表项的数目</td>
-</tr>
-</tbody>
-</table>
-<p><code>&lt;selsect multiple=&quot;multiple&quot; size=&quot;&quot;&gt;&lt;select/&gt;</code></p>
-<h5 id="option标签属性"><a class="markdownIt-Anchor" href="#option标签属性"></a> <code>option</code>标签属性</h5>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>value</code></td>
-<td>选项值</td>
-</tr>
-<tr>
-<td><code>selected</code></td>
-<td>初始是否选中</td>
-</tr>
-</tbody>
-</table>
-<p><code>&lt;option value=&quot;选项值&quot; selected=&quot;selected&quot;&gt;&lt;option/&gt;</code></p>
-<blockquote>
-<p>selected和单选按钮<code>radio</code>的<code>checked</code>属性是一样的意思</p>
-</blockquote>
-<h2 id="多媒体"><a class="markdownIt-Anchor" href="#多媒体"></a> 多媒体</h2>
-<h3 id="插入音频-视频和flash"><a class="markdownIt-Anchor" href="#插入音频-视频和flash"></a> 插入音频、视频和<code>Flash</code></h3>
-<p><strong>作用</strong>：对于在线的音频和视频常用<code>HTML5</code>新增的自闭和标签<code>embed</code>实现。<strong><code>src</code>属性写明引用路径就可以了</strong>。</p>
-<p><code>&lt;embed src=&quot;&quot;&gt;</code></p>
-<blockquote>
-<p><code>embed</code>标签会有一个放有几个简单功能的播放界面</p>
-</blockquote>
-<p><strong>支持格式</strong>：<code>mp4</code>、<code>avi</code>、<code>rmvb</code>等等主流视频格式，不行的话就转码</p>
-<h3 id="插入背景音乐"><a class="markdownIt-Anchor" href="#插入背景音乐"></a> 插入背景音乐</h3>
-<p>在<code>embed</code>标签的基础上多了几个属性（还是<code>src</code>写明引用地址）</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明（取值为<code>true</code>/<code>false</code>）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>hidden</code></td>
-<td>是否显示播放器</td>
-</tr>
-<tr>
-<td><code>autostart</code></td>
-<td>是否一进页面自动播放</td>
-</tr>
-<tr>
-<td><code>loop</code></td>
-<td>是否循环播放</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><code>HTML5</code>还新增了<code>audio</code>、<code>video</code>标签等用于多媒体开发的标签</p>
-</blockquote>
-<h2 id="框架"><a class="markdownIt-Anchor" href="#框架"></a> 框架</h2>
-<p><strong>作用</strong>：<code>HTML5</code>新增一个标签<code>iframe</code>浮动框架（它是在浏览器窗口中嵌套的子窗口），<code>iframe</code>框架可以<mark>完全由设定者定义高度和宽度</mark>，并且可以放置在网页的任何位置，极大地扩展框架页面的应用范围</p>
-<p><code>&lt;iframe src=&quot;源文件地址&quot; width=&quot;浮动框架的宽&quot; height=&quot;浮动框架的高&quot; scrolling=&quot;滚动条设置&quot;&gt;</code></p>
-<blockquote>
-<p>在普通框架结构中，由于框架就是整个浏览器的窗口，因此不需要设置大小。但是浮动框架<code>iframe</code>是插入到普通<code>HTML</code>中的，所以可以调整框架的大小。<strong>浮动框架的宽度和高度都是以像素（<code>px</code>)为单位的。<code>width</code>和<code>height</code>都是可选属性</strong></p>
-</blockquote>
-<h3 id="滚动条设置"><a class="markdownIt-Anchor" href="#滚动条设置"></a> 滚动条设置</h3>
-<p><code>iframe</code>的<code>scrolling</code>属性来控制滚动条三种形态：</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>auto</code></td>
-<td>默认值，整个表格在浏览器中左对齐（根据需要显示）</td>
-</tr>
-<tr>
-<td><code>yes</code></td>
-<td>总是显示滚动条</td>
-</tr>
-<tr>
-<td><code>no</code></td>
-<td>不显示滚动条</td>
-</tr>
-</tbody>
-</table>
-<h2 id="语义化标签表"><a class="markdownIt-Anchor" href="#语义化标签表"></a> 语义化标签表</h2>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-2.png" style="zoom:67%;">]]></content>
-      <categories>
-        <category>Web学习</category>
-        <category>HTML</category>
-      </categories>
-      <tags>
-        <tag>Web前端</tag>
-        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
