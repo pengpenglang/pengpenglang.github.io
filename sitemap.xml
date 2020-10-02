@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://pengpenglang.gitee.io/journal/index.html</loc>
+    
+    <lastmod>2020-10-02</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://pengpenglang.gitee.io/essay/life.html</loc>
     
     <lastmod>2020-10-02</lastmod>
@@ -31,13 +38,6 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/essay/index.html</loc>
-    
-    <lastmod>2020-10-02</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/journal/index.html</loc>
     
     <lastmod>2020-10-02</lastmod>
     
@@ -417,13 +417,6 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/tags/HTML/</loc>
-    <lastmod>2020-10-02</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://pengpenglang.gitee.io/tags/%E6%8B%93%E5%B1%95KMP/</loc>
     <lastmod>2020-10-02</lastmod>
     <changefreq>daily</changefreq>
@@ -439,6 +432,13 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/tags/AC%E8%87%AA%E5%8A%A8%E6%9C%BA/</loc>
+    <lastmod>2020-10-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/tags/HTML/</loc>
     <lastmod>2020-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -713,14 +713,14 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/Web%E5%AD%A6%E4%B9%A0/HTML/</loc>
+    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2020-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</loc>
+    <loc>https://pengpenglang.gitee.io/categories/Web%E5%AD%A6%E4%B9%A0/HTML/</loc>
     <lastmod>2020-10-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
