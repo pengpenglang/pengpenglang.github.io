@@ -1,3 +1,5 @@
+.card-info-avatar:hover{background:url(https://ae01.alicdn.com/kf/H3342af90d24b4d62b9bbfec9688ccc25M.gif);}
+
 /*社区板块svg的CSS样式*/
 #aside_content .icon {
   width: 1em;
@@ -399,8 +401,4 @@ div.timenode:hover .meta:after {
 }
 .github-badge .bg-lightgrey, .github-badge .bg-lightgray {
   background-color:#9f9f9f !important;
-}
-
-.card-info-avator:hover{
-  background: url(https://ae01.alicdn.com/kf/H3342af90d24b4d62b9bbfec9688ccc25M.gif);
 }
