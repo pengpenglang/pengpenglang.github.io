@@ -250,7 +250,7 @@ hr:before,
   --white: #fff;
   --text-highlight-color: #1f2d3d;
   --blockquote-color: #6a737d;
-  --blockquote-bg: rgba(73,177,245,0.1);
+  --blockquote-bg: rgba(207,207,207,0.1);
   --reward-pop: #f5f5f5;
 }
 html {
@@ -4195,7 +4195,7 @@ img {
   overflow-wrap: break-word;
 }
 #article-container a {
-  color: #a9a9a9;
+  color: #49b1f5;
 }
 #article-container a:hover {
   text-decoration: underline;
