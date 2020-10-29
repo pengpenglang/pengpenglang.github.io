@@ -56,6 +56,47 @@
       </tags>
   </entry>
   <entry>
+    <title>2019CCPC网络赛</title>
+    <url>/posts/1999190247/</url>
+    <content><![CDATA[<h1 id="a思维"><a class="markdownIt-Anchor" href="#a思维"></a> A.<a href="https://vjudge.net/problem/HDU-6702">^&amp;^</a>—思维</h1>
+<p><strong>题意</strong>：给出两个正整数 A 和 B，找到一个正整数 C，使得 <code>(A^C)&amp;(B^C)</code> 的结果最小，若是有多个符合的 C 找到最小的那个</p>
+<p><strong>思路</strong>：先读懂题：先满足结果值最小，其次满足 C 最小。关键是按位分析找规律，<code>^</code> 是异或运算，<code>&amp;</code>是位与运算。若是想让结果小，那两个括号里的数的相同的位上的数尽可能不相同（即一个 1 和一个 0，或者一个 0 和一个 1），另一方面还要让 C 尽可能的小，所以只有在万不得已的情况让 C 的上取 1，否则就取 0。下面讨论不同的情况：</p>
+<ul>
+<li>如果 A 和 B 相同位上的数都是 1，那么直接取 <code>&amp;</code> 会导致结果值在该位上的数是 1，我们借助让 C 在该位上的数为 1，这样结果值在该位为 0</li>
+<li>如果 A 和 B 相同位上的数都是 0，那么直接取 <code>&amp;</code> 还是会导致结果值在该位上的数是1，但是可以发现保持 C 在该位上的数为 0就可以保证结果值在该位为 0</li>
+<li>如果 A 和 B 相同位上的数不同，那么直接取 <code>&amp;</code> 就可以让结果值在该位上的数是0，所以保持 C 在该位上的数为 0</li>
+</ul>
+<p>综上：只有第一种情况时将 C 在相同位上的数为1，其他情况都为 0</p>
+<p><strong>还需要注意的一点是 C 为 0 的时候输出 1，所以特判 <code>A&amp;B==0</code> 情况，因为这时候 C 按上述赋值为 0</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll a,b;<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    <span class="keyword">if</span>((a&amp;b)==<span class="number">0</span>)&#123;<span class="comment">//&amp;的优先级好像比==小</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;min(a,b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;(a&amp;b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="fshuffle-card思维栈"><a class="markdownIt-Anchor" href="#fshuffle-card思维栈"></a> F.<a href="https://vjudge.net/problem/HDU-6707">Shuffle Card</a>—思维+栈</h1>
+<p><strong>题意</strong>：有一叠纸牌，每张牌有一个单独的序号。最开始的时候纸牌的序号是 1~n。接下来开始进行 m 次洗牌，每次洗牌将指定的序号的纸牌放在最上方，让你输出最后这叠纸牌的序号</p>
+<p><strong>思维</strong>：无疑要将每次放在牌堆顶的纸牌序号记录下来，先放的卡牌序号会被后放的卡牌序号压住（符合栈先进后出的特点）。我们可以用堆纪录被放到过牌堆顶的牌的序号，输出的时候先输出栈内的序号再输出其他的序号。但是还要考虑的是可能会重复将某个序号的卡牌多次放在牌堆顶，所以在遍历栈的时候重复的序号只用输出靠上的那个，所以另开一个标记数组</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">100005</span>];	</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; sta;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x;<span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x;<span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">            sta.push(x);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!sta.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> x=sta.top();</span><br><span class="line">            sta.pop();</span><br><span class="line">            <span class="keyword">if</span>(vis[x]==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">                vis[x]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">if</span>(vis[i]==<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="gwindows-of-ccpc图形构造"><a class="markdownIt-Anchor" href="#gwindows-of-ccpc图形构造"></a> G.<a href="https://vjudge.net/problem/HDU-6708">Windows Of CCPC</a>—图形构造</h1>
+<p><strong>题意</strong>：最开始第一个图形的 4 个字符左下角的那个和其余的 3 个字符不同。第二个图形由第一个图形转换过来，把第二个图形分为 4 部分，左下角的和第一个图形相反，其余的三个部分和第一个图形相同。依次类推，第三个图形、第四个图形。题目给出 k（1&lt;=k&lt;=10），输出第 k 个图形</p>
+<p><strong>思路</strong>：一个一个推所以就是递推构造，找好规律就可以由第一个图形推出所有的图形。但是多样例重复构造会 TLE ，一看数据 k 那么小直接打表用个二维数组将第 10 个图形存起来，然后要哪个就输出数组内对应位置</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> ans[N][N];<span class="comment">//记录答案</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">paint</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ans[<span class="number">1</span>][<span class="number">1</span>]=ans[<span class="number">1</span>][<span class="number">2</span>]=ans[<span class="number">2</span>][<span class="number">2</span>]=<span class="string">&#x27;C&#x27;</span>;ans[<span class="number">2</span>][<span class="number">1</span>]=<span class="string">&#x27;P&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">10</span>;i++)&#123;<span class="comment">//递推打表</span></span><br><span class="line">		<span class="keyword">int</span> now=<span class="built_in">pow</span>(<span class="number">2</span>,i<span class="number">-1</span>),nex=<span class="built_in">pow</span>(<span class="number">2</span>,i);<span class="comment">//前一个图和后一个图的边长</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=now;j++)<span class="comment">//2和4区域</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=now+<span class="number">1</span>;k&lt;=nex;k++)</span><br><span class="line">				ans[j+now][k]=ans[j][k]=ans[j][k-now];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=now+<span class="number">1</span>;j&lt;=nex;j++)&#123;<span class="comment">//3区域</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=now;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(ans[j-now][k]==<span class="string">&#x27;C&#x27;</span>)ans[j][k]=<span class="string">&#x27;P&#x27;</span>;</span><br><span class="line">                <span class="keyword">else</span> ans[j][k]=<span class="string">&#x27;C&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    paint();</span><br><span class="line">	<span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="keyword">int</span> k;<span class="built_in">cin</span>&gt;&gt;k;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> len=<span class="built_in">pow</span>(<span class="number">2</span>,k);<span class="comment">//now为图形变长的的大小范围 </span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=len;j++)<span class="built_in">cout</span>&lt;&lt;ans[i][j];</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="hfishing-master贪心"><a class="markdownIt-Anchor" href="#hfishing-master贪心"></a> H.<a href="https://vjudge.net/problem/HDU-6709">Fishing Master</a>—贪心</h1>
+<p><strong>题意</strong>：有 N 条鱼，每条鱼都有钓鱼和烤鱼的时间，钓鱼的时间均相同，每条鱼都有自己的烤鱼时间，一次只能烤一条鱼且不能间断。现要求通过某种顺序将所有的鱼钓上来并烤完，求最小的时间是多少</p>
+<p><strong>思维</strong>：首先根据常识可以知道开始的时候肯定是先钓到一条鱼才能开始煮（固定时间），结束的时候肯定是钓完最后一条鱼并等到这条鱼煮完（可以尽可能小）。中间的时候可能会有煮鱼的时间相对太长，导致钓到另一条鱼但是还得等着锅里的鱼煮完，或者可能是钓鱼时间相对太长，导致煮完锅里的鱼但是还得等着你钓完鱼再煮下一条。那么对于上述两种不同的顺序情况，我们可以从全局角度进行考虑选择：钓鱼的次数和煮鱼的时间肯定是固定的，所以我们选择固定在煮鱼的时间内尽可能钓到多的鱼，不过可能会出现上述正在钓鱼但是锅的鱼煮完情况，如果这部分被浪费的时间要尽可能小那么答案就尽可能的小了。根据贪心我们算出每个煮鱼时间内可以钓到几条鱼以及浪费的时间：</p>
+<ul>
+<li>如果煮鱼的时间内就足以钓完所有鱼说明浪费时间也可以钓完</li>
+<li>如果煮鱼的时间内不能钓完所有鱼那么就选择浪费时间少的，这样需要额外等的时间就短了</li>
+</ul>
+<p>具体看代码理解</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line">ll n,k;</span><br><span class="line">ll a[<span class="number">100005</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;ll&gt; wait;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    wait.clear();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>,&amp;n,&amp;k);</span><br><span class="line">    <span class="keyword">int</span> pos,minn=<span class="number">0x3f3f3f3f</span>;<span class="comment">//选出结尾煮鱼时间最短的</span></span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;a[i]);</span><br><span class="line">        <span class="keyword">if</span>(a[i]&lt;minn)pos=i,minn=a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ll sum=k;<span class="comment">//统计时间，初始需要先钓到一条鱼</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)sum+=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==pos)<span class="keyword">continue</span>;<span class="comment">//最后煮鱼的时间不会浪费时间</span></span><br><span class="line">        cnt+=a[i]/k,wait.push_back(k-a[i]%k);<span class="comment">//每个煮鱼时间能钓的鱼和浪费的时间</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(cnt&gt;=n<span class="number">-1</span>)&#123;<span class="comment">//抛去开始钓到的鱼，其他的鱼在煮的时间内都钓完了</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,sum);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sort(wait.begin(),wait.end());<span class="comment">//否则尽可能少浪费时间</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>-cnt;i++)</span><br><span class="line">    sum+=wait[i];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OJ题库</category>
+        <category>Vjudge</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>2020CCPC网络赛</title>
     <url>/posts/3355618782/</url>
     <content><![CDATA[<h1 id="bgraph-theory-classmin25筛"><a class="markdownIt-Anchor" href="#bgraph-theory-classmin25筛"></a> B.<a href="https://vjudge.net/problem/HDU-6889">Graph Theory Class</a>—min25筛</h1>
@@ -87,47 +128,6 @@
 <p><strong>题意</strong>：有一个 nxn 的矩阵 A 和一个 3x3 的矩阵 K，均为非负矩阵，并且 K 是一个和为 1 的分数矩阵。定义一个操作，对于矩阵 A，用矩阵 K 对 A 中的每个元素进行卷积操作——K 的左上角遍历 A 中每个元素，每一次覆盖对 A 中 3x3 范围内（范围不够的在 A 的边缘补上足够多的 0）的矩阵在 K 的作用下作带权求和运算。现在将矩阵 K 固定，拿 C 套娃无限次，求最终得到的矩阵</p>
 <p><strong>思路</strong>：用两个例子做实验，发现当且仅当 K<sub>11</sub>=1 时，无限套娃所得为原矩阵，否则每一次套娃所得矩阵的和越来越小，最终趋于 0（即零矩阵），因为左上角不是 1，那么肯定导致数在不断变小最终整个矩阵变为 0</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">55</span>;</span><br><span class="line"><span class="keyword">int</span> A[maxn][maxn];</span><br><span class="line"><span class="keyword">int</span> K1[<span class="number">4</span>][<span class="number">4</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span> <span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> T;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;T);</span><br><span class="line">    <span class="keyword">while</span> (T--)&#123;</span><br><span class="line">        <span class="keyword">int</span> n;<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">        <span class="comment">//input matrix A and K&#x27;</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;A[i][j]);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">3</span>; ++j)</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;K1[i][j]);</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//solve</span></span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">3</span>; ++i)</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= <span class="number">3</span>; ++j)</span><br><span class="line">                sum += K1[i][j];</span><br><span class="line">        <span class="keyword">bool</span> full_zero = <span class="literal">true</span>;<span class="comment">//判断是否会最终矩阵趋于0</span></span><br><span class="line">        <span class="keyword">if</span> (K1[<span class="number">1</span>][<span class="number">1</span>] == sum) <span class="comment">//K[1][1] == 1</span></span><br><span class="line">            full_zero = <span class="literal">false</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//output</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)&#123;</span><br><span class="line">            <span class="keyword">bool</span> first = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!first)</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line">                first = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">if</span> (full_zero)</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;0&quot;</span>);</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, A[i][j]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>OJ题库</category>
-        <category>Vjudge</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法与数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2019CCPC网络赛</title>
-    <url>/posts/1999190247/</url>
-    <content><![CDATA[<h1 id="a思维"><a class="markdownIt-Anchor" href="#a思维"></a> A.<a href="https://vjudge.net/problem/HDU-6702">^&amp;^</a>—思维</h1>
-<p><strong>题意</strong>：给出两个正整数 A 和 B，找到一个正整数 C，使得 <code>(A^C)&amp;(B^C)</code> 的结果最小，若是有多个符合的 C 找到最小的那个</p>
-<p><strong>思路</strong>：先读懂题：先满足结果值最小，其次满足 C 最小。关键是按位分析找规律，<code>^</code> 是异或运算，<code>&amp;</code>是位与运算。若是想让结果小，那两个括号里的数的相同的位上的数尽可能不相同（即一个 1 和一个 0，或者一个 0 和一个 1），另一方面还要让 C 尽可能的小，所以只有在万不得已的情况让 C 的上取 1，否则就取 0。下面讨论不同的情况：</p>
-<ul>
-<li>如果 A 和 B 相同位上的数都是 1，那么直接取 <code>&amp;</code> 会导致结果值在该位上的数是 1，我们借助让 C 在该位上的数为 1，这样结果值在该位为 0</li>
-<li>如果 A 和 B 相同位上的数都是 0，那么直接取 <code>&amp;</code> 还是会导致结果值在该位上的数是1，但是可以发现保持 C 在该位上的数为 0就可以保证结果值在该位为 0</li>
-<li>如果 A 和 B 相同位上的数不同，那么直接取 <code>&amp;</code> 就可以让结果值在该位上的数是0，所以保持 C 在该位上的数为 0</li>
-</ul>
-<p>综上：只有第一种情况时将 C 在相同位上的数为1，其他情况都为 0</p>
-<p><strong>还需要注意的一点是 C 为 0 的时候输出 1，所以特判 <code>A&amp;B==0</code> 情况，因为这时候 C 按上述赋值为 0</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll a,b;<span class="built_in">cin</span>&gt;&gt;a&gt;&gt;b;</span><br><span class="line">    <span class="keyword">if</span>((a&amp;b)==<span class="number">0</span>)&#123;<span class="comment">//&amp;的优先级好像比==小</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;min(a,b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;(a&amp;b)&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="fshuffle-card思维栈"><a class="markdownIt-Anchor" href="#fshuffle-card思维栈"></a> F.<a href="https://vjudge.net/problem/HDU-6707">Shuffle Card</a>—思维+栈</h1>
-<p><strong>题意</strong>：有一叠纸牌，每张牌有一个单独的序号。最开始的时候纸牌的序号是 1~n。接下来开始进行 m 次洗牌，每次洗牌将指定的序号的纸牌放在最上方，让你输出最后这叠纸牌的序号</p>
-<p><strong>思维</strong>：无疑要将每次放在牌堆顶的纸牌序号记录下来，先放的卡牌序号会被后放的卡牌序号压住（符合栈先进后出的特点）。我们可以用堆纪录被放到过牌堆顶的牌的序号，输出的时候先输出栈内的序号再输出其他的序号。但是还要考虑的是可能会重复将某个序号的卡牌多次放在牌堆顶，所以在遍历栈的时候重复的序号只用输出靠上的那个，所以另开一个标记数组</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">100005</span>];	</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; sta;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x;<span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x;<span class="built_in">cin</span>&gt;&gt;x;</span><br><span class="line">            sta.push(x);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!sta.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> x=sta.top();</span><br><span class="line">            sta.pop();</span><br><span class="line">            <span class="keyword">if</span>(vis[x]==<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="built_in">cout</span>&lt;&lt;x&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">                vis[x]=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">if</span>(vis[i]==<span class="number">0</span>)<span class="built_in">cout</span>&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="gwindows-of-ccpc图形构造"><a class="markdownIt-Anchor" href="#gwindows-of-ccpc图形构造"></a> G.<a href="https://vjudge.net/problem/HDU-6708">Windows Of CCPC</a>—图形构造</h1>
-<p><strong>题意</strong>：最开始第一个图形的 4 个字符左下角的那个和其余的 3 个字符不同。第二个图形由第一个图形转换过来，把第二个图形分为 4 部分，左下角的和第一个图形相反，其余的三个部分和第一个图形相同。依次类推，第三个图形、第四个图形。题目给出 k（1&lt;=k&lt;=10），输出第 k 个图形</p>
-<p><strong>思路</strong>：一个一个推所以就是递推构造，找好规律就可以由第一个图形推出所有的图形。但是多样例重复构造会 TLE ，一看数据 k 那么小直接打表用个二维数组将第 10 个图形存起来，然后要哪个就输出数组内对应位置</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">2000</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> ans[N][N];<span class="comment">//记录答案</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">paint</span><span class="params">()</span></span>&#123;</span><br><span class="line">	ans[<span class="number">1</span>][<span class="number">1</span>]=ans[<span class="number">1</span>][<span class="number">2</span>]=ans[<span class="number">2</span>][<span class="number">2</span>]=<span class="string">&#x27;C&#x27;</span>;ans[<span class="number">2</span>][<span class="number">1</span>]=<span class="string">&#x27;P&#x27;</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">10</span>;i++)&#123;<span class="comment">//递推打表</span></span><br><span class="line">		<span class="keyword">int</span> now=<span class="built_in">pow</span>(<span class="number">2</span>,i<span class="number">-1</span>),nex=<span class="built_in">pow</span>(<span class="number">2</span>,i);<span class="comment">//前一个图和后一个图的边长</span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=now;j++)<span class="comment">//2和4区域</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=now+<span class="number">1</span>;k&lt;=nex;k++)</span><br><span class="line">				ans[j+now][k]=ans[j][k]=ans[j][k-now];</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=now+<span class="number">1</span>;j&lt;=nex;j++)&#123;<span class="comment">//3区域</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">1</span>;k&lt;=now;k++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(ans[j-now][k]==<span class="string">&#x27;C&#x27;</span>)ans[j][k]=<span class="string">&#x27;P&#x27;</span>;</span><br><span class="line">                <span class="keyword">else</span> ans[j][k]=<span class="string">&#x27;C&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    paint();</span><br><span class="line">	<span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="keyword">int</span> k;<span class="built_in">cin</span>&gt;&gt;k;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">int</span> len=<span class="built_in">pow</span>(<span class="number">2</span>,k);<span class="comment">//now为图形变长的的大小范围 </span></span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=len;j++)<span class="built_in">cout</span>&lt;&lt;ans[i][j];</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="hfishing-master贪心"><a class="markdownIt-Anchor" href="#hfishing-master贪心"></a> H.<a href="https://vjudge.net/problem/HDU-6709">Fishing Master</a>—贪心</h1>
-<p><strong>题意</strong>：有 N 条鱼，每条鱼都有钓鱼和烤鱼的时间，钓鱼的时间均相同，每条鱼都有自己的烤鱼时间，一次只能烤一条鱼且不能间断。现要求通过某种顺序将所有的鱼钓上来并烤完，求最小的时间是多少</p>
-<p><strong>思维</strong>：首先根据常识可以知道开始的时候肯定是先钓到一条鱼才能开始煮（固定时间），结束的时候肯定是钓完最后一条鱼并等到这条鱼煮完（可以尽可能小）。中间的时候可能会有煮鱼的时间相对太长，导致钓到另一条鱼但是还得等着锅里的鱼煮完，或者可能是钓鱼时间相对太长，导致煮完锅里的鱼但是还得等着你钓完鱼再煮下一条。那么对于上述两种不同的顺序情况，我们可以从全局角度进行考虑选择：钓鱼的次数和煮鱼的时间肯定是固定的，所以我们选择固定在煮鱼的时间内尽可能钓到多的鱼，不过可能会出现上述正在钓鱼但是锅的鱼煮完情况，如果这部分被浪费的时间要尽可能小那么答案就尽可能的小了。根据贪心我们算出每个煮鱼时间内可以钓到几条鱼以及浪费的时间：</p>
-<ul>
-<li>如果煮鱼的时间内就足以钓完所有鱼说明浪费时间也可以钓完</li>
-<li>如果煮鱼的时间内不能钓完所有鱼那么就选择浪费时间少的，这样需要额外等的时间就短了</li>
-</ul>
-<p>具体看代码理解</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line">ll n,k;</span><br><span class="line">ll a[<span class="number">100005</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;ll&gt; wait;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    wait.clear();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%lld%lld&quot;</span>,&amp;n,&amp;k);</span><br><span class="line">    <span class="keyword">int</span> pos,minn=<span class="number">0x3f3f3f3f</span>;<span class="comment">//选出结尾煮鱼时间最短的</span></span><br><span class="line">    <span class="keyword">for</span>(ll i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%lld&quot;</span>,&amp;a[i]);</span><br><span class="line">        <span class="keyword">if</span>(a[i]&lt;minn)pos=i,minn=a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ll sum=k;<span class="comment">//统计时间，初始需要先钓到一条鱼</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)sum+=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==pos)<span class="keyword">continue</span>;<span class="comment">//最后煮鱼的时间不会浪费时间</span></span><br><span class="line">        cnt+=a[i]/k,wait.push_back(k-a[i]%k);<span class="comment">//每个煮鱼时间能钓的鱼和浪费的时间</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(cnt&gt;=n<span class="number">-1</span>)&#123;<span class="comment">//抛去开始钓到的鱼，其他的鱼在煮的时间内都钓完了</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,sum);</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sort(wait.begin(),wait.end());<span class="comment">//否则尽可能少浪费时间</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>-cnt;i++)</span><br><span class="line">    sum+=wait[i];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>,sum);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>OJ题库</category>
@@ -171,20 +171,6 @@
       <tags>
         <tag>C++</tag>
         <tag>算法与数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++程序设计——继承与多态</title>
-    <url>/posts/2127665391/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>大学计算机学习</category>
-        <category>程序设计课知识总结</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>程序设计</tag>
-        <tag>继承与多态</tag>
       </tags>
   </entry>
   <entry>
@@ -1722,6 +1708,515 @@
       <categories>
         <category>画册</category>
       </categories>
+  </entry>
+  <entry>
+    <title>C++程序设计——继承与多态</title>
+    <url>/posts/2127665391/</url>
+    <content><![CDATA[<h1 id="继承概览"><a class="markdownIt-Anchor" href="#继承概览"></a> 继承概览</h1>
+<h2 id="面向对象的继承与派生"><a class="markdownIt-Anchor" href="#面向对象的继承与派生"></a> 面向对象的继承与派生</h2>
+<ul>
+<li>
+<p>继承和派生：一个新类从现有的类<strong>继承</strong>特征（属性和方法），从现有的类产生新类的过程称为<strong>派生</strong></p>
+</li>
+<li>
+<p>现有的用来派生新类的类成为<strong>基类或父类</strong>，派生出来的类成为<strong>派生类或子类</strong></p>
+</li>
+<li>
+<p>派生类可以作为基类继续派生新的类，从而形成复杂的类的层次结构</p>
+</li>
+<li>
+<p>类继承的层次结构：下层具有上层的特征同时还加入独属于自己特生，即<strong>逐层细化具体</strong>，如此更符合人类认识世界的规律</p>
+</li>
+</ul>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-1.png" style="zoom: 33%;">
+<h2 id="派生类的定义"><a class="markdownIt-Anchor" href="#派生类的定义"></a> 派生类的定义</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 派生类名:</span> 继承方式 基类名&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>继承方式分为三种：公有继承、私有继承和保护继承</p>
+</li>
+<li>
+<p>通常在派生类类体中列出新增的数据成员和成员函数，基类一切 成员都会自动的成为派生类的成员（共性）</p>
+</li>
+</ul>
+<h2 id="派生类的示例"><a class="markdownIt-Anchor" href="#派生类的示例"></a> 派生类的示例</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> //基类</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">		<span class="keyword">double</span> x,y;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Point()&#123; x=<span class="number">0</span>; y=<span class="number">0</span>; &#125;</span><br><span class="line">        Point( <span class="keyword">double</span> a, <span class="keyword">double</span> b) &#123; x=a; y=b; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">setXY</span><span class="params">( <span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123; x=a; y=b; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">double</span> <span class="title">getX</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">double</span> <span class="title">getY</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> y; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">public</span> Point <span class="comment">//派生类</span></span><br><span class="line">&#123;</span><br><span class="line">		<span class="keyword">double</span> radius;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        Circle() &#123; radius=<span class="number">0</span>; &#125;</span><br><span class="line">    <span class="comment">//先利用初始化列表调用基类构造函数初始化基类继承的数据成员，然后再给数据派生类自己的成员赋值</span></span><br><span class="line">        Circle( <span class="keyword">double</span> a, <span class="keyword">double</span> b,<span class="keyword">double</span> r):Point(a,b)&#123;</span><br><span class="line">            radius=r; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">setR</span><span class="params">(<span class="keyword">double</span> r)</span> </span>&#123; radius=r; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">double</span> <span class="title">getR</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> radius; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> <span class="comment">//主函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span></span>;</span><br><span class="line">    <span class="comment">//既可以调用从基类继承的成员函数</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;c.getX()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;c.getY()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//也可以调用属于派生类自己的成员函数</span></span><br><span class="line">	<span class="built_in">cout</span>&lt;&lt;c.getR()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>公有派生类对象可以访问基类的公有成员就像访问自己的公有成员函数一样</p>
+</blockquote>
+<div class="note icon font5 far fa-lightbulb" style="background: #fdf8ea;border-left-color: #f0ad4e;">
+  <p>派生类构造函数必须提供初始化从基类继承来的数据成员机制（初始化列表），否则将直接调用基类的无参构造函数来对初始化从基类继承的数据成员</p>
+</div>
+* 派生类对象的内存结构
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-2.png" style="zoom:50%;">
+<h2 id="派生类对基类的扩充"><a class="markdownIt-Anchor" href="#派生类对基类的扩充"></a> 派生类对基类的扩充</h2>
+<ul>
+<li>派生类继承了基类除构造函数、析构函数以外所有的数据成员和成员函数，实现了<strong>代码重构</strong></li>
+<li>派生类必然具有某些和基类不同的属性和行为，需要对基类进行部扩充和改
+<ul>
+<li>扩充：在派生类中增加新的成员函数和数据成员</li>
+<li>改造：当继承而来的成员函数不能满足需求时可以进行覆盖操作。覆盖就是在派生类中定义与基类同名的函数从而实现对成员函数的改造。<strong>覆盖同理也可以针对数据成员进行改造，但是要慎用！</strong></li>
+<li>重载是同一个类中定义同名但是参数不同的函数，覆盖是不同类中同名的函数</li>
+</ul>
+</li>
+</ul>
+<h1 id="继承方式"><a class="markdownIt-Anchor" href="#继承方式"></a> 继承方式</h1>
+<ul>
+<li>
+<p>继承方式决定了基类成员在派生类中定义时的访问属性（分为类内部直接访问和类外部类名访问）</p>
+</li>
+<li>
+<p>三种访问方式：公有继承、保护继承和私有继承</p>
+</li>
+</ul>
+<h2 id="公有继承"><a class="markdownIt-Anchor" href="#公有继承"></a> 公有继承</h2>
+<ul>
+<li>基类的公有成员在派生类中仍然是公有成员</li>
+<li>基类的保护成员在派生类中仍然是保护成员</li>
+<li>基类的私有成员在派生类中不可访问</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>继承的基类成员</th>
+<th>派生类内部直接访问</th>
+<th>派生类外部类名访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公有成员</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>保护成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>私有成员</td>
+<td>✖</td>
+<td>✖</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>自身添加的成员</th>
+<th>派生类内部直接访问</th>
+<th>派生类外部类名访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公有成员</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>保护成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>私有成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+</tbody>
+</table>
+<div class="gallery ">
+    <p>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-3.png" alt>
+        <span class="image-caption">基类A访问权限</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-4.png" alt>
+        <span class="image-caption">派生类B访问权限</span>
+    </div>
+    </p>
+</div>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x; <span class="comment">//私有成员</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">double</span> y; <span class="comment">//保护成员</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Point(<span class="keyword">double</span> a, <span class="keyword">double</span> b)&#123;</span><br><span class="line">        x = a;</span><br><span class="line">        y = b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">double</span> a)</span> </span>&#123; x = a; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getX</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">public</span> Point</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">double</span> radius;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Circle(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r) : Point(a, b), radius(r)&#123;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setXYR</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        x = a; <span class="comment">//错的，派生类内部也不能直接访问基类的私有成员</span></span><br><span class="line">        setX(a); <span class="comment">//解决办法：通过基类提供的共有成员函数间接访问</span></span><br><span class="line">        y = b;</span><br><span class="line">        radius = r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="保护继承"><a class="markdownIt-Anchor" href="#保护继承"></a> 保护继承</h2>
+<ul>
+<li>基类的公有成员和保护成员都变为派生类的保护成员</li>
+<li>基类的私有成员在派生类中不可访问</li>
+<li><strong>一个其他继承方式没有的特点：多次保护继承派生出的类可以直接访问之前所有的父类成员</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>继承的基类成员</th>
+<th>派生类内部直接访问</th>
+<th>派生类外部类名访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公有成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>保护成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>私有成员</td>
+<td>✖</td>
+<td>✖</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>自身添加的成员</th>
+<th>派生类内部直接访问</th>
+<th>派生类外部类名访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公有成员</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>保护成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>私有成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>相当于在公有继承方式上又禁止了派生类外部通过类名访问原基类的公有成员</p>
+</blockquote>
+<div class="gallery ">
+    <p>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-3.png" alt>
+        <span class="image-caption">基类A访问权限</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-5.png" alt>
+        <span class="image-caption">派生类B访问权限</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-6.png" alt>
+        <span class="image-caption">派生类C访问权限</span>
+    </div>
+    </p>
+</div>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">double</span> x; <span class="comment">//私有成员</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="keyword">double</span> y; <span class="comment">//保护成员</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Point(<span class="keyword">double</span> a, <span class="keyword">double</span> b)&#123;</span><br><span class="line">        x = a;</span><br><span class="line">        y = b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setX</span><span class="params">(<span class="keyword">double</span> a)</span> </span>&#123; x = a; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getX</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">protected</span> Point</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">double</span> radius;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Circle(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r) : Point(a, b)&#123;</span><br><span class="line">        radius = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setXYR</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r)</span></span>&#123;</span><br><span class="line">        <span class="comment">//不可以访问基类的私有成员但是能访问基类的保护成员</span></span><br><span class="line">        x = a; <span class="comment">//错的</span></span><br><span class="line">        setX(a); <span class="comment">//解决办法：通过基类的公有成员函数间接访问</span></span><br><span class="line">        y = b; <span class="comment">//对的</span></span><br><span class="line">        radius = r;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setRadius</span><span class="params">(<span class="keyword">double</span> r)</span></span>&#123;</span><br><span class="line">        radius = r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> :</span> <span class="keyword">protected</span> Circle</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> color;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Test(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r, <span class="keyword">int</span> c) : Circle(a, b, r)&#123;</span><br><span class="line">		color = c;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setXYRC</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r, <span class="keyword">int</span> c)</span></span>&#123;</span><br><span class="line">		setX(a);</span><br><span class="line">		y = b; <span class="comment">//对的，多次保护继承其保护属性不变，继续允许基类子类的直接访问</span></span><br><span class="line">		setRadius(r);</span><br><span class="line">		color = c;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="私有继承"><a class="markdownIt-Anchor" href="#私有继承"></a> 私有继承</h2>
+<ul>
+<li>基类的公有成员和保护成员都成为派生类成员的私有成员</li>
+<li>基类的私有成员在派生类中不可访问</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>继承的基类成员</th>
+<th>派生类内部直接访问</th>
+<th>派生类外部类名访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公有成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>保护成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>私有成员</td>
+<td>✖</td>
+<td>✖</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>自身添加的成员</th>
+<th>派生类内部直接访问</th>
+<th>派生类外部类名访问</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公有成员</td>
+<td>✔</td>
+<td>✔</td>
+</tr>
+<tr>
+<td>保护成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+<tr>
+<td>私有成员</td>
+<td>✔</td>
+<td>✖</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>虽然列表和保护成员的列表相同，但是继承得来的公有成员和保护成员变为了派生类的私有成员（权限更加小了），所以后面派生类再从当前派生类保护继承也不能访问当前派生类继承得来的公有成员和保护成员了</p>
+</blockquote>
+<div class="note warning icon">
+            <p>注意区分保护继承和私有继承：他们限制是后代派生类访问当前派生类继承得来的公有成员和保护成员的权限</p>
+          </div>
+<div class="gallery ">
+    <p>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-3.png" alt>
+        <span class="image-caption">基类A访问权限</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-7.png" alt>
+        <span class="image-caption">派生类B和C访问权限</span>
+    </div>
+    </p>
+</div>
+## 基类成员在派生类中权限对比
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-9.png" style="zoom: 50%;">
+<h2 id="禁止继承"><a class="markdownIt-Anchor" href="#禁止继承"></a> 禁止继承</h2>
+<p>某些情况下如果不想让后序代码继承当前的类，可以借助 C++ 11 的 <code>final</code> 关键词修饰类，后序如果调用编译器报错</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> <span class="title">final</span>&#123;</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sub</span>:</span> <span class="keyword">public</span> Test&#123; <span class="comment">//编译器报错</span></span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="构造与析构"><a class="markdownIt-Anchor" href="#构造与析构"></a> 构造与析构</h1>
+<h2 id="构造基类成员和自身成员"><a class="markdownIt-Anchor" href="#构造基类成员和自身成员"></a> 构造基类成员和自身成员</h2>
+<ul>
+<li>由于派生类继承了基类的所有成员，派生类的每一个对象都包含基类数据成员的值，<strong>在派生类构造函数中应该提供初始化列来初始化基类数据成员的机制（一般使用初始化列表）</strong></li>
+</ul>
+<blockquote>
+<p>非要在花括号内赋值？当然可以但是效率太低，不是真正意义上的初始化而是定义，初始化列表是真正的初始化，在创建之时进行</p>
+</blockquote>
+<ul>
+<li>与容器类初始化对象成员类似，<strong>派生类也必须通过初始化列表初始化基类数据成员</strong>。对本类的数据成员，可以用初始化列表，也可以放在构造函数体内赋值</li>
+</ul>
+<h2 id="构造函数的调用顺序"><a class="markdownIt-Anchor" href="#构造函数的调用顺序"></a> 构造函数的调用顺序</h2>
+<ul>
+<li>
+<p>创建派生类对象时（A 派生 B）</p>
+<ul>
+<li>调用 A 中对象成员（如果有的话）对应的构造函数</li>
+<li>调用基类 A 的构造函数</li>
+<li>调用 B 中对象成员（如果有的话）对应的构造函数</li>
+<li>调用派生类 B 的构造函数</li>
+</ul>
+</li>
+<li>
+<p>A -&gt; B -&gt; C（A 派生 B，B 再派生 C）</p>
+<ul>
+<li>调用基类 A 的构造函数</li>
+<li>调用直接派生类 B 的构造函数</li>
+<li>调用间接派生类 C 的构造函数</li>
+</ul>
+</li>
+<li>
+<p>总而言之：</p>
+<ul>
+<li>原则一：父子类之间先基类（父类）构造再派生类（子类）构造</li>
+<li>原则二：同一个类中先对象成员，再本类构造函数体</li>
+</ul>
+</li>
+</ul>
+<h2 id="析构函数的调用顺序"><a class="markdownIt-Anchor" href="#析构函数的调用顺序"></a> 析构函数的调用顺序</h2>
+<blockquote>
+<p>类似栈的操作顺序，析构函数调用顺序恰好和构造函数的调用顺序相反</p>
+</blockquote>
+<ul>
+<li>创建派生类对象时（A 派生 B）
+<ul>
+<li>调动派生类 B 的析构函数</li>
+<li>调用 B 中对象成员（如果有的话）对应的析构函数</li>
+<li>调用基类 A 析构函数</li>
+<li>调用 A 中对象成员（如果有的话）对应的析构函数</li>
+</ul>
+</li>
+<li>A -&gt; B -&gt; C（A 派生 B，B 再派生 C）
+<ul>
+<li>调用间接派生类 C 的析构函数</li>
+<li>调用直接派生类 B 的析构函数</li>
+<li>调用基类 A 的析构函数</li>
+</ul>
+</li>
+</ul>
+<h2 id="具体示例"><a class="markdownIt-Anchor" href="#具体示例"></a> 具体示例</h2>
+<ul>
+<li>在继承过程中，<strong>构造函数和析构函数不能被继承</strong>，在创建派生类对象时按照顺序由<strong>系统自动调用</strong>基类和派生类的构造函数，而<strong>不能在派生类中显示调用基类构造函数</strong></li>
+<li>也不能在派生类中显示调用基类的析构函数</li>
+</ul>
+<p>基类和派生类的定义</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x,y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Point()&#123; x=<span class="number">0</span>; y=<span class="number">0</span>; &#125;</span><br><span class="line">	Point(<span class="keyword">double</span> a,<span class="keyword">double</span> b) &#123; x=a; y=b; &#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>派生类构造函数定义</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">Circle::Circle(<span class="keyword">double</span> a,<span class="keyword">double</span> b,<span class="keyword">double</span> aa,<span class="keyword">double</span> bb,<span class="keyword">double</span> r):Point(a,b),p(aa,bb)&#123;</span><br><span class="line">	radius=r;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>)</span></span>; </span><br><span class="line"><span class="comment">//(3,4)对应Point(a,b),(5,6)对应p(aa,bb),8对应r</span></span><br></pre></td></tr></table></figure>
+<h1 id="多重继承"><a class="markdownIt-Anchor" href="#多重继承"></a> 多重继承</h1>
+<h2 id="多继承概念"><a class="markdownIt-Anchor" href="#多继承概念"></a> 多继承概念</h2>
+<p>C++ 允许使用多个基类进行继承成为多继承。派生类继承所有基类的成员，定义多继承派生类语法与单继承语法类似，但是要指定所有要继承的基类以及每个基类的继承方式</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 派生类名:</span> 继承方式<span class="number">1</span> 基类名<span class="number">1</span>, 继承方式<span class="number">2</span> 基类名<span class="number">2</span>, ...&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在多继承派生类的构造函数中，要通过初始化列表的形式调用直接基类的构造函数</li>
+<li>构造函数的执行顺序：先执行基类构造函数，再执行派生类构造函数；多个基类构造函数按照定义派生类时的顺序进行与初始化列表中顺序无关</li>
+<li>使用多继承容易造成混乱尽量避免使用，只用了解</li>
+</ul>
+<h2 id="多继承的二义性"><a class="markdownIt-Anchor" href="#多继承的二义性"></a> 多继承的二义性</h2>
+<h3 id="问题示例"><a class="markdownIt-Anchor" href="#问题示例"></a> 问题示例</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base1</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;...&#125; <span class="comment">//第一个基类函数存在draw()</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Base2</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;...&#125; <span class="comment">//第二个基类函数也存在draw()</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base1, <span class="keyword">public</span> Base2&#123;	</span><br><span class="line">    ... <span class="comment">//继承时出现二义性</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	d.draw(); <span class="comment">//调用更是二义性</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决办法"><a class="markdownIt-Anchor" href="#解决办法"></a> 解决办法</h3>
+<ul>
+<li>限定函数前缀</li>
+</ul>
+<blockquote>
+<p>问题可以解决但是不好，因为对于使用的客户不友好，他需要考虑函数所在的类并确定调用前缀</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base1, <span class="keyword">public</span> Base2&#123;	</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	d.Base1::draw();</span><br><span class="line">	d.Base2::draw();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>覆盖技术</li>
+</ul>
+<blockquote>
+<p>派生类中提供接口，内部解决二义性方便客户使用</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Derived</span>:</span> <span class="keyword">public</span> Base1, <span class="keyword">public</span> Base2&#123;	</span><br><span class="line"><span class="keyword">public</span>：</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>&#123; 	</span><br><span class="line">        <span class="keyword">if</span>(...) Base1::draw();</span><br><span class="line">		<span class="keyword">else</span> Base2::draw();       </span><br><span class="line">	&#125;</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Derived d;</span><br><span class="line">	d. draw();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="另一种多继承二义性"><a class="markdownIt-Anchor" href="#另一种多继承二义性"></a> 另一种多继承二义性</h2>
+<p>当一个派生类从多个基类继承但是这几个基类又同是另一个基类的直接派生类，这样继承而来的派生类同样会出现二义性问题</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-8.png" alt></p>
+<h3 id="问题示例-2"><a class="markdownIt-Anchor" href="#问题示例-2"></a> 问题示例</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span> <span class="comment">//基类</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">double</span> a;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">public</span> A&#123; <span class="comment">//从A派生的类1</span></span><br><span class="line">	... <span class="comment">//初始化一个值</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">public</span> A&#123; <span class="comment">//从A派生的类2</span></span><br><span class="line">	... <span class="comment">//又初始化一个值</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span> :</span> <span class="keyword">public</span> B, <span class="keyword">public</span> C&#123; <span class="comment">//从A派生出的两个派生类继续派生</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getValue</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		<span class="keyword">return</span> a; <span class="comment">//返还谁的a呢？</span></span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	D d;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; d.getValue(); <span class="comment">//二义性</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="解决办法-2"><a class="markdownIt-Anchor" href="#解决办法-2"></a> 解决办法</h3>
+<ul>
+<li>限定对象前缀</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span> :</span> <span class="keyword">public</span> B, <span class="keyword">public</span> C</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getValue</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> A::a; <span class="comment">//指明返还根基类A的a?错，隔代不能直接访问</span></span><br><span class="line">        <span class="keyword">return</span> B::a; <span class="comment">//允许，成功查看到a成员，但是还是容易出错</span></span><br><span class="line">	&#125;</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这种办法看似能解决燃眉之急，但是本质上还是从不同的类继承了多个相同的成员，在实际中还是容易造成混乱。例如将上述改为下列修改操作</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">D::setValue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      B::a=<span class="number">5</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;	</span><br><span class="line">    D d; </span><br><span class="line">	d.setValue();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-10.png" style="zoom: 67%;">
+<p>这次修改从类 B 继承的 a ，下次修改从 A 继承的 a ？下下次呢？借助不同前缀修改成员最后查询的时候不是你想要的最终的 a。你能保证每次都用一个前缀？那么复杂的工程类代码不把眼看花？</p>
+</blockquote>
+<ul>
+<li>真正解决的办法——虚基类</li>
+</ul>
+<p>上述二义性问题在于如果一个派生类有多个直接基类，而这些直接基类又有一个共同的基类，则在最终的派生类中会保留该间接共同基类数据成员的多份同名成员</p>
+<h2 id="二义性解决虚基类"><a class="markdownIt-Anchor" href="#二义性解决虚基类"></a> 二义性解决：虚基类</h2>
+<p>将总的基类定义为成虚基类，可以确保该基类通过多条路径继承时派生类仅仅继承该基类一次，避免上述由于多路径继承造成的二义性</p>
+<p>做法：借助虚函数将基类定义为虚基类</p>
+<blockquote>
+<p>具体虚函数使用方法下文有详细讲解</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>&#123;</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">		<span class="keyword">double</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//A是B和C的虚基类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> A &#123;...&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span> :</span> <span class="keyword">virtual</span> <span class="keyword">public</span> A &#123;...&#125;;</span><br><span class="line"><span class="comment">//虚基类确保A的成员只有一份</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span> :</span> <span class="keyword">public</span> B, <span class="keyword">public</span> C &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">()</span> </span>&#123; </span><br><span class="line">		a=<span class="number">5</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//完全等效，本质上都是操作一个对象</span></span><br><span class="line">	<span class="comment">//B::a = 5;</span></span><br><span class="line">	<span class="comment">//A::a = 5;</span></span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;	</span><br><span class="line">	D d;　　 </span><br><span class="line">	d.setValue();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>C++ 规定，由虚基类沿不同路经进行继承时，要求最终的派生类载构造函数中通过初试化参数列表对虚基类成员直接进行初始化，而中间层次的类对虚基类成员的初始化被忽略，尽管他们提供了初始化列表，如此确保了虚基类构造函数只被调用一次</li>
+<li>进行多继承时，同时有虚基类和非虚基类是虚基类构造函数优先执行</li>
+</ul>
+<h1 id="多态概览"><a class="markdownIt-Anchor" href="#多态概览"></a> 多态概览</h1>
+<ul>
+<li>多态指不同的对象接受到相同的消息时产生不同的行为（调用不同的方法）</li>
+</ul>
+<blockquote>
+<p>相当于使用同一个函数名调用不同内容的函数，实现了“一个借口，多种方法”</p>
+</blockquote>
+<ul>
+<li>在C++中通过覆盖、成员函数重载、运算符重载、模版、虚函数等技术**，**使得基类和派生类中可以出现同名的成员函数。不同的成员函数被调用时表现出不同的行为，表现出很强的灵活性
+<ul>
+<li>成员函数覆盖</li>
+<li>成员函数重载</li>
+<li>运算符重载</li>
+<li>虚函数</li>
+<li>模板（后续讲解）</li>
+</ul>
+</li>
+</ul>
+<h2 id="静多态性和动态多态性"><a class="markdownIt-Anchor" href="#静多态性和动态多态性"></a> 静多态性和动态多态性</h2>
+<ul>
+<li>
+<p>静态多态性：编译时的多态性**，<strong>成员函数重载、成员函数覆盖</strong>、**运算符重载都属于静态多态性。编译器根据实参数据类型或对象的数据类型，在编译时就确定调用哪个函数</p>
+</li>
+<li>
+<p>动态多态性：运行时多态性，通过虚函数来实现。通过虚函数实现的动态多态性在代码执行的过程中决定调用哪个函数</p>
+</li>
+</ul>
+<h2 id="成员函数的重载和覆盖"><a class="markdownIt-Anchor" href="#成员函数的重载和覆盖"></a> 成员函数的重载和覆盖</h2>
+<ul>
+<li>
+<p>重载：同一个类中，存在名称相同但“签名不同”的成员函数(函数参数类型或个数不同)，编译时根据实参类型确定调用的是哪个版本的函数</p>
+</li>
+<li>
+<p>覆盖：派生类和基类存在名称相同的成员函数，实现派生类方法覆盖(改造)基类方法的功能。<strong>如果要访问基类被覆盖方法，需要使用类名前缀</strong>。根据是否使用虚函数，实现隐藏或改写的效果</p>
+</li>
+</ul>
+<h2 id="赋值兼容性"><a class="markdownIt-Anchor" href="#赋值兼容性"></a> 赋值兼容性</h2>
+<p>每一个派生类的对象都是基类的一个对象。赋值兼容规则是指在公有派生情况下，一个公有派生类的对象可以当作基类的对象使用，<strong>反之则禁止</strong></p>
+<ul>
+<li>派生类的对象可以赋值给基类对象</li>
+<li>派生类的对象可以初始化基类的引用</li>
+<li>指向基类的指针也可以指向派生类</li>
+<li>通过基类对象名、指针只能使用基类继承的成员</li>
+</ul>
+<div class="note primary icon">
+            <p>没必要去死记硬背，根据理解就是允许派生类指向基类的操作（因为基类能做的派生类不能做），但是基类指向派生类的操作部分可以（如果派生类需要的但是基类给不了那就不行）</p>
+          </div>
+<h3 id="示例一"><a class="markdownIt-Anchor" href="#示例一"></a> 示例一</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line">Point p；</span><br><span class="line">p = c;</span><br></pre></td></tr></table></figure>
+<p>编译器允许用派生类赋值基类，因为基类有的成员派生类肯定有</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-11.png" style="zoom:67%;">
+<h3 id="示例二"><a class="markdownIt-Anchor" href="#示例二"></a> 示例二</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Point <span class="title">p</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;  </span><br><span class="line">Circle c; </span><br><span class="line">c = p;</span><br></pre></td></tr></table></figure>
+<p>编译器报错，派生类 c 并不能根据基类  p 确定所以的成员值</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-12.png" style="zoom:67%;">
+<h3 id="示例三"><a class="markdownIt-Anchor" href="#示例三"></a> 示例三</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Circlr <span class="title">c</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;  </span><br><span class="line">Point &amp;rp = c; </span><br></pre></td></tr></table></figure>
+<p>编译器允许基类引用派生类，但是只能访问基类成员（部分数据和函数），因为其他的成员引用类型限制了它访问</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-13.png" style="zoom: 80%;">
+<h3 id="示例四"><a class="markdownIt-Anchor" href="#示例四"></a> 示例四</h3>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line">Point *pp=&amp;c;</span><br></pre></td></tr></table></figure>
+<p>编译器允许基类指针指向派生类，但是只能访问基类成员（部分数据和函数），因为其他的成员指针类型限制了它访问</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-14.png" style="zoom:80%;">
+<h2 id="类型转换"><a class="markdownIt-Anchor" href="#类型转换"></a> 类型转换</h2>
+<h3 id="static_cast"><a class="markdownIt-Anchor" href="#static_cast"></a> static_cast</h3>
+<p>pp 和 ppc 的转换可以通过编译**，**但运行时会出现崩溃。<code>static_cast</code> 在继承体系中由基类这种转换为子类指针是不安全的</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>; <span class="comment">//派生类</span></span><br><span class="line"><span class="function">Point <span class="title">p</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>; <span class="comment">//基类</span></span><br><span class="line">Point *pp=&amp;c; <span class="comment">//基类指针可指向派生类对象</span></span><br><span class="line">Circle *pc=<span class="keyword">static_cast</span>&lt;Circle *&gt;(pp);  </span><br><span class="line">Circle *ppc=<span class="keyword">static_cast</span>&lt;Circle *&gt;(&amp;p);</span><br><span class="line"><span class="keyword">int</span> i=<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(<span class="number">3.2</span>);</span><br></pre></td></tr></table></figure>
+<h3 id="dynamic_cast"><a class="markdownIt-Anchor" href="#dynamic_cast"></a> dynamic_cast</h3>
+<p><code>pdynamic_cast</code> 是一种运行时类型转换**，**可以转换指针或引用，用于继承体系中的类型转换。若转换失败，返回空指针或抛出异常（引用）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span></span>;</span><br><span class="line"><span class="function">Point <span class="title">p</span><span class="params">(<span class="number">2</span>,<span class="number">3</span>)</span></span>;</span><br><span class="line">Point *pp=&amp;c; <span class="comment">//基类指针可指向派生类对象</span></span><br><span class="line">Circle *pc=<span class="keyword">dynamic_cast</span>&lt;Circle *&gt;(pp);  </span><br><span class="line">Circle *ppc=<span class="keyword">dynamic_cast</span>&lt;Circle *&gt;(&amp;p);</span><br></pre></td></tr></table></figure>
+<h3 id="const_cast-和-reinterpret_cast"><a class="markdownIt-Anchor" href="#const_cast-和-reinterpret_cast"></a> const_cast 和 reinterpret_cast</h3>
+<p><code>const_cast</code> 去除常量特性的类型转换，<code>reinterpret_cast</code> 执行任意类型转换且不执行任何类型检查，安全性最差</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line"><span class="keyword">double</span> *p=<span class="keyword">new</span> <span class="keyword">double</span>(<span class="number">3.4</span>);</span><br><span class="line"><span class="keyword">char</span> *pc=<span class="keyword">reinterpret_cast</span>&lt;<span class="keyword">char</span> *&gt;(p);</span><br><span class="line"><span class="keyword">char</span> str[]&#123;“hello”&#125;;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * cps=str;</span><br><span class="line"><span class="keyword">char</span> *ps=<span class="keyword">const_cast</span>&lt;<span class="keyword">char</span> *&gt;(cps);</span><br><span class="line">ps[1]=&#x27;t;</span><br></pre></td></tr></table></figure>
+<h2 id="覆盖技术"><a class="markdownIt-Anchor" href="#覆盖技术"></a> 覆盖技术</h2>
+<p>在派生类中定义与基类同名的成员函数后会出现覆盖现象，实现重新定义基类成员函数，对象类型不同调用的同名函数实现也不同</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> PI = <span class="number">3.14159</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>&#123;</span> <span class="comment">//基类</span></span><br><span class="line">	<span class="keyword">double</span> x, y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Point(<span class="keyword">double</span> i, <span class="keyword">double</span> j)&#123;</span><br><span class="line">		x = i;</span><br><span class="line">		y = j;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">public</span> Point <span class="comment">//派生类</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">double</span> radius;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Circle(<span class="keyword">double</span> a，<span class="keyword">double</span> b，<span class="keyword">double</span> r) : Point(a, b)&#123;</span><br><span class="line">		radius = r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">double</span> <span class="title">getArea</span><span class="params">()</span></span>&#123; <span class="comment">//覆盖求面积函数</span></span><br><span class="line">		<span class="keyword">return</span> PI * radius * radius;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Point <span class="title">a</span><span class="params">(<span class="number">1.5</span>,<span class="number">6.7</span>)</span></span>;</span><br><span class="line">	<span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">1.5</span>,<span class="number">6.7</span>,<span class="number">2.5</span>)</span></span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;area of a:&quot;</span> &lt;&lt; a.getArea() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;area of c:&quot;</span> &lt;&lt; c.getArea() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	Point *p = &amp;c; <span class="comment">//指向的是派生类但是本质是基类，所以调用基类函数</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;area of c:&quot;</span> &lt;&lt; p-&gt;getArea() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*output</span></span><br><span class="line"><span class="comment"> *area of a:0</span></span><br><span class="line"><span class="comment"> *area of c:19.6349</span></span><br><span class="line"><span class="comment"> *area of c:0</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>如果某些情况下需要该类访问被覆盖了的函数，可以借助前缀名实现，但是不好</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x, y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Point()&#123;</span><br><span class="line">		x = <span class="number">0</span>;y = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Point(<span class="keyword">double</span> a, <span class="keyword">double</span> b)&#123;</span><br><span class="line">		x = a;y = b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span>&#123;</span><br><span class="line">		x = a;y = b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; x &lt;&lt;“,”&lt;&lt; y &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">public</span> Point</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">double</span> radius;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Circle(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r) : Point(a, b)&#123;</span><br><span class="line">		radius = r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r)</span></span>&#123;</span><br><span class="line">		Point::setVal(a, b);</span><br><span class="line">		radius = r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; radius &lt;&lt;<span class="string">&quot;,&quot;</span>;</span><br><span class="line">		Point::show();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line">	c.show();</span><br><span class="line">	c.setVal(<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>);</span><br><span class="line">	c.show();</span><br><span class="line">	c.Point::setVal(<span class="number">7</span>, <span class="number">8</span>);</span><br><span class="line">	c.Point::show();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*output</span></span><br><span class="line"><span class="comment"> *5,3,4</span></span><br><span class="line"><span class="comment"> *7,5,6</span></span><br><span class="line"><span class="comment"> *7,8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>另外要注意的是同一个类中两个重载版本的函数覆盖并不会起到想象中函数重载的效果，而是直接最后一个函数覆盖之前所有版本的同名函数</p>
+<blockquote>
+<p>一句话：父子类之间同名函数参数签名不同不会形成重载</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>&#123;</span></span><br><span class="line">	<span class="keyword">double</span> x, y;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Point()&#123;</span><br><span class="line">		x = <span class="number">0</span>;y = <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	Point(<span class="keyword">double</span> a, <span class="keyword">double</span> b)&#123;</span><br><span class="line">		x = a;y = b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span></span>&#123;</span><br><span class="line">		x = a;y = b;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">double</span> a)</span></span>&#123;</span><br><span class="line">		x = a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Circle</span> :</span> <span class="keyword">public</span> Point</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">double</span> radius;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	Circle(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r) : Point(a, b)&#123;</span><br><span class="line">		radius = r;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b, <span class="keyword">double</span> r)</span></span>&#123; <span class="comment">//直接覆盖所有继承来的同名函数</span></span><br><span class="line">		Point::setVal(a, b);radius = r;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="function">Circle <span class="title">c</span><span class="params">(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span></span>;</span><br><span class="line">	c.setVal(<span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>);</span><br><span class="line">	c.show();</span><br><span class="line">	<span class="comment">//错，没有匹配函数</span></span><br><span class="line">	c.setVal(<span class="number">7</span>, <span class="number">8</span>);</span><br><span class="line">	c.setVal(<span class="number">7</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>大学计算机学习</category>
+        <category>程序设计课知识总结</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>程序设计</tag>
+        <tag>继承与多态</tag>
+      </tags>
   </entry>
   <entry>
     <title>C++程序设计——语言进阶</title>
