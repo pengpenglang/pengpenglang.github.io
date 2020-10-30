@@ -25,7 +25,7 @@ hr {
 
 pre {
   font-family: monospace, monospace;
-  font-size: 0.7em
+  font-size: 0.85em
 }
 
 a {
@@ -1790,7 +1790,7 @@ figure.highlight pre .javascript .function {
 blockquote {
   margin: 0 0 1rem;
   padding: 0.1rem 0.8rem;
-  border-left: 0.2rem solid #49b1f5;
+  border-left: 0.2rem solid #25bb9b;
   background-color: var(--blockquote-bg);
   color: var(--blockquote-color);
 }
