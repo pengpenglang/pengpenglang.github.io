@@ -1728,7 +1728,7 @@
 <p>类继承的层次结构：下层具有上层的特征同时还加入独属于自己特生，即<strong>逐层细化具体</strong>，如此更符合人类认识世界的规律</p>
 </li>
 </ul>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-1.png" style="zoom: 25%;">
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/cdesign-5-1.png" style="zoom: 33%;">
 <h2 id="派生类的定义"><a class="markdownIt-Anchor" href="#派生类的定义"></a> 派生类的定义</h2>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 派生类名:</span> 继承方式 基类名&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">    <span class="keyword">protected</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        成员声明列表</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <ul>
