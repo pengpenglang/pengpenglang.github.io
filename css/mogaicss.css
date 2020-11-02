@@ -402,3 +402,11 @@ div.timenode:hover .meta:after {
 .github-badge .bg-lightgrey, .github-badge .bg-lightgray {
   background-color:#9f9f9f !important;
 }
+
+#article-container .fancybox img{
+  margin: 0 auto
+}
+
+[data-theme=light] blockquote{
+  background-color: #e8e6e67f;
+}
