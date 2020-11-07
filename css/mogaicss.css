@@ -403,6 +403,7 @@ div.timenode:hover .meta:after {
   background-color:#9f9f9f !important;
 }
 
+/*put post img text at middle*/
 #article-container .fancybox img{
   margin: 0 auto
 }
@@ -410,3 +411,13 @@ div.timenode:hover .meta:after {
 [data-theme=light] blockquote{
   background-color: #e8e6e67f;
 }
+
+/*post title color*/
+#article-container.post-content h1:before, #article-container.post-content h2:before, #article-container.post-content h3:before, #article-container.post-content h4:before, #article-container.post-content h5:before, #article-container.post-content h6:before{
+  color: #49b1f5;
+}
+
+#article-container.post-content margin:hover:before {
+  border-color: #ff7242;
+}
+
