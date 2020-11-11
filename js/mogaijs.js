@@ -10,7 +10,7 @@ xiaokang.bannerList = [
     //"https://gitee.com/pengpenglang/blogimg/raw/master/img/78.jpg",
     "https://gitee.com/pengpenglang/blogimg/raw/master/img/86.jpg",
     "https://gitee.com/pengpenglang/blogimg/raw/master/img/87.jpg",
-    "https://gitee.com/pengpenglang/blogimg/raw/master/img/97.png"
+    "https://gitee.com/pengpenglang/blogimg/raw/master/img/97.jpg"
 ];
 //页面背景
 xiaokang.bgPage();
