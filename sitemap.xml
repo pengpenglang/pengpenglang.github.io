@@ -550,13 +550,6 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/tags/STL%E6%A8%A1%E6%9D%BF%E5%BA%93/</loc>
-    <lastmod>2020-11-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://pengpenglang.gitee.io/tags/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</loc>
     <lastmod>2020-11-18</lastmod>
     <changefreq>daily</changefreq>
@@ -572,6 +565,13 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/tags/CSS3/</loc>
+    <lastmod>2020-11-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/tags/STL%E6%A8%A1%E6%9D%BF%E5%BA%93/</loc>
     <lastmod>2020-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -776,7 +776,7 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/PTA/</loc>
+    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/nowcoder/</loc>
     <lastmod>2020-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -790,7 +790,7 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/nowcoder/</loc>
+    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/PTA/</loc>
     <lastmod>2020-11-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
