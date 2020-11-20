@@ -3920,7 +3920,7 @@ function bot_ui_ini() {
                                     botui.action.button({
                                         delay: 1100,
                                         action: [{
-                                            text: "为什么叫 博客叫做pengpenglang 呢？🤔",
+                                            text: "为什么博客取名叫pengpenglang 呢？🤔",
                                             value: "why-mashiro"
                                         }]
                                     }).then(function (a) {
@@ -3956,7 +3956,7 @@ function bot_ui_ini() {
             }).then(function () {
                 botui.message.add({
                     delay: 1100,
-                    content: "也顺便记录下大学四年的学习时光，哈哈哈😝 "
+                    content: "也顺便记录下大学四年的青春时光，哈哈哈😝 "
                 }).then(function () {
                     botui.action.button({
                         delay: 1500,
@@ -3973,7 +3973,7 @@ function bot_ui_ini() {
         fifthpart = function () {
             botui.message.add({
                 delay: 1e3,
-                content: "emmmmm，绘画、游泳、羽毛球、动漫、音乐都有接触"
+                content: "emmmmm，绘画、游泳、羽毛球、动漫、音乐都有接触哦"
             }).then(function () {
                 botui.message.add({
                     delay: 1600,
