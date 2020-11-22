@@ -377,7 +377,7 @@ button {
 #site-name,
 #aside_content .author-info__name,
 #aside_content .author-info__description {
-  font-family: Titillium Web, 'Hiragino Sans GB', 'PingFang SC', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
+  font-family: Rubik, Titillium Web, 'Hiragino Sans GB', 'PingFang SC', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
 }
 .is-right {
   text-align: right;
@@ -2105,7 +2105,7 @@ blockquote footer cite:before {
   padding: 0.5rem;
   text-align: center;
   font-size: 14px;
-  font-family: Titillium Web, 'Hiragino Sans GB', 'PingFang SC', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
+  font-family: Rubik, Titillium Web, 'Hiragino Sans GB', 'PingFang SC', 'Microsoft JhengHei', 'Microsoft YaHei', sans-serif;
 }
 @media screen and (max-width: 768px) {
   #error-wrap .error-content .error-info {
