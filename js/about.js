@@ -3920,7 +3920,7 @@ function bot_ui_ini() {
                                     botui.action.button({
                                         delay: 1100,
                                         action: [{
-                                            text: "为什么博客取名叫pengpenglang 呢？🤔",
+                                            text: "为什么博客取名叫 pengpenglang 呢？🤔",
                                             value: "why-mashiro"
                                         }]
                                     }).then(function (a) {

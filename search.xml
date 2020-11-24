@@ -287,6 +287,107 @@
       </tags>
   </entry>
   <entry>
+    <title>C++程序设计——模板泛型编程基础</title>
+    <url>/posts/3712360875/</url>
+    <content><![CDATA[<h1 id="模板概述"><a class="markdownIt-Anchor" href="#模板概述"></a> 模板概述</h1>
+<h2 id="引入原因"><a class="markdownIt-Anchor" href="#引入原因"></a> 引入原因</h2>
+<p>考虑这样一个问题：多个函数的参数个数相同，处理代码雷同，仅仅是处理的数据类型（参数或者返还结果）不同，如何处理？</p>
+<ul>
+<li>方法一：为不同的函数设置不同的名字</li>
+</ul>
+<p>存在多个函数的版本，代码重复，函数命名复杂混乱，客户代码难以使用</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">imax</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">lmax</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">dmax</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法二：函数重载</li>
+</ul>
+<p>解决了函数命名的问题实现了多个函数的命名统一，但是代码冗余存在多个雷同的实现维护的代价很高</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">max</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>方法三：模板技术</li>
+</ul>
+<p>C++ 提供了模板技术：将函数类型提取出来作为&quot;类型参数&quot;，通过创建通用的函数模板，避免函数体的重复定义。</p>
+<h1 id="函数模板"><a class="markdownIt-Anchor" href="#函数模板"></a> 函数模板</h1>
+<h2 id="定义函数模板"><a class="markdownIt-Anchor" href="#定义函数模板"></a> 定义函数模板</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  <span class="comment">//标志模板的开始，同时指定模板中使用的类型参数</span></span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>max()</code> 定义了一个模板（并不是函数），描述了函数的骨架，比较两个值并返还较大者，两个值通过 a 和 b 传递，而参数类型还没有确定用函数模板 T 来代替</p>
+</blockquote>
+<h2 id="调用函数函数模板实例化"><a class="markdownIt-Anchor" href="#调用函数函数模板实例化"></a> 调用函数：函数模板实例化</h2>
+<div class="note warning icon">
+            <p>函数模板只是骨架，在不调用的时候是不会生成代码进行编译执行的，只有实例化一次后才会生成相应数据类型的函数代码作为程序的一部分参与编译与执行</p>
+          </div>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; max(<span class="number">3</span>, <span class="number">6</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">char</span> c1 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="keyword">char</span> c2 = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; max(c1, c2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>
+<p>调用代码 <code>max()</code> 函数，编译器根据实参类型和函数模板的骨架生成针对不同参数类型的 <code>max()</code> 函数版本（<strong>函数实例</strong>）</p>
+</li>
+<li>
+<p>实际生成 <code>max&lt;int&gt;</code> 和 <code>max&lt;char&gt;</code> 两个版本函数，如果客户程序中不调用 <code>max()</code>，则可能不生成任何函数实例</p>
+</li>
+</ul>
+<h2 id="编译器生成的函数实例"><a class="markdownIt-Anchor" href="#编译器生成的函数实例"></a> 编译器生成的函数实例</h2>
+<p>通过函数模板技术，我们只需要维护一份代码骨架，由编译器编译时根据需要代替我们生成代码，解决了代码冗余、维护成本高的问题</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> max&lt;<span class="keyword">int</span>&gt;(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span> max&lt;<span class="keyword">char</span>&gt;(<span class="keyword">char</span> a, <span class="keyword">char</span> b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数参数的演绎"><a class="markdownIt-Anchor" href="#函数参数的演绎"></a> 函数参数的演绎</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">max(<span class="number">4</span>, <span class="number">7</span>);    <span class="comment">//对，编译器能够推断所有的T均为int型</span></span><br><span class="line">max(<span class="number">4</span>, <span class="number">4.2</span>);  <span class="comment">//错，函数无法推断出T到底是哪个类型，出现二义性报错</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数后置类型声明"><a class="markdownIt-Anchor" href="#函数后置类型声明"></a> 函数后置类型声明</h2>
+<p><strong>在可能出现二义性的情况下，显示指定函数的参数类型是一种良好的编程习惯</strong></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示指明T的类型杜绝了二义性，允许编译执行</span></span><br><span class="line">max&lt;<span class="keyword">int</span>&gt;(<span class="number">4</span>, <span class="number">7</span>);</span><br><span class="line">max&lt;<span class="keyword">double</span>&gt;(<span class="number">4</span>, <span class="number">4.2</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="函数模板的类型推导"><a class="markdownIt-Anchor" href="#函数模板的类型推导"></a> 函数模板的类型推导</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> RT&gt;</span><br><span class="line"><span class="function">RT <span class="title">sum</span><span class="params">(T1 a, T2 b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line">auto sum(T1 a, T2 b) -&gt; decltype(a + b) &#123;  //C++11允许</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>编译器根据 <code>decltype(a+b)</code> 推导出返还值的类型</p>
+<p>值的注意的是不可以将 <code>decltype(a+b)</code> 放在函数的前面，因为此时  a 和 b 还没有被定义，<code>decltype(a+b)</code> 无法通过编译运行</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//报错，无法确定返还值的类型</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="keyword">decltype</span>(a + b) sum(T1 a, T2 b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="类模板"><a class="markdownIt-Anchor" href="#类模板"></a> 类模板</h1>
+<h2 id="类模板定义"><a class="markdownIt-Anchor" href="#类模板定义"></a> 类模板定义</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  <span class="comment">//标志模板的开始，同时指定模板中使用的类型参数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exam</span> &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">(T <span class="keyword">const</span>&amp; value)</span></span>;</span><br><span class="line">    <span class="function">T <span class="title">getValue</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    T elems;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>同理，<code>Eaxm</code> 并不是一个真正的类，只是一个类模板（生成类的骨架），类中的数据成员和部分成员函数的类型还没有确定，并且模板并没有定义任何类</p>
+</blockquote>
+<h2 id="类模板成员函数的定义"><a class="markdownIt-Anchor" href="#类模板成员函数的定义"></a> 类模板成员函数的定义</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  <span class="comment">//每个成员函数之前都要使用模板标志，哪怕该函数不使用类型参数。</span></span><br><span class="line"><span class="keyword">void</span> Exam&lt;T&gt;::setValue(<span class="keyword">const</span> T&amp; value) &#123;  <span class="comment">//作用域需要指明类用的模板</span></span><br><span class="line">    elems = vlaue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T Exam&lt;T&gt;::getValue() <span class="keyword">const</span> &#123;  <span class="comment">//作用域需要指明类用的模板</span></span><br><span class="line">    <span class="keyword">return</span> elems;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>成员函数实质上是函数模板</li>
+<li>类作用域限定符不在是 <code>Exam</code>，因为 <code>Exam</code> 不是真正类，真正的类是按照 T 实例化后的类，上述例子中名称为 <code>Exam&lt;T&gt;</code></li>
+</ul>
+<h2 id="定义对象类模板实例化"><a class="markdownIt-Anchor" href="#定义对象类模板实例化"></a> 定义对象：类模板实例化</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Exam&lt;<span class="keyword">int</span>&gt; e1;</span><br><span class="line">    e1.setValue(<span class="number">5</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; e1.getValue() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    Exam&lt;<span class="keyword">double</span>&gt; e2;</span><br><span class="line">    e2.setValue(<span class="number">5.5</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; e2.getValue() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>创建对象时编译器根据指定的类型生成特定类型的类定义（含成员函数定义）</li>
+<li>根据类骨架编译器对不同数据类型帮助我们生成类定义</li>
+</ul>
+<h2 id="编译器生成类的实例"><a class="markdownIt-Anchor" href="#编译器生成类的实例"></a> 编译器生成类的实例</h2>
+<p>借助模板的强大功能我们不需要编写多个类，编译器根据类型参数帮助我们生成实际需要的类</p>
+<div class="tabs" id="test4"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#test4-1">int类型的Exam</button></li><li class="tab"><button type="button" data-href="#test4-2">double类型的Exam</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="test4-1"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exam</span>&lt;int&gt; &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">int</span> <span class="keyword">const</span>&amp;)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getVal</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> elems;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Exam&lt;<span class="keyword">int</span>&gt;::setVal(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e) &#123; elems = e; &#125;</span><br><span class="line"><span class="keyword">int</span> Exam&lt;<span class="keyword">int</span>&gt;::getVal() <span class="keyword">const</span> &#123; <span class="keyword">return</span> elems; &#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-2"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exam</span>&lt;double&gt; &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">double</span> <span class="keyword">const</span>&amp;)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getVal</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> elems;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Exam&lt;<span class="keyword">double</span>&gt;::setVal(<span class="keyword">const</span> <span class="keyword">double</span>&amp; e) &#123; elems = e; &#125;</span><br><span class="line"><span class="keyword">double</span> Exam&lt;<span class="keyword">double</span>&gt;::getVal() <span class="keyword">const</span> &#123; <span class="keyword">return</span> elems; &#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div></div></div>
+<h1 id="通用数组类-myvector"><a class="markdownIt-Anchor" href="#通用数组类-myvector"></a> 通用数组类 <code>MyVector</code></h1>
+<h2 id="具体实现"><a class="markdownIt-Anchor" href="#具体实现"></a> 具体实现</h2>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此时Array变成了模板，而不是真正的类，编译器将根据模板，帮助我们生成所需要的类</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyVector</span> &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    MyVector(<span class="keyword">int</span> maxSize = <span class="number">1</span>);</span><br><span class="line">    MyVector(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a);</span><br><span class="line">    MyVector(MyVector&lt;T&gt;&amp;&amp; a);</span><br><span class="line">    MyVector&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a);</span><br><span class="line">    MyVector&amp; <span class="keyword">operator</span>=(MyVector&lt;T&gt;&amp;&amp; a);</span><br><span class="line">    ~MyVector();</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> size; &#125;</span><br><span class="line">    <span class="function">T <span class="title">getValue</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> index, T value)</span></span>;</span><br><span class="line">    T&amp; <span class="keyword">operator</span>[](<span class="keyword">int</span> index);</span><br><span class="line">    <span class="keyword">const</span> T&amp; <span class="keyword">operator</span>[](<span class="keyword">int</span> index) <span class="keyword">const</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushData</span><span class="params">(T data)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeData</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeData</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    T* pData;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">int</span> maxSize;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validIndex</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">copyData</span><span class="params">(T* data, <span class="keyword">int</span> maxSize, <span class="keyword">int</span> curSize)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reAllocMemory</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鉴于模板的特殊机制，要求将成员函数的实现和模板定义都放在头文件中</span></span><br><span class="line"><span class="comment">//每个成员函数前的template声明都需要保留,数据元素的类型用T来代替</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::copyData(T* data, <span class="keyword">int</span> maxSize, <span class="keyword">int</span> curSize) &#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">this</span>-&gt;maxSize = maxSize;</span><br><span class="line">    size = curSize;</span><br><span class="line">    pData = <span class="keyword">new</span> T[maxSize];</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">        pData[i] = data[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::MyVector(<span class="keyword">int</span> maxSize) &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;maxSize = maxSize;</span><br><span class="line">    pData = <span class="keyword">new</span> T[maxSize];</span><br><span class="line">    size = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::~MyVector() &#123;</span><br><span class="line">    <span class="keyword">delete</span>[] pData;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::MyVector(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a) &#123;</span><br><span class="line">    copyData(a.pData, a.maxSize, a.size);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>=(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;a)</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] pData;</span><br><span class="line">    copyData(a.pData, a.maxSize, a.size);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::MyVector(MyVector&lt;T&gt;&amp;&amp; a) &#123;  <span class="comment">//C++ 11 的move语义</span></span><br><span class="line">    size = a.size;</span><br><span class="line">    pData = a.pData;</span><br><span class="line">    a.size = <span class="number">0</span>;</span><br><span class="line">    a.pData = null;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>=(MyVector&lt;T&gt;&amp;&amp; a) &#123;  <span class="comment">//C++ 11 的move语义</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;a)</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] pData;</span><br><span class="line">    size = a.size;</span><br><span class="line">    pData = a.pData;</span><br><span class="line">    a.size = <span class="number">0</span>;</span><br><span class="line">    a.pData = null;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> MyVector&lt;T&gt;::validIndex(<span class="keyword">int</span> index) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= size)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::setValue(<span class="keyword">int</span> index, T value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    pData[index] = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T MyVector&lt;T&gt;::getValue(<span class="keyword">int</span> index) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error: Invalid index!\n&quot;</span>;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pData[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>[](<span class="keyword">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error: Invalid index\n&quot;</span>;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pData[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">const</span> T&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>[](<span class="keyword">int</span> index) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error: Invalid index\n&quot;</span>;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pData[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::pushData(T data) &#123;</span><br><span class="line">    <span class="keyword">if</span> (size == maxSize)</span><br><span class="line">        reAllocMemory();</span><br><span class="line">    pData[size] = data;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::reAllocMemory() &#123;</span><br><span class="line">    T* temp = pData;</span><br><span class="line">    pData = <span class="keyword">new</span> T[maxSize * <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">        pData[i] = temp[i];</span><br><span class="line">    <span class="keyword">delete</span>[] temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::removeData() &#123;</span><br><span class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;No data!\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    size--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::removeData(<span class="keyword">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span> || size == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    size--;</span><br><span class="line">    <span class="keyword">for</span> (i = index; i &lt; size; ++i) &#123;</span><br><span class="line">        pData[i] = pData[i + <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  <span class="comment">//debug</span></span><br><span class="line">    <span class="function">MyVector&lt;<span class="keyword">int</span>&gt; <span class="title">array1</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">    <span class="comment">/*要处理double类型数据，声明MyVector&lt;double&gt;对象即可，</span></span><br><span class="line"><span class="comment">    编译器根据需要创建雷同一致的代码，然后进行编译*/</span></span><br><span class="line">    array1.pushData(<span class="number">1</span>);</span><br><span class="line">    array1.pushData(<span class="number">2</span>);</span><br><span class="line">    array1.pushData(<span class="number">3</span>);</span><br><span class="line">    array1.pushData(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array1.getSize(); ++i)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; array1[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h2>
+<ul>
+<li>模板类的函数无论是否需要传入参数，都需要当做函数模板加上 <code>template</code> 那句话</li>
+<li>函数模板和类模板函数的声明与定义放在一起，分开写会报链接错误</li>
+</ul>
+<blockquote>
+<p><strong>这是因为函数模板要被实例化后才能成为真正的函数，在使用函数模板的源文件中包含函数模板的头文件</strong>，如果该头文件中只有声明没有定义，那编译器无法实例化该模板，最终导致链接错误</p>
+</blockquote>
+<div class="note info icon">
+            <p>由于上述函数模板和类模板的性质我们也可以推出：在声明与定义中出现语法错误运行时未必会报错，只有被用来实例化的时候无法编译才会报错</p>
+          </div>
+]]></content>
+      <categories>
+        <category>大学计算机学习</category>
+        <category>C++</category>
+        <category>程序设计课知识总结</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>程序设计</tag>
+        <tag>模板泛型编程</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>C++程序设计——STL算法</title>
     <url>/posts/1673697526/</url>
     <content><![CDATA[<h1 id="算法概述"><a class="markdownIt-Anchor" href="#算法概述"></a> 算法概述</h1>
@@ -390,107 +491,6 @@
         <tag>算法与数据结构</tag>
         <tag>程序设计</tag>
         <tag>STL模板库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>C++程序设计——模板泛型编程基础</title>
-    <url>/posts/3712360875/</url>
-    <content><![CDATA[<h1 id="模板概述"><a class="markdownIt-Anchor" href="#模板概述"></a> 模板概述</h1>
-<h2 id="引入原因"><a class="markdownIt-Anchor" href="#引入原因"></a> 引入原因</h2>
-<p>考虑这样一个问题：多个函数的参数个数相同，处理代码雷同，仅仅是处理的数据类型（参数或者返还结果）不同，如何处理？</p>
-<ul>
-<li>方法一：为不同的函数设置不同的名字</li>
-</ul>
-<p>存在多个函数的版本，代码重复，函数命名复杂混乱，客户代码难以使用</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">imax</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">lmax</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">dmax</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法二：函数重载</li>
-</ul>
-<p>解决了函数命名的问题实现了多个函数的命名统一，但是代码冗余存在多个雷同的实现维护的代价很高</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">max</span><span class="params">(<span class="keyword">long</span> a, <span class="keyword">long</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">max</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> b)</span> </span>&#123; <span class="keyword">return</span> a &gt; b ? a : b; &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>方法三：模板技术</li>
-</ul>
-<p>C++ 提供了模板技术：将函数类型提取出来作为&quot;类型参数&quot;，通过创建通用的函数模板，避免函数体的重复定义。</p>
-<h1 id="函数模板"><a class="markdownIt-Anchor" href="#函数模板"></a> 函数模板</h1>
-<h2 id="定义函数模板"><a class="markdownIt-Anchor" href="#定义函数模板"></a> 定义函数模板</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  <span class="comment">//标志模板的开始，同时指定模板中使用的类型参数</span></span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>max()</code> 定义了一个模板（并不是函数），描述了函数的骨架，比较两个值并返还较大者，两个值通过 a 和 b 传递，而参数类型还没有确定用函数模板 T 来代替</p>
-</blockquote>
-<h2 id="调用函数函数模板实例化"><a class="markdownIt-Anchor" href="#调用函数函数模板实例化"></a> 调用函数：函数模板实例化</h2>
-<div class="note warning icon">
-            <p>函数模板只是骨架，在不调用的时候是不会生成代码进行编译执行的，只有实例化一次后才会生成相应数据类型的函数代码作为程序的一部分参与编译与执行</p>
-          </div>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; max(<span class="number">3</span>, <span class="number">6</span>) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">char</span> c1 = <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">    <span class="keyword">char</span> c2 = <span class="string">&#x27;b&#x27;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; max(c1, c2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>
-<p>调用代码 <code>max()</code> 函数，编译器根据实参类型和函数模板的骨架生成针对不同参数类型的 <code>max()</code> 函数版本（<strong>函数实例</strong>）</p>
-</li>
-<li>
-<p>实际生成 <code>max&lt;int&gt;</code> 和 <code>max&lt;char&gt;</code> 两个版本函数，如果客户程序中不调用 <code>max()</code>，则可能不生成任何函数实例</p>
-</li>
-</ul>
-<h2 id="编译器生成的函数实例"><a class="markdownIt-Anchor" href="#编译器生成的函数实例"></a> 编译器生成的函数实例</h2>
-<p>通过函数模板技术，我们只需要维护一份代码骨架，由编译器编译时根据需要代替我们生成代码，解决了代码冗余、维护成本高的问题</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">int</span> max&lt;<span class="keyword">int</span>&gt;(<span class="keyword">int</span> a, <span class="keyword">int</span> b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span> max&lt;<span class="keyword">char</span>&gt;(<span class="keyword">char</span> a, <span class="keyword">char</span> b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="函数参数的演绎"><a class="markdownIt-Anchor" href="#函数参数的演绎"></a> 函数参数的演绎</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">max(<span class="number">4</span>, <span class="number">7</span>);    <span class="comment">//对，编译器能够推断所有的T均为int型</span></span><br><span class="line">max(<span class="number">4</span>, <span class="number">4.2</span>);  <span class="comment">//错，函数无法推断出T到底是哪个类型，出现二义性报错</span></span><br></pre></td></tr></table></figure>
-<h2 id="函数后置类型声明"><a class="markdownIt-Anchor" href="#函数后置类型声明"></a> 函数后置类型声明</h2>
-<p><strong>在可能出现二义性的情况下，显示指定函数的参数类型是一种良好的编程习惯</strong></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">max</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//显示指明T的类型杜绝了二义性，允许编译执行</span></span><br><span class="line">max&lt;<span class="keyword">int</span>&gt;(<span class="number">4</span>, <span class="number">7</span>);</span><br><span class="line">max&lt;<span class="keyword">double</span>&gt;(<span class="number">4</span>, <span class="number">4.2</span>);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="函数模板的类型推导"><a class="markdownIt-Anchor" href="#函数模板的类型推导"></a> 函数模板的类型推导</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2, <span class="keyword">typename</span> RT&gt;</span><br><span class="line"><span class="function">RT <span class="title">sum</span><span class="params">(T1 a, T2 b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line">auto sum(T1 a, T2 b) -&gt; decltype(a + b) &#123;  //C++11允许</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>编译器根据 <code>decltype(a+b)</code> 推导出返还值的类型</p>
-<p>值的注意的是不可以将 <code>decltype(a+b)</code> 放在函数的前面，因为此时  a 和 b 还没有被定义，<code>decltype(a+b)</code> 无法通过编译运行</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//报错，无法确定返还值的类型</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span><br><span class="line"><span class="keyword">decltype</span>(a + b) sum(T1 a, T2 b) &#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="类模板"><a class="markdownIt-Anchor" href="#类模板"></a> 类模板</h1>
-<h2 id="类模板定义"><a class="markdownIt-Anchor" href="#类模板定义"></a> 类模板定义</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  <span class="comment">//标志模板的开始，同时指定模板中使用的类型参数</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exam</span> &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">(T <span class="keyword">const</span>&amp; value)</span></span>;</span><br><span class="line">    <span class="function">T <span class="title">getValue</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    T elems;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>同理，<code>Eaxm</code> 并不是一个真正的类，只是一个类模板（生成类的骨架），类中的数据成员和部分成员函数的类型还没有确定，并且模板并没有定义任何类</p>
-</blockquote>
-<h2 id="类模板成员函数的定义"><a class="markdownIt-Anchor" href="#类模板成员函数的定义"></a> 类模板成员函数的定义</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;  <span class="comment">//每个成员函数之前都要使用模板标志，哪怕该函数不使用类型参数。</span></span><br><span class="line"><span class="keyword">void</span> Exam&lt;T&gt;::setValue(<span class="keyword">const</span> T&amp; value) &#123;  <span class="comment">//作用域需要指明类用的模板</span></span><br><span class="line">    elems = vlaue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T Exam&lt;T&gt;::getValue() <span class="keyword">const</span> &#123;  <span class="comment">//作用域需要指明类用的模板</span></span><br><span class="line">    <span class="keyword">return</span> elems;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>成员函数实质上是函数模板</li>
-<li>类作用域限定符不在是 <code>Exam</code>，因为 <code>Exam</code> 不是真正类，真正的类是按照 T 实例化后的类，上述例子中名称为 <code>Exam&lt;T&gt;</code></li>
-</ul>
-<h2 id="定义对象类模板实例化"><a class="markdownIt-Anchor" href="#定义对象类模板实例化"></a> 定义对象：类模板实例化</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Exam&lt;<span class="keyword">int</span>&gt; e1;</span><br><span class="line">    e1.setValue(<span class="number">5</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; e1.getValue() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    Exam&lt;<span class="keyword">double</span>&gt; e2;</span><br><span class="line">    e2.setValue(<span class="number">5.5</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; e2.getValue() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建对象时编译器根据指定的类型生成特定类型的类定义（含成员函数定义）</li>
-<li>根据类骨架编译器对不同数据类型帮助我们生成类定义</li>
-</ul>
-<h2 id="编译器生成类的实例"><a class="markdownIt-Anchor" href="#编译器生成类的实例"></a> 编译器生成类的实例</h2>
-<p>借助模板的强大功能我们不需要编写多个类，编译器根据类型参数帮助我们生成实际需要的类</p>
-<div class="tabs" id="test4"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#test4-1">int类型的Exam</button></li><li class="tab"><button type="button" data-href="#test4-2">double类型的Exam</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="test4-1"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exam</span>&lt;int&gt; &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">int</span> <span class="keyword">const</span>&amp;)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getVal</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> elems;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Exam&lt;<span class="keyword">int</span>&gt;::setVal(<span class="keyword">const</span> <span class="keyword">int</span>&amp; e) &#123; elems = e; &#125;</span><br><span class="line"><span class="keyword">int</span> Exam&lt;<span class="keyword">int</span>&gt;::getVal() <span class="keyword">const</span> &#123; <span class="keyword">return</span> elems; &#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-2"><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exam</span>&lt;double&gt; &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setVal</span><span class="params">(<span class="keyword">double</span> <span class="keyword">const</span>&amp;)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">double</span> <span class="title">getVal</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">double</span> elems;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> Exam&lt;<span class="keyword">double</span>&gt;::setVal(<span class="keyword">const</span> <span class="keyword">double</span>&amp; e) &#123; elems = e; &#125;</span><br><span class="line"><span class="keyword">double</span> Exam&lt;<span class="keyword">double</span>&gt;::getVal() <span class="keyword">const</span> &#123; <span class="keyword">return</span> elems; &#125;</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div></div></div>
-<h1 id="通用数组类-myvector"><a class="markdownIt-Anchor" href="#通用数组类-myvector"></a> 通用数组类 <code>MyVector</code></h1>
-<h2 id="具体实现"><a class="markdownIt-Anchor" href="#具体实现"></a> 具体实现</h2>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//此时Array变成了模板，而不是真正的类，编译器将根据模板，帮助我们生成所需要的类</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyVector</span> &#123;</span></span><br><span class="line">   <span class="keyword">public</span>:</span><br><span class="line">    MyVector(<span class="keyword">int</span> maxSize = <span class="number">1</span>);</span><br><span class="line">    MyVector(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a);</span><br><span class="line">    MyVector(MyVector&lt;T&gt;&amp;&amp; a);</span><br><span class="line">    MyVector&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a);</span><br><span class="line">    MyVector&amp; <span class="keyword">operator</span>=(MyVector&lt;T&gt;&amp;&amp; a);</span><br><span class="line">    ~MyVector();</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSize</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> size; &#125;</span><br><span class="line">    <span class="function">T <span class="title">getValue</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">setValue</span><span class="params">(<span class="keyword">int</span> index, T value)</span></span>;</span><br><span class="line">    T&amp; <span class="keyword">operator</span>[](<span class="keyword">int</span> index);</span><br><span class="line">    <span class="keyword">const</span> T&amp; <span class="keyword">operator</span>[](<span class="keyword">int</span> index) <span class="keyword">const</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pushData</span><span class="params">(T data)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeData</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">removeData</span><span class="params">(<span class="keyword">int</span> index)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span>:</span><br><span class="line">    T* pData;</span><br><span class="line">    <span class="keyword">int</span> size;</span><br><span class="line">    <span class="keyword">int</span> maxSize;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">validIndex</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">copyData</span><span class="params">(T* data, <span class="keyword">int</span> maxSize, <span class="keyword">int</span> curSize)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">reAllocMemory</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//鉴于模板的特殊机制，要求将成员函数的实现和模板定义都放在头文件中</span></span><br><span class="line"><span class="comment">//每个成员函数前的template声明都需要保留,数据元素的类型用T来代替</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::copyData(T* data, <span class="keyword">int</span> maxSize, <span class="keyword">int</span> curSize) &#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">this</span>-&gt;maxSize = maxSize;</span><br><span class="line">    size = curSize;</span><br><span class="line">    pData = <span class="keyword">new</span> T[maxSize];</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">        pData[i] = data[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::MyVector(<span class="keyword">int</span> maxSize) &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;maxSize = maxSize;</span><br><span class="line">    pData = <span class="keyword">new</span> T[maxSize];</span><br><span class="line">    size = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::~MyVector() &#123;</span><br><span class="line">    <span class="keyword">delete</span>[] pData;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::MyVector(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a) &#123;</span><br><span class="line">    copyData(a.pData, a.maxSize, a.size);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>=(<span class="keyword">const</span> MyVector&lt;T&gt;&amp; a) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;a)</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] pData;</span><br><span class="line">    copyData(a.pData, a.maxSize, a.size);</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;::MyVector(MyVector&lt;T&gt;&amp;&amp; a) &#123;  <span class="comment">//C++ 11 的move语义</span></span><br><span class="line">    size = a.size;</span><br><span class="line">    pData = a.pData;</span><br><span class="line">    a.size = <span class="number">0</span>;</span><br><span class="line">    a.pData = null;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">MyVector&lt;T&gt;&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>=(MyVector&lt;T&gt;&amp;&amp; a) &#123;  <span class="comment">//C++ 11 的move语义</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == &amp;a)</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    <span class="keyword">delete</span>[] pData;</span><br><span class="line">    size = a.size;</span><br><span class="line">    pData = a.pData;</span><br><span class="line">    a.size = <span class="number">0</span>;</span><br><span class="line">    a.pData = null;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> MyVector&lt;T&gt;::validIndex(<span class="keyword">int</span> index) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt;= size)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::setValue(<span class="keyword">int</span> index, T value) &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    pData[index] = value;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T MyVector&lt;T&gt;::getValue(<span class="keyword">int</span> index) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error: Invalid index!\n&quot;</span>;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pData[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">T&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>[](<span class="keyword">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error: Invalid index\n&quot;</span>;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pData[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">const</span> T&amp; MyVector&lt;T&gt;::<span class="keyword">operator</span>[](<span class="keyword">int</span> index) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;error: Invalid index\n&quot;</span>;</span><br><span class="line">        <span class="built_in">exit</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> pData[index];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::pushData(T data) &#123;</span><br><span class="line">    <span class="keyword">if</span> (size == maxSize)</span><br><span class="line">        reAllocMemory();</span><br><span class="line">    pData[size] = data;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::reAllocMemory() &#123;</span><br><span class="line">    T* temp = pData;</span><br><span class="line">    pData = <span class="keyword">new</span> T[maxSize * <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">        pData[i] = temp[i];</span><br><span class="line">    <span class="keyword">delete</span>[] temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::removeData() &#123;</span><br><span class="line">    <span class="keyword">if</span> (size == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;No data!\n&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    size--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MyVector&lt;T&gt;::removeData(<span class="keyword">int</span> index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (validIndex(index) == <span class="literal">false</span> || size == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    size--;</span><br><span class="line">    <span class="keyword">for</span> (i = index; i &lt; size; ++i) &#123;</span><br><span class="line">        pData[i] = pData[i + <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;  <span class="comment">//debug</span></span><br><span class="line">    <span class="function">MyVector&lt;<span class="keyword">int</span>&gt; <span class="title">array1</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">    <span class="comment">/*要处理double类型数据，声明MyVector&lt;double&gt;对象即可，</span></span><br><span class="line"><span class="comment">    编译器根据需要创建雷同一致的代码，然后进行编译*/</span></span><br><span class="line">    array1.pushData(<span class="number">1</span>);</span><br><span class="line">    array1.pushData(<span class="number">2</span>);</span><br><span class="line">    array1.pushData(<span class="number">3</span>);</span><br><span class="line">    array1.pushData(<span class="number">4</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array1.getSize(); ++i)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; array1[i] &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="注意事项"><a class="markdownIt-Anchor" href="#注意事项"></a> 注意事项</h2>
-<ul>
-<li>模板类的函数无论是否需要传入参数，都需要当做函数模板加上 <code>template</code> 那句话</li>
-<li>函数模板和类模板函数的声明与定义放在一起，分开写会报链接错误</li>
-</ul>
-<blockquote>
-<p><strong>这是因为函数模板要被实例化后才能成为真正的函数，在使用函数模板的源文件中包含函数模板的头文件</strong>，如果该头文件中只有声明没有定义，那编译器无法实例化该模板，最终导致链接错误</p>
-</blockquote>
-<div class="note info icon">
-            <p>由于上述函数模板和类模板的性质我们也可以推出：在声明与定义中出现语法错误运行时未必会报错，只有被用来实例化的时候无法编译才会报错</p>
-          </div>
-]]></content>
-      <categories>
-        <category>大学计算机学习</category>
-        <category>C++</category>
-        <category>程序设计课知识总结</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>程序设计</tag>
-        <tag>模板泛型编程</tag>
       </tags>
   </entry>
   <entry>
@@ -674,6 +674,63 @@
       </tags>
   </entry>
   <entry>
+    <title>RMQ问题——ST算法</title>
+    <url>/posts/2456212399/</url>
+    <content><![CDATA[<p><a class="btn-beautify button--animated " href="https://blog.csdn.net/forever_dreams/article/details/81127189" target="_blank" rel="noopener" title="RMQ（区间最值查询问题）"><i class="far fa-hand-point-right fa-fw"></i> 参考博客 </a></p>
+<h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h1>
+<p><strong>RMQ问题</strong>是指对于长度为 <code>n</code> 的数列 <code>A</code> ，回答若干询问 <code>RMQ(A,i,j)(i,j≤n)</code> ，返回数列 <code>A</code> 中下标在 <code>i</code>  , <code>j</code> 里的<strong>最小（大）值</strong>，也就是说RMQ问题是指求<strong>区间最值</strong>的问题。</p>
+<p><strong>解法</strong>：线段树， ST 等等</p>
+<p><strong>注意</strong>：ST算法只适用于<strong>静态区间</strong>求最值，如果是动态的只能乖乖的打线段树</p>
+<h1 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h1>
+<p>ST算法它的本质相当于是<strong>动态规划</strong>，下面我们以求最大值为例（最小值求法和最大值差不多）</p>
+<p>我们用 <code>f[i][j]</code> 表示<strong>以 <code>i</code> 为起点，连续 <code>2^j</code> 个数中的最大值</strong>，例如 <code>f[2][2]</code> 就表示第 2 个数到第 5 个数的最大值</p>
+<h2 id="st预处理"><a class="markdownIt-Anchor" href="#st预处理"></a> ST预处理</h2>
+<p>我们用 <code>A</code> 表示原序列，由于 2<sup>0</sup>=1 ，按照 <code>f</code> 数组的定义，<code>f[i][0]</code> 就等于 <code>A[i]</code>（初始化）</p>
+<p>对于其他的处理，我们看下图：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/ST-1.png" alt></p>
+<p>对于每一个 <code>f</code> 数组表示的序列，我们都把它拆成两部分，很明显它的最大值就是这两部分的最大值中较大的那一个。那么转移方程就是：<code>f[i][j]=max(f[i][j-1],f[i+(1&lt;&lt;(j-1)][j-1])</code>  （ <code>1&lt;&lt;j</code> 是位运算，相当于 <code>2^j</code> ）</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ST</span><span class="params">()</span></span>&#123;<span class="comment">//区间最值查询预处理</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    f[i][<span class="number">0</span>]=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;j++)<span class="comment">//枚举某段区间的长度拆成两半</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;i++)</span><br><span class="line">            f[i][j]=max(f[i][j<span class="number">-1</span>],f[i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]);</span><br><span class="line">            <span class="comment">//f[i][j]=min(f[i][j-1],f[i+(1&lt;&lt;(j-1))][j-1]);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="rmq查询"><a class="markdownIt-Anchor" href="#rmq查询"></a> RMQ查询</h2>
+<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/ST-2.png" alt></p>
+<p>假设要查询的区间为 <code>[l,r]</code> ，我们用 <code>L</code> 表示区间 <code>[l,r]</code> 的长度，即 <code>L=r-l+1</code> ，下面用 <code>k</code> 表示 <code>log(L)</code></p>
+<p>其中查询的话，区间长度 <code>L</code> 不一定刚好是 2 的多少次方，又因为 <code>log(L)</code> 是向下取整，那么 <code>2^k</code> 就有可能小于 <code>L</code> ，这样的话，我们就不能直接用 <code>f[l][k]</code> 来表示答案，不然的话会有遗漏（例如上图中的左半部分）</p>
+<p>正确的做法是我们就从 <code>l</code> 往右取 <code>2^k</code> 个（即 <code>f[l][k]</code> ），从 <code>r</code> 往左取 <code>2^k</code> 个（即 <code>f[r-(1&lt;&lt;k)+1][k]</code> ），这样就能保证区间 <code>[l,r]</code> 都被访问到了，重复计算的不用担心这是计算最值而不是求和</p>
+<p>所以答案就是 <code>ans=max&#123;f[l][k],f[r-(1&lt;&lt;k)+1][k]&#125;</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//O(1)的RMQ询问</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;l&gt;&gt;r;</span><br><span class="line">    <span class="keyword">int</span> k=Log[r-l+<span class="number">1</span>];</span><br><span class="line">    ans=max(f[l][k],f[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]);</span><br><span class="line">    <span class="comment">//ans=min(f[l][k],f[r-(1&lt;&lt;k)+1][k])</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="comment">//cout&lt;&lt;ans&lt;&lt;endl;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>Log</code> 数组需要预处理出来，下面就讲</p>
+</blockquote>
+<h2 id="预处理-log-数组"><a class="markdownIt-Anchor" href="#预处理-log-数组"></a> 预处理 <code>Log</code> 数组</h2>
+<ul>
+<li><code>Log</code> 数组是向下取整的</li>
+<li><code>Log[i]=Log[i/2]+1</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetLog</span><span class="params">()</span></span>&#123;<span class="comment">//预处理获得向下取整的Log数</span></span><br><span class="line">    Log[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">    Log[i]=Log[i/<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h1>
+<p>其实时间复杂度看代码很容易可以分析出来：</p>
+<ul>
+<li>
+<p>预处理部分：<code>j</code> 循环是O(logn)，<code>i</code> 循环是 O(n) ，总共是 O(nlogn)</p>
+</li>
+<li>
+<p>查询部分：查询的问题相当于已经打表出来了所以就是 O(1)</p>
+</li>
+</ul>
+<h1 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h1>
+<p><a href="https://www.luogu.com.cn/problem/P3391">模板题</a>：给定一个长度为<code>N</code>的数列，<code>M</code>次询问，求出每一次询问的区间内数字的最大值，请注意最大数据时限只有  0.8s ，数据强度不低，请务必保证你的每次查询复杂度为 O(1) 。若使用更高时间复杂度算法不保证能通过</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">5</span>;<span class="comment">//最大单元数</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M=<span class="number">25</span>;<span class="comment">//2^i中i的最大值也就是某段区间的最大长度</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;<span class="comment">//单元数和查询数</span></span><br><span class="line"><span class="keyword">int</span> a[N],Log[N];</span><br><span class="line"><span class="keyword">int</span> f[N][M];<span class="comment">//存储以i为起点长为2^j的区间内最值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetLog</span><span class="params">()</span></span>&#123;<span class="comment">//预处理获得向下取整的Log数</span></span><br><span class="line">    Log[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">    Log[i]=Log[i/<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ST</span><span class="params">()</span></span>&#123;<span class="comment">//区间最值查询预处理</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    f[i][<span class="number">0</span>]=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;j++)<span class="comment">//枚举某段区间的长度拆成两半</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;i++)</span><br><span class="line">            f[i][j]=max(f[i][j<span class="number">-1</span>],f[i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]);</span><br><span class="line">            <span class="comment">//f[i][j]=min(f[i][j-1],f[i+(1&lt;&lt;(j-1))][j-1]);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;</span><br><span class="line">        GetLog();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        ST();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> l,r,ans=<span class="number">-1</span>;<span class="comment">//ans=inf</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//O(1)的RMQ询问</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;l&gt;&gt;r;</span><br><span class="line">            <span class="keyword">int</span> k=Log[r-l+<span class="number">1</span>];</span><br><span class="line">            ans=max(f[l][k],f[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]);</span><br><span class="line">            <span class="comment">//ans=min(f[l][k],f[r-(1&lt;&lt;k)+1][k])</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">            <span class="comment">//cout&lt;&lt;ans&lt;&lt;endl;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM学习</category>
+        <category>动态规划</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+        <tag>ST</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>KMP专题训练</title>
     <url>/posts/1336151826/</url>
     <content><![CDATA[<h1 id="相关知识总结"><a class="markdownIt-Anchor" href="#相关知识总结"></a> 相关知识总结</h1>
@@ -735,63 +792,6 @@
         <tag>C++</tag>
         <tag>算法与数据结构</tag>
         <tag>KMP</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>RMQ问题——ST算法</title>
-    <url>/posts/2456212399/</url>
-    <content><![CDATA[<p><a class="btn-beautify button--animated " href="https://blog.csdn.net/forever_dreams/article/details/81127189" target="_blank" rel="noopener" title="RMQ（区间最值查询问题）"><i class="far fa-hand-point-right fa-fw"></i> 参考博客 </a></p>
-<h1 id="简介"><a class="markdownIt-Anchor" href="#简介"></a> 简介</h1>
-<p><strong>RMQ问题</strong>是指对于长度为 <code>n</code> 的数列 <code>A</code> ，回答若干询问 <code>RMQ(A,i,j)(i,j≤n)</code> ，返回数列 <code>A</code> 中下标在 <code>i</code>  , <code>j</code> 里的<strong>最小（大）值</strong>，也就是说RMQ问题是指求<strong>区间最值</strong>的问题。</p>
-<p><strong>解法</strong>：线段树， ST 等等</p>
-<p><strong>注意</strong>：ST算法只适用于<strong>静态区间</strong>求最值，如果是动态的只能乖乖的打线段树</p>
-<h1 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h1>
-<p>ST算法它的本质相当于是<strong>动态规划</strong>，下面我们以求最大值为例（最小值求法和最大值差不多）</p>
-<p>我们用 <code>f[i][j]</code> 表示<strong>以 <code>i</code> 为起点，连续 <code>2^j</code> 个数中的最大值</strong>，例如 <code>f[2][2]</code> 就表示第 2 个数到第 5 个数的最大值</p>
-<h2 id="st预处理"><a class="markdownIt-Anchor" href="#st预处理"></a> ST预处理</h2>
-<p>我们用 <code>A</code> 表示原序列，由于 2<sup>0</sup>=1 ，按照 <code>f</code> 数组的定义，<code>f[i][0]</code> 就等于 <code>A[i]</code>（初始化）</p>
-<p>对于其他的处理，我们看下图：</p>
-<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/ST-1.png" alt></p>
-<p>对于每一个 <code>f</code> 数组表示的序列，我们都把它拆成两部分，很明显它的最大值就是这两部分的最大值中较大的那一个。那么转移方程就是：<code>f[i][j]=max(f[i][j-1],f[i+(1&lt;&lt;(j-1)][j-1])</code>  （ <code>1&lt;&lt;j</code> 是位运算，相当于 <code>2^j</code> ）</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ST</span><span class="params">()</span></span>&#123;<span class="comment">//区间最值查询预处理</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    f[i][<span class="number">0</span>]=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;j++)<span class="comment">//枚举某段区间的长度拆成两半</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;i++)</span><br><span class="line">            f[i][j]=max(f[i][j<span class="number">-1</span>],f[i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]);</span><br><span class="line">            <span class="comment">//f[i][j]=min(f[i][j-1],f[i+(1&lt;&lt;(j-1))][j-1]);</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="rmq查询"><a class="markdownIt-Anchor" href="#rmq查询"></a> RMQ查询</h2>
-<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/ST-2.png" alt></p>
-<p>假设要查询的区间为 <code>[l,r]</code> ，我们用 <code>L</code> 表示区间 <code>[l,r]</code> 的长度，即 <code>L=r-l+1</code> ，下面用 <code>k</code> 表示 <code>log(L)</code></p>
-<p>其中查询的话，区间长度 <code>L</code> 不一定刚好是 2 的多少次方，又因为 <code>log(L)</code> 是向下取整，那么 <code>2^k</code> 就有可能小于 <code>L</code> ，这样的话，我们就不能直接用 <code>f[l][k]</code> 来表示答案，不然的话会有遗漏（例如上图中的左半部分）</p>
-<p>正确的做法是我们就从 <code>l</code> 往右取 <code>2^k</code> 个（即 <code>f[l][k]</code> ），从 <code>r</code> 往左取 <code>2^k</code> 个（即 <code>f[r-(1&lt;&lt;k)+1][k]</code> ），这样就能保证区间 <code>[l,r]</code> 都被访问到了，重复计算的不用担心这是计算最值而不是求和</p>
-<p>所以答案就是 <code>ans=max&#123;f[l][k],f[r-(1&lt;&lt;k)+1][k]&#125;</code></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//O(1)的RMQ询问</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;l&gt;&gt;r;</span><br><span class="line">    <span class="keyword">int</span> k=Log[r-l+<span class="number">1</span>];</span><br><span class="line">    ans=max(f[l][k],f[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]);</span><br><span class="line">    <span class="comment">//ans=min(f[l][k],f[r-(1&lt;&lt;k)+1][k])</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">    <span class="comment">//cout&lt;&lt;ans&lt;&lt;endl;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>Log</code> 数组需要预处理出来，下面就讲</p>
-</blockquote>
-<h2 id="预处理-log-数组"><a class="markdownIt-Anchor" href="#预处理-log-数组"></a> 预处理 <code>Log</code> 数组</h2>
-<ul>
-<li><code>Log</code> 数组是向下取整的</li>
-<li><code>Log[i]=Log[i/2]+1</code></li>
-</ul>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetLog</span><span class="params">()</span></span>&#123;<span class="comment">//预处理获得向下取整的Log数</span></span><br><span class="line">    Log[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">    Log[i]=Log[i/<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="复杂度分析"><a class="markdownIt-Anchor" href="#复杂度分析"></a> 复杂度分析</h1>
-<p>其实时间复杂度看代码很容易可以分析出来：</p>
-<ul>
-<li>
-<p>预处理部分：<code>j</code> 循环是O(logn)，<code>i</code> 循环是 O(n) ，总共是 O(nlogn)</p>
-</li>
-<li>
-<p>查询部分：查询的问题相当于已经打表出来了所以就是 O(1)</p>
-</li>
-</ul>
-<h1 id="例题"><a class="markdownIt-Anchor" href="#例题"></a> 例题</h1>
-<p><a href="https://www.luogu.com.cn/problem/P3391">模板题</a>：给定一个长度为<code>N</code>的数列，<code>M</code>次询问，求出每一次询问的区间内数字的最大值，请注意最大数据时限只有  0.8s ，数据强度不低，请务必保证你的每次查询复杂度为 O(1) 。若使用更高时间复杂度算法不保证能通过</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">1e5</span>+<span class="number">5</span>;<span class="comment">//最大单元数</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M=<span class="number">25</span>;<span class="comment">//2^i中i的最大值也就是某段区间的最大长度</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> inf=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;<span class="comment">//单元数和查询数</span></span><br><span class="line"><span class="keyword">int</span> a[N],Log[N];</span><br><span class="line"><span class="keyword">int</span> f[N][M];<span class="comment">//存储以i为起点长为2^j的区间内最值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">GetLog</span><span class="params">()</span></span>&#123;<span class="comment">//预处理获得向下取整的Log数</span></span><br><span class="line">    Log[<span class="number">1</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">    Log[i]=Log[i/<span class="number">2</span>]+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ST</span><span class="params">()</span></span>&#123;<span class="comment">//区间最值查询预处理</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    f[i][<span class="number">0</span>]=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;j++)<span class="comment">//枚举某段区间的长度拆成两半</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))&lt;=n;i++)</span><br><span class="line">            f[i][j]=max(f[i][j<span class="number">-1</span>],f[i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))][j<span class="number">-1</span>]);</span><br><span class="line">            <span class="comment">//f[i][j]=min(f[i][j-1],f[i+(1&lt;&lt;(j-1))][j-1]);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m)&#123;</span><br><span class="line">        GetLog();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        ST();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> l,r,ans=<span class="number">-1</span>;<span class="comment">//ans=inf</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//O(1)的RMQ询问</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;l&gt;&gt;r;</span><br><span class="line">            <span class="keyword">int</span> k=Log[r-l+<span class="number">1</span>];</span><br><span class="line">            ans=max(f[l][k],f[r-(<span class="number">1</span>&lt;&lt;k)+<span class="number">1</span>][k]);</span><br><span class="line">            <span class="comment">//ans=min(f[l][k],f[r-(1&lt;&lt;k)+1][k])</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,ans);</span><br><span class="line">            <span class="comment">//cout&lt;&lt;ans&lt;&lt;endl;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>ACM学习</category>
-        <category>动态规划</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法与数据结构</tag>
-        <tag>ST</tag>
       </tags>
   </entry>
   <entry>
@@ -4382,495 +4382,6 @@
       <tags>
         <tag>Web前端</tag>
         <tag>HTML</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>IBM-PC汇编语言程序设计知识总结</title>
-    <url>/posts/635767573/</url>
-    <content><![CDATA[<h1 id="基础知识"><a class="markdownIt-Anchor" href="#基础知识"></a> 基础知识</h1>
-<h2 id="语言分类"><a class="markdownIt-Anchor" href="#语言分类"></a> 语言分类</h2>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-1.png" style="zoom:67%;">
-<div class="tabs" id="test4"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#test4-1">机器语言</button></li><li class="tab"><button type="button" data-href="#test4-2">汇编语言</button></li><li class="tab"><button type="button" data-href="#test4-3">高级语言</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="test4-1"><p>计算机运行由 <code>CPU</code> 控制，根据机器指令决定每一步的操作。计算机硬件能理解和执行的就是机器指令代码，该代码被称为“机器语言”</p>
-<p>机器语言是由组成由二进制数组成的代码</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1010 1111</span><br><span class="line">0011 0111</span><br><span class="line">0111 0110</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-2"><p>采用助记符表示机器指令的操作码，用变量代替操作数存放地址形成的语言被称为“汇编语言”</p>
-<p>汇编语言要翻译成机器语言程序才可以由计算机执行，翻译的过程被称为“汇编”</p>
-<p>把汇编源程序翻译成目标程序的语言加工程序称为”汇编程序“</p>
-<p>基本操作与机器指令相对应</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV A,47</span><br><span class="line">ADD A,B</span><br><span class="line">HALT</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-3"><p>高级程序设计语言接近于人类自然语言的语法习惯，与计算机硬件无关，易被用户掌握和使用</p>
-<p>目前广泛应用的高级语言有多种，如 BASIC、 FORTRAN、PASCAL、C、C++、JAVA 等等</p>
-<p>高级语言又分为面向过程和面向对象</p><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div></div></div>
-<h2 id="汇编特点"><a class="markdownIt-Anchor" href="#汇编特点"></a> 汇编特点</h2>
-<table>
-<thead>
-<tr>
-<th>优点</th>
-<th>缺点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>汇编语言与处理器密切相关</td>
-<td>编写汇编语言源程序比编写高级语言源程序烦 琐</td>
-</tr>
-<tr>
-<td>汇编语言程序效率高</td>
-<td>调试汇编语言程序比调试高级语言程序困难</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>高级语言适合于数值计算、数据处理等软件的开发</li>
-<li>汇编语言则适合于对时间（执行速度）和空间 （程序长度）要求特别高的情况</li>
-<li>在很多工程应用中，经常将这两种语言结合起来 使用。例如，Linux 操作系统的大部分代码使用 C 语言开发的，而与 CPU 及机器硬件密切相关的代 码就需要用汇编语言编写</li>
-</ul>
-<h2 id="字节-字-字长"><a class="markdownIt-Anchor" href="#字节-字-字长"></a> 字节、字、字长</h2>
-<p>位：计算机能处理的最小单元，它不随 CPU 的处理能力的变化而变化</p>
-<p>字节：就是 8 位数据的大小，它也不随 CPU 的处理能力的变化而变化</p>
-<p>字：计算机进行数据处理时，一次存取、加工和传送的数据长度称为字（word），一个字通常是由 16 位组成，也就是双字节</p>
-<p>字长：计算机的每个字所包含的的位数称为字长。一般我们说的 8 位机、16 位机、32 位机、64 位机指的就是计算机的字长</p>
-<p>针对以上概念，有如下结论：</p>
-<ul>
-<li>在 16 位CPU中，一个字表示 16 位（两个字节）</li>
-<li>在 32 位CPU中，一个字表示 32 位（四个字节双字）</li>
-<li>在 64 位CPU中，一个字表示 64 位（八个字节四字）</li>
-</ul>
-<p>以此类推下去…</p>
-<h2 id="堆和栈"><a class="markdownIt-Anchor" href="#堆和栈"></a> 堆和栈</h2>
-<ul>
-<li>计算机的堆区地址从低到高向上增长</li>
-<li>计算机的栈区地址从高到低向下增长</li>
-</ul>
-<blockquote>
-<p>计算机执行程序时都默认使用的是栈区</p>
-</blockquote>
-<h2 id="进位计数"><a class="markdownIt-Anchor" href="#进位计数"></a> 进位计数</h2>
-<h3 id="进制转换"><a class="markdownIt-Anchor" href="#进制转换"></a> 进制转换</h3>
-<p>常用用到二进制（B）、八进制（O）、十进制（D）、十六进制（H）</p>
-<blockquote>
-<p>进制可以借助<a href="https://tool.lu/hexconvert/">进制转换器</a>但是需要会原理</p>
-</blockquote>
-<div class="btn-center">
-<a class="btn-beautify button--animated outline blue larger" href="https://jingyan.baidu.com/article/495ba84109665338b30ede98.html" title="百度百科讲解"><i class="far fa-hand-point-right fa-fw"></i><span>百度百科讲解</span></a>
-</div>
-<h4 id="十进制转换二进制"><a class="markdownIt-Anchor" href="#十进制转换二进制"></a> 十进制转换二进制</h4>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-2.png" style="zoom:50%;">
-<h4 id="二进制转换十进制"><a class="markdownIt-Anchor" href="#二进制转换十进制"></a> 二进制转换十进制</h4>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-3.png" style="zoom:50%;">
-<blockquote>
-<p>同理二进制转换其他进制的数也可以用这个方法</p>
-</blockquote>
-<h4 id="二进制转换十六进制"><a class="markdownIt-Anchor" href="#二进制转换十六进制"></a> 二进制转换十六进制</h4>
-<p>他们之间成倍数关系，相当于四位二进制的数表示一位十六进制的数，可以进一步简化运算得出结果</p>
-<div class="note info icon">
-            <p>这个方法很重要，后面程序设计中进制转行使用就是这个方法</p>
-          </div>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-4.png" style="zoom:50%;">
-<h3 id="计算机中的数和字符的表示"><a class="markdownIt-Anchor" href="#计算机中的数和字符的表示"></a> 计算机中的数和字符的表示</h3>
-<h4 id="原码"><a class="markdownIt-Anchor" href="#原码"></a> 原码</h4>
-<p>最高位表示符号（正数用 0 ，负数用 1），其他位表示数值位，称为有符号数的原码表示法</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X&#x3D;45&#x3D;00101101B [X]原&#x3D;00101101B</span><br><span class="line">Y&#x3D;-45          [Y]原&#x3D;10101101B</span><br></pre></td></tr></table></figure>
-<h4 id="反码"><a class="markdownIt-Anchor" href="#反码"></a> 反码</h4>
-<p>正数的反码与原码完全相同，符号位用 0 表示数值位值不变</p>
-<p>负数的反码符号位用 1 表示, 数值位为原码数值位按位取反形成，即 0 变 1、1 变 0</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X&#x3D;45&#x3D;00101101B 	[X]原&#x3D;00101101B</span><br><span class="line">				[X]反&#x3D;00101101B</span><br><span class="line">Y&#x3D;-45          	[Y]原&#x3D;10101101B</span><br><span class="line">				[Y]反&#x3D;11010010B </span><br></pre></td></tr></table></figure>
-<h4 id="补码"><a class="markdownIt-Anchor" href="#补码"></a> 补码</h4>
-<p>本质：对一个二进制数按位求反、末位加一</p>
-<p>正数的补码与原码完全相同，符号位用 0 表示数值位值不变</p>
-<p>负数的补码为反码加 1 形成</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X&#x3D;45&#x3D;00101101B 	[X]原&#x3D;00101101B</span><br><span class="line">				[X]反&#x3D;00101101B</span><br><span class="line">				[X]补&#x3D;00101101B</span><br><span class="line">Y&#x3D;-45          	[Y]原&#x3D;10101101B</span><br><span class="line">				[Y]反&#x3D;11010010B </span><br><span class="line">				[Y]补&#x3D;11010011B</span><br></pre></td></tr></table></figure>
-<h3 id="计算机计算方法"><a class="markdownIt-Anchor" href="#计算机计算方法"></a> 计算机计算方法</h3>
-<p>计算机只有加法器，而补码减法可转换为补码加法 ，所以计算机用补码进行计算</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">加法规则：[X+Y]补码 &#x3D; [X]补码 + [Y]补码</span><br><span class="line">减法规则：[X-Y]补码 &#x3D; [X]补码 + [-Y]补码 </span><br></pre></td></tr></table></figure>
-<h1 id="80x86-计算机组织"><a class="markdownIt-Anchor" href="#80x86-计算机组织"></a> 80x86 计算机组织</h1>
-<h2 id="80x86-微处理器"><a class="markdownIt-Anchor" href="#80x86-微处理器"></a> 80x86 微处理器</h2>
-<h3 id="硬件组成"><a class="markdownIt-Anchor" href="#硬件组成"></a> 硬件组成</h3>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-5.png" style="zoom:50%;">
-<h3 id="软件组成"><a class="markdownIt-Anchor" href="#软件组成"></a> 软件组成</h3>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-6.jpg" style="zoom: 13%;">
-<h1 id="中央处理机cpu"><a class="markdownIt-Anchor" href="#中央处理机cpu"></a> 中央处理机CPU</h1>
-<ul>
-<li>
-<p>执行存放在存储器里的指令</p>
-</li>
-<li>
-<p>完成算术逻辑运算</p>
-</li>
-<li>
-<p>完成在CPU和存储器以及I/O之间的数据传送</p>
-</li>
-<li>
-<p>由运算器、控制器和寄存器组成</p>
-</li>
-</ul>
-<h2 id="运算器"><a class="markdownIt-Anchor" href="#运算器"></a> 运算器</h2>
-<ul>
-<li>运算器执行算术运算和逻辑运算</li>
-<li>使用寄存器来保存等待处理的数据</li>
-<li>在运算中，结果暂时存放在累加器中</li>
-</ul>
-<h2 id="控制器"><a class="markdownIt-Anchor" href="#控制器"></a> 控制器</h2>
-<ul>
-<li>控制器顺序从 RAM 中取出指令，并将他们放到指令寄存器中</li>
-<li>控制器翻译指令，并根据翻译结果发送信号给数据总线从 RAM 中取数据，发送信号到运算器 进行处理</li>
-</ul>
-<h2 id="总线组成"><a class="markdownIt-Anchor" href="#总线组成"></a> 总线组成</h2>
-<ul>
-<li>地址总线：决定最大寻址空间</li>
-<li>数据总线：决定机器字长</li>
-<li>控制总线：发送控制信号</li>
-</ul>
-<h2 id="指令"><a class="markdownIt-Anchor" href="#指令"></a> 指令</h2>
-<p>指令是对计算机进行程序控制的最小单位 所有的指令的集合称为计算机的指令系统</p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-7.png" style="zoom: 67%;">
-<p>指令周期：计算执行一条指令所需要的时间</p>
-<h2 id="80x86-寄存器组详讲"><a class="markdownIt-Anchor" href="#80x86-寄存器组详讲"></a> 80x86 寄存器组详讲</h2>
-<h3 id="通用寄存器"><a class="markdownIt-Anchor" href="#通用寄存器"></a> 通用寄存器</h3>
-<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-8.jpg" alt></p>
-<h4 id="数据寄存器"><a class="markdownIt-Anchor" href="#数据寄存器"></a> 数据寄存器</h4>
-<p>数据寄存器共有 4 个寄存器 AX、BX、CX、DX，用来保存操作数或运算结果等信息</p>
-<table>
-<thead>
-<tr>
-<th>数据寄存器</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>AX</td>
-<td>使用频度最高，用于算术运算及与外设传送信息等</td>
-</tr>
-<tr>
-<td>BX</td>
-<td>常用于存放存储器地址</td>
-</tr>
-<tr>
-<td>CX</td>
-<td>一般作为循环或串操作等指令中的隐含计数器</td>
-</tr>
-<tr>
-<td>DX</td>
-<td>常用来存放双字数据的高 16 位；存放外设端口地址</td>
-</tr>
-</tbody>
-</table>
-<h4 id="变址指针寄存器"><a class="markdownIt-Anchor" href="#变址指针寄存器"></a> 变址指针寄存器</h4>
-<p>变址和指针寄存器包括 SI、DI、SP、BP 这四个 16 位寄存器，主要用于存放某个存储单元的偏移地址</p>
-<table>
-<thead>
-<tr>
-<th>数据寄存器</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SI 和 DI-源变址寄存器和目的变址寄存器</td>
-<td>在字符串操作中，SI 和 DI 都具有自动增量或减量的功能，分别与 DS 和 ES 联用</td>
-</tr>
-<tr>
-<td>SP-堆栈指针寄存器</td>
-<td>用于存放当前堆栈段中栈顶的偏移地址，与 SS 联用进行堆栈寻址</td>
-</tr>
-<tr>
-<td>BP-基址指针寄存器</td>
-<td>用于存放堆栈段中某一存储单元的偏移地址（基地址），同样与 SS 联用进行堆栈寻址</td>
-</tr>
-</tbody>
-</table>
-<h4 id="说明"><a class="markdownIt-Anchor" href="#说明"></a> 说明</h4>
-<ul>
-<li>上述寄存器都是以 16 位形式访问，但是前四个还分为 HIGH 和 LOW 可以进行 8 位访问，但是后四位最低也是 16 位</li>
-<li>80386 以及后续的 32 位机还有 <code>E-寄存器</code> 协助帮忙以 32 位访问</li>
-</ul>
-<h3 id="专用寄存器"><a class="markdownIt-Anchor" href="#专用寄存器"></a> 专用寄存器</h3>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-9.jpg" style="zoom: 80%;">
-<table>
-<thead>
-<tr>
-<th>专用寄存器</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>IP-指令指针寄存器</td>
-<td>保存下一次将要从主存中取出指令的偏移地址， 与代码段寄存器 CS 联用确定下一条指令的物理地址。目标程序运行时，IP 的内容由微处理器硬件自动设置，程序不能直接访问IP，但一些指令却可改变 IP 的值，如转移指令、子程序调用指令等</td>
-</tr>
-<tr>
-<td>FLAGS-标志寄存器</td>
-<td>记录程序中运行结果的状态信息， 根据有关指令的运行结果由 CPU 自动设置，这些状态信息往往作为后续条件转移指令的控制条件</td>
-</tr>
-</tbody>
-</table>
-<h4 id="标识符"><a class="markdownIt-Anchor" href="#标识符"></a> 标识符</h4>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-10.png" style="zoom:67%;">
-<blockquote>
-<p>了解几个 80x86 中标志寄存器的内容，图中未标识的位置暂时不讲</p>
-</blockquote>
-<table>
-<thead>
-<tr>
-<th>标志符</th>
-<th>作用（1/0）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OF(overflow flag)-溢出标志</td>
-<td>操作数超出了机器能表示的范围（是/否）</td>
-</tr>
-<tr>
-<td>SF(sign flag)-符号标志</td>
-<td>记录运算结果的符号（负/正）</td>
-</tr>
-<tr>
-<td>ZF(zero flag)-零标志</td>
-<td>运算结果为 0（是/否）</td>
-</tr>
-<tr>
-<td>CF(carry flag)-进位标志</td>
-<td>记录运算时是否1从最高有效位产生进位值（是/否）</td>
-</tr>
-<tr>
-<td>DF(direction flag)-方向标志</td>
-<td>在串处理指令中控制处理信息的方向（减量 STD /增量 CLD）</td>
-</tr>
-</tbody>
-</table>
-<h4 id="说明-2"><a class="markdownIt-Anchor" href="#说明-2"></a> 说明</h4>
-<ul>
-<li>上述寄存器都是以 16 位形式访问</li>
-<li>同样 80386 以及后续的 32 位机还有 <code>E-寄存器</code> 协助帮忙以 32 位访问</li>
-</ul>
-<h3 id="段寄存器"><a class="markdownIt-Anchor" href="#段寄存器"></a> 段寄存器</h3>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-11.jpg" style="zoom:80%;">
-<h1 id="存储器"><a class="markdownIt-Anchor" href="#存储器"></a> 存储器</h1>
-<h2 id="存储单元的地址"><a class="markdownIt-Anchor" href="#存储单元的地址"></a> 存储单元的地址</h2>
-<ul>
-<li>在存储器里以<mark>字节</mark>为单位存储信息</li>
-<li>每一个字节单元给一个唯一的存储器地址称为物理地址</li>
-<li>地址从 0 开始编号，顺序加 1。用二进制数表示，是无符号整数，书写格式为<strong>十六进制</strong></li>
-</ul>
-<h2 id="地址总线和寻址空间"><a class="markdownIt-Anchor" href="#地址总线和寻址空间"></a> 地址总线和寻址空间</h2>
-<ul>
-<li>地址总线宽度指专用于传送地址的总线数目，根据这一数值可以确定处理机可以访问的存储器的最大范围，即寻址空间</li>
-<li>如 8086/8088 的地址总线宽度为20位，则可以表示 2 <sup>20</sup>=1048576 个存储单元，即寻址空间为 1M 其地址编号的范围为 00000H ~ FFFFFH</li>
-</ul>
-<h2 id="存储单元的内容"><a class="markdownIt-Anchor" href="#存储单元的内容"></a> 存储单元的内容</h2>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-12.png" style="zoom:50%;">
-<ul>
-<li>一个存储单元中存放的信息称为该存储单元的内容</li>
-<li>地址为 0004H 的字节的存储 单元中的内容是78H，表示 为 <strong>(0004)= 78H</strong></li>
-</ul>
-<div class="note info icon">
-            <p>注意这个写法，<code>()</code> 里填的是地址，<code>=</code> 后面给出的是对应的内容，如果用 X 表示某存储单元的地址，则 X 单元的内容可表示为 (X)</p>
-          </div>
-<h2 id="数据存放方式"><a class="markdownIt-Anchor" href="#数据存放方式"></a> 数据存放方式</h2>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-12.png" style="zoom:50%;">
-<ul>
-<li>一个字存入存储器要占有相继的两个字节，存放时低位字节存入低地址，高位字节存入高地址</li>
-<li>字单元的地址采用它的低地址表示，可表示为 (0004)=5678H</li>
-<li>0004H 的双字单元的内容：(0004)=12345678H</li>
-</ul>
-<h2 id="实模式存储器寻址方式"><a class="markdownIt-Anchor" href="#实模式存储器寻址方式"></a> 实模式存储器寻址方式</h2>
-<h3 id="存储器地址的分段"><a class="markdownIt-Anchor" href="#存储器地址的分段"></a> 存储器地址的分段</h3>
-<p><strong>问题</strong>：在 <code>8086CPU</code> 中地址总线的长度是 20 位（即最大寻址空间是 2<sup>20</sup>=1MB），其物理地址从 00000H~FFFFFH。而 <code>8086 CPU</code> 的寄存器都是 16 （即最大寻址空间为 2<sup>16</sup>，地址编号从 0000H~FFFFH）位的那么这传入的 20  位地址怎么用 16 位的寄存器表达呢？</p>
-<p><strong>解决</strong>：将 1M 的字节地址划分为若干个段，从 0 地址开始每 16 个字节划为一个小段，段的起始地址成为段首址（肯定是 16 的倍数）</p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-13.png" style="zoom:50%;">
-<blockquote>
-<p>上述将 1M 物理地址编号号并分段，每个十六进制数代表四个二进制数</p>
-</blockquote>
-<p><strong>特点</strong>：这样可以划分出 2<sup>20</sup>/2<sup>16</sup>=2<sup>4</sup>=16 个段，每个段的起始地址的最低一位都是 0 （即 20 为的地址的低四位为 0）</p>
-<h4 id="物理地址的组成"><a class="markdownIt-Anchor" href="#物理地址的组成"></a> 物理地址的组成</h4>
-<p>那么根据上面的分法，由于段地址的起始地址最低位为 0 的特点，我们可以只取段地址的起始地址的高 16 位（即舍弃最低位 0）作为段地址，然后我们再记录一个偏移地址指在段内相对段起始地址的偏移值，那么 20 为的物理地址就可以由 16 位的段地址和 16 为偏移地址组成</p>
-<h4 id="物理地址的计算方法"><a class="markdownIt-Anchor" href="#物理地址的计算方法"></a> 物理地址的计算方法</h4>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-14.png" style="zoom:67%;">
-<p>段地址左移 4 位（相当于 <code>*16d</code>）再加上偏移地址就形成了物理地址，在指明某个内存单元的时候就是 <code>段地址:偏移地址</code> 形式</p>
-<blockquote>
-<p><code>3017:000A</code> 的表示的物理地址就是：<code>3017AH</code></p>
-</blockquote>
-<p><strong>易混淆的概念</strong>：</p>
-<ol>
-<li>物理地址和逻辑地址是同一个东西，指唯一的 20 位的地址</li>
-<li>有效地址和偏移地址是同一个东西，值的是相对段地址不唯一的 16 位的地址</li>
-</ol>
-<h3 id="段寄存器-2"><a class="markdownIt-Anchor" href="#段寄存器-2"></a> 段寄存器</h3>
-<h4 id="分类"><a class="markdownIt-Anchor" href="#分类"></a> 分类</h4>
-<ul>
-<li>代码段：存放当前正在运行的程序指令</li>
-<li>数据段：存放当前运行程序所用到的数据</li>
-<li>堆栈段：定义的堆栈所造的区域</li>
-<li>附加段：附加的数据段，是一个辅助的数据段</li>
-</ul>
-<h4 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h4>
-<ul>
-<li>除非专门的指定，一般情况下各段在存储区中的分配是由操作系统默认负责的</li>
-<li>段寄存器用来确认该段在内存单元中的起始位置</li>
-<li><strong>程序员在编写程序时应该按照规定程序的各部分放在指定的段区之间</strong></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">data    segment</span><br><span class="line">        message         db      &#39;hello$&#39;</span><br><span class="line">data    ends</span><br><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">code    segment</span><br><span class="line">        assume          cs:code,ds:data</span><br><span class="line">start:</span><br><span class="line">        ; 数据段段地址传给ds</span><br><span class="line">        mov     ax,data</span><br><span class="line">        mov     ds,ax</span><br><span class="line">		...</span><br><span class="line">code	ends</span><br><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">		end		start</span><br></pre></td></tr></table></figure>
-<h4 id="段寄存器和相应偏移地址寄存器组合表"><a class="markdownIt-Anchor" href="#段寄存器和相应偏移地址寄存器组合表"></a> 段寄存器和相应偏移地址寄存器组合表</h4>
-<table>
-<thead>
-<tr>
-<th>段寄存器</th>
-<th>偏移地址寄存器</th>
-<th>缺省选择规则</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>CS</td>
-<td>IP</td>
-<td>用于取指令</td>
-</tr>
-<tr>
-<td>SS</td>
-<td>SP 和 BP</td>
-<td>所有的堆栈进出</td>
-</tr>
-<tr>
-<td>DS</td>
-<td>BX、DI、SI 或者一个 16 位直接数</td>
-<td>除相对于堆栈以及串处理指令的目的串以外的所有数据访问</td>
-</tr>
-<tr>
-<td>ES</td>
-<td>DI</td>
-<td>串处理指令的目的串</td>
-</tr>
-</tbody>
-</table>
-<h4 id="段跨越"><a class="markdownIt-Anchor" href="#段跨越"></a> 段跨越</h4>
-<p>80x86 允许程序员用段跨越前缀改变系统所指定的默认段，如允许数据存放在除 DS 段以外的其他段中</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; 段跨越前缀格式</span><br><span class="line">; 段寄存器:偏移地址</span><br><span class="line">mov		ax,[value]</span><br><span class="line">mov		ax,es:[value]</span><br></pre></td></tr></table></figure>
-<div class="gallery ">
-    <p>
-    <div class="fancybox">
-        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-15.png" alt>
-        <span class="image-caption">段分配相互独立</span>
-    </div><br>
-    <div class="fancybox">
-        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-16.png" alt>
-        <span class="image-caption">段分配相互重叠</span>
-    </div>
-    </p>
-</div>
-<p><strong>注意</strong>：</p>
-<ul>
-<li>串处理指令的目的串必须在 ES 段</li>
-<li><code>PUSH</code> 指令的目的和 <code>POP</code> 指令的源必须用 SS 段</li>
-<li>指令必须存放在 CS 段</li>
-</ul>
-<h2 id="外部设备"><a class="markdownIt-Anchor" href="#外部设备"></a> 外部设备</h2>
-<p><a href="https://jingyan.baidu.com/article/a3f121e48dff80fc9052bbe8.html">主机与外部设备</a>（CPU 和存储器）的通信是通过外设接口进行的，每个接口由一组寄存器组成：</p>
-<ol>
-<li>数据寄存器：存放要在外设和主机间传送的数据</li>
-<li>状态寄存器：保存外部设备或接口的状态信息</li>
-<li>命令寄存器：CPU 给外设或接口的控制命令通过此寄存器送给外部设备</li>
-</ol>
-<p>端口地址：主机中的每个寄存器给予一个端口地址，组成了一个独立于内存储器的 <code>I/O</code> 地址空间</p>
-<p><strong>主机与外设交换信息是通过 IN、OUT 指令来完成的</strong></p>
-<h1 id="80x86-的指令系统和寻址方式"><a class="markdownIt-Anchor" href="#80x86-的指令系统和寻址方式"></a> 80x86 的指令系统和寻址方式</h1>
-<h2 id="80x86-的寻址方式"><a class="markdownIt-Anchor" href="#80x86-的寻址方式"></a> 80x86 的寻址方式</h2>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-7.png" style="zoom: 67%;">
-<p>指令格式中操作数到底是去取具体数还是存放位置要根据操作码的用途决定，例如 <code>mov ax,bx</code>  就是将 <code>bx</code> 的内存储的值传给 <code>ax</code>，但是 <code>lea ax,bx</code> 就是将 <code>bx</code> 存储的地址传给 <code>ax</code></p>
-<h3 id="与数据有关的寻址方式"><a class="markdownIt-Anchor" href="#与数据有关的寻址方式"></a> 与数据有关的寻址方式</h3>
-<h4 id="立即数寻址方式"><a class="markdownIt-Anchor" href="#立即数寻址方式"></a> 立即数寻址方式</h4>
-<p>操作数直接放在指令中，紧跟在操作码之后作为指令的一部分存放在代码段中</p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-17.png" style="zoom: 67%;">
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	al,5		;将5d传给al</span><br><span class="line">mov	ax,3064H	;将3064H传给ax</span><br></pre></td></tr></table></figure>
-<h4 id="寄存器寻址方式"><a class="markdownIt-Anchor" href="#寄存器寻址方式"></a> 寄存器寻址方式</h4>
-<p>将操作数给为存放在寄存器里，指令指定寄存器</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,bx</span><br></pre></td></tr></table></figure>
-<p><strong>这种寻址方式由于操作数就在寄存器中不需要访问存储器所以运算速度较快</strong></p>
-<h4 id="存储器寻址"><a class="markdownIt-Anchor" href="#存储器寻址"></a> 存储器寻址</h4>
-<h5 id="有效地址"><a class="markdownIt-Anchor" href="#有效地址"></a> 有效地址</h5>
-<p>后面的五种寻址方式不同于上述两种，他们都要去存储器中寻找操作数的确切地址，这里涉及到一个操作数的有效地址的概念</p>
-<p>有效地址的四种成分：</p>
-<ol>
-<li>位移量：存放在指令中的一个8位、16位或32位数（386及后继机型），<strong>但不是立即数而是一个地址</strong></li>
-<li>基址：存放在基址寄存器中，通常用来指向数据段中数组或字符串的首地址（用于基址寄存器的是 BX 和 BP）</li>
-<li>变址：存放在变址寄存器中，通常用来访问数组中的某个元素或字符串中的某个字符（用于变址寄存器的是 SI 和 DI）</li>
-<li>比例因子（386及后继机型）：其值为1，2，4， 8，在寻址中可用变址寄存器的内容乘以比例因子来取得变址值。对访问元素长度为2，4，8字节的数组特别有用</li>
-</ol>
-<p>有效地址的计算式：<code>EA = 基址 + (变址 * 比例因子) + 位移量</code></p>
-<ul>
-<li>
-<p>操作数的有效地址只包含一种成分：</p>
-<ul>
-<li>直接寻址方式</li>
-<li>寄存器间接寻址方式</li>
-</ul>
-</li>
-<li>
-<p>操作数有效地址包含两种成分：</p>
-<ul>
-<li>直接变址寻址方式</li>
-<li>基址变址寻址方式</li>
-</ul>
-</li>
-<li>
-<p>相对基址变址寻址方式</p>
-</li>
-<li>
-<p>包含比例因子的寻址方式（这里不作讲解）</p>
-</li>
-</ul>
-<div class="note warning icon">
-            <p>因为存储器寻址串的是有效地址信息，所以除了字符变量外其他的寄存器都应该加上 <code>[]</code> 表示传其指向的地址，这也是区分是不是存储器寻址的方法</p>
-          </div>
-<h5 id="直接寻址方式"><a class="markdownIt-Anchor" href="#直接寻址方式"></a> 直接寻址方式</h5>
-<p>操作数的有效地址只包含位移量一种成分，其值存放在代码段中指令的操作码之后，位移量的值就是操作数的有效地址</p>
-<p><strong>用途：直接寻址方式适用于处理单个变量</strong></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,[2000H]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-18.png" style="zoom:67%;">
-<p>根据默认的段寄存器和偏移地址寄存器搭配关系 16 位的直接数和 DS 搭配，若此时 (DS)=3000H，那么执行结果 (ax)=3050H</p>
-</blockquote>
-<p>在汇编语言中可以使用符号地址代替数值地址（即用变量名和变量存储的值是等效的）</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,value</span><br><span class="line">mov	ax,[value]</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>中括号可以看做相当于 C++ 中的取地址符 <code>&amp;</code>，它指向中括号内容指向的偏移地址。这里 <code>value</code> 就是存储位移量的变量名</p>
-</blockquote>
-<p>直接寻址可以使用默认的搭配段地址寄存器和偏移地址寄存器，也可以使用段跨越前缀</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,es:[2000H]</span><br></pre></td></tr></table></figure>
-<h5 id="寄存器间接寻址"><a class="markdownIt-Anchor" href="#寄存器间接寻址"></a> 寄存器间接寻址</h5>
-<p>寄存器间接寻址方式操作数的有效地址只包含基址寄存器或者变址寄存器之一，也就是有效地址改为放在寄存器中，该寄存器的内容就做为偏移地址</p>
-<p><strong>用途：寄存器间接寻址方式适用于表格处理（一维存储方式），执行完一条指令后只需要修改寄存器的内容就可以去除表格的下一项</strong></p>
-<div class="tabs" id="test4"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#test4-1">示例一</button></li><li class="tab"><button type="button" data-href="#test4-2">示例二</button></li><li class="tab"><button type="button" data-href="#test4-3">示例三：表格处理</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="test4-1"><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-19.png" style="zoom: 67%;">
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;2000H bx&#x3D;1000H</span><br><span class="line">mov	ax,[bx]</span><br></pre></td></tr></table></figure>
-<p>ax 的物理地址 = 20000 + 1000 = 21000H</p><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-2"><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-20.png" style="zoom: 67%;">
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(AX)&#x3D;0 	(BP)&#x3D;0030H 	(DS)&#x3D;3000H 	(SS)&#x3D;2000H	(20030H)&#x3D;1234H 	(30030H)&#x3D;5678H</span><br><span class="line">mov	ax,[bp]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-3"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">        lea si, array   ; 数组首地址送si</span><br><span class="line">        mov cx, length 	; 数组长度送cx</span><br><span class="line">        mov ax, 0</span><br><span class="line">AA:</span><br><span class="line">        add ax, [si]</span><br><span class="line">        add si, 2</span><br><span class="line">        dec cx</span><br><span class="line">        jnz AA</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div></div></div>
-<h5 id="直接变址寻址方式寄存器相对寻址方式"><a class="markdownIt-Anchor" href="#直接变址寻址方式寄存器相对寻址方式"></a> 直接变址寻址方式（寄存器相对寻址方式）</h5>
-<p>操作数的有效地址为基址寄存器或变址寄存器的内容与指令中的位移量之和</p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-21.png" style="zoom: 67%;">
-<p><strong>用途：直接变址寻址方式适用于处理一位数组或者字符串</strong></p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-22.png" style="zoom: 67%;">
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;3000H        si&#x3D;2000H        count&#x3D;3000H</span><br><span class="line">mov ax,count[si] 或 </span><br><span class="line">mov ax,[count+si]</span><br></pre></td></tr></table></figure>
-<h5 id="基址变址寻址方式"><a class="markdownIt-Anchor" href="#基址变址寻址方式"></a> 基址变址寻址方式</h5>
-<p>操作数的有效地址是一个基址寄存器和一个变址寄存器的内容之和，就是位移量改为存在变址寄存器中</p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-23.png" style="zoom:67%;">
-<p><strong>用途：基址变址寻址方式同样适用于处理一位数组或者字符串</strong></p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-24.png" style="zoom:67%;">
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;2100H	bx&#x3D;0158H	di&#x3D;10a5H</span><br><span class="line">mov	ax,[bx][di] 或</span><br><span class="line">mov	ax,[bx+di]</span><br></pre></td></tr></table></figure>
-<h5 id="相对基址变址寄存器"><a class="markdownIt-Anchor" href="#相对基址变址寄存器"></a> 相对基址变址寄存器</h5>
-<p>操作数的有效地址是一个基址寄存器和一个变址寄存器的内容与指令中指定的位移量之和</p>
-<p><strong>用途：相对基址变址寄存器适二维数组</strong></p>
-<blockquote>
-<p>这不难理解，有效地址又加上了一种组成成分维度肯定上升啊</p>
-</blockquote>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-25.png" style="zoom:67%;">
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;3000H	bx&#x3D;2000H	si&#x3D;1000H	mask&#x3D;0250H</span><br><span class="line">mov	ax,mask[bx][si]</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>大学计算机学习</category>
-        <category>汇编语言</category>
-      </categories>
-      <tags>
-        <tag>汇编语言</tag>
-        <tag>80x86</tag>
       </tags>
   </entry>
   <entry>
@@ -9893,6 +9404,1355 @@ Bogo排序的最坏时间复杂度为 O(∞)，一辈子也不能输出排序结
 <h2 id="实验八子程序结构二"><a class="markdownIt-Anchor" href="#实验八子程序结构二"></a> 实验八：子程序结构（二）</h2>
 <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibianti-9.png" style="zoom:67%;">
 <figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">data    segment</span><br><span class="line">        crlf_str        db      13,10,&#39;$&#39;</span><br><span class="line">        x               dw      -1</span><br><span class="line">        array_head      dw      5h,10h,18h,22h,2ah,3ch,45h,58h</span><br><span class="line">        array_end       dw      6fh</span><br><span class="line">        n               dw      ?     ; 保存输入的十六进制数</span><br><span class="line">        count           dw      10    ; 插入元素后数组的长度</span><br><span class="line">data    ends</span><br><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">code    segment</span><br><span class="line">; ----------------------------------------------------------------</span><br><span class="line">main            proc far</span><br><span class="line">        assume          cs:code,ds:data</span><br><span class="line">start:</span><br><span class="line">        ; 数据段段地址传给ds</span><br><span class="line">        mov     ax,data</span><br><span class="line">        mov     ds,ax</span><br><span class="line">        ; 输出十六进制数据(？？不知道干什么老师作业里添加的步骤应该是用来先检查十六进制输出写对没)</span><br><span class="line">        mov     bx,23afh              </span><br><span class="line">        call    binihex</span><br><span class="line">        ; 调用子程序输入十六进制数据保存到bx</span><br><span class="line">        call    hexibin</span><br><span class="line">        mov     n,bx</span><br><span class="line">        ; 调用子程序输出回车换行</span><br><span class="line">        call    crlf</span><br><span class="line">        ; 调用子程序在数组中插入n</span><br><span class="line">        mov     ax,n</span><br><span class="line">        call    insert_arr</span><br><span class="line">        ; 调用子程序输出十六进制数组元素用空格分隔</span><br><span class="line">        call    print_arr</span><br><span class="line">        ; 返回dos</span><br><span class="line">        mov     ax,4c00h</span><br><span class="line">        int     21h</span><br><span class="line">main    endp</span><br><span class="line">; ------------------------------------------------------------------</span><br><span class="line">binihex         proc near</span><br><span class="line">        ; 输出存在bx中的十六进制数</span><br><span class="line">        mov     ch,4                  ; 设置循环取四次用于模拟</span><br><span class="line">rotate:</span><br><span class="line">        mov     cl,4                  ; 因为要高位到低位转换输出,所以每次执行先设置循环左移4位</span><br><span class="line">        rol     bx,cl</span><br><span class="line">        mov     al,bl                 ; 将值传给al</span><br><span class="line">        and     al,0fh                ; 只要后四位所以清空前四位</span><br><span class="line">                                      ; 转换为字符型</span><br><span class="line">        add     al,30h</span><br><span class="line">        cmp     al,3ah</span><br><span class="line">        jl      printit</span><br><span class="line">        add     al,7h</span><br><span class="line">printit:</span><br><span class="line">        mov     dl,al</span><br><span class="line">        mov     ah,02h</span><br><span class="line">        int     21h</span><br><span class="line">        dec     ch</span><br><span class="line">        jnz     rotate</span><br><span class="line">        ret</span><br><span class="line">binihex         endp</span><br><span class="line">; -------------------------------------------------------------------</span><br><span class="line">hexibin         proc near</span><br><span class="line">        ; 键盘输入的十六进制数转换为数值(二进制)</span><br><span class="line">        mov     bx,0                  ; 记录答案</span><br><span class="line">newchar:</span><br><span class="line">        mov     ah,01h                ; 获取一个字符</span><br><span class="line">        int     21h</span><br><span class="line">        sub     al,30h                ; 假设是0~9转换为相应的数值</span><br><span class="line">        jl      exit</span><br><span class="line">        cmp     al,10d                ; 判断是否真的是0~9</span><br><span class="line">        jl      add_to                ; 确实是数字直接去更新答案</span><br><span class="line">                                      ; 执行到这里说明不是0~9需要继续判断处理</span><br><span class="line">        sub     al,27h                ; 假设是a~f</span><br><span class="line">        cmp     al,0ah                ; 和a比较</span><br><span class="line">        jl      exit</span><br><span class="line">        cmp     al,10h                ; 和f比较</span><br><span class="line">        jge     exit</span><br><span class="line">add_to:</span><br><span class="line">        ; 执行到这里要将这个十六进制字符在bx</span><br><span class="line">        ; 将bx末尾腾出4个位置来放这个十六进制数</span><br><span class="line">        mov     cl,4                  ; 设置逻辑左移的次数</span><br><span class="line">        shl     bx,cl</span><br><span class="line">        mov     ah,0                  ; 只用到了al所以将ah清空</span><br><span class="line">        add     bx,ax                 ; 将获取的值传给bx</span><br><span class="line">        jmp     newchar</span><br><span class="line">exit:</span><br><span class="line">        ret</span><br><span class="line">hexibin         endp</span><br><span class="line">; -------------------------------------------------------------------</span><br><span class="line">print_arr       proc near</span><br><span class="line">        mov     si,0                  ; 遍历指针</span><br><span class="line">        mov     cx,count              ; 设置循环次数</span><br><span class="line">outputloop:</span><br><span class="line">        mov     bx,array_head[si]     ; 将需要输出的十六进制数传给bx</span><br><span class="line">        push    cx                    ; 调用其他的子程序可能会用到cx,所以调用前将cx保存下来</span><br><span class="line">        call    binihex</span><br><span class="line">        pop     cx</span><br><span class="line">        dec     cx                    ; 循环-1</span><br><span class="line">        jz      exitloop              ; 循环结束跳出循环</span><br><span class="line">        mov     dl,32                 ; 输出空格</span><br><span class="line">        mov     ah,02h</span><br><span class="line">        int     21h</span><br><span class="line">        add     si,2                  ; si移动下一个数的位置</span><br><span class="line">        jmp     outputloop</span><br><span class="line">exitloop:</span><br><span class="line">        ret</span><br><span class="line">print_arr       endp</span><br><span class="line">; --------------------------------------------------------------------</span><br><span class="line">insert_arr      proc near</span><br><span class="line">        ; 将ax中的数插入arr中</span><br><span class="line">        ; 从末尾遍历,之前指的就是靠近末尾,之后指的就是靠近首端</span><br><span class="line">        mov     array_head-2,0ffffh   ; 设置一个很小的数(-1)放在开头</span><br><span class="line">        mov     si,0                  ; 设置有序序列的末尾指针</span><br><span class="line">compare:</span><br><span class="line">        cmp     array_end[si],ax      ; 和当前数进行比较</span><br><span class="line">        jle     insert                ; 小于等于就插入在这个之前</span><br><span class="line">        mov     bx,array_end[si]      ; 反之就将当前数向后移动一位</span><br><span class="line">        mov     array_end[si+2],bx</span><br><span class="line">        sub     si,2                  ; si向首端靠近一个位置继续比较</span><br><span class="line">        jmp     short compare</span><br><span class="line">insert:</span><br><span class="line">        mov     array_end[si+2],ax    ; 将ax插入到当前位置之前</span><br><span class="line">        ret</span><br><span class="line">insert_arr      endp</span><br><span class="line">; --------------------------------------------------------------------</span><br><span class="line">crlf    proc near</span><br><span class="line">        lea     dx,crlf_str</span><br><span class="line">        mov     ah,09h</span><br><span class="line">        int     21h</span><br><span class="line">        ret</span><br><span class="line">crlf    endp</span><br><span class="line">; --------------------------------------------------------------------</span><br><span class="line">code    ends</span><br><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">        end start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>大学计算机学习</category>
+        <category>汇编语言</category>
+      </categories>
+      <tags>
+        <tag>汇编语言</tag>
+        <tag>80x86</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>IBM-PC汇编语言程序设计知识总结</title>
+    <url>/posts/635767573/</url>
+    <content><![CDATA[<h1 id="基础知识"><a class="markdownIt-Anchor" href="#基础知识"></a> 基础知识</h1>
+<h2 id="语言分类"><a class="markdownIt-Anchor" href="#语言分类"></a> 语言分类</h2>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-1.png" style="zoom:67%;">
+<div class="tabs" id="test4"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#test4-1">机器语言</button></li><li class="tab"><button type="button" data-href="#test4-2">汇编语言</button></li><li class="tab"><button type="button" data-href="#test4-3">高级语言</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="test4-1"><p>计算机运行由 <code>CPU</code> 控制，根据机器指令决定每一步的操作。计算机硬件能理解和执行的就是机器指令代码，该代码被称为“机器语言”</p>
+<p>机器语言是由组成由二进制数组成的代码</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">1010 1111</span><br><span class="line">0011 0111</span><br><span class="line">0111 0110</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-2"><p>采用助记符表示机器指令的操作码，用变量代替操作数存放地址形成的语言被称为“汇编语言”</p>
+<p>汇编语言要翻译成机器语言程序才可以由计算机执行，翻译的过程被称为“汇编”</p>
+<p>把汇编源程序翻译成目标程序的语言加工程序称为”汇编程序“</p>
+<p>基本操作与机器指令相对应</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">MOV A,47</span><br><span class="line">ADD A,B</span><br><span class="line">HALT</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-3"><p>高级程序设计语言接近于人类自然语言的语法习惯，与计算机硬件无关，易被用户掌握和使用</p>
+<p>目前广泛应用的高级语言有多种，如 BASIC、 FORTRAN、PASCAL、C、C++、JAVA 等等</p>
+<p>高级语言又分为面向过程和面向对象</p><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div></div></div>
+<h2 id="汇编特点"><a class="markdownIt-Anchor" href="#汇编特点"></a> 汇编特点</h2>
+<table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>汇编语言与处理器密切相关</td>
+<td>编写汇编语言源程序比编写高级语言源程序烦 琐</td>
+</tr>
+<tr>
+<td>汇编语言程序效率高</td>
+<td>调试汇编语言程序比调试高级语言程序困难</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>高级语言适合于数值计算、数据处理等软件的开发</li>
+<li>汇编语言则适合于对时间（执行速度）和空间 （程序长度）要求特别高的情况</li>
+<li>在很多工程应用中，经常将这两种语言结合起来 使用。例如，Linux 操作系统的大部分代码使用 C 语言开发的，而与 CPU 及机器硬件密切相关的代 码就需要用汇编语言编写</li>
+</ul>
+<h2 id="字节-字-字长"><a class="markdownIt-Anchor" href="#字节-字-字长"></a> 字节、字、字长</h2>
+<p>位：计算机能处理的最小单元，它不随 CPU 的处理能力的变化而变化</p>
+<p>字节：就是 8 位数据的大小，它也不随 CPU 的处理能力的变化而变化</p>
+<p>字：计算机进行数据处理时，一次存取、加工和传送的数据长度称为字（word），一个字通常是由 16 位组成，也就是双字节</p>
+<p>字长：计算机的每个字所包含的的位数称为字长。一般我们说的 8 位机、16 位机、32 位机、64 位机指的就是计算机的字长</p>
+<p>针对以上概念，有如下结论：</p>
+<ul>
+<li>在 16 位CPU中，一个字表示 16 位（两个字节）</li>
+<li>在 32 位CPU中，一个字表示 32 位（四个字节双字）</li>
+<li>在 64 位CPU中，一个字表示 64 位（八个字节四字）</li>
+</ul>
+<p>以此类推下去…</p>
+<h2 id="堆和栈"><a class="markdownIt-Anchor" href="#堆和栈"></a> 堆和栈</h2>
+<ul>
+<li>计算机的堆区地址从低到高向上增长</li>
+<li>计算机的栈区地址从高到低向下增长</li>
+<li>堆栈就是线性栈，也就是栈的一种</li>
+</ul>
+<blockquote>
+<p>计算机执行程序时都默认使用的是栈区</p>
+</blockquote>
+<h2 id="进位计数"><a class="markdownIt-Anchor" href="#进位计数"></a> 进位计数</h2>
+<h3 id="进制转换"><a class="markdownIt-Anchor" href="#进制转换"></a> 进制转换</h3>
+<p>常用用到二进制（B）、八进制（O）、十进制（D）、十六进制（H）</p>
+<blockquote>
+<p>进制可以借助<a href="https://tool.lu/hexconvert/">进制转换器</a>但是需要会原理</p>
+</blockquote>
+<div class="btn-center">
+<a class="btn-beautify button--animated outline blue larger" href="https://jingyan.baidu.com/article/495ba84109665338b30ede98.html" title="百度百科讲解"><i class="far fa-hand-point-right fa-fw"></i><span>百度百科讲解</span></a>
+</div>
+<h4 id="十进制转换二进制"><a class="markdownIt-Anchor" href="#十进制转换二进制"></a> 十进制转换二进制</h4>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-2.png" style="zoom:50%;">
+<h4 id="二进制转换十进制"><a class="markdownIt-Anchor" href="#二进制转换十进制"></a> 二进制转换十进制</h4>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-3.png" style="zoom:50%;">
+<blockquote>
+<p>同理二进制转换其他进制的数也可以用这个方法</p>
+</blockquote>
+<h4 id="二进制转换十六进制"><a class="markdownIt-Anchor" href="#二进制转换十六进制"></a> 二进制转换十六进制</h4>
+<p>他们之间成倍数关系，相当于四位二进制的数表示一位十六进制的数，可以进一步简化运算得出结果</p>
+<div class="note info icon">
+            <p>这个方法很重要，后面程序设计中进制转行使用就是这个方法</p>
+          </div>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-4.png" style="zoom:50%;">
+<h3 id="计算机中的数和字符的表示"><a class="markdownIt-Anchor" href="#计算机中的数和字符的表示"></a> 计算机中的数和字符的表示</h3>
+<h4 id="原码"><a class="markdownIt-Anchor" href="#原码"></a> 原码</h4>
+<p>最高位表示符号（正数用 0 ，负数用 1），其他位表示数值位，称为有符号数的原码表示法</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X&#x3D;45&#x3D;00101101B [X]原&#x3D;00101101B</span><br><span class="line">Y&#x3D;-45          [Y]原&#x3D;10101101B</span><br></pre></td></tr></table></figure>
+<h4 id="反码"><a class="markdownIt-Anchor" href="#反码"></a> 反码</h4>
+<p>正数的反码与原码完全相同，符号位用 0 表示数值位值不变</p>
+<p>负数的反码符号位用 1 表示, 数值位为原码数值位按位取反形成，即 0 变 1、1 变 0</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X&#x3D;45&#x3D;00101101B 	[X]原&#x3D;00101101B</span><br><span class="line">				[X]反&#x3D;00101101B</span><br><span class="line">Y&#x3D;-45          	[Y]原&#x3D;10101101B</span><br><span class="line">				[Y]反&#x3D;11010010B </span><br></pre></td></tr></table></figure>
+<h4 id="补码"><a class="markdownIt-Anchor" href="#补码"></a> 补码</h4>
+<p>本质：对一个二进制数按位求反、末位加一</p>
+<p>正数的补码与原码完全相同，符号位用 0 表示数值位值不变</p>
+<p>负数的补码为反码加 1 形成</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">X&#x3D;45&#x3D;00101101B 	[X]原&#x3D;00101101B</span><br><span class="line">				[X]反&#x3D;00101101B</span><br><span class="line">				[X]补&#x3D;00101101B</span><br><span class="line">Y&#x3D;-45          	[Y]原&#x3D;10101101B</span><br><span class="line">				[Y]反&#x3D;11010010B </span><br><span class="line">				[Y]补&#x3D;11010011B</span><br></pre></td></tr></table></figure>
+<h3 id="计算机计算方法"><a class="markdownIt-Anchor" href="#计算机计算方法"></a> 计算机计算方法</h3>
+<p>计算机只有加法器，而补码减法可转换为补码加法 ，所以计算机用补码进行计算</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">加法规则：[X+Y]补码 &#x3D; [X]补码 + [Y]补码</span><br><span class="line">减法规则：[X-Y]补码 &#x3D; [X]补码 + [-Y]补码 </span><br></pre></td></tr></table></figure>
+<h1 id="80x86-计算机组织"><a class="markdownIt-Anchor" href="#80x86-计算机组织"></a> 80x86 计算机组织</h1>
+<h2 id="80x86-微处理器"><a class="markdownIt-Anchor" href="#80x86-微处理器"></a> 80x86 微处理器</h2>
+<h3 id="硬件组成"><a class="markdownIt-Anchor" href="#硬件组成"></a> 硬件组成</h3>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-5.png" style="zoom:50%;">
+<h3 id="软件组成"><a class="markdownIt-Anchor" href="#软件组成"></a> 软件组成</h3>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-6.jpg" style="zoom: 13%;">
+<h1 id="中央处理机cpu"><a class="markdownIt-Anchor" href="#中央处理机cpu"></a> 中央处理机CPU</h1>
+<ul>
+<li>
+<p>执行存放在存储器里的指令</p>
+</li>
+<li>
+<p>完成算术逻辑运算</p>
+</li>
+<li>
+<p>完成在CPU和存储器以及I/O之间的数据传送</p>
+</li>
+<li>
+<p>由运算器、控制器和寄存器组成</p>
+</li>
+</ul>
+<h2 id="运算器"><a class="markdownIt-Anchor" href="#运算器"></a> 运算器</h2>
+<ul>
+<li>运算器执行算术运算和逻辑运算</li>
+<li>使用寄存器来保存等待处理的数据</li>
+<li>在运算中，结果暂时存放在累加器中</li>
+</ul>
+<h2 id="控制器"><a class="markdownIt-Anchor" href="#控制器"></a> 控制器</h2>
+<ul>
+<li>控制器顺序从 RAM 中取出指令，并将他们放到指令寄存器中</li>
+<li>控制器翻译指令，并根据翻译结果发送信号给数据总线从 RAM 中取数据，发送信号到运算器 进行处理</li>
+</ul>
+<h2 id="总线组成"><a class="markdownIt-Anchor" href="#总线组成"></a> 总线组成</h2>
+<ul>
+<li>地址总线：决定最大寻址空间</li>
+<li>数据总线：决定机器字长</li>
+<li>控制总线：发送控制信号</li>
+</ul>
+<h2 id="指令"><a class="markdownIt-Anchor" href="#指令"></a> 指令</h2>
+<p>指令是对计算机进行程序控制的最小单位 所有的指令的集合称为计算机的指令系统</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-7.png" style="zoom: 67%;">
+<p>指令周期：计算执行一条指令所需要的时间</p>
+<h2 id="80x86-寄存器组详讲"><a class="markdownIt-Anchor" href="#80x86-寄存器组详讲"></a> 80x86 寄存器组详讲</h2>
+<h3 id="通用寄存器"><a class="markdownIt-Anchor" href="#通用寄存器"></a> 通用寄存器</h3>
+<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-8.jpg" alt></p>
+<h4 id="数据寄存器"><a class="markdownIt-Anchor" href="#数据寄存器"></a> 数据寄存器</h4>
+<p>数据寄存器共有 4 个寄存器 AX、BX、CX、DX，用来保存操作数或运算结果等信息</p>
+<table>
+<thead>
+<tr>
+<th>数据寄存器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AX</td>
+<td>使用频度最高，用于算术运算及与外设传送信息等</td>
+</tr>
+<tr>
+<td>BX</td>
+<td>常用于存放存储器地址</td>
+</tr>
+<tr>
+<td>CX</td>
+<td>一般作为循环或串操作等指令中的隐含计数器</td>
+</tr>
+<tr>
+<td>DX</td>
+<td>常用来存放双字数据的高 16 位；存放外设端口地址</td>
+</tr>
+</tbody>
+</table>
+<h4 id="变址指针寄存器"><a class="markdownIt-Anchor" href="#变址指针寄存器"></a> 变址指针寄存器</h4>
+<p>变址和指针寄存器包括 SI、DI、SP、BP 这四个 16 位寄存器，主要用于存放某个存储单元的偏移地址</p>
+<table>
+<thead>
+<tr>
+<th>数据寄存器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SI 和 DI-源变址寄存器和目的变址寄存器</td>
+<td>在字符串操作中，SI 和 DI 都具有自动增量或减量的功能，分别与 DS 和 ES 联用</td>
+</tr>
+<tr>
+<td>SP-堆栈指针寄存器</td>
+<td>用于存放当前堆栈段中栈顶的偏移地址，与 SS 联用进行堆栈寻址</td>
+</tr>
+<tr>
+<td>BP-基址指针寄存器</td>
+<td>用于存放堆栈段中某一存储单元的偏移地址（基地址），同样与 SS 联用进行堆栈寻址</td>
+</tr>
+</tbody>
+</table>
+<h4 id="说明"><a class="markdownIt-Anchor" href="#说明"></a> 说明</h4>
+<ul>
+<li>上述寄存器都是以 16 位形式访问，但是前四个还分为 HIGH 和 LOW 可以进行 8 位访问，但是后四位最低也是 16 位</li>
+<li>80386 以及后续的 32 位机还有 <code>E-寄存器</code> 协助帮忙以 32 位访问</li>
+</ul>
+<h3 id="专用寄存器"><a class="markdownIt-Anchor" href="#专用寄存器"></a> 专用寄存器</h3>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-9.jpg" style="zoom: 80%;">
+<table>
+<thead>
+<tr>
+<th>专用寄存器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IP-指令指针寄存器</td>
+<td>保存下一次将要从主存中取出指令的偏移地址， 与代码段寄存器 CS 联用确定下一条指令的物理地址。目标程序运行时，IP 的内容由微处理器硬件自动设置，程序不能直接访问IP，但一些指令却可改变 IP 的值，如转移指令、子程序调用指令等</td>
+</tr>
+<tr>
+<td>FLAGS-标志寄存器</td>
+<td>记录程序中运行结果的状态信息， 根据有关指令的运行结果由 CPU 自动设置，这些状态信息往往作为后续条件转移指令的控制条件</td>
+</tr>
+</tbody>
+</table>
+<h4 id="标识符"><a class="markdownIt-Anchor" href="#标识符"></a> 标识符</h4>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-10.png" style="zoom:67%;">
+<blockquote>
+<p>了解几个 80x86 中标志寄存器的内容，图中未标识的位置暂时不讲</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>标志符</th>
+<th>作用（1/0）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OF(overflow flag)-溢出标志</td>
+<td>操作数超出了机器能表示的范围（是/否）</td>
+</tr>
+<tr>
+<td>SF(sign flag)-符号标志</td>
+<td>记录运算结果的符号（负/正）</td>
+</tr>
+<tr>
+<td>ZF(zero flag)-零标志</td>
+<td>运算结果为 0（是/否）</td>
+</tr>
+<tr>
+<td>CF(carry flag)-进位标志</td>
+<td>记录运算时是否1从最高有效位产生进位值（是/否）</td>
+</tr>
+<tr>
+<td>DF(direction flag)-方向标志</td>
+<td>在串处理指令中控制处理信息的方向（减量 STD /增量 CLD）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="说明-2"><a class="markdownIt-Anchor" href="#说明-2"></a> 说明</h4>
+<ul>
+<li>上述寄存器都是以 16 位形式访问</li>
+<li>同样 80386 以及后续的 32 位机还有 <code>E-寄存器</code> 协助帮忙以 32 位访问</li>
+</ul>
+<h3 id="段寄存器"><a class="markdownIt-Anchor" href="#段寄存器"></a> 段寄存器</h3>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-11.jpg" style="zoom:80%;">
+<h1 id="存储器"><a class="markdownIt-Anchor" href="#存储器"></a> 存储器</h1>
+<h2 id="存储单元的地址"><a class="markdownIt-Anchor" href="#存储单元的地址"></a> 存储单元的地址</h2>
+<ul>
+<li>在存储器里以<mark>字节</mark>为单位存储信息</li>
+<li>每一个字节单元给一个唯一的存储器地址称为物理地址</li>
+<li>地址从 0 开始编号，顺序加 1。用二进制数表示，是无符号整数，书写格式为<strong>十六进制</strong></li>
+</ul>
+<h2 id="地址总线和寻址空间"><a class="markdownIt-Anchor" href="#地址总线和寻址空间"></a> 地址总线和寻址空间</h2>
+<ul>
+<li>地址总线宽度指专用于传送地址的总线数目，根据这一数值可以确定处理机可以访问的存储器的最大范围，即寻址空间</li>
+<li>如 8086/8088 的地址总线宽度为20位，则可以表示 2 <sup>20</sup>=1048576 个存储单元，即寻址空间为 1M 其地址编号的范围为 00000H ~ FFFFFH</li>
+</ul>
+<h2 id="存储单元的内容"><a class="markdownIt-Anchor" href="#存储单元的内容"></a> 存储单元的内容</h2>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-12.png" style="zoom:50%;">
+<ul>
+<li>一个存储单元中存放的信息称为该存储单元的内容</li>
+<li>地址为 0004H 的字节的存储 单元中的内容是78H，表示 为 <strong>(0004)= 78H</strong></li>
+</ul>
+<div class="note info icon">
+            <p>注意这个写法，<code>()</code> 里填的是地址，<code>=</code> 后面给出的是对应的内容，如果用 X 表示某存储单元的地址，则 X 单元的内容可表示为 (X)</p>
+          </div>
+<h2 id="数据存放方式"><a class="markdownIt-Anchor" href="#数据存放方式"></a> 数据存放方式</h2>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-12.png" style="zoom:50%;">
+<ul>
+<li>一个字存入存储器要占有相继的两个字节，存放时低位字节存入低地址，高位字节存入高地址</li>
+<li>字单元的地址采用它的低地址表示，可表示为 (0004)=5678H</li>
+<li>0004H 的双字单元的内容：(0004)=12345678H</li>
+</ul>
+<h2 id="实模式存储器寻址方式"><a class="markdownIt-Anchor" href="#实模式存储器寻址方式"></a> 实模式存储器寻址方式</h2>
+<h3 id="存储器地址的分段"><a class="markdownIt-Anchor" href="#存储器地址的分段"></a> 存储器地址的分段</h3>
+<p><strong>问题</strong>：在 <code>8086CPU</code> 中地址总线的长度是 20 位（即最大寻址空间是 2<sup>20</sup>=1MB），其物理地址从 00000H~FFFFFH。而 <code>8086 CPU</code> 的寄存器都是 16 （即最大寻址空间为 2<sup>16</sup>，地址编号从 0000H~FFFFH）位的那么这传入的 20  位地址怎么用 16 位的寄存器表达呢？</p>
+<p><strong>解决</strong>：将 1M 的字节地址划分为若干个段，从 0 地址开始每 16 个字节划为一个小段，段的起始地址成为段首址（肯定是 16 的倍数）</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-13.png" style="zoom:50%;">
+<blockquote>
+<p>上述将 1M 物理地址编号号并分段，每个十六进制数代表四个二进制数</p>
+</blockquote>
+<p><strong>特点</strong>：这样可以划分出 2<sup>20</sup>/2<sup>16</sup>=2<sup>4</sup>=16 个段，每个段的起始地址的最低一位都是 0 （即 20 为的地址的低四位为 0）</p>
+<h4 id="物理地址的组成"><a class="markdownIt-Anchor" href="#物理地址的组成"></a> 物理地址的组成</h4>
+<p>那么根据上面的分法，由于段地址的起始地址最低位为 0 的特点，我们可以只取段地址的起始地址的高 16 位（即舍弃最低位 0）作为段地址，然后我们再记录一个偏移地址指在段内相对段起始地址的偏移值，那么 20 为的物理地址就可以由 16 位的段地址和 16 为偏移地址组成</p>
+<h4 id="物理地址的计算方法"><a class="markdownIt-Anchor" href="#物理地址的计算方法"></a> 物理地址的计算方法</h4>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-14.png" style="zoom:67%;">
+<p>段地址左移 4 位（相当于 <code>*16d</code>）再加上偏移地址就形成了物理地址，在指明某个内存单元的时候就是 <code>段地址:偏移地址</code> 形式</p>
+<blockquote>
+<p><code>3017:000A</code> 的表示的物理地址就是：<code>3017AH</code></p>
+</blockquote>
+<p><strong>易混淆的概念</strong>：</p>
+<ol>
+<li>物理地址和逻辑地址是同一个东西，指唯一的 20 位的地址</li>
+<li>有效地址和偏移地址是同一个东西，值的是相对段地址不唯一的 16 位的地址</li>
+</ol>
+<h3 id="段寄存器-2"><a class="markdownIt-Anchor" href="#段寄存器-2"></a> 段寄存器</h3>
+<h4 id="分类"><a class="markdownIt-Anchor" href="#分类"></a> 分类</h4>
+<ul>
+<li>代码段：存放当前正在运行的程序指令</li>
+<li>数据段：存放当前运行程序所用到的数据</li>
+<li>堆栈段：定义的堆栈所造的区域</li>
+<li>附加段：附加的数据段，是一个辅助的数据段</li>
+</ul>
+<h4 id="概念"><a class="markdownIt-Anchor" href="#概念"></a> 概念</h4>
+<ul>
+<li>除非专门的指定，一般情况下各段在存储区中的分配是由操作系统默认负责的</li>
+<li>段寄存器用来确认该段在内存单元中的起始位置</li>
+<li><strong>程序员在编写程序时应该按照规定程序的各部分放在指定的段区之间</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">data    segment</span><br><span class="line">        message         db      &#39;hello$&#39;</span><br><span class="line">data    ends</span><br><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">code    segment</span><br><span class="line">        assume          cs:code,ds:data</span><br><span class="line">start:</span><br><span class="line">        ; 数据段段地址传给ds</span><br><span class="line">        mov     ax,data</span><br><span class="line">        mov     ds,ax</span><br><span class="line">		...</span><br><span class="line">code	ends</span><br><span class="line">; &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;</span><br><span class="line">		end		start</span><br></pre></td></tr></table></figure>
+<h4 id="段寄存器和相应偏移地址寄存器组合表"><a class="markdownIt-Anchor" href="#段寄存器和相应偏移地址寄存器组合表"></a> 段寄存器和相应偏移地址寄存器组合表</h4>
+<table>
+<thead>
+<tr>
+<th>段寄存器</th>
+<th>偏移地址寄存器</th>
+<th>缺省选择规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS</td>
+<td>IP</td>
+<td>用于取指令</td>
+</tr>
+<tr>
+<td>SS</td>
+<td>SP 和 BP</td>
+<td>所有的堆栈进出</td>
+</tr>
+<tr>
+<td>DS</td>
+<td>BX、DI、SI 或者一个 16 位直接数</td>
+<td>除相对于堆栈以及串处理指令的目的串以外的所有数据访问</td>
+</tr>
+<tr>
+<td>ES</td>
+<td>DI</td>
+<td>串处理指令的目的串</td>
+</tr>
+</tbody>
+</table>
+<h4 id="段跨越"><a class="markdownIt-Anchor" href="#段跨越"></a> 段跨越</h4>
+<p>80x86 允许程序员用段跨越前缀改变系统所指定的默认段，如允许数据存放在除 DS 段以外的其他段中</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; 段跨越前缀格式</span><br><span class="line">; 段寄存器:偏移地址</span><br><span class="line">mov		ax,[value]</span><br><span class="line">mov		ax,es:[value]</span><br></pre></td></tr></table></figure>
+<div class="gallery ">
+    <p>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-15.png" alt>
+        <span class="image-caption">段分配相互独立</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-16.png" alt>
+        <span class="image-caption">段分配相互重叠</span>
+    </div>
+    </p>
+</div>
+<p><strong>注意</strong>：</p>
+<ul>
+<li>串处理指令的目的串必须在 ES 段</li>
+<li><code>PUSH</code> 指令的目的和 <code>POP</code> 指令的源必须用 SS 段</li>
+<li>指令必须存放在 CS 段</li>
+</ul>
+<h2 id="外部设备"><a class="markdownIt-Anchor" href="#外部设备"></a> 外部设备</h2>
+<p><a href="https://jingyan.baidu.com/article/a3f121e48dff80fc9052bbe8.html">主机与外部设备</a>（CPU 和存储器）的通信是通过外设接口进行的，每个接口由一组寄存器组成：</p>
+<ol>
+<li>数据寄存器：存放要在外设和主机间传送的数据</li>
+<li>状态寄存器：保存外部设备或接口的状态信息</li>
+<li>命令寄存器：CPU 给外设或接口的控制命令通过此寄存器送给外部设备</li>
+</ol>
+<p>端口地址：主机中的每个寄存器给予一个端口地址，组成了一个独立于内存储器的 <code>I/O</code> 地址空间</p>
+<p><strong>主机与外设交换信息是通过 IN、OUT 指令来完成的</strong></p>
+<h1 id="80x86-的指令系统和寻址方式"><a class="markdownIt-Anchor" href="#80x86-的指令系统和寻址方式"></a> 80x86 的指令系统和寻址方式</h1>
+<h2 id="80x86-的寻址方式"><a class="markdownIt-Anchor" href="#80x86-的寻址方式"></a> 80x86 的寻址方式</h2>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-7.png" style="zoom: 67%;">
+<p>指令格式中操作数到底是去取具体数还是存放位置要根据操作码的用途决定，例如 <code>mov ax,bx</code>  就是将 <code>bx</code> 的内存储的值传给 <code>ax</code>，但是 <code>lea ax,bx</code> 就是将 <code>bx</code> 存储的地址传给 <code>ax</code></p>
+<h3 id="与数据有关的寻址方式"><a class="markdownIt-Anchor" href="#与数据有关的寻址方式"></a> 与数据有关的寻址方式</h3>
+<h4 id="立即数寻址方式"><a class="markdownIt-Anchor" href="#立即数寻址方式"></a> 立即数寻址方式</h4>
+<p>操作数直接放在指令中，紧跟在操作码之后作为指令的一部分存放在代码段中</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-17.png" style="zoom: 67%;">
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	al,5		;将5d传给al</span><br><span class="line">mov	ax,3064H	;将3064H传给ax</span><br></pre></td></tr></table></figure>
+<h4 id="寄存器寻址方式"><a class="markdownIt-Anchor" href="#寄存器寻址方式"></a> 寄存器寻址方式</h4>
+<p>将操作数给为存放在寄存器里，指令指定寄存器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,bx</span><br></pre></td></tr></table></figure>
+<p><strong>这种寻址方式由于操作数就在寄存器中不需要访问存储器所以运算速度较快</strong></p>
+<h4 id="存储器寻址"><a class="markdownIt-Anchor" href="#存储器寻址"></a> 存储器寻址</h4>
+<h5 id="有效地址"><a class="markdownIt-Anchor" href="#有效地址"></a> 有效地址</h5>
+<p>后面的五种寻址方式不同于上述两种，他们都要去存储器中寻找操作数的确切地址，这里涉及到一个操作数的有效地址的概念</p>
+<p>有效地址的四种成分：</p>
+<ol>
+<li>位移量：存放在指令中的一个8位、16位或32位数（386及后继机型），<strong>但不是立即数而是一个地址</strong></li>
+<li>基址：存放在基址寄存器中，通常用来指向数据段中数组或字符串的首地址（用于基址寄存器的是 BX 和 BP）</li>
+<li>变址：存放在变址寄存器中，通常用来访问数组中的某个元素或字符串中的某个字符（用于变址寄存器的是 SI 和 DI）</li>
+<li>比例因子（386及后继机型）：其值为1，2，4， 8，在寻址中可用变址寄存器的内容乘以比例因子来取得变址值。对访问元素长度为2，4，8字节的数组特别有用</li>
+</ol>
+<p>有效地址的计算式：<code>EA = 基址 + (变址 * 比例因子) + 位移量</code></p>
+<ul>
+<li>
+<p>操作数的有效地址只包含一种成分：</p>
+<ul>
+<li>直接寻址方式</li>
+<li>寄存器间接寻址方式</li>
+</ul>
+</li>
+<li>
+<p>操作数有效地址包含两种成分：</p>
+<ul>
+<li>直接变址寻址方式</li>
+<li>基址变址寻址方式</li>
+</ul>
+</li>
+<li>
+<p>相对基址变址寻址方式</p>
+</li>
+<li>
+<p>包含比例因子的寻址方式（这里不作讲解）</p>
+</li>
+</ul>
+<div class="note warning icon">
+            <p>因为存储器寻址串的是有效地址信息，所以除了字符变量外其他的寄存器都应该加上 <code>[]</code> 表示传其指向的地址，这也是区分是不是存储器寻址的方法</p>
+          </div>
+<h5 id="直接寻址方式"><a class="markdownIt-Anchor" href="#直接寻址方式"></a> 直接寻址方式</h5>
+<p>操作数的有效地址只包含位移量一种成分，其值存放在代码段中指令的操作码之后，位移量的值就是操作数的有效地址</p>
+<p><strong>用途：直接寻址方式适用于处理单个变量</strong></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,[2000H]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-18.png" style="zoom:67%;">
+<p>根据默认的段寄存器和偏移地址寄存器搭配关系 16 位的直接数和 DS 搭配，若此时 (DS)=3000H，那么执行结果 (ax)=3050H</p>
+</blockquote>
+<p>在汇编语言中可以使用符号地址代替数值地址（即用变量名和变量存储的值是等效的）</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,value</span><br><span class="line">mov	ax,[value]</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中括号可以看做相当于 C++ 中的取地址符 <code>&amp;</code>，它指向中括号内容指向的偏移地址。这里 <code>value</code> 就是存储位移量的变量名</p>
+</blockquote>
+<p>直接寻址可以使用默认的搭配段地址寄存器和偏移地址寄存器，也可以使用段跨越前缀</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	ax,es:[2000H]</span><br></pre></td></tr></table></figure>
+<h5 id="寄存器间接寻址"><a class="markdownIt-Anchor" href="#寄存器间接寻址"></a> 寄存器间接寻址</h5>
+<p>寄存器间接寻址方式操作数的有效地址只包含基址寄存器或者变址寄存器之一，也就是有效地址改为放在寄存器中，该寄存器的内容就做为偏移地址</p>
+<p><strong>用途：寄存器间接寻址方式适用于表格处理（一维存储方式），执行完一条指令后只需要修改寄存器的内容就可以去除表格的下一项</strong></p>
+<div class="tabs" id="test4"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#test4-1">示例一</button></li><li class="tab"><button type="button" data-href="#test4-2">示例二</button></li><li class="tab"><button type="button" data-href="#test4-3">示例三：表格处理</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="test4-1"><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-19.png" style="zoom: 67%;">
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;2000H bx&#x3D;1000H</span><br><span class="line">mov	ax,[bx]</span><br></pre></td></tr></table></figure>
+<p>ax 的物理地址 = 20000 + 1000 = 21000H</p><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-2"><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-20.png" style="zoom: 67%;">
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(AX)&#x3D;0 	(BP)&#x3D;0030H 	(DS)&#x3D;3000H 	(SS)&#x3D;2000H	(20030H)&#x3D;1234H 	(30030H)&#x3D;5678H</span><br><span class="line">mov	ax,[bp]</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-3"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">        lea si, array   ; 数组首地址送si</span><br><span class="line">        mov cx, length 	; 数组长度送cx</span><br><span class="line">        mov ax, 0</span><br><span class="line">AA:</span><br><span class="line">        add ax, [si]</span><br><span class="line">        add si, 2</span><br><span class="line">        dec cx</span><br><span class="line">        jnz AA</span><br></pre></td></tr></table></figure><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div></div></div>
+<h5 id="直接变址寻址方式寄存器相对寻址方式"><a class="markdownIt-Anchor" href="#直接变址寻址方式寄存器相对寻址方式"></a> 直接变址寻址方式（寄存器相对寻址方式）</h5>
+<p>操作数的有效地址为基址寄存器或变址寄存器的内容与指令中的位移量之和</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-21.png" style="zoom: 67%;">
+<p><strong>用途：直接变址寻址方式适用于处理一位数组或者字符串</strong></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-22.png" style="zoom: 67%;">
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;3000H        si&#x3D;2000H        count&#x3D;3000H</span><br><span class="line">mov ax,count[si] 或 </span><br><span class="line">mov ax,[count+si]</span><br></pre></td></tr></table></figure>
+<h5 id="基址变址寻址方式"><a class="markdownIt-Anchor" href="#基址变址寻址方式"></a> 基址变址寻址方式</h5>
+<p>操作数的有效地址是一个基址寄存器和一个变址寄存器的内容之和，就是位移量改为存在变址寄存器中</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-23.png" style="zoom:67%;">
+<p><strong>用途：基址变址寻址方式同样适用于处理一位数组或者字符串</strong></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-24.png" style="zoom:67%;">
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;2100H	bx&#x3D;0158H	di&#x3D;10a5H</span><br><span class="line">mov	ax,[bx][di] 或</span><br><span class="line">mov	ax,[bx+di]</span><br></pre></td></tr></table></figure>
+<h5 id="相对基址变址寄存器"><a class="markdownIt-Anchor" href="#相对基址变址寄存器"></a> 相对基址变址寄存器</h5>
+<p>操作数的有效地址是一个基址寄存器和一个变址寄存器的内容与指令中指定的位移量之和</p>
+<p><strong>用途：相对基址变址寄存器适二维数组</strong></p>
+<blockquote>
+<p>这不难理解，有效地址又加上了一种组成成分维度肯定上升啊</p>
+</blockquote>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-25.png" style="zoom:67%;">
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">ds&#x3D;3000H	bx&#x3D;2000H	si&#x3D;1000H	mask&#x3D;0250H</span><br><span class="line">mov	ax,mask[bx][si]</span><br></pre></td></tr></table></figure>
+<h3 id="与转移地址有关的寻址方式"><a class="markdownIt-Anchor" href="#与转移地址有关的寻址方式"></a> 与转移地址有关的寻址方式</h3>
+<div class="note default icon">
+            <p>这种寻址方式用来确定转移指令和 CALL 指令的转移地址，都借助的是 <code>JMP</code> 指令实现寻址的，在汇编程序设计中调用子程序有用到</p>
+          </div>
+<ul>
+<li>段内直接寻址</li>
+<li>段内间接寻址</li>
+<li>段间直接寻址</li>
+<li>段间间接寻址</li>
+</ul>
+<h2 id="80x86-的指令系统"><a class="markdownIt-Anchor" href="#80x86-的指令系统"></a> 80x86 的指令系统</h2>
+<h3 id="数据传送指令"><a class="markdownIt-Anchor" href="#数据传送指令"></a> 数据传送指令</h3>
+<p>数据传送指令负责把数据、地址或立即数传送到<strong>寄存器或存储单元</strong>中，它又可分为下述五种数据传送指令</p>
+<h4 id="通用数据传送指令"><a class="markdownIt-Anchor" href="#通用数据传送指令"></a> 通用数据传送指令</h4>
+<h5 id="mov-传送指令"><a class="markdownIt-Anchor" href="#mov-传送指令"></a> <code>mov</code> 传送指令</h5>
+<h6 id="mov-普通传送指令"><a class="markdownIt-Anchor" href="#mov-普通传送指令"></a> <code>mov</code> 普通传送指令</h6>
+<ul>
+<li>格式：<code>mov dst,src</code></li>
+<li>执行操作：将源操作数的内容传给目的操作数</li>
+</ul>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-26.png" alt="huibian-26" style="zoom:67%;">
+<div class="note warning icon">
+            <p>选择题在这里占很大的分数，一定要把图熟记</p>
+          </div>
+<ul>
+<li>说明：<code>mov</code> 指令有 7 中使用格式，总而言之不允许在两个存储单元之间直接传送数据，不允许两个段寄存器将直接传送信息（处源操作数为立即数的情况下，两个操作数中必定有一个是寄存器）</li>
+</ul>
+<h6 id="movsx-带符号扩展传送指令适用于带符号数"><a class="markdownIt-Anchor" href="#movsx-带符号扩展传送指令适用于带符号数"></a> <code>movsx</code>  带符号扩展传送指令（适用于带符号数）</h6>
+<ul>
+<li>
+<p>格式：<code>mov dst,src</code></p>
+</li>
+<li>
+<p>执行操作：源操作数可以是 8 位或者 16 位的寄存器或者存储单元，而目的操作数必须是 16 位或者 32 位的寄存器，传送时把源操作数符号扩展送进目的操作数</p>
+</li>
+<li>
+<p>说明：movsx 只有两种使用格式，并且影响标志位</p>
+<ul>
+<li><code>mov reg1,reg2</code></li>
+<li><code>mov reg,mem</code></li>
+</ul>
+</li>
+<li>
+<p>示例：<code>movsx ax,cl</code></p>
+<ul>
+<li>
+<p>若是 <code>cl</code> 为 <code>1001 0011</code> 那么 <code>ax</code> 就是 <code>1111 1111 1001 0011</code></p>
+</li>
+<li>
+<p>若是 <code>cl</code> 为 <code>0001 0011</code> 那么 <code>ax</code> 就是 <code>0000 0000 1001 0011</code></p>
+<blockquote>
+<p>扩展的符号根据 <code>src</code> 的最高符号位决定</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="movzx-带零扩展传送指令适用于无符号数"><a class="markdownIt-Anchor" href="#movzx-带零扩展传送指令适用于无符号数"></a> <code>movzx</code> 带零扩展传送指令（适用于无符号数）</h6>
+<p>和上述的 <code>movsx</code> 基本类似，差别就是 <code>movsx</code> 的源操作数是带符号数所以扩展的时候根据符号扩展但是 <code>movzx</code> 适用的源操作数是无符号数所以就用 0 扩展</p>
+<div class="note warning icon">
+            <p><code>mov</code> 指令都不影响操作数，<code>movsx</code> 和 <code>movzx</code> 与一般的双操作数指令的差别是一般双操作数的 <code>dst</code> 和 <code>src</code> 长度是一致的，但是这两个指令由于扩展的原因 <code>src</code> 的长度一定是小于 <code>dst</code> 的</p>
+          </div>
+<h5 id="堆栈操作指令"><a class="markdownIt-Anchor" href="#堆栈操作指令"></a> 堆栈操作指令</h5>
+<h6 id="堆栈"><a class="markdownIt-Anchor" href="#堆栈"></a> 堆栈</h6>
+<ul>
+<li>堆栈是“后进先出”工作方式的一个存储区，必须存在于堆栈段中，段地址存放在 <code>SS</code> 中</li>
+<li><strong>栈顶元素放入低地址，栈底元素放入高地址</strong></li>
+<li><strong>堆栈只有一个出入口</strong>，所以只有一个堆栈指针寄存器，堆栈地址长度为 16 或者 32 是分别对应 <code>SP</code> 和 <code>ESP</code></li>
+<li><code>SP</code> 或者 <code>ESP</code> 的内容在任何时候都是执行当前栈顶的，所有的进栈与出栈指令都是根据 <code>SP</code> 或者 <code>ESP</code> 的内容来确定进栈或者出栈的内存单元，而且每次操作后必须及时修改指针来保证他们仍然指向栈顶</li>
+</ul>
+<h6 id="push-进栈指令"><a class="markdownIt-Anchor" href="#push-进栈指令"></a> <code>push</code> 进栈指令</h6>
+<ul>
+<li>
+<p>格式：<code>push src</code>，隐含目的操作数 <code>SS:SP</code></p>
+</li>
+<li>
+<p>执行操作：先是栈顶指针移动到需要压入 <code>src</code> 后的首地址（栈顶）然后压入 <code>src</code></p>
+<ul>
+<li>
+<p>16 位操作数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(SP)&lt;-(SP)-2</span><br><span class="line">((SP)+1,(SP))&lt;-(SRC)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>32 位操作数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(ESP)&lt;-(ESP)-4</span><br><span class="line">((ESP+3),(ESP+2),(ESP+1),(ESP))&lt;-(SRC)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>说明：有四种格式 <code>push reg/mem/data/segreg</code></p>
+</li>
+<li>
+<p>功能：将寄存器、段寄存器或者存储器中的数据或立即数压入堆栈</p>
+</li>
+<li>
+<p>示例：</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-27.png" alt="huibian-27" style="zoom:50%;">
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov ax,2107H</span><br><span class="line">push ax</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="pop-出栈指令"><a class="markdownIt-Anchor" href="#pop-出栈指令"></a> <code>pop</code> 出栈指令</h6>
+<ul>
+<li>
+<p>格式：<code>pop dst</code>，隐含源操作数 <code>SS:SP</code></p>
+</li>
+<li>
+<p>执行操作：先弹出 <code>src</code>，然后将栈顶指针移动到需要弹出 <code>src</code> 后的首地址（栈顶）</p>
+<ul>
+<li>
+<p>16 位操作数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(DST)&lt;-((SP)+1,(SP))</span><br><span class="line">(SP)&lt;-(SP)+2</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>32 位操作数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(DST)&lt;-((ESP+3),(ESP+2),(ESP+1),(ESP))</span><br><span class="line">(ESP)&lt;-(ESP)+4</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>说明：有四种格式 <code>pop reg/mem/data/segreg</code></p>
+</li>
+<li>
+<p>功能：将寄存器、段寄存器或者存储器中的数据或立即数弹出堆栈</p>
+</li>
+<li>
+<p>示例：</p>
+<p><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-28.png" alt="huibian-28"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">pop ax</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<div class="note warning icon">
+            <p>这两个指令对应着记不容易忘掉，同时他们也是不影响标识符的</p>
+          </div>
+<h6 id="作用"><a class="markdownIt-Anchor" href="#作用"></a> 作用</h6>
+<p>用到堆栈的可能一般是为了保存某个数：比如内外两层循环时进入内层循环的时候要将外层循环的 <code>cx</code> 保存为了后面使用，或者从主程序调用到子程序的时候某个寄存器的值还需要保存下来，那么我们就可以将他们压入栈内并在需要的时候再弹出</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">push ax</span><br><span class="line">push bx</span><br><span class="line">push cx</span><br><span class="line">...</span><br><span class="line">pop cx  ;一定要遵守先进后出的规则</span><br><span class="line">pop bx</span><br><span class="line">pop ax</span><br></pre></td></tr></table></figure>
+<h6 id="pushapushad-所有寄存器进栈指令"><a class="markdownIt-Anchor" href="#pushapushad-所有寄存器进栈指令"></a> <code>pusha/pushad</code> 所有寄存器进栈指令</h6>
+<p>格式：<code>pusha</code> <code>pushad</code></p>
+<p>执行操作：</p>
+<ul>
+<li><code>pusha</code> 将 16 位通用寄存器按照 <code>ax,cx,dx,bx</code> 指令执行前的 <code>sp,bp,si,di</code> 顺序进栈然后将 <code>(SP)&lt;-(SP)-16</code></li>
+<li>pushad 将 32 位通用寄存器按照 <code>eax,ecx,edx,ebx</code> 指令执行前的 <code>esp,ebp,esi,edi</code> 顺序进栈然后 <code>(ESP)&lt;-(ESP)-32</code></li>
+</ul>
+<div class="note warning icon">
+            <p>和前面的进栈规则不一样了，是先将寄存器压入栈内然后再移动 <code>SP</code></p>
+          </div>
+<h6 id="popapopad-所有寄存器出栈指令"><a class="markdownIt-Anchor" href="#popapopad-所有寄存器出栈指令"></a> <code>popa/popad</code> 所有寄存器出栈指令</h6>
+<p>格式：<code>popa</code> <code>popad</code></p>
+<p>执行操作：</p>
+<ul>
+<li><code>pusha</code> 将 16 位通用寄存器按照 <code>di,si,bp,sp,bx,dx,cx,ax</code>  顺序出栈然后将 <code>(SP)&lt;-(SP)+16</code></li>
+<li>pushad 将 32 位通用寄存器按照 <code>edi,esi,ebp,esp,ebx,edx,ecx,eax</code> 顺序出栈然后 <code>(ESP)&lt;-(ESP)+32</code></li>
+</ul>
+<h5 id="xchg-交换指令"><a class="markdownIt-Anchor" href="#xchg-交换指令"></a> <code>xchg</code> 交换指令</h5>
+<ul>
+<li>
+<p>格式：<code>schg opr1,opr2</code></p>
+</li>
+<li>
+<p>执行操作：<code>opr1</code> 和 <code>opr2</code> 可以是寄存器与寄存器之间或者寄存器与存储单元之间，但是不允许使用段寄存器与操作数，将两者交换内容</p>
+</li>
+<li>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">bx&#x3D;6F30H	bp&#x3D;0200H	si&#x3D;0046H	ss&#x3D;2F00H	2F246H&#x3D;4154H</span><br><span class="line">xchg	bx,[bp+si]</span><br><span class="line">;opr2的物理地址:2F000+0200+0046&#x3D;2F246H</span><br><span class="line">;指令执行后:(BX)&#x3D; 4154H  (2F246H)&#x3D; 6F30</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="累加器专用传送指令"><a class="markdownIt-Anchor" href="#累加器专用传送指令"></a> 累加器专用传送指令</h4>
+<h5 id="地址传送指令"><a class="markdownIt-Anchor" href="#地址传送指令"></a> 地址传送指令</h5>
+<p>这一组指令都是为了完成将地址传<strong>送到指定寄存器</strong>的功能</p>
+<h4 id="lea-有效地址送寄存器"><a class="markdownIt-Anchor" href="#lea-有效地址送寄存器"></a> <code>lea</code> 有效地址送寄存器</h4>
+<ul>
+<li>
+<p>格式：<code>lea reg,src</code></p>
+</li>
+<li>
+<p>执行操作：将指定的 <code>src</code> 的有效地址传给 <code>reg</code></p>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>目的操作数针对的是寄存器，所以只能是 16 位或者 32 位的寄存器</li>
+<li>源操作数可以是除了段寄存器和立即数之外的任意一种<strong>存储器寻址方式</strong></li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(BX) &#x3D; 0400H	(SI) &#x3D; 003CH	(DS) &#x3D; 2000H	(2139E) &#x3D; 2195H</span><br><span class="line">lea	bx,[bx+si+0F62H]</span><br><span class="line">;执行指令后 bx&#x3D;0400+003C+0F62&#x3D;139EH</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>传给的是有效地址，不要受段寄存器的影响算成了物理地址</p>
+</blockquote>
+</li>
+</ul>
+<div class="note info icon">
+            <p>在这里 <code>bx</code> 寄存器得到的是有效地址而不是存储单元的内容，如果指令是</p><p><code>mov bx,[bx+si+0F62H]</code> 那么 <code>bx</code> 得到的就是偏移地址为 <code>139EH</code> 单元的内容而不是偏移地址，这也进一步说明使用的指令决定了用的是操作数内容还是操作数的地址</p>
+          </div>
+<div class="note warning icon">
+            <p>如果想用 <code>mov</code> 实现和 <code>lea</code> 一样的效果，可以借助 <code>offset</code> 回送标号或者变量的偏移地址：<code>mov bx,offset list</code> 等效于 <code>lea bx,list</code></p>
+          </div>
+<h5 id="lds-les-lfs-lgs-lss-指针送到寄存器和段寄存器的指令"><a class="markdownIt-Anchor" href="#lds-les-lfs-lgs-lss-指针送到寄存器和段寄存器的指令"></a> <code>lds les lfs lgs lss</code> 指针送到寄存器和段寄存器的指令</h5>
+<p>以 <code>lds</code> 指令为例，其他的指令只不过是寄存器不同而已</p>
+<ul>
+<li>
+<p>格式：<code>lds reg,src</code></p>
+</li>
+<li>
+<p>执行操作：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(reg)&lt;-(src)</span><br><span class="line">(ds)&lt;-(src+2)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li><strong>源操作数同样只能使用存储器寻址方式</strong></li>
+<li>当指令中指定的是 16 位寄存器时把该指令中存 放的16位数（偏移地址）装入寄存器，然后把 <code>(SRC+2)</code> 装入 <code>DS</code> 段寄存器</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(DS)&#x3D;B000H	(BX)&#x3D;080AH	(0B080AH)&#x3D;05AEH	(0B080CH)&#x3D;4000H</span><br><span class="line">les	di,[bx]</span><br><span class="line">;执行指令后 (DI)&#x3D;05AEH, (ES)&#x3D;4000H</span><br><span class="line">lea di,[bx]</span><br><span class="line">;执行指令后 (DI)&#x3D;080AH</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="指令对比"><a class="markdownIt-Anchor" href="#指令对比"></a> 指令对比</h5>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-29.png" alt="huibian-29" style="zoom: 67%;">
+<h4 id="标志寄存器传送指令"><a class="markdownIt-Anchor" href="#标志寄存器传送指令"></a> 标志寄存器传送指令</h4>
+<div class="note warning icon">
+            <p>标志寄存器传送指令都是无操作数指令,隐含对标志寄存器的操作</p>
+          </div>
+<h5 id="lafh-标志送-ah"><a class="markdownIt-Anchor" href="#lafh-标志送-ah"></a> <code>lafh</code> 标志送 AH</h5>
+<ul>
+<li>
+<p>格式：<code>lafh</code></p>
+</li>
+<li>
+<p>执行操作：将 <code>flags</code> 标志寄存器的低字节（8位）传给 <code>ah</code> 寄存器</p>
+</li>
+<li>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(FLAGS)&#x3D;0485H	(AX)&#x3D;0FFFFH</span><br><span class="line">;执行指令后</span><br><span class="line">(AX)&#x3D;88FFH</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>汇编语言中以<strong>字母开头的 16 进制数</strong>前面需要加 0，否则编译器是不能认出这是个 16 进制数的</p>
+</blockquote>
+</li>
+</ul>
+<h5 id="sahf-ah送标志寄存器"><a class="markdownIt-Anchor" href="#sahf-ah送标志寄存器"></a> <code>sahf</code> AH送标志寄存器</h5>
+<ul>
+<li>格式：<code>sahf</code></li>
+<li>执行操作：将 ah 寄存器传给 <code>flags</code> 标志寄存器的低字节（8位）</li>
+</ul>
+<h5 id="pushfpushfd-标志进栈"><a class="markdownIt-Anchor" href="#pushfpushfd-标志进栈"></a> <code>pushf/pushfd</code> 标志进栈</h5>
+<ul>
+<li>
+<p>格式：<code>pushf</code> <code>pushfd</code></p>
+</li>
+<li>
+<p>执行操作：</p>
+<ul>
+<li>
+<p><code>pushf</code> 用于 16 位标志寄存器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(SP)&lt;-(SP)-2</span><br><span class="line">((SP)+1,(SP))&lt;-(FLAGS)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>pushfd</code> 用于 32 位标志寄存器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(ESP)&lt;-(ESP)-4</span><br><span class="line">((ESP)+3,(ESP)+2,(ESP)+1,(ESP))&lt;-(EFLAGS AND 0FCFFFFH)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>后边的并运算主要是清除 VM 和 RF 位，了解即可</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="popfpopfd-标志出栈"><a class="markdownIt-Anchor" href="#popfpopfd-标志出栈"></a> <code>popf/popfd</code> 标志出栈</h5>
+<ul>
+<li>
+<p>格式：<code>popf</code> <code>popfd</code></p>
+</li>
+<li>
+<p>执行操作：</p>
+<ul>
+<li>
+<p><code>popf</code> 用于 16 位标志寄存器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(FLAGS)&lt;-((SP)+1,(SP))</span><br><span class="line">(SP)&lt;-(SP+2)</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p><code>popfd</code> 用于 32 位标志寄存器</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(EFLAGS)&lt;-((ESP)+3,(ESP)+2,(ESP)+1,(ESP))</span><br><span class="line">(ESP)&lt;-(ESP)+4</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<div class="note warning icon">
+            <p><code>lafh</code> 和 <code>pishf/pushfd</code> 不影响标志位，<code>safh</code> 和 <code>popf/popfh</code> 根据装入的值来确定标志位的值</p>
+          </div>
+<h4 id="类型转换指令"><a class="markdownIt-Anchor" href="#类型转换指令"></a> 类型转换指令</h4>
+<div class="note warning icon">
+            <p>类型转换指令也是无操作数指令，隐含着对事先存储到寄存器的操作</p>
+          </div>
+<p><strong>注意：该指令用于扩展有符号数</strong></p>
+<p>格式都是直接调用指令名字，操作数需要事先放在指定的寄存器中</p>
+<h5 id="cbw-字节转换为字"><a class="markdownIt-Anchor" href="#cbw-字节转换为字"></a> <code>cbw</code> 字节转换为字</h5>
+<ul>
+<li>转换类型：<code>db-&gt;dw</code></li>
+<li>执行操作：<code>(ax)&lt;-(al)</code> 符号扩展
+<ul>
+<li>若 (AL) 的最高有效位为0，则 (AH)= 00H</li>
+<li>若 (AL) 的最高有效位为1，则 (AH)= 0FFH</li>
+</ul>
+</li>
+</ul>
+<h5 id="cwdcwde-字转换为双字"><a class="markdownIt-Anchor" href="#cwdcwde-字转换为双字"></a> <code>cwd/cwde</code> 字转换为双字</h5>
+<ul>
+<li>转换类型：<code>dw-&gt;dd</code></li>
+<li>执行操作：<code>(dx:ax)&lt;-ax</code> 符号扩展
+<ul>
+<li>若 (AX) 的最高有效位为0，则 (DX)= 0000H</li>
+<li>若 (AX) 的最高有效位为1，则 (DX)= 0FFFFH</li>
+</ul>
+</li>
+</ul>
+<h5 id="cdq-双字转换为-4-字"><a class="markdownIt-Anchor" href="#cdq-双字转换为-4-字"></a> <code>cdq</code> 双字转换为 4 字</h5>
+<ul>
+<li>转换类型：<code>dd-&gt;dq</code></li>
+<li>执行操作：<code>(edx:eax)&lt;-eax</code>
+<ul>
+<li>若 (EAX) 的最高有效位为0，则 (EDX)= 00000000H</li>
+<li>若 (EAX) 的最高有效位为1，则 (EDX)= 0FFFFFFFFH</li>
+</ul>
+</li>
+</ul>
+<h3 id="算术指令"><a class="markdownIt-Anchor" href="#算术指令"></a> 算术指令</h3>
+<p>80x86 算术运算包括二进制和十进制运算指令。算术指令用来执行算术运算，他们中有双操作数指令也有单操作数指令。</p>
+<p><strong>其中双操作数指令的两个操作数中除源操作数作为立即数的情况外，必须有一个操作数在寄存器中</strong></p>
+<p><strong>单操作数指令不允许使用立即数方式</strong></p>
+<h4 id="加法指令"><a class="markdownIt-Anchor" href="#加法指令"></a> 加法指令</h4>
+<p>以下三条指令都可以作为字或者字节运算，只要保证两个操作数的字长相同即可</p>
+<h5 id="标志位影响"><a class="markdownIt-Anchor" href="#标志位影响"></a> 标志位影响</h5>
+<ul>
+<li>
+<p>ZF 和 SF 位设置比较简单不做详讲</p>
+</li>
+<li>
+<p><code>CF</code> 位</p>
+<ul>
+<li>执行加法指令时，<code>CF</code> 位根据最高有效位是否有进位设置，有进位时 <code>CF=1</code>，反之 <code>CF=0</code></li>
+<li>表示无符号数的溢出与否：在双字节长数运算中利用 <code>CF</code> 位的值把低位字的进位计入高位字中</li>
+</ul>
+</li>
+<li>
+<p><code>OF</code> 位</p>
+<ul>
+<li>若两个操作数的符号相同，而结果的符号与之相反时 <code>OF=1</code>，反之 <code>OF=0</code></li>
+<li>表示有符号数的溢出</li>
+</ul>
+</li>
+<li>
+<p>也就是说加法指令没有有无符号数之分，它会分别设置两个操作位，需要程序员自己明白操作数是否有符号并根据 <code>CF</code> 或者 <code>OF</code> 位做出决策</p>
+</li>
+</ul>
+<h5 id="add-加法指令"><a class="markdownIt-Anchor" href="#add-加法指令"></a> <code>add</code> 加法指令</h5>
+<ul>
+<li>
+<p>格式：<code>add dst,src</code></p>
+</li>
+<li>
+<p>执行操作：<code>(dst)&lt;-(dst)+(src)</code> ，将源操作数和目的操作数相加并将结果放入目的操作数</p>
+</li>
+<li>
+<p>示例</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-30.png" alt="huibian-30" style="zoom:67%;">
+</li>
+</ul>
+<h5 id="adc-带进位加法"><a class="markdownIt-Anchor" href="#adc-带进位加法"></a> <code>adc</code> 带进位加法</h5>
+<ul>
+<li>
+<p>格式：<code>adc dst,src</code></p>
+</li>
+<li>
+<p>执行操作：<code>(dst)&lt;-(dst)+(src)+cf</code>，不仅将源操作数和目的操作数相加，而且将前面指令设置的 <code>CF</code> 位加入结果（相当于进位 +1）</p>
+</li>
+<li>
+<p>示例：一般处理双子节数的高字节运算的时候用的到：设目的操作数存放在 <code>(dx:ax)</code> 中，源操作数存放在 <code>(bx:cx)</code> 中</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-31.png" alt="huibian-31" style="zoom:67%;">
+</li>
+</ul>
+<div class="note info icon">
+            <p>这两对寄存器组合常用需要记住，双子字节的存储与处理时常涉及</p>
+          </div>
+<blockquote>
+<p>在 80386 及后续机型中可以直接借助 32 位寄存器解决此问题</p>
+</blockquote>
+<h5 id="inc-加-1"><a class="markdownIt-Anchor" href="#inc-加-1"></a> <code>inc</code> 加 1</h5>
+<ul>
+<li>
+<p>格式：<code>inc opr</code></p>
+</li>
+<li>
+<p>执行操作：<code>(opr)&lt;-(opr+1)</code></p>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>
+<p>不影响 CF 标志位（硬件设计造成的原因，intel 规定的不必计较）</p>
+</li>
+<li>
+<p>常用于对计数器进行 +1 操作</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; 模拟循环</span><br><span class="line">mov	cx,1</span><br><span class="line">...			;循环指令</span><br><span class="line">inc cx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="减法指令"><a class="markdownIt-Anchor" href="#减法指令"></a> 减法指令</h4>
+<blockquote>
+<p>可以和加法指令类比，原理是一样的</p>
+</blockquote>
+<h5 id="标志位影响-2"><a class="markdownIt-Anchor" href="#标志位影响-2"></a> 标志位影响</h5>
+<ul>
+<li>
+<p><code>CF</code> 位</p>
+<ul>
+<li>若减数 &gt; 被减数此时有借位则 <code>CF=1</code>，否则 <code>CF=0</code></li>
+<li>表示无符号数的溢出与否，被减数的最高位有效位向高位的借位</li>
+</ul>
+</li>
+<li>
+<p><code>OF</code> 位</p>
+<ul>
+<li>若是两个操作数的符号相反而结果的符号与减数相同那么 <code>OF=1</code>，否则 <code>OF=0</code></li>
+<li>表示有符号数的溢出与否</li>
+</ul>
+</li>
+<li>
+<p>也就是说减法指令也没有有无符号数之分，它也会分别设置两个操作位，需要程序员自己明白操作数是否有符号并根据 <code>CF</code> 或者 <code>OF</code> 位做出决策</p>
+</li>
+</ul>
+<h5 id="sub-减法"><a class="markdownIt-Anchor" href="#sub-减法"></a> <code>sub</code> 减法</h5>
+<ul>
+<li>格式：<code>sub dst,src</code></li>
+<li>执行操作：<code>(dst)&lt;-(dst)-(src)</code></li>
+<li>示例</li>
+</ul>
+<div class="tabs" id="test4"><ul class="nav-tabs"><li class="tab active"><button type="button" data-href="#test4-1">示例一</button></li><li class="tab"><button type="button" data-href="#test4-2">示例二</button></li></ul><div class="tab-contents"><div class="tab-item-content active" id="test4-1"><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-32.png" alt="huibian-32" style="zoom:67%;"><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div><div class="tab-item-content" id="test4-2"><img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-33.png" alt="huibian-33" style="zoom:67%;"><button type="button" class="tab-to-top" onclick="scrollToDest($(this).parents('.tabs'),65)"><i class="fas fa-arrow-up"></i></button></div></div></div>
+<h5 id="sbb-带借位减法"><a class="markdownIt-Anchor" href="#sbb-带借位减法"></a> <code>sbb</code> 带借位减法</h5>
+<ul>
+<li>
+<p>格式：<code>sbb dst,src</code></p>
+</li>
+<li>
+<p>执行操作：<code>(dst)&lt;-(dst)-(src)-cf</code></p>
+</li>
+<li>
+<p>示例</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-34.png" alt="huibian-34" style="zoom: 50%;">
+</li>
+</ul>
+<h5 id="dec-减-1"><a class="markdownIt-Anchor" href="#dec-减-1"></a> <code>dec</code> 减 1</h5>
+<ul>
+<li>
+<p>格式：<code>dec opr</code></p>
+</li>
+<li>
+<p>执行操作：<code>(opr)&lt;-(opr)-1</code></p>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>
+<p>不影响标志位</p>
+</li>
+<li>
+<p>一般用于对计数器和地址指针的调整</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>neg</code> 求补运算</p>
+<ul>
+<li>
+<p>格式：<code>neg opr</code></p>
+</li>
+<li>
+<p>操作数：<code>(opr)&lt;- -(opr)</code> 或者 <code>(opr)&lt;-0FFFFH-(opr)+1</code></p>
+</li>
+<li>
+<p>说明：操作数按位求反再 +1</p>
+</li>
+</ul>
+<h5 id="cmp-比较"><a class="markdownIt-Anchor" href="#cmp-比较"></a> <code>cmp</code> 比较</h5>
+<ul>
+<li>
+<p>格式：<code>cmp opr1,opr2</code></p>
+</li>
+<li>
+<p>执行的操作：<code>(opr1)-(opr2)</code></p>
+</li>
+<li>
+<p>说明：可以发现执行的也是减法运算但是并没有保存结果，只是根据结果设置条件标志位。<strong><code>cmp</code> 指令后面往往会跟着一条条转移指令，根据比较结果产生不同的程序分支</strong></p>
+</li>
+<li>
+<p>示例</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">    cmp al,50	;(al)-50</span><br><span class="line">    jb	below	;(al)&lt;50</span><br><span class="line">    sub	al,50	;(al)&gt;&#x3D;50</span><br><span class="line">    inc	ah		;(ah)+1-&gt;ah</span><br><span class="line">below:</span><br><span class="line">	...</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="乘法指令"><a class="markdownIt-Anchor" href="#乘法指令"></a> 乘法指令</h4>
+<div class="note warning icon">
+            <p>乘法和除法指令可以与加法和减法指令对比着记，区别是乘法和除法指令对于分为有无符号数两种运算指令，相同点是乘除法也设置 CF 和 OF，但是对于以外的条件码位无定义</p>
+          </div>
+<div class="note danger icon">
+            <p>无定义和不影响截然不同，不影响是其他条件码保持原状态不变但是无意义是执行这些指令后条件码位的状态不定</p>
+          </div>
+<h5 id="mul-无符号数乘法"><a class="markdownIt-Anchor" href="#mul-无符号数乘法"></a> <code>mul</code> 无符号数乘法</h5>
+<ul>
+<li>
+<p>格式：<code>mul src</code></p>
+</li>
+<li>
+<p>执行操作：因为乘法可能会出现更长的数，所以结果需要一个比操作数更长的寄存器存放（二倍）</p>
+<ul>
+<li>字节操作数：<code>(ax)&lt;-(al)*(src)</code></li>
+<li>字操作数：<code>(dx:ax)&lt;-(ax)*(src)</code></li>
+<li>双字操作数：<code>(edx:eax)&lt;-(eax)*(src)</code></li>
+</ul>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>
+<p>目的操作数必须用累加器，所以要事先将目的操作数存入累加器，两个 8、16、32 位数相乘分别得到 16、32、64 位乘积结果</p>
+<blockquote>
+<p>如今的机器已经有专门用于乘法的累乘器，但是早先就是借助累加器完成的乘法</p>
+</blockquote>
+</li>
+<li>
+<p><strong>源操作数可以用除立即数以外任一一种寻址方式</strong></p>
+</li>
+</ul>
+<div class="note warning icon">
+            <p>值的注意的是在乘法指令中唯独无符号数的乘法指令不支持源操作数使用立即数</p>
+          </div>
+<ul>
+<li>标志位：如果乘积的高一半为 0，则 <code>CF</code> 和 <code>OF</code> 为 0，否则为 1。用来检查相乘的结果是字节、字、还是 4 字</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-35.png" alt="huibian-35" style="zoom: 80%;">
+</li>
+</ul>
+<h5 id="imul-有符号操作数"><a class="markdownIt-Anchor" href="#imul-有符号操作数"></a> <code>imul</code> 有符号操作数</h5>
+<ul>
+<li>
+<p>格式：<code>imul src</code></p>
+</li>
+<li>
+<p>执行操作：和上述的 <code>mul</code> 相同</p>
+</li>
+<li>
+<p>标志位：如果乘积的高一半是低一半的符号扩展，则 <code>CF</code> 和 <code>OF</code> 为0，否则为 1</p>
+</li>
+<li>
+<p>示例</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-36.png" alt="huibian-36" style="zoom: 50%;">
+</li>
+</ul>
+<h5 id="imul-多操作数乘法"><a class="markdownIt-Anchor" href="#imul-多操作数乘法"></a> <code>imul</code> 多操作数乘法</h5>
+<p>对于 80286 及其后续机型，<code>imul</code> 除上述的单操作数指令（累加器是隐含的），还增加了双操作数和三操作数</p>
+<h6 id="imul-双操作数乘法"><a class="markdownIt-Anchor" href="#imul-双操作数乘法"></a> <code>imul</code> 双操作数乘法</h6>
+<ul>
+<li>格式：<code>imul reg,src</code></li>
+<li>执行操作：
+<ul>
+<li>字操作数：<code>(reg16)&lt;-(reg16)*(src)</code></li>
+<li>双字操作数：<code>(reg32)&lt;-(reg32)*(src)</code></li>
+</ul>
+</li>
+<li>说明：
+<ul>
+<li>目的操作数必须是 16 位或者 32 位寄存器</li>
+<li>源操作数可以用任一一种寻址方式取得和目的操作数长度相同的有符号数或者 8、16、32 位的立即数，若立即数长度不够的则自动进行符号扩展</li>
+</ul>
+</li>
+</ul>
+<h6 id="imul-三操作数乘法"><a class="markdownIt-Anchor" href="#imul-三操作数乘法"></a> <code>imul</code> 三操作数乘法</h6>
+<ul>
+<li>格式：<code>imul reg,src,imm</code></li>
+<li>执行操作：不是三个数相乘，而是
+<ul>
+<li>字操作数：<code>(reg16)&lt;-(src)*imm</code></li>
+<li>双字操作数：<code>(reg32)&lt;-(src)*imm</code></li>
+</ul>
+</li>
+<li>说明：
+<ul>
+<li>目的操作数必须是 16 位或者 32 位寄存器</li>
+<li><code>imm</code> 表示立即数，可以是8、16、32 位，但是其长度也必须和目的操作数相同，若为长度不够的立即数则自动进行符号扩展</li>
+</ul>
+</li>
+</ul>
+<h5 id="imul-多操作数和-imul-单操作数的区别"><a class="markdownIt-Anchor" href="#imul-多操作数和-imul-单操作数的区别"></a> <code>imul</code> 多操作数和 <code>imul</code> 单操作数的区别</h5>
+<p><code>imul</code> 单操作数的乘积字长是操作数的二倍，因为即使 <code>OF</code> 位为 1 结果也是对的不存在溢出问题，但是 <code>imul</code> 多操作数乘积的字长和操作数相同，这样就可能会产生溢出问题，此时运算结果就是错的了。<strong>所以对于 <code>imul</code> 多操作数当乘积的没有溢出那么 <code>OF</code> 和 <code>CF</code> 位为 0，否则为 1，其他条件码位仍然无定义</strong></p>
+<h4 id="除法指令"><a class="markdownIt-Anchor" href="#除法指令"></a> 除法指令</h4>
+<h5 id="div-无符号数除法和-idiv-有符号数除法"><a class="markdownIt-Anchor" href="#div-无符号数除法和-idiv-有符号数除法"></a> <code>div</code> 无符号数除法和 <code>idiv</code> 有符号数除法</h5>
+<ul>
+<li>
+<p>格式：<code>div src</code> <code>idiv src</code></p>
+</li>
+<li>
+<p>执行操作：和乘法相反余数和商的长度减半，分别存在高位和低位</p>
+<ul>
+<li>
+<p>字节操作数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(al)&lt;-(ax)&#x2F;(src)的商</span><br><span class="line">(ah)&lt;-(ax)&#x2F;(src)的余数</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>字操作数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(ax)&lt;-(dx:ax)&#x2F;(src)的商</span><br><span class="line">(dx)&lt;-(dx:ax)&#x2F;(src)的余数</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>双字操作数</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">(eax)&lt;-(edx:eax)&#x2F;(src)的商</span><br><span class="line">(edx)&lt;-(edx:eax)&#x2F;(src)的余数</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>说明：</p>
+<ul>
+<li>除数、商、余数分别为 8、16、32 位时，被除数则为 16、32、64位</li>
+<li>目的操作数（被除数）必须存放在 AX 或 (DX:AX) 或 (EDX:EAX) 中，<strong>源操作数可以用除立即数以外的任一种寻址方式</strong></li>
+</ul>
+<div class="note warning icon">
+            <p>离谱的是在除法指令中有无符号数的乘法指令都不支持源操作数使用立即数了</p>
+          </div>
+<ul>
+<li>
+<p>DIV指令中商和余数均为无符号数，IDIV指令中商和余数均为带符号数，且<strong>余数的符号和被除数的符号相同</strong></p>
+</li>
+<li>
+<p><strong>除法指令对所有条件码均无定义</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>好理解因为不涉及溢出问题了进而连 <code>CF</code> 和 <code>OF</code> 都不用着了</p>
+</blockquote>
+</li>
+<li>
+<p>示例</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-37.png" alt="huibian-37" style="zoom:67%;">
+</li>
+</ul>
+<h3 id="逻辑指令"><a class="markdownIt-Anchor" href="#逻辑指令"></a> 逻辑指令</h3>
+<h5 id="逻辑运算指令"><a class="markdownIt-Anchor" href="#逻辑运算指令"></a> 逻辑运算指令</h5>
+<p><strong>下列 5 个指令中 <code>not</code> 不允许使用立即数，其他 4 条指令除非源操作数为立即数，至少有一个操作数必须存放在寄存器中</strong></p>
+<h6 id="标志位影响-3"><a class="markdownIt-Anchor" href="#标志位影响-3"></a> 标志位影响</h6>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-38.png" alt="huibian-38" style="zoom:67%;">
+<p>下列 5 个指令中 <code>not</code> 指令不影响标志位，其它 4 种指令使 <code>CF =0,OF=0</code> , <code>SF</code>  <code>ZF</code> 和 <code>PF</code> 根据结果设置，<code>AF</code> 无定义</p>
+<h6 id="and-逻辑与"><a class="markdownIt-Anchor" href="#and-逻辑与"></a> <code>and</code> 逻辑与</h6>
+<ul>
+<li>
+<p>格式：<code>and dst,src</code></p>
+</li>
+<li>
+<p>执行操作：<code>(dst)&lt;-(dst)∧(src)</code></p>
+</li>
+<li>
+<p>功能：屏蔽某些位（将指定位置设为 0）</p>
+</li>
+<li>
+<p>示例：屏蔽 <code>0BF</code> 的 0、1两位，其他位保持不变</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-39.png" alt="huibian-39" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="or-逻辑或"><a class="markdownIt-Anchor" href="#or-逻辑或"></a> <code>or</code> 逻辑或</h6>
+<ul>
+<li>
+<p>格式：<code>or dst,src</code></p>
+</li>
+<li>
+<p>执行操作：<code>(dst)&lt;-(dst)∨(src)</code></p>
+</li>
+<li>
+<p>功能：将某些位置设置为 1</p>
+</li>
+<li>
+<p>示例：将数 43H 的第 5 位置设为 1，其他位保持不变</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-40.png" alt="huibian-40" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="not-逻辑非"><a class="markdownIt-Anchor" href="#not-逻辑非"></a> <code>not</code> 逻辑非</h6>
+<ul>
+<li>格式：<code>not opr</code></li>
+<li>执行操作：<code>(opr)&lt;-(opr)按位取反</code></li>
+<li>示例：将 8BH 按位取反</li>
+</ul>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-41.png" alt="huibian-41" style="zoom:67%;">
+<h6 id="xor-异或"><a class="markdownIt-Anchor" href="#xor-异或"></a> <code>xor</code> 异或</h6>
+<ul>
+<li>
+<p>格式：<code>xor dst,src</code></p>
+</li>
+<li>
+<p>操作：<code>(dst)&lt;-(dst)∀(src)</code></p>
+</li>
+<li>
+<p>功能：某些位按位取反</p>
+</li>
+<li>
+<p>示例：让数 11H 低0、1位取反，其他位保持不变</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-42.png" alt="huibian-42" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="test-测试"><a class="markdownIt-Anchor" href="#test-测试"></a> <code>test</code> 测试</h6>
+<ul>
+<li>
+<p>格式：<code>test opr1,opr2</code></p>
+</li>
+<li>
+<p>执行操作：<code>(opr1)∧(opr2)</code></p>
+</li>
+<li>
+<p>功能：测试某些位是否为 0</p>
+</li>
+<li>
+<p>说明：也是将两个操作数进行逻辑与运算，但是不将结果保存而是设置 <code>ZF</code> 位，如果所有测试位全为 0 那么 <code>ZF=1</code>，否则 <code>ZF=0</code></p>
+</li>
+<li>
+<p>示例：测试数 40H 的第0、1、2、3、5、7 位是否为0</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-43.png" alt="huibian-43" style="zoom:67%;">
+</li>
+</ul>
+<blockquote>
+<p>结果是 <code>SF=0,ZF=1</code>，说明所需的测试位均为 0</p>
+</blockquote>
+<h5 id="移位指令"><a class="markdownIt-Anchor" href="#移位指令"></a> 移位指令</h5>
+<h6 id="shl-逻辑左移"><a class="markdownIt-Anchor" href="#shl-逻辑左移"></a> <code>shl</code> 逻辑左移</h6>
+<ul>
+<li>
+<p>格式：<code>shl opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-44.png" alt="huibian-44" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：将 (opr) 向左移动 <code>cnt</code> 指定的次数，空出的低位补入相应个数的 0，<code>CF</code> 的内容为最后移入位的值</p>
+</li>
+<li>
+<p>说明：<code>cnt</code> 在 8086 中可以是 1 或者 <code>cl</code> 寄存器指定。<code>cnt</code> 为 1 的时候只需要移动一位，如果移动次数大于 1，则可以在该移位指令按把移位次数置于 <code>cl</code> 寄存器中，而移位指令中的 <code>cnt</code> 写为 <code>cl</code> 即可。在其他机型可以使用 <code>cl</code> 和 <code>cnt</code>，且 <code>cnt</code> 的值除可使用 1 外，还可以使用 8 位的立即数指定范围从 1 到 31 的移位次数</p>
+</li>
+<li>
+<p>示例：无符号数的与 2 指数的乘法</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-46.png" alt="huibian-46" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="shr-逻辑右移"><a class="markdownIt-Anchor" href="#shr-逻辑右移"></a> <code>shr</code> 逻辑右移</h6>
+<ul>
+<li>
+<p>格式：<code>shr opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-45.png" alt="huibian-45" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：将 (opr) 向右移动 <code>cnt</code> 指定的次数，空出的高位补入相应个数的0，<code>CF</code> 的内容为最后移入位的值</p>
+</li>
+<li>
+<p>示例：无符号数与 2 指数的除法</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-47.png" alt="huibian-47" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="sal-算术左移"><a class="markdownIt-Anchor" href="#sal-算术左移"></a> <code>sal</code> 算术左移</h6>
+<ul>
+<li>
+<p>格式：<code>sal opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-44.png" alt="huibian-44" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：不难看出算术左移和逻辑左移的效果是一样的</p>
+</li>
+<li>
+<p>示例：有符号数与 2 指数的乘法</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-48.png" alt="huibian-48" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="sar-算术右移"><a class="markdownIt-Anchor" href="#sar-算术右移"></a> <code>sar</code> 算术右移</h6>
+<ul>
+<li>
+<p>格式：<code>sar opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-49.png" alt="huibian-49" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：将 (opr) 向右移动 <code>cnt</code> 指定的次数，空出的高位补入相应个数的符号位 ，<code>CF</code> 的内容为最后移入位的值</p>
+</li>
+<li>
+<p>示例：有符号数与 2 指数的除法</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-50.png" alt="huibian-50" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="移位指令使用总结"><a class="markdownIt-Anchor" href="#移位指令使用总结"></a> 移位指令使用总结</h6>
+<ul>
+<li>
+<p>逻辑移位运算适用于无符号数运算</p>
+<ul>
+<li><code>shl</code> 用来乘以 2<sup>n</sup></li>
+<li><code>shr</code> 用来除以 2<sup>n</sup></li>
+</ul>
+</li>
+<li>
+<p>算术移位运算适用于带符号数运算</p>
+<ul>
+<li><code>shl</code> 用来乘以 2<sup>n</sup></li>
+<li><code>shr</code> 用来除以 2<sup>n</sup></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>n 指的是移位次数，相当于 C++ 中的 <code>&lt;&lt; n</code> 和 <code>&gt;&gt; n</code></p>
+</blockquote>
+<h5 id="循环移位指令"><a class="markdownIt-Anchor" href="#循环移位指令"></a> 循环移位指令</h5>
+<h6 id="rol-循环左移"><a class="markdownIt-Anchor" href="#rol-循环左移"></a> <code>rol</code> 循环左移</h6>
+<ul>
+<li>
+<p>格式：<code>rol opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-51.png" alt="huibian-51" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：将操作数向左移动 <code>cnt</code> 指定的位数，移出的位不仅要进入 <code>CF</code>，而且还要填补空出的位</p>
+</li>
+<li>
+<p>示例：如 (AX)=0012H，(BX)=0034H, 要求把它们装配在 一起形成 (AX)=1234H</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">mov	cl,8</span><br><span class="line">rol	ax,cl</span><br><span class="line">add	ax,bx</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h6 id="ror-循环右移"><a class="markdownIt-Anchor" href="#ror-循环右移"></a> <code>ror</code> 循环右移</h6>
+<ul>
+<li>
+<p>格式：<code>ror opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-52.png" alt="huibian-52" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：将操作数向右移动 <code>cnt</code> 指定的位数，移出的位不仅要进入 <code>CF</code>，而且还要填补空出的位</p>
+</li>
+<li>
+<p>示例：(BX)=84F0H，把 (BX) 中的 16 位数从低到高每 4 位压入堆栈</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-55.png" alt="huibian-55" style="zoom:67%;">
+</li>
+</ul>
+<h6 id="rcl-带进位循环左移"><a class="markdownIt-Anchor" href="#rcl-带进位循环左移"></a> <code>rcl</code> 带进位循环左移</h6>
+<ul>
+<li>
+<p>格式：<code>rcl opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-53.png" alt="huibian-53" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：将操作数向左移动 <code>cnt</code> 指定的位数，用原 <code>CF</code> 的值填补空出的位，移出的位再进入 <code>CF</code></p>
+</li>
+</ul>
+<h6 id="rcr-带进位循环右移"><a class="markdownIt-Anchor" href="#rcr-带进位循环右移"></a> <code>rcr</code> 带进位循环右移</h6>
+<ul>
+<li>
+<p>格式：<code>rcl opr,cnt</code></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/huibian-54.png" alt="huibian-54" style="zoom:67%;">
+</li>
+<li>
+<p>执行操作：将操作数向右移动 <code>cnt</code> 指定的位数，用原 <code>CF</code> 的值填补空出的位，移出的位再进入 <code>CF</code></p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>大学计算机学习</category>
