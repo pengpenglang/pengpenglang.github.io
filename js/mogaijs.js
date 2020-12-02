@@ -1,5 +1,5 @@
 //创建对象
-var xiaokang = new xkTool();
+var xiaokang = new xkTool("transparent");
 //随机背景
 // 添加图片，背景图片会在这里随机选取一个设置为banner
 xiaokang.bannerList = [
