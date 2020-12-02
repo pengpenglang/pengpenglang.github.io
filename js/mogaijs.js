@@ -14,7 +14,7 @@ xiaokang.bannerList = [
 ];
 //页面背景
 xiaokang.bgPage();
-xiaokang.randomBanner(true); // true为使用滤镜，不写或者false为不使用滤镜
+xiaokang.randomBanner(false); // true为使用滤镜，不写或者false为不使用滤镜
 //欺诈标题
 //xiaokang.cheatTitle("网页3秒后即将关闭。。","骗你的啦");
 //魔幻圆圈
