@@ -1321,6 +1321,40 @@
       </tags>
   </entry>
   <entry>
+    <title>排列数与组合数</title>
+    <url>/posts/491064300/</url>
+    <content><![CDATA[<div class="btn-center">
+<a class="btn-beautify button--animated outline pink larger" href="https://www.jianshu.com/p/e5762e0957e8" title="博客转载"><i class="far fa-hand-point-right fa-fw"></i><span>博客转载</span></a>
+</div>
+<h1 id="组合数"><a class="markdownIt-Anchor" href="#组合数"></a> 组合数</h1>
+<p>定义：从 n 个不同元素中取出 m（m ≤ n）个元素的所有组合的个数，叫做 n 个不同元素中取出 m（m≤n）个元素的组合数。用符号 C(n,m) 表示</p>
+<p>组合数公式：<code>C(n,m) = n! / (m! * (n-m)!)</code><br>
+性质：<code>C(n,m) = C(n,m-n)</code><br>
+递推公式：<code>C(n,m) = C(n-1,m-1) + C(n-1,m)</code></p>
+<h1 id="排列数"><a class="markdownIt-Anchor" href="#排列数"></a> 排列数</h1>
+<p>定义：从 n 个不同的元素中任取 m（m ≤ n）个元素的所有排列的个数，叫做从 n 个不同的元素中取出 m（m≤n）个元素的排列数。用符号 <code>A(n,m)</code> 表示<br>
+排列与元素的顺序有关，组合与顺序无关</p>
+<p>排列数公式：<code>A(n,m) = n * (n-1) * ... * (n-m+1) = n! / (n-m)!</code></p>
+<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+<blockquote>
+<p>在使用中一般很灵活，理解原理适关键。两种数都是基于阶乘的计算，所以可以将阶乘计算提取出来处理</p>
+</blockquote>
+<div class="note warning icon">
+            <p>值得注意的是 <code>0! = 1</code></p>
+          </div>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">factorial</span><span class="params">(ll n)</span> </span>&#123;  <span class="comment">//阶乘</span></span><br><span class="line">    ll fc = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) fc *= i;</span><br><span class="line">    <span class="keyword">return</span> fc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">combo</span><span class="params">(ll n, ll m)</span> </span>&#123;  <span class="comment">//组合数</span></span><br><span class="line">    ll com = factorial(n) / (factorial(m) * factorial(n - m));</span><br><span class="line">    <span class="keyword">return</span> com;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">permutation</span><span class="params">(ll n, ll m)</span> </span>&#123;  <span class="comment">//排列数</span></span><br><span class="line">    ll perm = factorial(n) / factorial(n - m);</span><br><span class="line">    <span class="keyword">return</span> perm;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>), <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    ll n, m;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; combo(n, m) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; permutation(n, m) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>ACM学习</category>
+        <category>数学基础</category>
+      </categories>
+      <tags>
+        <tag>C++</tag>
+        <tag>算法与数据结构</tag>
+        <tag>组合数与排列数</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常见查找总结</title>
     <url>/posts/1257890361/</url>
     <content><![CDATA[<p><strong>查找：根据给定的某个值，在<mark>查找表</mark>中确定一个关键字的等于给定值的数据元素（或记录）</strong></p>
@@ -1425,37 +1459,106 @@
       </tags>
   </entry>
   <entry>
-    <title>排列数与组合数</title>
-    <url>/posts/491064300/</url>
-    <content><![CDATA[<div class="btn-center">
-<a class="btn-beautify button--animated outline pink larger" href="https://www.jianshu.com/p/e5762e0957e8" title="博客转载"><i class="far fa-hand-point-right fa-fw"></i><span>博客转载</span></a>
-</div>
-<h1 id="组合数"><a class="markdownIt-Anchor" href="#组合数"></a> 组合数</h1>
-<p>定义：从 n 个不同元素中取出 m（m ≤ n）个元素的所有组合的个数，叫做 n 个不同元素中取出 m（m≤n）个元素的组合数。用符号 C(n,m) 表示</p>
-<p>组合数公式：<code>C(n,m) = n! / (m! * (n-m)!)</code><br>
-性质：<code>C(n,m) = C(n,m-n)</code><br>
-递推公式：<code>C(n,m) = C(n-1,m-1) + C(n-1,m)</code></p>
-<h1 id="排列数"><a class="markdownIt-Anchor" href="#排列数"></a> 排列数</h1>
-<p>定义：从 n 个不同的元素中任取 m（m ≤ n）个元素的所有排列的个数，叫做从 n 个不同的元素中取出 m（m≤n）个元素的排列数。用符号 <code>A(n,m)</code> 表示<br>
-排列与元素的顺序有关，组合与顺序无关</p>
-<p>排列数公式：<code>A(n,m) = n * (n-1) * ... * (n-m+1) = n! / (n-m)!</code></p>
-<h1 id="模板"><a class="markdownIt-Anchor" href="#模板"></a> 模板</h1>
+    <title>权值线段树</title>
+    <url>/posts/3951849340/</url>
+    <content><![CDATA[<h1 id="权值线段树应用"><a class="markdownIt-Anchor" href="#权值线段树应用"></a> 权值线段树应用</h1>
+<p>普通的线段树的节点维护代表区间中存储的数组和，而权值线段树的节点是维护数组中出现在代表区间内的元素的次数。</p>
+<p><strong>权值线段树基本作用</strong>：查找数组中第<code>k</code>大的元素</p>
+<p><strong>注意：权值线段树只是一个思想，一般需要根据题目对其意义加以改进</strong></p>
 <blockquote>
-<p>在使用中一般很灵活，理解原理适关键。两种数都是基于阶乘的计算，所以可以将阶乘计算提取出来处理</p>
+<p>那么普通的线段树的叶节点 <code>[x,x]</code> 记录的就是数组中 <code>a[x]</code> 的大小，而权值线段树的叶节点 <code>[x,x]</code> 记录的就是数组中大小为 <code>x</code> 的元素个数</p>
 </blockquote>
-<div class="note warning icon">
-            <p>值得注意的是 <code>0! = 1</code></p>
-          </div>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">factorial</span><span class="params">(ll n)</span> </span>&#123;  <span class="comment">//阶乘</span></span><br><span class="line">    ll fc = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) fc *= i;</span><br><span class="line">    <span class="keyword">return</span> fc;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">combo</span><span class="params">(ll n, ll m)</span> </span>&#123;  <span class="comment">//组合数</span></span><br><span class="line">    ll com = factorial(n) / (factorial(m) * factorial(n - m));</span><br><span class="line">    <span class="keyword">return</span> com;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">permutation</span><span class="params">(ll n, ll m)</span> </span>&#123;  <span class="comment">//排列数</span></span><br><span class="line">    ll perm = factorial(n) / factorial(n - m);</span><br><span class="line">    <span class="keyword">return</span> perm;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>), <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    ll n, m;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; combo(n, m) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; permutation(n, m) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="comment">//system(&quot;pause&quot;);</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="权值线段树模板"><a class="markdownIt-Anchor" href="#权值线段树模板"></a> 权值线段树模板</h1>
+<p>和线段树结构相同，只不过节点的权值记录的意义不相同而已。不过由于数组的值域，通常会采用现将数组离散化再建立对应的权值线段树来节省空间的白白浪费。当然还可以动态开点建树。</p>
+<p><a href="https://vjudge.net/problem/HDU-4217">模板题1</a>：在一个含有 <code>1-n</code> 的序列中，每次找到第 <code>Ki</code> 小的数，并把它删除。第一个数 <code>T</code> ，表示测试数据的组数。每组测试数据，第一行 <code>2</code> 个整数 <code>n</code> 和 <code>m</code> ， <code>m</code> 表示操作的轮数。接下来<code>m</code>行，每行一个整数 <code>k</code> ，表示要找出第 <code>k</code> 小的数，并把它删除。每组数据，输出一个整数，表示删除元素的总和。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//未离散化的查找第k大+区间求和</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;<span class="comment">//统计样例次数</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,sum;</span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;<span class="comment">//更新父节点</span></span><br><span class="line">    tree[rt].sum=tree[rt&lt;&lt;<span class="number">1</span>].sum+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="comment">//建立空树</span></span><br><span class="line">    tree[rt].l=l,tree[rt].r=r;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> id,<span class="keyword">int</span> score)</span></span>&#123;<span class="comment">//将大小为id的个数加上score权值</span></span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum+=score;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(id&lt;=tree[rt&lt;&lt;<span class="number">1</span>].r)update(rt&lt;&lt;<span class="number">1</span>,id,score);</span><br><span class="line">    <span class="keyword">else</span> update(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,id,score);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> k)</span></span>&#123;<span class="comment">//查询第k大的数</span></span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)<span class="keyword">return</span> tree[rt].l;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt&lt;&lt;<span class="number">1</span>].sum&gt;=k)<span class="keyword">return</span> query(rt&lt;&lt;<span class="number">1</span>,k);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> query(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,k-tree[rt&lt;&lt;<span class="number">1</span>].sum);</span><br><span class="line">    <span class="comment">//转变为在右子树找第k-左子树元素个数的数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*int query(int rt,int l,int r)&#123;//查询[l,r]区间内元素的个数</span></span><br><span class="line"><span class="comment">    if(l&lt;=tree[rt].l&amp;&amp;r&gt;=tree[rt].r)return tree[rt].sum;</span></span><br><span class="line"><span class="comment">    int lc=rt&lt;&lt;1,rc=rt&lt;&lt;1|1;</span></span><br><span class="line"><span class="comment">    int mid=tree[rt].l+tree[rt].r&gt;&gt;1;</span></span><br><span class="line"><span class="comment">    int ans=0;</span></span><br><span class="line"><span class="comment">    if(l&lt;=mid)ans+=query(lc,l,r);</span></span><br><span class="line"><span class="comment">    if(r&gt;mid)ans+=query(rc,l,r);</span></span><br><span class="line"><span class="comment">    return ans;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line"></span><br><span class="line">    build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//初始1~n的个数都是1，其实这个步骤可以放在建树中</span></span><br><span class="line">    update(<span class="number">1</span>,i,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    ll ans=<span class="number">0</span>;<span class="comment">//记录删除的数</span></span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="keyword">int</span> k;<span class="built_in">cin</span>&gt;&gt;k;</span><br><span class="line">        <span class="keyword">int</span> tot=query(<span class="number">1</span>,k);<span class="comment">//找到第k大的数</span></span><br><span class="line">        ans+=tot;</span><br><span class="line">        update(<span class="number">1</span>,tot,<span class="number">-1</span>);<span class="comment">//将第k大的数个数-1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Case &quot;</span>&lt;&lt;++cnt&lt;&lt;<span class="string">&quot;: &quot;</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://vjudge.net/problem/HDU-6609">模板题2</a>：给你一个序列对于每个 <code>i</code> ，你可以选择 <code>1~i-1</code> 中任意多的数并将它删去，剩余的数（包括 <code>i</code> ）和 <code>≤m</code> ，问对于每个 <code>i</code> 最少删几个数可以达到要求</p>
+<blockquote>
+<p>思路：可以转变思维即要求用在 <code>1~i-1</code> 的元素尽量多的个数去凑 <code>m-a[i]</code>（小于等于尽量靠近）。现将数组离散化然后存入权值线段树，权值线段树既要统计区间内元素的个数还要统计其元素总和</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//离散化权值线段树</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2e5</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,tot;<span class="comment">//左右区间，元素个数</span></span><br><span class="line">    ll sum;<span class="comment">//区间内元素的和</span></span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;<span class="comment">//n个数,边界数m</span></span><br><span class="line"><span class="keyword">int</span> len,p;<span class="comment">//离散后数组长度,元素离散后的值</span></span><br><span class="line">ll a[maxn],b[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;<span class="comment">//更新父节点</span></span><br><span class="line">    tree[rt].sum=tree[rt&lt;&lt;<span class="number">1</span>].sum+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum;</span><br><span class="line">    tree[rt].tot=tree[rt&lt;&lt;<span class="number">1</span>].tot+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].tot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="comment">//建立空树</span></span><br><span class="line">    tree[rt].l=l;</span><br><span class="line">    tree[rt].r=r;</span><br><span class="line">    tree[rt].tot=<span class="number">0</span>;</span><br><span class="line">    tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l==r)<span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="comment">//更新区间内信息</span></span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        tree[rt].tot++;</span><br><span class="line">        tree[rt].sum+=b[p];</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(p&lt;=mid)update(rt&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">    <span class="keyword">else</span> update(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,ll k)</span></span>&#123;<span class="comment">//查询元素和满足小于等于k的区间并返还最多用到的元素个数（优先用左区间内的数去凑）</span></span><br><span class="line">    <span class="keyword">if</span>(tree[rt].sum&lt;=k)<span class="keyword">return</span> tree[rt].tot;</span><br><span class="line">    <span class="keyword">if</span>(l==r)<span class="keyword">return</span> min(tree[rt].tot,(<span class="keyword">int</span>)(k/b[l]));<span class="comment">//说明就要用当前的数来凑</span></span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(k&lt;=tree[rt&lt;&lt;<span class="number">1</span>].sum)<span class="keyword">return</span> query(rt&lt;&lt;<span class="number">1</span>,l,mid,k);<span class="comment">//说明用做区间内的元素去凑</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> tree[rt&lt;&lt;<span class="number">1</span>].tot+query(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,k-tree[rt&lt;&lt;<span class="number">1</span>].sum);<span class="comment">//说明左区间的数全用,还要在用又区间的一些数凑</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a[i],b[i]=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//离散化</span></span><br><span class="line">    sort(b+<span class="number">1</span>,b+<span class="number">1</span>+n);</span><br><span class="line">    len=unique(b+<span class="number">1</span>,b+<span class="number">1</span>+n)-b<span class="number">-1</span>;</span><br><span class="line">    build(<span class="number">1</span>,<span class="number">1</span>,len);<span class="comment">//注意；离散化后区间不再是值域范围，而是离散化的数处于b区间内第l大的数和第r大的数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="comment">//现在之前的线段树中找1~i-1可以组成的最大数所用的最大数量</span></span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;i<span class="number">-1</span>-query(<span class="number">1</span>,<span class="number">1</span>,len,m-a[i])&lt;&lt;<span class="string">&quot; &quot;</span>;<span class="comment">//获得至少需要减去的元素个数</span></span><br><span class="line">        <span class="comment">//然后在将现在的节点插入到线段树中为下次做准备</span></span><br><span class="line">        p=lower_bound(b+<span class="number">1</span>,b+<span class="number">1</span>+n,a[i])-b;</span><br><span class="line">        update(<span class="number">1</span>,<span class="number">1</span>,len);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="权值线段树应用求逆序对"><a class="markdownIt-Anchor" href="#权值线段树应用求逆序对"></a> 权值线段树应用：求逆序对</h1>
+<blockquote>
+<p>树状数组都可以求逆序对，线段树作为另一种区间查询的数据结构当然也可以用来求逆序对</p>
+</blockquote>
+<p><strong>前言</strong>：逆序对是一个经典的问题，树状数组和权值线段树的求法都应该领悟</p>
+<p><strong>做法</strong>：和树状数组的方法类似，这里还是利用权值线段树区间统计个数的性质。思路是将<strong>离散化</strong>后的自然数序列中的数逐个插入（插入的数字所在的区间更新 +1 ）。设插入的数字是原序列的第 <code>i</code> 个数：</p>
+<ul>
+<li>可以<strong>插入前</strong>使用线段树查询 <code>[a[i],n]</code> 和（也就是相当于查询该数前面比它大的逆序对），然后再将该数插入线段树（利用线段树的性质还可这样做），即 <code>sum+=query(1,a[i],n),update(1,a[i],1)</code></li>
+</ul>
+<blockquote>
+<p>先查询再插入，因为是查找之前的数和该数能组成逆序对的，插入再查询就把自己给算进去了</p>
+</blockquote>
+<ul>
+<li>或者先将数插入线段树，然后查询 <code>[1,a[n]]</code>（也就是查询不满足逆序对的数），利用本身减去位置减去前面个数比它小的数和本身（树状数组的方法，线段树也可以实现），即 <code>update(1,a[i],1),sum+=i-query(1,1,a[i])</code></li>
+</ul>
+<blockquote>
+<p>先插入在查询，因为这里是找不能组成逆序对的数，所以要把自身算进去</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//权值线段树求逆序数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">5e3</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[maxn],b[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,sum;</span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    tree[rt].sum=tree[lc].sum+tree[rc].sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    tree[rt].l=l,tree[rt].r=r;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    build(lc,l,mid);</span><br><span class="line">    build(rc,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> id,<span class="keyword">int</span> score)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum+=score;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(id&lt;=mid)update(lc,id,score);</span><br><span class="line">    <span class="keyword">else</span> update(rc,id,score);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=tree[rt].l&amp;&amp;r&gt;=tree[rt].r)<span class="keyword">return</span> tree[rt].sum;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid)ans+=query(lc,l,r);</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid)ans+=query(rc,l,r);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(tree,<span class="number">0</span>,<span class="keyword">sizeof</span> tree);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i],b[i]=a[i];</span><br><span class="line"></span><br><span class="line">        sort(b+<span class="number">1</span>,b+<span class="number">1</span>+n);</span><br><span class="line">        <span class="comment">//获得离散后序列长度，其实这步没必要因为要求排列的逆序对已经默认无重复</span></span><br><span class="line">		<span class="keyword">int</span> len=unique(b+<span class="number">1</span>,b+<span class="number">1</span>+n)-b<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            a[i]=lower_bound(b+<span class="number">1</span>,b+<span class="number">1</span>+len,a[i])-b;<span class="comment">//获得离散的值</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ll ans=<span class="number">0</span>;<span class="comment">//记录器</span></span><br><span class="line">        build(<span class="number">1</span>,<span class="number">1</span>,len);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">            ans+=query(<span class="number">1</span>,a[i],len);<span class="comment">//求比它大的数的个数</span></span><br><span class="line">            update(<span class="number">1</span>,a[i],<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">5</span></span><br><span class="line"><span class="comment">5 3 2 4 1</span></span><br><span class="line"><span class="comment">输出：8</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://vjudge.net/problem/HDU-1394">模板题</a>：输入一个整数 <code>n</code> ，接下来随意顺序输入 0 到 <code>n-1</code> 之间的数，然后你可以将每一串这样的数的第一个数移到最后一位去，形成新的数字串。要求你输出这样的操作得到的不同数字串中逆序数的最小个数</p>
+<p>如 <code>0 3 4 1 2</code> ，该序列逆序数为 <code>n=2+2=4</code> 。其根据题意移动产生的序列有(每次将数组第一个数移到末尾)</p>
+<table>
+<thead>
+<tr>
+<th>排列</th>
+<th>逆序对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3 4 1 2 0</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>4 1 2 0 3</code></td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>1 2 0 3 4</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>1 2 0 3 4</code></td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>所以排列的最小逆序数为 2</p>
+<blockquote>
+<p>思路：在寻找逆序对的基础上做了变式，要求求出 <code>1~n</code> 任意排列中的最小逆序对。这里有一个规律可以根据初始自然数排列列的逆序对找出最小逆序对：引用上面的例子</p>
+<table>
+<thead>
+<tr>
+<th>排列</th>
+<th>逆序对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3 4 1 2 0</code></td>
+<td>8</td>
+</tr>
+<tr>
+<td><code>4 1 2 0 3</code></td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>3 后面比 3 小的数有 <code>1 2 0</code> ，所以逆序对为 <code>t=3</code> ，比 3 大的数只有 4 ，所以顺序对为 1 ，即 <code>顺序对=n-1-t(n表示序列中数字的总个数)</code> ，当 3 移到末尾顺序对变为逆序对，逆序对变为顺序对，所以要在原来排列的逆序对 <code>k</code> 基础上减去该数原来的逆序对加上原来的顺序对，<code>现在的逆序数=k+(n-1-t)-t=k+n-2t-1</code></p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//树状数组做法</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">5e3</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[maxn];<span class="comment">//离散化后的数组</span></span><br><span class="line"><span class="keyword">int</span> c[maxn];<span class="comment">//树状数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> i&amp;(-i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=n)&#123;</span><br><span class="line">		c[i]+=k;</span><br><span class="line">		i+=lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">		res+=c[i];</span><br><span class="line">		i-=lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">		<span class="comment">//树状数组求逆序</span></span><br><span class="line">        <span class="comment">//不用离散化，题目保证0~n-1,可以直接利用上述规律</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">            a[i]++;<span class="comment">//树状数组只能从1开始，所以这里必须+1</span></span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">memset</span>(c,<span class="number">0</span>,<span class="keyword">sizeof</span>(c));</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> tot=<span class="number">0</span>;<span class="comment">//要是处理很多数，即使离散化了也很可能超出int范围</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            update(a[i],<span class="number">1</span>);<span class="comment">//插入</span></span><br><span class="line">            tot+=(i-getsum(a[i]));<span class="comment">//求当前数的逆序数</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans=tot;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            tot=tot+n<span class="number">-2</span>*a[i]+<span class="number">1</span>;<span class="comment">//将a[i]扔到后面变化，因为排列从0开始，所以第i个数的逆序对就是本身的值a[i]</span></span><br><span class="line">            ans=min(tot,ans);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//权值线段树做法</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">5e3</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,sum;</span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    tree[rt].sum=tree[lc].sum+tree[rc].sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    tree[rt].l=l,tree[rt].r=r;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    build(lc,l,mid);</span><br><span class="line">    build(rc,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> id,<span class="keyword">int</span> score)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum+=score;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(id&lt;=mid)update(lc,id,score);</span><br><span class="line">    <span class="keyword">else</span> update(rc,id,score);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=tree[rt].l&amp;&amp;r&gt;=tree[rt].r)<span class="keyword">return</span> tree[rt].sum;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid)ans+=query(lc,l,r);</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid)ans+=query(rc,l,r);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(tree,<span class="number">0</span>,<span class="keyword">sizeof</span> tree);</span><br><span class="line">        ll tot=<span class="number">0</span>;</span><br><span class="line">        build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">            a[i]++;<span class="comment">//这个随意:习惯从1开始</span></span><br><span class="line">            tot+=query(<span class="number">1</span>,a[i],n);<span class="comment">//求比它大的数的个数</span></span><br><span class="line">            update(<span class="number">1</span>,a[i],<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans=tot;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            tot=tot+n<span class="number">-2</span>*a[i]+<span class="number">1</span>;</span><br><span class="line">            ans=min(ans,tot);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>ACM学习</category>
-        <category>数学基础</category>
+        <category>数据结构</category>
       </categories>
       <tags>
         <tag>C++</tag>
         <tag>算法与数据结构</tag>
-        <tag>组合数与排列数</tag>
+        <tag>权值线段树</tag>
+        <tag>逆序对</tag>
       </tags>
   </entry>
   <entry>
@@ -1571,109 +1674,6 @@
         <tag>C++</tag>
         <tag>算法与数据结构</tag>
         <tag>最小生成树</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>权值线段树</title>
-    <url>/posts/3951849340/</url>
-    <content><![CDATA[<h1 id="权值线段树应用"><a class="markdownIt-Anchor" href="#权值线段树应用"></a> 权值线段树应用</h1>
-<p>普通的线段树的节点维护代表区间中存储的数组和，而权值线段树的节点是维护数组中出现在代表区间内的元素的次数。</p>
-<p><strong>权值线段树基本作用</strong>：查找数组中第<code>k</code>大的元素</p>
-<p><strong>注意：权值线段树只是一个思想，一般需要根据题目对其意义加以改进</strong></p>
-<blockquote>
-<p>那么普通的线段树的叶节点 <code>[x,x]</code> 记录的就是数组中 <code>a[x]</code> 的大小，而权值线段树的叶节点 <code>[x,x]</code> 记录的就是数组中大小为 <code>x</code> 的元素个数</p>
-</blockquote>
-<h1 id="权值线段树模板"><a class="markdownIt-Anchor" href="#权值线段树模板"></a> 权值线段树模板</h1>
-<p>和线段树结构相同，只不过节点的权值记录的意义不相同而已。不过由于数组的值域，通常会采用现将数组离散化再建立对应的权值线段树来节省空间的白白浪费。当然还可以动态开点建树。</p>
-<p><a href="https://vjudge.net/problem/HDU-4217">模板题1</a>：在一个含有 <code>1-n</code> 的序列中，每次找到第 <code>Ki</code> 小的数，并把它删除。第一个数 <code>T</code> ，表示测试数据的组数。每组测试数据，第一行 <code>2</code> 个整数 <code>n</code> 和 <code>m</code> ， <code>m</code> 表示操作的轮数。接下来<code>m</code>行，每行一个整数 <code>k</code> ，表示要找出第 <code>k</code> 小的数，并把它删除。每组数据，输出一个整数，表示删除元素的总和。</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//未离散化的查找第k大+区间求和</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">3e5</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cnt=<span class="number">0</span>;<span class="comment">//统计样例次数</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,sum;</span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;<span class="comment">//更新父节点</span></span><br><span class="line">    tree[rt].sum=tree[rt&lt;&lt;<span class="number">1</span>].sum+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="comment">//建立空树</span></span><br><span class="line">    tree[rt].l=l,tree[rt].r=r;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> id,<span class="keyword">int</span> score)</span></span>&#123;<span class="comment">//将大小为id的个数加上score权值</span></span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum+=score;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(id&lt;=tree[rt&lt;&lt;<span class="number">1</span>].r)update(rt&lt;&lt;<span class="number">1</span>,id,score);</span><br><span class="line">    <span class="keyword">else</span> update(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,id,score);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> k)</span></span>&#123;<span class="comment">//查询第k大的数</span></span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)<span class="keyword">return</span> tree[rt].l;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt&lt;&lt;<span class="number">1</span>].sum&gt;=k)<span class="keyword">return</span> query(rt&lt;&lt;<span class="number">1</span>,k);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> query(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,k-tree[rt&lt;&lt;<span class="number">1</span>].sum);</span><br><span class="line">    <span class="comment">//转变为在右子树找第k-左子树元素个数的数</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*int query(int rt,int l,int r)&#123;//查询[l,r]区间内元素的个数</span></span><br><span class="line"><span class="comment">    if(l&lt;=tree[rt].l&amp;&amp;r&gt;=tree[rt].r)return tree[rt].sum;</span></span><br><span class="line"><span class="comment">    int lc=rt&lt;&lt;1,rc=rt&lt;&lt;1|1;</span></span><br><span class="line"><span class="comment">    int mid=tree[rt].l+tree[rt].r&gt;&gt;1;</span></span><br><span class="line"><span class="comment">    int ans=0;</span></span><br><span class="line"><span class="comment">    if(l&lt;=mid)ans+=query(lc,l,r);</span></span><br><span class="line"><span class="comment">    if(r&gt;mid)ans+=query(rc,l,r);</span></span><br><span class="line"><span class="comment">    return ans;</span></span><br><span class="line"><span class="comment">&#125;*/</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line"></span><br><span class="line">    build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="comment">//初始1~n的个数都是1，其实这个步骤可以放在建树中</span></span><br><span class="line">    update(<span class="number">1</span>,i,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    ll ans=<span class="number">0</span>;<span class="comment">//记录删除的数</span></span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="keyword">int</span> k;<span class="built_in">cin</span>&gt;&gt;k;</span><br><span class="line">        <span class="keyword">int</span> tot=query(<span class="number">1</span>,k);<span class="comment">//找到第k大的数</span></span><br><span class="line">        ans+=tot;</span><br><span class="line">        update(<span class="number">1</span>,tot,<span class="number">-1</span>);<span class="comment">//将第k大的数个数-1</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="string">&quot;Case &quot;</span>&lt;&lt;++cnt&lt;&lt;<span class="string">&quot;: &quot;</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><a href="https://vjudge.net/problem/HDU-6609">模板题2</a>：给你一个序列对于每个 <code>i</code> ，你可以选择 <code>1~i-1</code> 中任意多的数并将它删去，剩余的数（包括 <code>i</code> ）和 <code>≤m</code> ，问对于每个 <code>i</code> 最少删几个数可以达到要求</p>
-<blockquote>
-<p>思路：可以转变思维即要求用在 <code>1~i-1</code> 的元素尽量多的个数去凑 <code>m-a[i]</code>（小于等于尽量靠近）。现将数组离散化然后存入权值线段树，权值线段树既要统计区间内元素的个数还要统计其元素总和</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//离散化权值线段树</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">2e5</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,tot;<span class="comment">//左右区间，元素个数</span></span><br><span class="line">    ll sum;<span class="comment">//区间内元素的和</span></span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;<span class="comment">//n个数,边界数m</span></span><br><span class="line"><span class="keyword">int</span> len,p;<span class="comment">//离散后数组长度,元素离散后的值</span></span><br><span class="line">ll a[maxn],b[maxn];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;<span class="comment">//更新父节点</span></span><br><span class="line">    tree[rt].sum=tree[rt&lt;&lt;<span class="number">1</span>].sum+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].sum;</span><br><span class="line">    tree[rt].tot=tree[rt&lt;&lt;<span class="number">1</span>].tot+tree[rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>].tot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="comment">//建立空树</span></span><br><span class="line">    tree[rt].l=l;</span><br><span class="line">    tree[rt].r=r;</span><br><span class="line">    tree[rt].tot=<span class="number">0</span>;</span><br><span class="line">    tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l==r)<span class="keyword">return</span> ;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">    build(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;<span class="comment">//更新区间内信息</span></span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        tree[rt].tot++;</span><br><span class="line">        tree[rt].sum+=b[p];</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(p&lt;=mid)update(rt&lt;&lt;<span class="number">1</span>,l,mid);</span><br><span class="line">    <span class="keyword">else</span> update(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r,ll k)</span></span>&#123;<span class="comment">//查询元素和满足小于等于k的区间并返还最多用到的元素个数（优先用左区间内的数去凑）</span></span><br><span class="line">    <span class="keyword">if</span>(tree[rt].sum&lt;=k)<span class="keyword">return</span> tree[rt].tot;</span><br><span class="line">    <span class="keyword">if</span>(l==r)<span class="keyword">return</span> min(tree[rt].tot,(<span class="keyword">int</span>)(k/b[l]));<span class="comment">//说明就要用当前的数来凑</span></span><br><span class="line">    <span class="keyword">int</span> mid=l+r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(k&lt;=tree[rt&lt;&lt;<span class="number">1</span>].sum)<span class="keyword">return</span> query(rt&lt;&lt;<span class="number">1</span>,l,mid,k);<span class="comment">//说明用做区间内的元素去凑</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> tree[rt&lt;&lt;<span class="number">1</span>].tot+query(rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>,mid+<span class="number">1</span>,r,k-tree[rt&lt;&lt;<span class="number">1</span>].sum);<span class="comment">//说明左区间的数全用,还要在用又区间的一些数凑</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;a[i],b[i]=a[i];</span><br><span class="line"></span><br><span class="line">    <span class="comment">//离散化</span></span><br><span class="line">    sort(b+<span class="number">1</span>,b+<span class="number">1</span>+n);</span><br><span class="line">    len=unique(b+<span class="number">1</span>,b+<span class="number">1</span>+n)-b<span class="number">-1</span>;</span><br><span class="line">    build(<span class="number">1</span>,<span class="number">1</span>,len);<span class="comment">//注意；离散化后区间不再是值域范围，而是离散化的数处于b区间内第l大的数和第r大的数</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="comment">//现在之前的线段树中找1~i-1可以组成的最大数所用的最大数量</span></span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;<span class="number">0</span>&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cout</span>&lt;&lt;i<span class="number">-1</span>-query(<span class="number">1</span>,<span class="number">1</span>,len,m-a[i])&lt;&lt;<span class="string">&quot; &quot;</span>;<span class="comment">//获得至少需要减去的元素个数</span></span><br><span class="line">        <span class="comment">//然后在将现在的节点插入到线段树中为下次做准备</span></span><br><span class="line">        p=lower_bound(b+<span class="number">1</span>,b+<span class="number">1</span>+n,a[i])-b;</span><br><span class="line">        update(<span class="number">1</span>,<span class="number">1</span>,len);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> t;<span class="built_in">cin</span>&gt;&gt;t;</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        solve();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="权值线段树应用求逆序对"><a class="markdownIt-Anchor" href="#权值线段树应用求逆序对"></a> 权值线段树应用：求逆序对</h1>
-<blockquote>
-<p>树状数组都可以求逆序对，线段树作为另一种区间查询的数据结构当然也可以用来求逆序对</p>
-</blockquote>
-<p><strong>前言</strong>：逆序对是一个经典的问题，树状数组和权值线段树的求法都应该领悟</p>
-<p><strong>做法</strong>：和树状数组的方法类似，这里还是利用权值线段树区间统计个数的性质。思路是将<strong>离散化</strong>后的自然数序列中的数逐个插入（插入的数字所在的区间更新 +1 ）。设插入的数字是原序列的第 <code>i</code> 个数：</p>
-<ul>
-<li>可以<strong>插入前</strong>使用线段树查询 <code>[a[i],n]</code> 和（也就是相当于查询该数前面比它大的逆序对），然后再将该数插入线段树（利用线段树的性质还可这样做），即 <code>sum+=query(1,a[i],n),update(1,a[i],1)</code></li>
-</ul>
-<blockquote>
-<p>先查询再插入，因为是查找之前的数和该数能组成逆序对的，插入再查询就把自己给算进去了</p>
-</blockquote>
-<ul>
-<li>或者先将数插入线段树，然后查询 <code>[1,a[n]]</code>（也就是查询不满足逆序对的数），利用本身减去位置减去前面个数比它小的数和本身（树状数组的方法，线段树也可以实现），即 <code>update(1,a[i],1),sum+=i-query(1,1,a[i])</code></li>
-</ul>
-<blockquote>
-<p>先插入在查询，因为这里是找不能组成逆序对的数，所以要把自身算进去</p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//权值线段树求逆序数</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">5e3</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[maxn],b[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,sum;</span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    tree[rt].sum=tree[lc].sum+tree[rc].sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    tree[rt].l=l,tree[rt].r=r;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    build(lc,l,mid);</span><br><span class="line">    build(rc,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> id,<span class="keyword">int</span> score)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum+=score;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(id&lt;=mid)update(lc,id,score);</span><br><span class="line">    <span class="keyword">else</span> update(rc,id,score);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=tree[rt].l&amp;&amp;r&gt;=tree[rt].r)<span class="keyword">return</span> tree[rt].sum;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid)ans+=query(lc,l,r);</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid)ans+=query(rc,l,r);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(tree,<span class="number">0</span>,<span class="keyword">sizeof</span> tree);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">cin</span>&gt;&gt;a[i],b[i]=a[i];</span><br><span class="line"></span><br><span class="line">        sort(b+<span class="number">1</span>,b+<span class="number">1</span>+n);</span><br><span class="line">        <span class="comment">//获得离散后序列长度，其实这步没必要因为要求排列的逆序对已经默认无重复</span></span><br><span class="line">		<span class="keyword">int</span> len=unique(b+<span class="number">1</span>,b+<span class="number">1</span>+n)-b<span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            a[i]=lower_bound(b+<span class="number">1</span>,b+<span class="number">1</span>+len,a[i])-b;<span class="comment">//获得离散的值</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ll ans=<span class="number">0</span>;<span class="comment">//记录器</span></span><br><span class="line">        build(<span class="number">1</span>,<span class="number">1</span>,len);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=len;i++)&#123;</span><br><span class="line">            ans+=query(<span class="number">1</span>,a[i],len);<span class="comment">//求比它大的数的个数</span></span><br><span class="line">            update(<span class="number">1</span>,a[i],<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">5</span></span><br><span class="line"><span class="comment">5 3 2 4 1</span></span><br><span class="line"><span class="comment">输出：8</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p><a href="https://vjudge.net/problem/HDU-1394">模板题</a>：输入一个整数 <code>n</code> ，接下来随意顺序输入 0 到 <code>n-1</code> 之间的数，然后你可以将每一串这样的数的第一个数移到最后一位去，形成新的数字串。要求你输出这样的操作得到的不同数字串中逆序数的最小个数</p>
-<p>如 <code>0 3 4 1 2</code> ，该序列逆序数为 <code>n=2+2=4</code> 。其根据题意移动产生的序列有(每次将数组第一个数移到末尾)</p>
-<table>
-<thead>
-<tr>
-<th>排列</th>
-<th>逆序对</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>3 4 1 2 0</code></td>
-<td>8</td>
-</tr>
-<tr>
-<td><code>4 1 2 0 3</code></td>
-<td>6</td>
-</tr>
-<tr>
-<td><code>1 2 0 3 4</code></td>
-<td>2</td>
-</tr>
-<tr>
-<td><code>1 2 0 3 4</code></td>
-<td>4</td>
-</tr>
-</tbody>
-</table>
-<p>所以排列的最小逆序数为 2</p>
-<blockquote>
-<p>思路：在寻找逆序对的基础上做了变式，要求求出 <code>1~n</code> 任意排列中的最小逆序对。这里有一个规律可以根据初始自然数排列列的逆序对找出最小逆序对：引用上面的例子</p>
-<table>
-<thead>
-<tr>
-<th>排列</th>
-<th>逆序对</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>3 4 1 2 0</code></td>
-<td>8</td>
-</tr>
-<tr>
-<td><code>4 1 2 0 3</code></td>
-<td>6</td>
-</tr>
-</tbody>
-</table>
-<p>3 后面比 3 小的数有 <code>1 2 0</code> ，所以逆序对为 <code>t=3</code> ，比 3 大的数只有 4 ，所以顺序对为 1 ，即 <code>顺序对=n-1-t(n表示序列中数字的总个数)</code> ，当 3 移到末尾顺序对变为逆序对，逆序对变为顺序对，所以要在原来排列的逆序对 <code>k</code> 基础上减去该数原来的逆序对加上原来的顺序对，<code>现在的逆序数=k+(n-1-t)-t=k+n-2t-1</code></p>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//树状数组做法</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">5e3</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[maxn];<span class="comment">//离散化后的数组</span></span><br><span class="line"><span class="keyword">int</span> c[maxn];<span class="comment">//树状数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lowbit</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> i&amp;(-i);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;=n)&#123;</span><br><span class="line">		c[i]+=k;</span><br><span class="line">		i+=lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getsum</span><span class="params">(<span class="keyword">int</span> i)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i&gt;<span class="number">0</span>)&#123;</span><br><span class="line">		res+=c[i];</span><br><span class="line">		i-=lowbit(i);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">		<span class="comment">//树状数组求逆序</span></span><br><span class="line">        <span class="comment">//不用离散化，题目保证0~n-1,可以直接利用上述规律</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">            a[i]++;<span class="comment">//树状数组只能从1开始，所以这里必须+1</span></span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">memset</span>(c,<span class="number">0</span>,<span class="keyword">sizeof</span>(c));</span><br><span class="line">		<span class="keyword">long</span> <span class="keyword">long</span> tot=<span class="number">0</span>;<span class="comment">//要是处理很多数，即使离散化了也很可能超出int范围</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            update(a[i],<span class="number">1</span>);<span class="comment">//插入</span></span><br><span class="line">            tot+=(i-getsum(a[i]));<span class="comment">//求当前数的逆序数</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans=tot;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            tot=tot+n<span class="number">-2</span>*a[i]+<span class="number">1</span>;<span class="comment">//将a[i]扔到后面变化，因为排列从0开始，所以第i个数的逆序对就是本身的值a[i]</span></span><br><span class="line">            ans=min(tot,ans);</span><br><span class="line">        &#125;</span><br><span class="line">		<span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>; </span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">//权值线段树做法</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn=<span class="number">5e3</span>+<span class="number">5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[maxn];</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Tree</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> l,r,sum;</span><br><span class="line">&#125;tree[maxn&lt;&lt;<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">pushup</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    tree[rt].sum=tree[lc].sum+tree[rc].sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    tree[rt].l=l,tree[rt].r=r;</span><br><span class="line">    <span class="keyword">if</span>(l==r)&#123;</span><br><span class="line">        tree[rt].sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    build(lc,l,mid);</span><br><span class="line">    build(rc,mid+<span class="number">1</span>,r);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> id,<span class="keyword">int</span> score)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tree[rt].l==tree[rt].r)&#123;</span><br><span class="line">        tree[rt].sum+=score;</span><br><span class="line">        <span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(id&lt;=mid)update(lc,id,score);</span><br><span class="line">    <span class="keyword">else</span> update(rc,id,score);</span><br><span class="line">    pushup(rt);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> rt,<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=tree[rt].l&amp;&amp;r&gt;=tree[rt].r)<span class="keyword">return</span> tree[rt].sum;</span><br><span class="line">    <span class="keyword">int</span> lc=rt&lt;&lt;<span class="number">1</span>,rc=rt&lt;&lt;<span class="number">1</span>|<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> mid=tree[rt].l+tree[rt].r&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&lt;=mid)ans+=query(lc,l,r);</span><br><span class="line">    <span class="keyword">if</span>(r&gt;mid)ans+=query(rc,l,r);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>),<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span>&gt;&gt;n&amp;&amp;n)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(tree,<span class="number">0</span>,<span class="keyword">sizeof</span> tree);</span><br><span class="line">        ll tot=<span class="number">0</span>;</span><br><span class="line">        build(<span class="number">1</span>,<span class="number">1</span>,n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">            a[i]++;<span class="comment">//这个随意:习惯从1开始</span></span><br><span class="line">            tot+=query(<span class="number">1</span>,a[i],n);<span class="comment">//求比它大的数的个数</span></span><br><span class="line">            update(<span class="number">1</span>,a[i],<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        ll ans=tot;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            tot=tot+n<span class="number">-2</span>*a[i]+<span class="number">1</span>;</span><br><span class="line">            ans=min(ans,tot);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;ans&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>ACM学习</category>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法与数据结构</tag>
-        <tag>权值线段树</tag>
-        <tag>逆序对</tag>
       </tags>
   </entry>
   <entry>
@@ -2601,6 +2601,709 @@
         <tag>C++</tag>
         <tag>程序设计</tag>
         <tag>运算符重载</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>HTML知识汇总</title>
+    <url>/posts/335160020/</url>
+    <content><![CDATA[<blockquote>
+<p><strong>由于<code>typora</code>非代码区<code>HTML</code>格式冲突，标签不再加<code>&lt;/&gt;</code></strong></p>
+</blockquote>
+<h2 id="html基本结构"><a class="markdownIt-Anchor" href="#html基本结构"></a> <code>HTML</code>基本结构</h2>
+<h3 id="html结构"><a class="markdownIt-Anchor" href="#html结构"></a> <code>HTML结构</code></h3>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>html</code>标签的作用是向浏览器指明网页的开始和结束，代码声明网页使用的是W3C组织的XHTML标准</li>
+<li><code>head</code>标签内部只能定义一些特殊内容</li>
+</ul>
+<blockquote>
+<p>通常放置和网页相关信息，如title、meta等不会直接显示在网页上的标签信息</p>
+</blockquote>
+<ul>
+<li><code>body</code>标签是背部编写绝大多数标签代码</li>
+</ul>
+<h3 id="head标签"><a class="markdownIt-Anchor" href="#head标签"></a> <code>head</code>标签</h3>
+<p><strong>title标签</strong>：唯一作用就是定义网页的标题，显示在浏览器上栏的标题</p>
+<p><strong>meta标签</strong>：又称“元信息标签”，一般定义页面的关键字和描述信息有助于搜索引擎搜索界面</p>
+<ul>
+<li><code>name</code>属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>keywords</code></td>
+<td>网页关键字（可多个用英文逗号隔开）</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>网页描述</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>网页作者</td>
+</tr>
+<tr>
+<td><code>copyright</code></td>
+<td>版权信息</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>http-equiv</code>属性
+<ul>
+<li>定义页面使用的语言</li>
+<li>定义页面自动刷新跳转</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=gb2312&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器该页面使用的字符集是国际汉子码--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;秒数;url=网址&quot;</span>;/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器经过多少秒刷新（整数）跳转至网址--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong><code>link</code>标签</strong>：引用外部<code>CSS</code>样式</p>
+<p><strong><code>style</code>标签</strong>：用于定义<code>CSS</code>样式</p>
+<p><strong><code>script</code>标签</strong>：用于定义<code>JavaScript</code>代码</p>
+<h2 id="段落与文字"><a class="markdownIt-Anchor" href="#段落与文字"></a> 段落与文字</h2>
+<h3 id="常用总结"><a class="markdownIt-Anchor" href="#常用总结"></a> 常用总结</h3>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h1</code>~<code>h6</code></td>
+<td>标题</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>段落</td>
+</tr>
+<tr>
+<td><code>br</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>hr</code></td>
+<td>水平线</td>
+</tr>
+<tr>
+<td><code>div</code></td>
+<td>分隔</td>
+</tr>
+<tr>
+<td><code>span</code></td>
+<td>区域</td>
+</tr>
+<tr>
+<td>strong</td>
+<td>加粗文本</td>
+</tr>
+<tr>
+<td><code>em</code></td>
+<td>斜体文本</td>
+</tr>
+<tr>
+<td><code>sup</code></td>
+<td>上标</td>
+</tr>
+<tr>
+<td><code>sub</code></td>
+<td>下标</td>
+</tr>
+<tr>
+<td><code>small</code>、<code>big</code></td>
+<td>用于版权声明</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>删除线</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>标题元素根据需要再用，对于网页的搜索引擎优化极其重要</li>
+<li><code>p</code>标签会自动换行，段落与段落之间有一定的缝隙</li>
+<li><code>br</code>给文字换行不会出现缝隙，为<mark>自闭合标签</mark></li>
+</ul>
+<h3 id="特殊符号"><a class="markdownIt-Anchor" href="#特殊符号"></a> 特殊符号</h3>
+<table>
+<thead>
+<tr>
+<th>特殊符号</th>
+<th>代码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>空格</td>
+<td><code>&amp;nbsp;</code></td>
+</tr>
+<tr>
+<td>双引号（英）</td>
+<td><code>&amp;quot;</code></td>
+</tr>
+<tr>
+<td>左单引号</td>
+<td><code>&amp;lsquo;</code></td>
+</tr>
+<tr>
+<td>右单引号</td>
+<td><code>&amp;rsquo;</code></td>
+</tr>
+<tr>
+<td>乘号</td>
+<td><code>&amp;times;</code></td>
+</tr>
+<tr>
+<td>除号</td>
+<td><code>&amp;divide;</code></td>
+</tr>
+<tr>
+<td>小于号</td>
+<td><code>&amp;it;</code></td>
+</tr>
+<tr>
+<td>大于号</td>
+<td><code>&amp;gt;</code></td>
+</tr>
+<tr>
+<td>与符号</td>
+<td><code>&amp;amp;</code></td>
+</tr>
+<tr>
+<td>长破折号</td>
+<td><code>&amp;mdash;</code></td>
+</tr>
+<tr>
+<td>竖线</td>
+<td><code>&amp;#124;</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>想在网页中显示特殊符号有两种方法：</p>
+<ul>
+<li>直接在网页中输入该特殊符号</li>
+<li>在网页中输入该特殊符号对应的HTML代码</li>
+</ul>
+</blockquote>
+<h3 id="自闭合标签"><a class="markdownIt-Anchor" href="#自闭合标签"></a> 自闭合标签</h3>
+<p><code>HTML</code>标签分为两类：一般标签和自闭合标签</p>
+<p><strong>一般标签</strong>：有开始和结束符号，标签内部可以插入其他标签或者文字</p>
+<p><strong>自闭和标签</strong>：没有结束符号，只能定义自身的一些属性</p>
+<blockquote>
+<p>常见自闭和标签，其他的都是一般标签</p>
+<table>
+<thead>
+<tr>
+<th>自闭和标签</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mata</code></td>
+<td>信息</td>
+</tr>
+<tr>
+<td><code>link</code></td>
+<td>连接外部文件</td>
+</tr>
+<tr>
+<td><code>br</code></td>
+<td>换行</td>
+</tr>
+<tr>
+<td><code>hr</code></td>
+<td>水平线</td>
+</tr>
+<tr>
+<td><code>input</code></td>
+<td>表单</td>
+</tr>
+<tr>
+<td><code>img</code></td>
+<td>图像</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="行内元素和块元素"><a class="markdownIt-Anchor" href="#行内元素和块元素"></a> 行内元素和块元素</h3>
+<table>
+<thead>
+<tr>
+<th>行内元素</th>
+<th>块元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>与其他元素位于一行</td>
+<td>独占一行</td>
+</tr>
+<tr>
+<td>可以容纳行内元素但不可容纳块元素</td>
+<td>容他其他行内元素和块元素</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>常见行内元素</th>
+<th>常见块元素</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>strong</code>、<code>em</code>、<code>s</code>、<code>u</code>、<code>a</code>、<code>span</code>、<code>img</code>、<code>input</code></td>
+<td><code>h1</code>~<code>h6</code>、<code>p</code>、<code>br</code>、<code>hr</code>、<code>div</code>、<code>span</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="列表"><a class="markdownIt-Anchor" href="#列表"></a> 列表</h2>
+<p><strong>注意：在<code>CSS</code>中改用<code>list-style-type</code>定义列表项样式，<code>type</code>属性弃用</strong></p>
+<h3 id="有序列表"><a class="markdownIt-Anchor" href="#有序列表"></a> 有序列表</h3>
+<p>从<code>&lt;ol&gt;</code>开始到<code>&lt;/ol&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
+<p><strong>type属性</strong>：更改列表项序号</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>序号类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+<td>数字1、2、3</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>小写英文字母</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>大写英文字母</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>小写罗马字母</td>
+</tr>
+<tr>
+<td><code>ii</code></td>
+<td>大写罗马字母</td>
+</tr>
+</tbody>
+</table>
+<h3 id="无序列表"><a class="markdownIt-Anchor" href="#无序列表"></a> 无序列表</h3>
+<p>从<code>&lt;ul&gt;</code>开始到<code>&lt;/ul&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
+<p><strong>注意：对于<code>ul</code>元素内部的子元素只能是<code>li</code>，而不能是其他的元素。对于<code>ul</code>内部的文本，也只能是在<code>li</code>元素内添加，而不能在<code>li</code>元素外部添加</strong></p>
+<p><strong>type属性</strong>：更改列表项样式</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>序列类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>disc</code></td>
+<td>默认实心圆</td>
+</tr>
+<tr>
+<td><code>circle</code></td>
+<td>空心圆</td>
+</tr>
+<tr>
+<td><code>square</code></td>
+<td>实心正方形</td>
+</tr>
+</tbody>
+</table>
+<h3 id="定义列表"><a class="markdownIt-Anchor" href="#定义列表"></a> 定义列表</h3>
+<p>在实际开发用的不多，一般分为两类：定义条件和定义描述</p>
+<ul>
+<li><code>dl</code>定义列表的开始和结束</li>
+<li><code>dt</code>后面添加要解释的对象</li>
+<li><code>dd</code>后面添加改名词的具体解释（会自动缩进文本）</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span>定义名词<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>定义描述<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--可多对dt和dd--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> 表格</h2>
+<blockquote>
+<p>因为基本被淘汰所以不再做笔记了</p>
+</blockquote>
+<h3 id="基本构成"><a class="markdownIt-Anchor" href="#基本构成"></a> 基本构成</h3>
+<ul>
+<li><code>table</code>标签（表格）、<code>tr</code>标签（行）、<code>td</code>标签（单元格）</li>
+<li><code>tr</code>和<code>td</code>标签必须放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>标签对内才有效</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">caption</span>&gt;</span>表格标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表头--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>一个表头单元格<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表身--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的开始--&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="name">td</span>&gt;</span>一个单元格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的结尾--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表脚--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>默认情况下表格是没有边框的。<code>table</code>布局已经完全被淘汰，往后改用<code>DIV+CSS</code>布局</p>
+</blockquote>
+<h2 id="图像"><a class="markdownIt-Anchor" href="#图像"></a> 图像</h2>
+<h3 id="img标签"><a class="markdownIt-Anchor" href="#img标签"></a> img标签</h3>
+<p>在<code>HTML</code>中图像使用<code>&lt;img/&gt;</code>自闭合标签并掌握三个属性</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src</code></td>
+<td>图像文件地址</td>
+</tr>
+<tr>
+<td><code>alt</code></td>
+<td>图片显示不出来是提示的文字</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>鼠标移动到图片上的提示文字</td>
+</tr>
+</tbody>
+</table>
+<p><strong><code>src</code>和<code>alt</code>两个属性必不可少，<code>title</code>可有可无</strong></p>
+<h3 id="图像标签"><a class="markdownIt-Anchor" href="#图像标签"></a> 图像标签</h3>
+<p>绝对路径：就从根目录开始一直写到引用对象</p>
+<p>相对路径：从当前文件和要引用文件的共同位置<mark>往后开始写</mark>,开头用<code>../</code></p>
+<h3 id="图片格式"><a class="markdownIt-Anchor" href="#图片格式"></a> 图片格式</h3>
+<ul>
+<li><code>JPG</code>：网页、相册一般常用</li>
+<li><code>PNG</code>：转为<code>Web</code>设计的图像，可以<mark>悬浮在其他页面文件和图像之上</mark>，并且体积小无损压缩保证了网页的打开速度，小的<code>logo</code>图片首选</li>
+<li><code>GIF</code>：效果差但是动态</li>
+</ul>
+<h2 id="超链接"><a class="markdownIt-Anchor" href="#超链接"></a> 超链接</h2>
+<p>外部链和内部链接(<strong>锚点链接</strong>)</p>
+<h3 id="a标签"><a class="markdownIt-Anchor" href="#a标签"></a> <code>a</code>标签</h3>
+<p><strong>对于无论是图片还是文字，通通放在<code>&lt;a&gt;</code>和<code>&lt;a/&gt;</code>中就可以了（行内元素）</strong></p>
+<p>链接地址放在<code>href</code>里，如果是内部文件之间链接就是路径引用</p>
+<p><code>&lt;a href=&quot;www.baidu.com&quot; target=&quot;_blank&quot;&gt;&lt;img/&gt;&lt;/a&gt;</code></p>
+<p>a标签只用掌握target属性（控制目标窗口打开方式）</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_self</code></td>
+<td>默认方式，当前窗口打开</td>
+</tr>
+<tr>
+<td><code>_blank</code></td>
+<td>在全新的空白窗口打开</td>
+</tr>
+<tr>
+<td><code>_top</code></td>
+<td>顶层的框架中打开</td>
+</tr>
+<tr>
+<td><code>_parent</code></td>
+<td>当前框架打开</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>只用记前两个，别忘了加上’_’</p>
+</blockquote>
+<h3 id="锚点链接"><a class="markdownIt-Anchor" href="#锚点链接"></a> 锚点链接</h3>
+<p>一种内部链接，不过他的链接对象是当前页面内部的某个区块，可以方便用户查看较长的文档中的内容</p>
+<p><strong>定义</strong>：目标锚点的<code>id</code>和超链接部分</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#music&quot;</span>&gt;</span>音乐<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#movie&quot;</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    ...<span class="comment">&lt;!--一堆其他的内容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;music&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;movie&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>简单的很，就是注意<strong>链接对象必须是<code>id</code></strong></p>
+</blockquote>
+<h2 id="表单"><a class="markdownIt-Anchor" href="#表单"></a> 表单</h2>
+<p>最常用最核心的部分了，作用就是在客户端收集用户的信息交给服务器处理</p>
+<p><strong>常说的表单就是指文本框、按钮和下拉列表等的总称</strong></p>
+<h3 id="form标签"><a class="markdownIt-Anchor" href="#form标签"></a> <code>form</code>标签</h3>
+<p>就和表格类似，表格的内容大放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>中，那表单的内容就放在<code>&lt;form&gt;</code>和<code>&lt;form/&gt;</code>中</p>
+<p><strong>值的注意的是不是所有的表单对象都要放在<code>form</code>标签对中，需要向后端提交的数据放在<code>form</code>标签中，若是不需要的话没必要放</strong></p>
+<h4 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h4>
+<blockquote>
+<p>和<code>head</code>一样比较抽象、缺乏操作性，和后端有关，其中提交<code>action</code>属性和传送方法<code>method</code>属性不记了被淘汰了，还有编码方式<code>enctype</code>属性用的少也不记了</p>
+</blockquote>
+<ul>
+<li>表单名称<code>name</code>属性</li>
+</ul>
+<p>为了区分同一个网页之间不同的表单得给他们取个名字防止在提交后在后端出现混乱</p>
+<ul>
+<li>目标显示方式<code>target</code>属性</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>语义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>_self</code></td>
+<td>默认方式，当前窗口打开</td>
+</tr>
+<tr>
+<td><code>_blank</code></td>
+<td>在全新的空白窗口打开</td>
+</tr>
+<tr>
+<td><code>_top</code></td>
+<td>顶层的框架中打开</td>
+</tr>
+<tr>
+<td><code>_parent</code></td>
+<td>当前框架打开</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>和超链接的<code>target</code>属性一样</p>
+</blockquote>
+<h3 id="表单对象"><a class="markdownIt-Anchor" href="#表单对象"></a> 表单对象</h3>
+<blockquote>
+<p>表单的<code>value</code>属性值就是用来方便后端传数据的，<strong>很重要的</strong></p>
+</blockquote>
+<h4 id="使用input标签表单"><a class="markdownIt-Anchor" href="#使用input标签表单"></a> 使用<code>input</code>标签表单</h4>
+<p>自闭合标签，表单类型不同在于<code>type</code>属性不同取值</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-1.png" style="zoom:67%;">
+<h5 id="单行文本框text"><a class="markdownIt-Anchor" href="#单行文本框text"></a> 单行文本框<code>text</code></h5>
+<p><strong>作用</strong>：用户登录注册</p>
+<p><code>&lt;input type=&quot;text&quot; value=&quot;&quot; size=&quot;&quot; maxlength=&quot;&quot;/&gt;</code></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td>定义文本框默认值，也就是文本框内初始内容</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>定义文本框的长度，以字符为单位</td>
+</tr>
+<tr>
+<td><code>maxlength</code></td>
+<td>设置文本框中最多可以输入的字符数</td>
+</tr>
+</tbody>
+</table>
+<h5 id="密码文本框password"><a class="markdownIt-Anchor" href="#密码文本框password"></a> 密码文本框<code>password</code></h5>
+<p><strong>作用</strong>：遮住输入字符</p>
+<blockquote>
+<p>和单行文本框用法一样</p>
+</blockquote>
+<h5 id="单选按钮radio"><a class="markdownIt-Anchor" href="#单选按钮radio"></a> 单选按钮<code>radio</code></h5>
+<p><strong>作用</strong>：单选按钮只能从选项列表中选择一项，选项与选项之间是互斥的</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>name</code></td>
+<td>单选按钮所在组名</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>单选按钮的取值</td>
+</tr>
+</tbody>
+</table>
+<p><strong>注意：两个属性缺一不可，同一个问题的不同单选之间的name必须相同，不然做不到排斥</strong></p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    性别：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;boy&quot;</span>&gt;</span>男<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;girl&quot;</span>&gt;</span>女</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>单选按钮也可以像下面复选框的选项一样选择设定checked属性</strong></p>
+</blockquote>
+<h5 id="复选框checkbox"><a class="markdownIt-Anchor" href="#复选框checkbox"></a> 复选框<code>checkbox</code></h5>
+<p><strong>作用</strong>：可以从选项列表中选择多个选项</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>checked</code></td>
+<td>是否选中</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>按钮的取值</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>checked=“checked&quot;</code>加上按钮默认是选中的，不加就是未选中的</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    最爱的歌曲：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music1&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox1&quot;</span>&gt;</span>歌曲1<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox2&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music2&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span>歌曲2<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：复选框必须用label标签，具体原因和JavaScript</strong></p>
+<h5 id="表单按钮"><a class="markdownIt-Anchor" href="#表单按钮"></a> 表单按钮</h5>
+<p><code>HTML</code>中按钮分为三种：普通按钮<code>button</code>、提交按钮<code>submit</code>、重置按钮<code>reset</code></p>
+<h6 id="普通按钮button"><a class="markdownIt-Anchor" href="#普通按钮button"></a> 普通按钮<code>button</code></h6>
+<p><code>&lt;input type=&quot;button&quot; value=&quot;普通按钮取值&quot; onclick=&quot;JavaScript脚本程序&quot;/&gt;</code></p>
+<h6 id="提交按钮submit"><a class="markdownIt-Anchor" href="#提交按钮submit"></a> 提交按钮<code>submit</code></h6>
+<p><strong>作用</strong>：提交按钮<code>submit</code>真正的用处是把表单内容提交给后台服务器处理，和后端有关</p>
+<p><code>&lt;input type=&quot;submit&quot; value=&quot;提交按钮的取值&quot;/&gt;</code></p>
+<h6 id="重置按钮reset"><a class="markdownIt-Anchor" href="#重置按钮reset"></a> 重置按钮<code>reset</code></h6>
+<p><strong>作用</strong>：重置按钮<code>reset</code>可以看做是一种具有特殊功能的普通按钮，可以清除用户在用户在<mark>当前表单</mark>中输入的信息，对当前表单之外的表单无影响</p>
+<p><code>&lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt;</code></p>
+<h5 id="隐藏域hidden"><a class="markdownIt-Anchor" href="#隐藏域hidden"></a> 隐藏域hidden</h5>
+<p><code>&lt;input typde=&quot;hidden&quot; value=&quot;10&quot;&gt;</code></p>
+<p><strong>作用</strong>：一些前端传向后端的数据不想让客户看见可以通过隐藏域遮盖让这些数据不在浏览器中显示</p>
+<blockquote>
+<p>前端用不到，后端常见。虽然看不见数据但是查看HTML代码还是会看到的，所以不能用来隐藏敏感信息（手机号、密码之类的）</p>
+</blockquote>
+<h5 id="文件域file"><a class="markdownIt-Anchor" href="#文件域file"></a> 文件域file</h5>
+<p><strong>作用</strong>：网盘、邮箱等文件的上传</p>
+<p><strong>注意</strong>：再使用文件域的时候必须在form<code>标签中说明编码方式``enctype=&quot;multipart/form-data&quot;</code>，否则服务器不能正常接收文件</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;myform&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="textarea多行文本框"><a class="markdownIt-Anchor" href="#textarea多行文本框"></a> textarea多行文本框</h4>
+<p>单行文本框只能输入一行信息，多行文本框就输入多行信息，但是<strong>不再用<code>inut</code>标签而是<code>textarea</code>标签</strong></p>
+<p><code>&lt;textarea rows=&quot;函行数&quot; cols=&quot;列数&quot;&gt;默认内容&lt;textarea/&gt;</code></p>
+<h4 id="下拉列表select"><a class="markdownIt-Anchor" href="#下拉列表select"></a> 下拉列表select</h4>
+<p><strong>作用</strong>：节省页面空间的选择方式，单击下拉菜单打开菜单后才会看到全部的选项</p>
+<p><strong>特点</strong>：和列表类似，由<code>select</code>和<code>option</code>两个标签配合使用</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>jQuary<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="slelect标签属性"><a class="markdownIt-Anchor" href="#slelect标签属性"></a> slelect标签属性</h5>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>multiple</code></td>
+<td>可选属性，也只有这一个属性。默认情况下列表只能选择一项，当设置为<code>mutiple=&quot;mutiple&quot;</code>时下拉列表可以选择多项</td>
+</tr>
+<tr>
+<td><code>size</code></td>
+<td>下拉列表展开之后可见列表项的数目</td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;selsect multiple=&quot;multiple&quot; size=&quot;&quot;&gt;&lt;select/&gt;</code></p>
+<h5 id="option标签属性"><a class="markdownIt-Anchor" href="#option标签属性"></a> <code>option</code>标签属性</h5>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>value</code></td>
+<td>选项值</td>
+</tr>
+<tr>
+<td><code>selected</code></td>
+<td>初始是否选中</td>
+</tr>
+</tbody>
+</table>
+<p><code>&lt;option value=&quot;选项值&quot; selected=&quot;selected&quot;&gt;&lt;option/&gt;</code></p>
+<blockquote>
+<p>selected和单选按钮<code>radio</code>的<code>checked</code>属性是一样的意思</p>
+</blockquote>
+<h2 id="多媒体"><a class="markdownIt-Anchor" href="#多媒体"></a> 多媒体</h2>
+<h3 id="插入音频-视频和flash"><a class="markdownIt-Anchor" href="#插入音频-视频和flash"></a> 插入音频、视频和<code>Flash</code></h3>
+<p><strong>作用</strong>：对于在线的音频和视频常用<code>HTML5</code>新增的自闭和标签<code>embed</code>实现。<strong><code>src</code>属性写明引用路径就可以了</strong>。</p>
+<p><code>&lt;embed src=&quot;&quot;&gt;</code></p>
+<blockquote>
+<p><code>embed</code>标签会有一个放有几个简单功能的播放界面</p>
+</blockquote>
+<p><strong>支持格式</strong>：<code>mp4</code>、<code>avi</code>、<code>rmvb</code>等等主流视频格式，不行的话就转码</p>
+<h3 id="插入背景音乐"><a class="markdownIt-Anchor" href="#插入背景音乐"></a> 插入背景音乐</h3>
+<p>在<code>embed</code>标签的基础上多了几个属性（还是<code>src</code>写明引用地址）</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明（取值为<code>true</code>/<code>false</code>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hidden</code></td>
+<td>是否显示播放器</td>
+</tr>
+<tr>
+<td><code>autostart</code></td>
+<td>是否一进页面自动播放</td>
+</tr>
+<tr>
+<td><code>loop</code></td>
+<td>是否循环播放</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>HTML5</code>还新增了<code>audio</code>、<code>video</code>标签等用于多媒体开发的标签</p>
+</blockquote>
+<h2 id="框架"><a class="markdownIt-Anchor" href="#框架"></a> 框架</h2>
+<p><strong>作用</strong>：<code>HTML5</code>新增一个标签<code>iframe</code>浮动框架（它是在浏览器窗口中嵌套的子窗口），<code>iframe</code>框架可以<mark>完全由设定者定义高度和宽度</mark>，并且可以放置在网页的任何位置，极大地扩展框架页面的应用范围</p>
+<p><code>&lt;iframe src=&quot;源文件地址&quot; width=&quot;浮动框架的宽&quot; height=&quot;浮动框架的高&quot; scrolling=&quot;滚动条设置&quot;&gt;</code></p>
+<blockquote>
+<p>在普通框架结构中，由于框架就是整个浏览器的窗口，因此不需要设置大小。但是浮动框架<code>iframe</code>是插入到普通<code>HTML</code>中的，所以可以调整框架的大小。<strong>浮动框架的宽度和高度都是以像素（<code>px</code>)为单位的。<code>width</code>和<code>height</code>都是可选属性</strong></p>
+</blockquote>
+<h3 id="滚动条设置"><a class="markdownIt-Anchor" href="#滚动条设置"></a> 滚动条设置</h3>
+<p><code>iframe</code>的<code>scrolling</code>属性来控制滚动条三种形态：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>auto</code></td>
+<td>默认值，整个表格在浏览器中左对齐（根据需要显示）</td>
+</tr>
+<tr>
+<td><code>yes</code></td>
+<td>总是显示滚动条</td>
+</tr>
+<tr>
+<td><code>no</code></td>
+<td>不显示滚动条</td>
+</tr>
+</tbody>
+</table>
+<h2 id="语义化标签表"><a class="markdownIt-Anchor" href="#语义化标签表"></a> 语义化标签表</h2>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-2.png" style="zoom:67%;">]]></content>
+      <categories>
+        <category>Web学习</category>
+        <category>HTML</category>
+      </categories>
+      <tags>
+        <tag>Web前端</tag>
+        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -3695,709 +4398,6 @@
       <tags>
         <tag>Web前端</tag>
         <tag>CSS3</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>HTML知识汇总</title>
-    <url>/posts/335160020/</url>
-    <content><![CDATA[<blockquote>
-<p><strong>由于<code>typora</code>非代码区<code>HTML</code>格式冲突，标签不再加<code>&lt;/&gt;</code></strong></p>
-</blockquote>
-<h2 id="html基本结构"><a class="markdownIt-Anchor" href="#html基本结构"></a> <code>HTML</code>基本结构</h2>
-<h3 id="html结构"><a class="markdownIt-Anchor" href="#html结构"></a> <code>HTML结构</code></h3>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.w3.org/1999/xhtml&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	...</span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><code>html</code>标签的作用是向浏览器指明网页的开始和结束，代码声明网页使用的是W3C组织的XHTML标准</li>
-<li><code>head</code>标签内部只能定义一些特殊内容</li>
-</ul>
-<blockquote>
-<p>通常放置和网页相关信息，如title、meta等不会直接显示在网页上的标签信息</p>
-</blockquote>
-<ul>
-<li><code>body</code>标签是背部编写绝大多数标签代码</li>
-</ul>
-<h3 id="head标签"><a class="markdownIt-Anchor" href="#head标签"></a> <code>head</code>标签</h3>
-<p><strong>title标签</strong>：唯一作用就是定义网页的标题，显示在浏览器上栏的标题</p>
-<p><strong>meta标签</strong>：又称“元信息标签”，一般定义页面的关键字和描述信息有助于搜索引擎搜索界面</p>
-<ul>
-<li><code>name</code>属性</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>keywords</code></td>
-<td>网页关键字（可多个用英文逗号隔开）</td>
-</tr>
-<tr>
-<td><code>description</code></td>
-<td>网页描述</td>
-</tr>
-<tr>
-<td><code>author</code></td>
-<td>网页作者</td>
-</tr>
-<tr>
-<td><code>copyright</code></td>
-<td>版权信息</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><code>http-equiv</code>属性
-<ul>
-<li>定义页面使用的语言</li>
-<li>定义页面自动刷新跳转</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;content-type&quot;</span> <span class="attr">content</span>=<span class="string">&quot;text/html;charset=gb2312&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器该页面使用的字符集是国际汉子码--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;refresh&quot;</span> <span class="attr">content</span>=<span class="string">&quot;秒数;url=网址&quot;</span>;/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--告诉浏览器经过多少秒刷新（整数）跳转至网址--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong><code>link</code>标签</strong>：引用外部<code>CSS</code>样式</p>
-<p><strong><code>style</code>标签</strong>：用于定义<code>CSS</code>样式</p>
-<p><strong><code>script</code>标签</strong>：用于定义<code>JavaScript</code>代码</p>
-<h2 id="段落与文字"><a class="markdownIt-Anchor" href="#段落与文字"></a> 段落与文字</h2>
-<h3 id="常用总结"><a class="markdownIt-Anchor" href="#常用总结"></a> 常用总结</h3>
-<table>
-<thead>
-<tr>
-<th>标签</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>h1</code>~<code>h6</code></td>
-<td>标题</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>段落</td>
-</tr>
-<tr>
-<td><code>br</code></td>
-<td>换行</td>
-</tr>
-<tr>
-<td><code>hr</code></td>
-<td>水平线</td>
-</tr>
-<tr>
-<td><code>div</code></td>
-<td>分隔</td>
-</tr>
-<tr>
-<td><code>span</code></td>
-<td>区域</td>
-</tr>
-<tr>
-<td>strong</td>
-<td>加粗文本</td>
-</tr>
-<tr>
-<td><code>em</code></td>
-<td>斜体文本</td>
-</tr>
-<tr>
-<td><code>sup</code></td>
-<td>上标</td>
-</tr>
-<tr>
-<td><code>sub</code></td>
-<td>下标</td>
-</tr>
-<tr>
-<td><code>small</code>、<code>big</code></td>
-<td>用于版权声明</td>
-</tr>
-<tr>
-<td><code>s</code></td>
-<td>删除线</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>标题元素根据需要再用，对于网页的搜索引擎优化极其重要</li>
-<li><code>p</code>标签会自动换行，段落与段落之间有一定的缝隙</li>
-<li><code>br</code>给文字换行不会出现缝隙，为<mark>自闭合标签</mark></li>
-</ul>
-<h3 id="特殊符号"><a class="markdownIt-Anchor" href="#特殊符号"></a> 特殊符号</h3>
-<table>
-<thead>
-<tr>
-<th>特殊符号</th>
-<th>代码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>空格</td>
-<td><code>&amp;nbsp;</code></td>
-</tr>
-<tr>
-<td>双引号（英）</td>
-<td><code>&amp;quot;</code></td>
-</tr>
-<tr>
-<td>左单引号</td>
-<td><code>&amp;lsquo;</code></td>
-</tr>
-<tr>
-<td>右单引号</td>
-<td><code>&amp;rsquo;</code></td>
-</tr>
-<tr>
-<td>乘号</td>
-<td><code>&amp;times;</code></td>
-</tr>
-<tr>
-<td>除号</td>
-<td><code>&amp;divide;</code></td>
-</tr>
-<tr>
-<td>小于号</td>
-<td><code>&amp;it;</code></td>
-</tr>
-<tr>
-<td>大于号</td>
-<td><code>&amp;gt;</code></td>
-</tr>
-<tr>
-<td>与符号</td>
-<td><code>&amp;amp;</code></td>
-</tr>
-<tr>
-<td>长破折号</td>
-<td><code>&amp;mdash;</code></td>
-</tr>
-<tr>
-<td>竖线</td>
-<td><code>&amp;#124;</code></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>想在网页中显示特殊符号有两种方法：</p>
-<ul>
-<li>直接在网页中输入该特殊符号</li>
-<li>在网页中输入该特殊符号对应的HTML代码</li>
-</ul>
-</blockquote>
-<h3 id="自闭合标签"><a class="markdownIt-Anchor" href="#自闭合标签"></a> 自闭合标签</h3>
-<p><code>HTML</code>标签分为两类：一般标签和自闭合标签</p>
-<p><strong>一般标签</strong>：有开始和结束符号，标签内部可以插入其他标签或者文字</p>
-<p><strong>自闭和标签</strong>：没有结束符号，只能定义自身的一些属性</p>
-<blockquote>
-<p>常见自闭和标签，其他的都是一般标签</p>
-<table>
-<thead>
-<tr>
-<th>自闭和标签</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>mata</code></td>
-<td>信息</td>
-</tr>
-<tr>
-<td><code>link</code></td>
-<td>连接外部文件</td>
-</tr>
-<tr>
-<td><code>br</code></td>
-<td>换行</td>
-</tr>
-<tr>
-<td><code>hr</code></td>
-<td>水平线</td>
-</tr>
-<tr>
-<td><code>input</code></td>
-<td>表单</td>
-</tr>
-<tr>
-<td><code>img</code></td>
-<td>图像</td>
-</tr>
-</tbody>
-</table>
-</blockquote>
-<h3 id="行内元素和块元素"><a class="markdownIt-Anchor" href="#行内元素和块元素"></a> 行内元素和块元素</h3>
-<table>
-<thead>
-<tr>
-<th>行内元素</th>
-<th>块元素</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>与其他元素位于一行</td>
-<td>独占一行</td>
-</tr>
-<tr>
-<td>可以容纳行内元素但不可容纳块元素</td>
-<td>容他其他行内元素和块元素</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>常见行内元素</th>
-<th>常见块元素</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>strong</code>、<code>em</code>、<code>s</code>、<code>u</code>、<code>a</code>、<code>span</code>、<code>img</code>、<code>input</code></td>
-<td><code>h1</code>~<code>h6</code>、<code>p</code>、<code>br</code>、<code>hr</code>、<code>div</code>、<code>span</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="列表"><a class="markdownIt-Anchor" href="#列表"></a> 列表</h2>
-<p><strong>注意：在<code>CSS</code>中改用<code>list-style-type</code>定义列表项样式，<code>type</code>属性弃用</strong></p>
-<h3 id="有序列表"><a class="markdownIt-Anchor" href="#有序列表"></a> 有序列表</h3>
-<p>从<code>&lt;ol&gt;</code>开始到<code>&lt;/ol&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
-<p><strong>type属性</strong>：更改列表项序号</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>序号类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>1</code></td>
-<td>数字1、2、3</td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>小写英文字母</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>大写英文字母</td>
-</tr>
-<tr>
-<td><code>i</code></td>
-<td>小写罗马字母</td>
-</tr>
-<tr>
-<td><code>ii</code></td>
-<td>大写罗马字母</td>
-</tr>
-</tbody>
-</table>
-<h3 id="无序列表"><a class="markdownIt-Anchor" href="#无序列表"></a> 无序列表</h3>
-<p>从<code>&lt;ul&gt;</code>开始到<code>&lt;/ul&gt;</code>结束，中间的列表项是<code>&lt;li&gt;</code>标签内容</p>
-<p><strong>注意：对于<code>ul</code>元素内部的子元素只能是<code>li</code>，而不能是其他的元素。对于<code>ul</code>内部的文本，也只能是在<code>li</code>元素内添加，而不能在<code>li</code>元素外部添加</strong></p>
-<p><strong>type属性</strong>：更改列表项样式</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>序列类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>disc</code></td>
-<td>默认实心圆</td>
-</tr>
-<tr>
-<td><code>circle</code></td>
-<td>空心圆</td>
-</tr>
-<tr>
-<td><code>square</code></td>
-<td>实心正方形</td>
-</tr>
-</tbody>
-</table>
-<h3 id="定义列表"><a class="markdownIt-Anchor" href="#定义列表"></a> 定义列表</h3>
-<p>在实际开发用的不多，一般分为两类：定义条件和定义描述</p>
-<ul>
-<li><code>dl</code>定义列表的开始和结束</li>
-<li><code>dt</code>后面添加要解释的对象</li>
-<li><code>dd</code>后面添加改名词的具体解释（会自动缩进文本）</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dl</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dt</span>&gt;</span>定义名词<span class="tag">&lt;/<span class="name">dt</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dd</span>&gt;</span>定义描述<span class="tag">&lt;/<span class="name">dd</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--可多对dt和dd--&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dl</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="表格"><a class="markdownIt-Anchor" href="#表格"></a> 表格</h2>
-<blockquote>
-<p>因为基本被淘汰所以不再做笔记了</p>
-</blockquote>
-<h3 id="基本构成"><a class="markdownIt-Anchor" href="#基本构成"></a> 基本构成</h3>
-<ul>
-<li><code>table</code>标签（表格）、<code>tr</code>标签（行）、<code>td</code>标签（单元格）</li>
-<li><code>tr</code>和<code>td</code>标签必须放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>标签对内才有效</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">table</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">caption</span>&gt;</span>表格标题<span class="tag">&lt;/<span class="name">caption</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表头--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">thead</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">th</span>&gt;</span>一个表头单元格<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">thead</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表身--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的开始--&gt;</span></span><br><span class="line">            	<span class="tag">&lt;<span class="name">td</span>&gt;</span>一个单元格<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="comment">&lt;!--一行的结尾--&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!--表脚--&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tfoot</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>默认情况下表格是没有边框的。<code>table</code>布局已经完全被淘汰，往后改用<code>DIV+CSS</code>布局</p>
-</blockquote>
-<h2 id="图像"><a class="markdownIt-Anchor" href="#图像"></a> 图像</h2>
-<h3 id="img标签"><a class="markdownIt-Anchor" href="#img标签"></a> img标签</h3>
-<p>在<code>HTML</code>中图像使用<code>&lt;img/&gt;</code>自闭合标签并掌握三个属性</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>src</code></td>
-<td>图像文件地址</td>
-</tr>
-<tr>
-<td><code>alt</code></td>
-<td>图片显示不出来是提示的文字</td>
-</tr>
-<tr>
-<td><code>title</code></td>
-<td>鼠标移动到图片上的提示文字</td>
-</tr>
-</tbody>
-</table>
-<p><strong><code>src</code>和<code>alt</code>两个属性必不可少，<code>title</code>可有可无</strong></p>
-<h3 id="图像标签"><a class="markdownIt-Anchor" href="#图像标签"></a> 图像标签</h3>
-<p>绝对路径：就从根目录开始一直写到引用对象</p>
-<p>相对路径：从当前文件和要引用文件的共同位置<mark>往后开始写</mark>,开头用<code>../</code></p>
-<h3 id="图片格式"><a class="markdownIt-Anchor" href="#图片格式"></a> 图片格式</h3>
-<ul>
-<li><code>JPG</code>：网页、相册一般常用</li>
-<li><code>PNG</code>：转为<code>Web</code>设计的图像，可以<mark>悬浮在其他页面文件和图像之上</mark>，并且体积小无损压缩保证了网页的打开速度，小的<code>logo</code>图片首选</li>
-<li><code>GIF</code>：效果差但是动态</li>
-</ul>
-<h2 id="超链接"><a class="markdownIt-Anchor" href="#超链接"></a> 超链接</h2>
-<p>外部链和内部链接(<strong>锚点链接</strong>)</p>
-<h3 id="a标签"><a class="markdownIt-Anchor" href="#a标签"></a> <code>a</code>标签</h3>
-<p><strong>对于无论是图片还是文字，通通放在<code>&lt;a&gt;</code>和<code>&lt;a/&gt;</code>中就可以了（行内元素）</strong></p>
-<p>链接地址放在<code>href</code>里，如果是内部文件之间链接就是路径引用</p>
-<p><code>&lt;a href=&quot;www.baidu.com&quot; target=&quot;_blank&quot;&gt;&lt;img/&gt;&lt;/a&gt;</code></p>
-<p>a标签只用掌握target属性（控制目标窗口打开方式）</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>语义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>_self</code></td>
-<td>默认方式，当前窗口打开</td>
-</tr>
-<tr>
-<td><code>_blank</code></td>
-<td>在全新的空白窗口打开</td>
-</tr>
-<tr>
-<td><code>_top</code></td>
-<td>顶层的框架中打开</td>
-</tr>
-<tr>
-<td><code>_parent</code></td>
-<td>当前框架打开</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>只用记前两个，别忘了加上’_’</p>
-</blockquote>
-<h3 id="锚点链接"><a class="markdownIt-Anchor" href="#锚点链接"></a> 锚点链接</h3>
-<p>一种内部链接，不过他的链接对象是当前页面内部的某个区块，可以方便用户查看较长的文档中的内容</p>
-<p><strong>定义</strong>：目标锚点的<code>id</code>和超链接部分</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#music&quot;</span>&gt;</span>音乐<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#movie&quot;</span>&gt;</span>电影<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    ...<span class="comment">&lt;!--一堆其他的内容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;music&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;movie&quot;</span>&gt;</span></span><br><span class="line">        ...</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>简单的很，就是注意<strong>链接对象必须是<code>id</code></strong></p>
-</blockquote>
-<h2 id="表单"><a class="markdownIt-Anchor" href="#表单"></a> 表单</h2>
-<p>最常用最核心的部分了，作用就是在客户端收集用户的信息交给服务器处理</p>
-<p><strong>常说的表单就是指文本框、按钮和下拉列表等的总称</strong></p>
-<h3 id="form标签"><a class="markdownIt-Anchor" href="#form标签"></a> <code>form</code>标签</h3>
-<p>就和表格类似，表格的内容大放在<code>&lt;table&gt;</code>和<code>&lt;table/&gt;</code>中，那表单的内容就放在<code>&lt;form&gt;</code>和<code>&lt;form/&gt;</code>中</p>
-<p><strong>值的注意的是不是所有的表单对象都要放在<code>form</code>标签对中，需要向后端提交的数据放在<code>form</code>标签中，若是不需要的话没必要放</strong></p>
-<h4 id="属性"><a class="markdownIt-Anchor" href="#属性"></a> 属性</h4>
-<blockquote>
-<p>和<code>head</code>一样比较抽象、缺乏操作性，和后端有关，其中提交<code>action</code>属性和传送方法<code>method</code>属性不记了被淘汰了，还有编码方式<code>enctype</code>属性用的少也不记了</p>
-</blockquote>
-<ul>
-<li>表单名称<code>name</code>属性</li>
-</ul>
-<p>为了区分同一个网页之间不同的表单得给他们取个名字防止在提交后在后端出现混乱</p>
-<ul>
-<li>目标显示方式<code>target</code>属性</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>语义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>_self</code></td>
-<td>默认方式，当前窗口打开</td>
-</tr>
-<tr>
-<td><code>_blank</code></td>
-<td>在全新的空白窗口打开</td>
-</tr>
-<tr>
-<td><code>_top</code></td>
-<td>顶层的框架中打开</td>
-</tr>
-<tr>
-<td><code>_parent</code></td>
-<td>当前框架打开</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>和超链接的<code>target</code>属性一样</p>
-</blockquote>
-<h3 id="表单对象"><a class="markdownIt-Anchor" href="#表单对象"></a> 表单对象</h3>
-<blockquote>
-<p>表单的<code>value</code>属性值就是用来方便后端传数据的，<strong>很重要的</strong></p>
-</blockquote>
-<h4 id="使用input标签表单"><a class="markdownIt-Anchor" href="#使用input标签表单"></a> 使用<code>input</code>标签表单</h4>
-<p>自闭合标签，表单类型不同在于<code>type</code>属性不同取值</p>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-1.png" style="zoom:67%;">
-<h5 id="单行文本框text"><a class="markdownIt-Anchor" href="#单行文本框text"></a> 单行文本框<code>text</code></h5>
-<p><strong>作用</strong>：用户登录注册</p>
-<p><code>&lt;input type=&quot;text&quot; value=&quot;&quot; size=&quot;&quot; maxlength=&quot;&quot;/&gt;</code></p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>value</code></td>
-<td>定义文本框默认值，也就是文本框内初始内容</td>
-</tr>
-<tr>
-<td><code>size</code></td>
-<td>定义文本框的长度，以字符为单位</td>
-</tr>
-<tr>
-<td><code>maxlength</code></td>
-<td>设置文本框中最多可以输入的字符数</td>
-</tr>
-</tbody>
-</table>
-<h5 id="密码文本框password"><a class="markdownIt-Anchor" href="#密码文本框password"></a> 密码文本框<code>password</code></h5>
-<p><strong>作用</strong>：遮住输入字符</p>
-<blockquote>
-<p>和单行文本框用法一样</p>
-</blockquote>
-<h5 id="单选按钮radio"><a class="markdownIt-Anchor" href="#单选按钮radio"></a> 单选按钮<code>radio</code></h5>
-<p><strong>作用</strong>：单选按钮只能从选项列表中选择一项，选项与选项之间是互斥的</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>name</code></td>
-<td>单选按钮所在组名</td>
-</tr>
-<tr>
-<td><code>value</code></td>
-<td>单选按钮的取值</td>
-</tr>
-</tbody>
-</table>
-<p><strong>注意：两个属性缺一不可，同一个问题的不同单选之间的name必须相同，不然做不到排斥</strong></p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    性别：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question1&quot;</span> <span class="attr">value</span>=<span class="string">&quot;boy&quot;</span>&gt;</span>男<span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;radio&quot;</span> <span class="attr">name</span>=<span class="string">&quot;question2&quot;</span> <span class="attr">value</span>=<span class="string">&quot;girl&quot;</span>&gt;</span>女</span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><strong>单选按钮也可以像下面复选框的选项一样选择设定checked属性</strong></p>
-</blockquote>
-<h5 id="复选框checkbox"><a class="markdownIt-Anchor" href="#复选框checkbox"></a> 复选框<code>checkbox</code></h5>
-<p><strong>作用</strong>：可以从选项列表中选择多个选项</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>checked</code></td>
-<td>是否选中</td>
-</tr>
-<tr>
-<td><code>value</code></td>
-<td>按钮的取值</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><code>checked=“checked&quot;</code>加上按钮默认是选中的，不加就是未选中的</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span></span><br><span class="line">    最爱的歌曲：</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music1&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox1&quot;</span>&gt;</span>歌曲1<span class="tag">&lt;/<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;checkbox2&quot;</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">checked</span>=<span class="string">&quot;checked&quot;</span> <span class="attr">value</span>=<span class="string">&quot;music2&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">label</span> <span class="attr">for</span>=<span class="string">&quot;checkbox2&quot;</span>&gt;</span>歌曲2<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>注意：复选框必须用label标签，具体原因和JavaScript</strong></p>
-<h5 id="表单按钮"><a class="markdownIt-Anchor" href="#表单按钮"></a> 表单按钮</h5>
-<p><code>HTML</code>中按钮分为三种：普通按钮<code>button</code>、提交按钮<code>submit</code>、重置按钮<code>reset</code></p>
-<h6 id="普通按钮button"><a class="markdownIt-Anchor" href="#普通按钮button"></a> 普通按钮<code>button</code></h6>
-<p><code>&lt;input type=&quot;button&quot; value=&quot;普通按钮取值&quot; onclick=&quot;JavaScript脚本程序&quot;/&gt;</code></p>
-<h6 id="提交按钮submit"><a class="markdownIt-Anchor" href="#提交按钮submit"></a> 提交按钮<code>submit</code></h6>
-<p><strong>作用</strong>：提交按钮<code>submit</code>真正的用处是把表单内容提交给后台服务器处理，和后端有关</p>
-<p><code>&lt;input type=&quot;submit&quot; value=&quot;提交按钮的取值&quot;/&gt;</code></p>
-<h6 id="重置按钮reset"><a class="markdownIt-Anchor" href="#重置按钮reset"></a> 重置按钮<code>reset</code></h6>
-<p><strong>作用</strong>：重置按钮<code>reset</code>可以看做是一种具有特殊功能的普通按钮，可以清除用户在用户在<mark>当前表单</mark>中输入的信息，对当前表单之外的表单无影响</p>
-<p><code>&lt;input type=&quot;reset&quot; value=&quot;重置&quot;/&gt;</code></p>
-<h5 id="隐藏域hidden"><a class="markdownIt-Anchor" href="#隐藏域hidden"></a> 隐藏域hidden</h5>
-<p><code>&lt;input typde=&quot;hidden&quot; value=&quot;10&quot;&gt;</code></p>
-<p><strong>作用</strong>：一些前端传向后端的数据不想让客户看见可以通过隐藏域遮盖让这些数据不在浏览器中显示</p>
-<blockquote>
-<p>前端用不到，后端常见。虽然看不见数据但是查看HTML代码还是会看到的，所以不能用来隐藏敏感信息（手机号、密码之类的）</p>
-</blockquote>
-<h5 id="文件域file"><a class="markdownIt-Anchor" href="#文件域file"></a> 文件域file</h5>
-<p><strong>作用</strong>：网盘、邮箱等文件的上传</p>
-<p><strong>注意</strong>：再使用文件域的时候必须在form<code>标签中说明编码方式``enctype=&quot;multipart/form-data&quot;</code>，否则服务器不能正常接收文件</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;myform&quot;</span> <span class="attr">enctype</span>=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;file&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="textarea多行文本框"><a class="markdownIt-Anchor" href="#textarea多行文本框"></a> textarea多行文本框</h4>
-<p>单行文本框只能输入一行信息，多行文本框就输入多行信息，但是<strong>不再用<code>inut</code>标签而是<code>textarea</code>标签</strong></p>
-<p><code>&lt;textarea rows=&quot;函行数&quot; cols=&quot;列数&quot;&gt;默认内容&lt;textarea/&gt;</code></p>
-<h4 id="下拉列表select"><a class="markdownIt-Anchor" href="#下拉列表select"></a> 下拉列表select</h4>
-<p><strong>作用</strong>：节省页面空间的选择方式，单击下拉菜单打开菜单后才会看到全部的选项</p>
-<p><strong>特点</strong>：和列表类似，由<code>select</code>和<code>option</code>两个标签配合使用</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>CSS<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">option</span>&gt;</span>jQuary<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="slelect标签属性"><a class="markdownIt-Anchor" href="#slelect标签属性"></a> slelect标签属性</h5>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>multiple</code></td>
-<td>可选属性，也只有这一个属性。默认情况下列表只能选择一项，当设置为<code>mutiple=&quot;mutiple&quot;</code>时下拉列表可以选择多项</td>
-</tr>
-<tr>
-<td><code>size</code></td>
-<td>下拉列表展开之后可见列表项的数目</td>
-</tr>
-</tbody>
-</table>
-<p><code>&lt;selsect multiple=&quot;multiple&quot; size=&quot;&quot;&gt;&lt;select/&gt;</code></p>
-<h5 id="option标签属性"><a class="markdownIt-Anchor" href="#option标签属性"></a> <code>option</code>标签属性</h5>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>value</code></td>
-<td>选项值</td>
-</tr>
-<tr>
-<td><code>selected</code></td>
-<td>初始是否选中</td>
-</tr>
-</tbody>
-</table>
-<p><code>&lt;option value=&quot;选项值&quot; selected=&quot;selected&quot;&gt;&lt;option/&gt;</code></p>
-<blockquote>
-<p>selected和单选按钮<code>radio</code>的<code>checked</code>属性是一样的意思</p>
-</blockquote>
-<h2 id="多媒体"><a class="markdownIt-Anchor" href="#多媒体"></a> 多媒体</h2>
-<h3 id="插入音频-视频和flash"><a class="markdownIt-Anchor" href="#插入音频-视频和flash"></a> 插入音频、视频和<code>Flash</code></h3>
-<p><strong>作用</strong>：对于在线的音频和视频常用<code>HTML5</code>新增的自闭和标签<code>embed</code>实现。<strong><code>src</code>属性写明引用路径就可以了</strong>。</p>
-<p><code>&lt;embed src=&quot;&quot;&gt;</code></p>
-<blockquote>
-<p><code>embed</code>标签会有一个放有几个简单功能的播放界面</p>
-</blockquote>
-<p><strong>支持格式</strong>：<code>mp4</code>、<code>avi</code>、<code>rmvb</code>等等主流视频格式，不行的话就转码</p>
-<h3 id="插入背景音乐"><a class="markdownIt-Anchor" href="#插入背景音乐"></a> 插入背景音乐</h3>
-<p>在<code>embed</code>标签的基础上多了几个属性（还是<code>src</code>写明引用地址）</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明（取值为<code>true</code>/<code>false</code>）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>hidden</code></td>
-<td>是否显示播放器</td>
-</tr>
-<tr>
-<td><code>autostart</code></td>
-<td>是否一进页面自动播放</td>
-</tr>
-<tr>
-<td><code>loop</code></td>
-<td>是否循环播放</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><code>HTML5</code>还新增了<code>audio</code>、<code>video</code>标签等用于多媒体开发的标签</p>
-</blockquote>
-<h2 id="框架"><a class="markdownIt-Anchor" href="#框架"></a> 框架</h2>
-<p><strong>作用</strong>：<code>HTML5</code>新增一个标签<code>iframe</code>浮动框架（它是在浏览器窗口中嵌套的子窗口），<code>iframe</code>框架可以<mark>完全由设定者定义高度和宽度</mark>，并且可以放置在网页的任何位置，极大地扩展框架页面的应用范围</p>
-<p><code>&lt;iframe src=&quot;源文件地址&quot; width=&quot;浮动框架的宽&quot; height=&quot;浮动框架的高&quot; scrolling=&quot;滚动条设置&quot;&gt;</code></p>
-<blockquote>
-<p>在普通框架结构中，由于框架就是整个浏览器的窗口，因此不需要设置大小。但是浮动框架<code>iframe</code>是插入到普通<code>HTML</code>中的，所以可以调整框架的大小。<strong>浮动框架的宽度和高度都是以像素（<code>px</code>)为单位的。<code>width</code>和<code>height</code>都是可选属性</strong></p>
-</blockquote>
-<h3 id="滚动条设置"><a class="markdownIt-Anchor" href="#滚动条设置"></a> 滚动条设置</h3>
-<p><code>iframe</code>的<code>scrolling</code>属性来控制滚动条三种形态：</p>
-<table>
-<thead>
-<tr>
-<th>属性</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>auto</code></td>
-<td>默认值，整个表格在浏览器中左对齐（根据需要显示）</td>
-</tr>
-<tr>
-<td><code>yes</code></td>
-<td>总是显示滚动条</td>
-</tr>
-<tr>
-<td><code>no</code></td>
-<td>不显示滚动条</td>
-</tr>
-</tbody>
-</table>
-<h2 id="语义化标签表"><a class="markdownIt-Anchor" href="#语义化标签表"></a> 语义化标签表</h2>
-<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/HTML-2.png" style="zoom:67%;">]]></content>
-      <categories>
-        <category>Web学习</category>
-        <category>HTML</category>
-      </categories>
-      <tags>
-        <tag>Web前端</tag>
-        <tag>HTML</tag>
       </tags>
   </entry>
   <entry>
@@ -9398,7 +9398,7 @@ Bogo排序的最坏时间复杂度为 O(∞)，一辈子也不能输出排序结
 <h2 id="实验六循环结构与分支结构二"><a class="markdownIt-Anchor" href="#实验六循环结构与分支结构二"></a> 实验六：循环结构与分支结构（二）</h2>
 <h3 id="任务一-6"><a class="markdownIt-Anchor" href="#任务一-6"></a> 任务一</h3>
 <p><strong>题意</strong>：在数据段有一字符变量，其地址为 <code>char</code>，编写程序从键盘输入一个字符存储在 <code>char</code>中，判断其是否为大写字母，若是将其转换为小写字母并输出，若不是则原样输出</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; ---------------------------------------------------------</span><br><span class="line">data    segment</span><br><span class="line">        char    db      ?</span><br><span class="line">data    ends</span><br><span class="line">; ---------------------------------------------------------</span><br><span class="line">code    segment</span><br><span class="line">        assume     cs:code,ds:data</span><br><span class="line">start:</span><br><span class="line">        mov     ax,data</span><br><span class="line">        mov     ds,ax</span><br><span class="line">        ; 获取字符</span><br><span class="line">        mov     ah,01h</span><br><span class="line">        int     21h</span><br><span class="line">        ; 将字符传给char</span><br><span class="line">        mov     char,al</span><br><span class="line">        ; 比较左边界</span><br><span class="line">        cmp     char,&#39;A&#39;</span><br><span class="line">        jl      show</span><br><span class="line">        ; 比较右边界</span><br><span class="line">        cmp     char,&#39;Z&#39;</span><br><span class="line">        jb      show</span><br><span class="line">        ; 执行到这里说明是将ascii减到对应的小写字母</span><br><span class="line">        sub     char,32</span><br><span class="line">show:</span><br><span class="line">        mov     dl,char</span><br><span class="line">        mov     ah,02h</span><br><span class="line">        int     21h</span><br><span class="line">        mov     ax,4c00h</span><br><span class="line">        int     21h</span><br><span class="line">code    ends</span><br><span class="line">; ----------------------------------</span><br><span class="line">    end     start</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">; ---------------------------------------------------------</span><br><span class="line">data    segment</span><br><span class="line">        char    db      ?</span><br><span class="line">data    ends</span><br><span class="line">; ---------------------------------------------------------</span><br><span class="line">code    segment</span><br><span class="line">        assume     cs:code,ds:data</span><br><span class="line">start:</span><br><span class="line">        mov     ax,data</span><br><span class="line">        mov     ds,ax</span><br><span class="line">        ; 获取字符</span><br><span class="line">        mov     ah,01h</span><br><span class="line">        int     21h</span><br><span class="line">        ; 将字符传给char</span><br><span class="line">        mov     char,al</span><br><span class="line">        ; 比较左边界</span><br><span class="line">        cmp     char,&#39;A&#39;</span><br><span class="line">        jl      show</span><br><span class="line">        ; 比较右边界</span><br><span class="line">        cmp     char,&#39;Z&#39;</span><br><span class="line">        jg      show</span><br><span class="line">        ; 执行到这里说明是将ascii减到对应的小写字母</span><br><span class="line">        sub     char,32</span><br><span class="line">show:</span><br><span class="line">        mov     dl,char</span><br><span class="line">        mov     ah,02h</span><br><span class="line">        int     21h</span><br><span class="line">        mov     ax,4c00h</span><br><span class="line">        int     21h</span><br><span class="line">code    ends</span><br><span class="line">; ----------------------------------</span><br><span class="line">    end     start</span><br></pre></td></tr></table></figure>
 <p><strong>知识点考察</strong>：</p>
 <p>确定字符是否是某个范围先和左边界比，小于可以直接确定不是退出判断。否则还需要和右边界比，只有比右边界小我们才可以确定</p>
 <h3 id="任务二-6"><a class="markdownIt-Anchor" href="#任务二-6"></a> 任务二</h3>
@@ -9428,6 +9428,404 @@ Bogo排序的最坏时间复杂度为 O(∞)，一辈子也不能输出排序结
       <tags>
         <tag>汇编语言</tag>
         <tag>80x86</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>马克思主义基本原理期末复习</title>
+    <url>/posts/141724962/</url>
+    <content><![CDATA[<h1 id="知识点总结"><a class="markdownIt-Anchor" href="#知识点总结"></a> 知识点总结</h1>
+<h2 id="世界的物质性及发展规律"><a class="markdownIt-Anchor" href="#世界的物质性及发展规律"></a> 世界的物质性及发展规律</h2>
+<h3 id="马克思主义体系内容和理论来源"><a class="markdownIt-Anchor" href="#马克思主义体系内容和理论来源"></a> 马克思主义体系内容和理论来源</h3>
+<p>马克思主义内容：涵盖了<strong>社会的政治、 经济、 文化、 军事、 历史和人类社会发展与自然界的关系</strong>等诸多领悟和各个方面， 是以<strong>反对资本主义求得无产阶级解放并指导人们以共产主义为最终目标，建设社会主义而提出的关于自然社会和思维发展的最一般规律的科学理论体系</strong>， 包括<strong>马克思主义哲学、 马克思主义政治经济学和科学社会主义</strong>三个基本组成部分</p>
+<p>理论来源：</p>
+<ul>
+<li>
+<p>德国古典哲学（黑格尔、费尔巴哈）</p>
+</li>
+<li>
+<p>英国古典政治经济学（亚当. 私密、大卫.李嘉图）</p>
+</li>
+<li>
+<p>法国 、英国的空想社会主义（圣西门、欧文、 傅立叶）</p>
+</li>
+</ul>
+<h3 id="马克思主义的鲜明特征"><a class="markdownIt-Anchor" href="#马克思主义的鲜明特征"></a> 马克思主义的鲜明特征</h3>
+<ol>
+<li>马克思主义具有<strong>科学性</strong></li>
+<li>马克思主义具有<strong>革命性</strong></li>
+<li><strong>科学性和革命性的统一</strong>， 具体体现在<mark>科学的世界观和方法论、 鲜明的政治立场、 重要的理论品质和崇高的社会理想</mark></li>
+</ol>
+<ul>
+<li>哲学基本问题及其内容：<mark>哲学基本问题是思维和存在的关系问题</mark>。它包括两个方面的内容：
+<ul>
+<li>第一， 思维和存在哪个为第一性、哪个为第二性的问题——<strong>即世界的本原是思维还是存在</strong>。它是<mark>划分唯物主义和唯心主义的客观标准</mark>，因为它规定着各派哲学发展方向并决定着哲学的性质</li>
+<li>第二，思维和存在有无同一性的问题——<strong>即人的思维能否认识和反映现实世界的问题</strong>。它是<mark>划分可知论和不可知论的客观标准</mark></li>
+</ul>
+</li>
+<li>世界的物质统一性：<strong>世界物质统一性原理是马哲关于世界本质问题的一个基本原理</strong>。 <strong>世界是统一的， 即世界的本源是一个。世界的统一性在于它的物质性， 即世界统一的基础是物质</strong>。 物质世界的统一性是多样性的统一， 而不是单一的无差别的统一， <strong>世界的物质统一性以具体物质形态的差异性、 多样性为前提， 而物质形态的差异性、 多样性又以它们的客观实在性为基础</strong>。世界物质统一性原理是人们从哲学基本问题的高度， 从一般和个别关系的角度对世界本质的认识</li>
+</ul>
+<h3 id="物质范畴"><a class="markdownIt-Anchor" href="#物质范畴"></a> 物质范畴</h3>
+<p>物质是标志客观存在的哲学范畴，这种客观实在是人通过感觉感知的，它不依赖于我们的感觉而存在，为我们的感觉所复写、摄影、反映。<strong>物质的唯一特性是客观实在性，它存在于人的意识之外，可以为人的意识所反映</strong></p>
+<h3 id="运动和静止"><a class="markdownIt-Anchor" href="#运动和静止"></a> 运动和静止</h3>
+<p><mark>运动是物质的存在形式和固有属性</mark>。它包括宇宙间的一切变化和过程。 <strong>世界是物质的, 物质是永恒运动着的</strong>。 <strong>物质和运动是不可分的， 世界上没有不运动的物质，也没有离开物质的运动</strong>，运动和静止的关系主要表现在：<strong>运动是绝对的， 静止是相对的</strong>。运动和静止相互渗透相互依赖相互包含。动中有静静中有动。 <mark>静止是运动的特殊状态， 是事物处于相对平衡和稳定时的状态</mark></p>
+<h3 id="唯物辩证法的实质核心-总特征和根本方法"><a class="markdownIt-Anchor" href="#唯物辩证法的实质核心-总特征和根本方法"></a> 唯物辩证法的实质核心、总特征和根本方法</h3>
+<p>唯物辩证法的实质与核心是<strong>对立统一规律</strong>：</p>
+<ol>
+<li><strong>对立统一规律揭示了普遍联系的根本内容和事物发展的内在动力</strong></li>
+<li><strong>对立统一规律是贯穿于其他规律和范畴的中心线索</strong></li>
+</ol>
+<p>唯物辩证法的两个基本特征是<strong>联系的观点和发展的观点</strong></p>
+<p><strong>矛盾分析方法</strong>是我们<strong>最根本的认识方法</strong></p>
+<h3 id="唯物辩证法三大规律"><a class="markdownIt-Anchor" href="#唯物辩证法三大规律"></a> 唯物辩证法三大规律</h3>
+<ol>
+<li><strong>对立统一规律</strong> ： 世界上<mark>任何事物的内部和事物之间</mark>都包含矛盾的两个方面，<mark>矛盾的双方既对立又统一</mark>。 事物的运动发展在于自身的矛盾运动， <strong>矛盾的斗争性和同一性、 普遍性和特殊性（共性和个性、 绝对和相对、 一般和个别） 统一于客观事实</strong>。 对立统一规律<strong>揭示了事物发展变化的源泉和动力</strong>， 它贯穿于唯物辩证法其它规律和范畴之中，是唯物辩证法科学体系的实质和核心</li>
+<li><strong>量变质变规律</strong>： 任何事物的变化都是由量变到质变的过程， 量变到一定程度引起质变产生新质。然后， 在新质的基础上又开始新的量变。 <strong>量变是质变的基础和必要的准备， 质变是量变的必然结果</strong>。 量变质变规律<strong>揭示事物发展的形式和形态</strong></li>
+<li><strong>否定之否定规律</strong>： <strong>任何事物的发展变化都是新事物对旧事物的否定， 是事物内部的肯定和否定两方面矛盾斗争的结果， 是事物自我发展的过程， 但是否定并不是全盘抛弃， 而是“扬弃” ， 是克服和保留的统一</strong>。 新事物否定旧事物然后被更新的事物否定， 一切事物都是如此“螺旋式” 向前发展。 否定之否定规律揭<strong>示了事物发展的趋势和道路， 即事物的发展表现为前进性和曲折性的统一， 新事物是不可战胜的</strong></li>
+</ol>
+<h3 id="尊重客观规律性与发挥主观能动性关系"><a class="markdownIt-Anchor" href="#尊重客观规律性与发挥主观能动性关系"></a> 尊重客观规律性与发挥主观能动性关系</h3>
+<ol>
+<li><strong>尊重客观规律是发挥主观能动性的前提和基础</strong>， 只有尊重客观规律， 才能更好地发挥人的主观能动性。 人们对客观规律认识愈深刻、 全面， 主观能动性愈充分地发挥。 <mark>如果违背客观规律， 就会受到它的惩罚</mark></li>
+<li><strong>发挥人的主观能动性是认识、 掌握和利用客观规律的必要条件</strong>， 因为客观规律是隐藏在事物内部的。 要正确地认识必须通过实践， 依靠主观能动性的发挥， 利用客观规律改造世界</li>
+<li><strong>尊重客观规律和发挥人的主观能动性是相辅相成的， 辩证统一的</strong>。 既要尊重客观规律， 又要发挥人的主观能动性， 把<mark>坚持唯物论和辩证法有机统一</mark>起来</li>
+</ol>
+<h2 id="认识的本质及其发展规律"><a class="markdownIt-Anchor" href="#认识的本质及其发展规律"></a> 认识的本质及其发展规律</h2>
+<h3 id="认识论两条根本路线"><a class="markdownIt-Anchor" href="#认识论两条根本路线"></a> 认识论两条根本路线</h3>
+<p>一条是坚持<strong>从物到感觉和思想的唯物主义</strong>路线， 另一条是<strong>坚持从思想和感觉到物的唯心主义</strong>路线。 即<mark>反映论和先验论的对立</mark></p>
+<h3 id="认识运动的基本规律"><a class="markdownIt-Anchor" href="#认识运动的基本规律"></a> 认识运动的基本规律</h3>
+<p>从实践到认识、从认识到实践及认识运动的不断反复和无限发展。 即**“实践、 认识、 再实践、 再认识” 的反复性和无限性**</p>
+<h3 id="认识和实践的主体和客体的关系"><a class="markdownIt-Anchor" href="#认识和实践的主体和客体的关系"></a> 认识和实践的主体和客体的关系</h3>
+<p>主体： 处于一定社会关系中并从事实践活动和认识活动的<strong>人</strong>（不等于主观）</p>
+<p>客体： 主体从事实践和认识活动所指向的<strong>对象</strong></p>
+<p>关系： 实践关系；认识关系；价值关系；审美关系</p>
+<h3 id="实践在认识中的决定作用"><a class="markdownIt-Anchor" href="#实践在认识中的决定作用"></a> 实践在认识中的决定作用</h3>
+<p>实践是认识的基础，它对认识的决定作用主要体现在以下四个方面：</p>
+<ol>
+<li><strong>实践是认识的来源</strong>。人们要改造世界就必须首先认识世界，人类的认识活动也总是为各个时代社会实践的特定需求服务的，科学研究的任务也是围绕社会实践的需要这个中心来确定的</li>
+<li><strong>实践为认识提供了发展的动力</strong>。 人类实践活动提出的问题归根结底只能依靠和通过实践来解决。 实践创造出必要的物质条件和手段， 使人的认识能够不断发展</li>
+<li><strong>实践使认识得以产生和发展（即目的）</strong>。人们只有通过实践实际地改造和变革对象， 才能使对象的真实状态、 属性、 关系、 本质和规律得到充分的暴露；也只有通过实践使自己的感觉器官直接地同对象相接触， 才能使对象的各种现象反映到头脑中来， 形成一定的直接经验， 进而上升到理性认识</li>
+<li><strong>实践是检验认识的真理性的唯一标准</strong>。 <mark>人的思维是否具有客观性的真理性， 这不是一个理论问题， 而是一个实践的问题</mark>。 人应该在实践中证明自己思维的真理性， 即自己思维的现实性和力量， 自己思维的此岸性</li>
+</ol>
+<h3 id="感性认识和理性认识"><a class="markdownIt-Anchor" href="#感性认识和理性认识"></a> 感性认识和理性认识</h3>
+<p>区别：</p>
+<ul>
+<li>从内容上看， <strong>感性认识是对事物现象的认识， 理性认识是对事物本质的认识</strong></li>
+<li>从形式上看， <strong>感性认识以人的感觉器官直接反映事物， 理性认识只能由人的理性思维去把握</strong></li>
+<li><strong>感性认识是认识的初级阶段， 是人们对于事物的各个片面、 现象和外部联系的反映</strong>， 它包括感觉、 知觉、 表象， <strong>它的特点是直接性和形象性</strong></li>
+<li><strong>理性认识是认识的高级阶段， 是对于事物的全体、 本质和内部联系的反映</strong>。 它包括概念、 判断和推理等三种形式， <strong>具有间接性和抽象性的特点</strong></li>
+</ul>
+<p>联系：</p>
+<ul>
+<li><strong>理性认识依赖于感性认识</strong>。 因为感性认识是理性认识的起点， 感性认识是直接经验的结果， 建立在感性认识基础上的理性认识才是真实可靠的， <mark>坚持理性认识从感性认识中来， 就是坚持了认识论中的唯物主义</mark></li>
+<li><strong>感性认识有待于发展到理性认识</strong>。 因为只有理性认识才揭示了事物的本质规律， 才是对事物更深刻、 更全面、 更可靠的反映，只有理性认识才能指导人们按规律办事， 有效地改造世界， <mark>坚持感性认识上升到理性认识， 就是坚持了认识论中的辩证法</mark></li>
+</ul>
+<h3 id="真理客观性和辩证性"><a class="markdownIt-Anchor" href="#真理客观性和辩证性"></a> 真理客观性和辩证性</h3>
+<ul>
+<li>客观性
+<ol>
+<li><strong>内容客观， 包含不依人意志转移的客观内容</strong></li>
+<li><strong>检验标准客观， 实践检验为标准</strong></li>
+</ol>
+</li>
+<li>辩证性
+<ol>
+<li><strong>真理的绝对性即具有绝对性的真理</strong>， 是指真理的无条件性、 无限性。 任何真理都必须包含着同客观对象相符合的客观内容， 都同谬误有原则的界限， 都不能被推翻， 否则就不成其为真理， 这一点是绝对的、 无条件的。 人类认识按其本性来说， 能够正确认识无限发展着的物质世界， 认识每前进一步， 都是对无限发展着的物质世界的接近， 这一点也是绝对的无条件的</li>
+<li><strong>真理的相对性即具有相对性的真理</strong>， 是指真理的有条件性、 有限性。 真理反映的对象是有条件的、 有限的。 任何真理由于都会受到人类实践水平和范围以及认识能力的限制， 它只能是对无限的物质世界发展的某一阶段、 某一方面、 某一层次的认识， 因而是有限的。 真理反映客观对象的正确程度也是有条件有限的</li>
+<li><strong>真理是具体的， 是发展的， 真理的绝对性和相对性是辩证统一的</strong>。 具有绝对性的真理和具有相对性的真理是相互渗透和相互包含的， 又是辩证转化的。 <strong>真理永远处在由相对向绝对的转化和发展中，这是真理发展的规律</strong>。 绝对真理和相对性真理的辩证统一， 是同人的认识能力、 思维能力的至上性和非至上性辩证统一的</li>
+</ol>
+</li>
+</ul>
+<h3 id="实践的标准"><a class="markdownIt-Anchor" href="#实践的标准"></a> 实践的标准</h3>
+<p>实践是检验真理的唯一标准</p>
+<p>实践作为检验认识真理性的标准有其确定性与不确定性即相对性</p>
+<h3 id="真理与价值关系"><a class="markdownIt-Anchor" href="#真理与价值关系"></a> 真理与价值关系</h3>
+<p>区别：</p>
+<ol>
+<li>真理原则侧重于<strong>客体性</strong>，价值原则侧重于<strong>主体性</strong></li>
+<li>真理原则主要表明人的活动中的<strong>客观制约性</strong>，价值原则主要表明人的活动中的<strong>目的性</strong></li>
+<li>真理原则体现了社会活动中的<strong>统一性</strong>，价值原则体现了社会活动中的<strong>多样性</strong></li>
+</ol>
+<p>联系：</p>
+<ol>
+<li><strong>真理和价值统一于人类的实践活动之中</strong>。人类在自己的实践活动中，要把真理原则和价值原则结合起来，通过一定的自我调节来解决真理和价值的冲突, 实现真理与价值的统一</li>
+<li>首先，<strong>成功的实践必然是以真理和价值的统一为前提的</strong>。任何成功的实践都必然是既遵循真理尺度, 又符合价值尺度, 并将二者统一起来的结果</li>
+<li>其次，<strong>价值的形成和实现以坚持真理为前提, 而真理又必然是具有价值的</strong></li>
+<li>最后，<strong>真理和价值在实践和认识活动中是相互制约、 相互引导、 相互促进的</strong>。人们在实践中通过真理与价值的相互引导、 相互结合、 相互过渡来实现真理和价值的具体的历史的统一</li>
+</ol>
+<h3 id="方法论意义"><a class="markdownIt-Anchor" href="#方法论意义"></a> 方法论意义</h3>
+<p>坚持真理和价值的辩证统一，要求我们在实践中必须坚持和弘扬科学精神和人文精神，既坚持以科学的实事求是的精神去认识和改造世界，又把人民的利益和人的发展看做一切认识和实践活动的出发点，贯彻”以人为本“的原则</p>
+<h2 id="人类社会及发展规律"><a class="markdownIt-Anchor" href="#人类社会及发展规律"></a> 人类社会及发展规律</h2>
+<h3 id="社会基本矛盾及其运动规律"><a class="markdownIt-Anchor" href="#社会基本矛盾及其运动规律"></a> 社会基本矛盾及其运动规律</h3>
+<p>社会基本矛盾是<strong>生产力与生产关系、 经济基础与上层建筑的矛盾</strong></p>
+<p>社会运动规律是<strong>生产关系一定要适合生产力状况、 上层建筑要适合经济基础状况</strong></p>
+<h3 id="社会存在与社会意识的关系"><a class="markdownIt-Anchor" href="#社会存在与社会意识的关系"></a> 社会存在与社会意识的关系</h3>
+<ul>
+<li>社会存在对社会意识的作用：
+<ol>
+<li><strong>社会存在是社会意识的前提和基础</strong>。人们必须先进行物质生产，在此基础上才能进行精神生产</li>
+<li><strong>社会存在决定社会意识的内容和形式</strong>。有什么样的社会，就会有什么样的社会意识与之相适应</li>
+<li><strong>社会存在的发展变化决定社会意识的发展变化</strong>。 社会意识的发展变化归根到底都是同社会存在的发展变化相适应的， 社会存在发生了变化，社会意识也会相应地发生变化</li>
+</ol>
+</li>
+<li>社会意识对社会存在具有反作用：</li>
+</ul>
+<ol>
+<li>从质的方面看，不同性质的社会意识对社会存在起着不同性质的作用</li>
+<li>从量的方面看，无论社会意识对社会发展起什么性质的作用，都有程度深浅、范围大小、时间久暂、作用方式、反馈方式的不同</li>
+</ol>
+<h3 id="社会意识的相对独立性"><a class="markdownIt-Anchor" href="#社会意识的相对独立性"></a> 社会意识的相对独立性</h3>
+<ol>
+<li>社会意识与社会存在发展的<strong>不完全同步性和不平衡性</strong></li>
+<li>社会意识内部各种形式之间的相互影响及各自具有的<strong>历史继承性</strong></li>
+<li>社会意识对社会存在的<strong>能动的反作用</strong></li>
+</ol>
+<h3 id="群众史观和英雄史观"><a class="markdownIt-Anchor" href="#群众史观和英雄史观"></a> 群众史观和英雄史观</h3>
+<p>唯心主义英雄史观的基本形态 ：</p>
+<ol>
+<li><strong>唯意志论</strong>——唯意志论认为<strong>少数帝王将相、英雄豪杰的意志可以决定历史的进程</strong>，人类历史就是由这些“大人物” 随心所欲地创造的。至于<strong>人民群众</strong>，则被看作是“消极的” 、“被动的” 、“惰性的物质” ，是这些少数英雄人物的盲目追随者，<strong>是供他们使用的“材料”</strong></li>
+<li><strong>宿命论</strong>——宿命论认为<strong>决定社会历史发展的是某种神秘的精神力量</strong>，如“ 上帝” 、“ 天命” 、“神” 、“绝对精神” 等等，而英雄人物则是诸如此类精神力量的体现者或受托人。而<strong>人民群众只能俯首听从</strong>这些神秘精神力量和英雄人物的支配</li>
+</ol>
+<p>唯心主义英雄史观存在的原因 ：</p>
+<ol>
+<li><strong>认识根源</strong>——唯心主义英雄史观的认识根源在于<strong>不能透过现象看到本质</strong>， 从而夸大英雄人物的作用或只看到思想动机</li>
+<li><strong>社会历史根源</strong>——唯心主义英雄史观的社会根源是<strong>生产力还不够发达</strong>，大多数人从事生产劳动，<strong>少数从事政治统治，垄断精神文化生活</strong></li>
+<li><strong>阶级根源</strong>——唯心主义英雄史观的阶级根源在于历代<strong>剥削阶级为了维护对广大人民群众的剥削和统治</strong>，总是对历史发展的真相作歪曲的宣传，<strong>百般吹捧他们的领袖人物和政治代表，极力贬低人民群众的历史作用</strong></li>
+</ol>
+<p>唯物主义的群众史观同唯心主义的英雄史观相反：</p>
+<ol>
+<li><mark>历史唯物主义从社会存在决定社会意识的基本观点出发</mark>，认为社会发展的历史是物质资料生产的历史，是社会生产方式新陈代谢的历史，因而也是人民群众创造活动的历史</li>
+<li><mark>唯物主义坚定地认为社会存在决定社会意识和肯定人民群众创造历史的决定作用是唯物史观的基本特征</mark></li>
+</ol>
+<h2 id="资本主义的本质及其规律"><a class="markdownIt-Anchor" href="#资本主义的本质及其规律"></a> 资本主义的本质及其规律</h2>
+<h3 id="资本原始积累的实质"><a class="markdownIt-Anchor" href="#资本原始积累的实质"></a> 资本原始积累的实质</h3>
+<p><mark>资本积累就是剩余价值的资本化， 资本积累的源泉是剩余价值</mark>。 资本积累的实质是资本家将其无偿占有的剩余价值的一部分再转化为资本， 用来购买追加的生产资料和劳动力， 扩大生产规模， 从而进一步无偿地占有更多的剩余价值。 即<strong>物质资料扩大再生产、 劳动力扩大再生产和资本主义生产关系扩大再生产</strong></p>
+<h3 id="商品经济产生的历史条件"><a class="markdownIt-Anchor" href="#商品经济产生的历史条件"></a> 商品经济产生的历史条件</h3>
+<p><mark>商品经济是人类社会发展到一定历史阶段的产物</mark></p>
+<p>社会分工的不同（代表不同性质物质利益主体）—&gt;生产商品不同（各自有相对独立的物质利益）—&gt;需互通有无（采取商品交换形式）</p>
+<h3 id="商品二因素和生产商品的劳动二重性"><a class="markdownIt-Anchor" href="#商品二因素和生产商品的劳动二重性"></a> 商品二因素和生产商品的劳动二重性</h3>
+<p>商品的二因素的内涵：</p>
+<ul>
+<li><strong>使用价值</strong>： 商品能够满足人们某种需要的自然属性，是指商品的使用价值</li>
+<li><strong>价值</strong>： 商品中凝结或物化了的一般人类劳动就是商品的价值</li>
+<li><strong>商品是使用价值和价值的对立统一体</strong>： 价值不能独立存在，使用价值是价值的物质承担者；离开了价值的使用价值就不是商品的使用价值。<mark>价值是商品的社会属性，在本质上体现了生产者之间的社会关系</mark></li>
+</ul>
+<p>劳动二重性的内涵：</p>
+<ul>
+<li><strong>具体劳动</strong>：是指具有特定的具体形式的创造商品使用价值的劳动，它所体现的是人与自然界的关系</li>
+<li><strong>抽象劳动</strong>：是指撇开了各种具体形式的、一般的或者无差别的人类劳动；是抽掉了一切具体形式无差别的一般人类劳动，<mark>抽象劳动是商品价值的源泉，是劳动的特殊社会形式</mark></li>
+<li><strong>具体劳动和抽象劳动也是对立统一的</strong>：<mark>具体劳动和抽象劳动是同一劳动劳动过程的两个不同的方面</mark>， 统一于同一劳动过程之中；具体劳动规定什么劳动、怎样劳动的问题， 抽象劳动则讲的是劳动多少、劳动时间长短的问题，因而二者是相互排斥的</li>
+</ul>
+<h3 id="使用价值和价值的关系"><a class="markdownIt-Anchor" href="#使用价值和价值的关系"></a> 使用价值和价值的关系</h3>
+<p>使用价值和价值一起构成了商品二重性，商品二重性是指商品具有使用价值和价值两重属性。商品是用来交换的劳动产品，具有使用价值和价值两种属性，商品是使用价值和价值的统一</p>
+<ul>
+<li>商品的有用性，即能够用来满足人们某种需要的属性，就是商品的使用价值</li>
+<li>凝结在商品中的一般人类劳动就是商品的价值，各种商品的价值，只有量的差别，而无质的不同。价值存在于商品体内，是商品的社会属性，体现着商品生产者相互交换劳动的社会关系</li>
+</ul>
+<h3 id="商品价值量的决定因素"><a class="markdownIt-Anchor" href="#商品价值量的决定因素"></a> 商品价值量的决定因素</h3>
+<p><strong>社会必要劳动时间决定商品价值量</strong>， 社会必要劳动时间是指在现有社会正常生产条件下在社会平均劳动熟练程度和劳动强度下制造某种商品所需要的劳动时间</p>
+<h3 id="影响商品价格的因素"><a class="markdownIt-Anchor" href="#影响商品价格的因素"></a> 影响商品价格的因素</h3>
+<p><strong>供求影响价格但价值决定价格</strong></p>
+<p><mark>价值是价格的基础， 价格是价值的货币表现</mark></p>
+<p>价值量是由社会必要劳动时间决定的，<mark>单位价值量与社会劳动生产率成反比</mark></p>
+<h3 id="货币流通规律"><a class="markdownIt-Anchor" href="#货币流通规律"></a> 货币流通规律</h3>
+<p>流通中需要的货币量，与待实现的商品价格总额成正比，与同一单位货币的平均流通速度成反比</p>
+<h3 id="劳动力成为商品与货币转化为资本"><a class="markdownIt-Anchor" href="#劳动力成为商品与货币转化为资本"></a> 劳动力成为商品与货币转化为资本</h3>
+<p><strong>劳动力成为商品是货币转化为资本的前提</strong>。劳动力成为商品标志着简单商品生产发展到资本主义商品生产的新阶段。 在资本主义条件下，资本家用货币购买劳动力这个特殊商品来不断为自己创造剩余价值，货币就转化为资本</p>
+<h3 id="劳动力商品价值与使用价值"><a class="markdownIt-Anchor" href="#劳动力商品价值与使用价值"></a> 劳动力商品价值与使用价值</h3>
+<p>劳动力作为一种商品其价值就是劳动力商品价值——<strong>以资本家付给工人的工资的形式体现</strong>，它包括工人再生产劳动力所需生活资料的价值，培训培养工人所支付的价值，以及工人用以延续劳动力所需的价值（工人家庭所需的价值），即生产和再生产劳动力所花费的社会必要劳动时间衡量的劳动力价值， 还原为生产和再生产劳动力所花费的生活资料的价值</p>
+<p>具有特殊的使用价值， 劳动力使用价值能创造出比劳动力本身更大的价值即剩余价值，因而劳动力的使用价值就在于劳动力创造出的价值</p>
+<h3 id="剩余价值生产过程及方法"><a class="markdownIt-Anchor" href="#剩余价值生产过程及方法"></a> 剩余价值生产过程及方法</h3>
+<p>资本主义的生产过程具有两重性：一方面是<strong>物质资料的生产过程</strong>，另一方面是<strong>剩余价值的生产过程</strong>， 即价值增殖过程</p>
+<ul>
+<li>物质资料生产过程即劳动过程，包括三个基本要素：劳动者、劳动对象和劳动资料</li>
+<li><strong>价值增殖过程是剩余价值的生产过程，这是资本主义生产过程的主要方面</strong>。所谓价值增殖过程，是超过劳动力价值的补偿这个一定点而延长了的价值形成过程。<mark>资本是可以带来剩余价值的价值</mark></li>
+<li><strong>资本在资本主义生产过程中采取生产资料和劳动力两种形态</strong>，根据这两部分资本在剩余价值生产中所起的不同作用，可以<mark>将资本区分为不变资本与可变资本</mark>。不变资本是以生产资料形态存在的资本。可变资本是用来购买劳动力的那部分资本</li>
+</ul>
+<p>生产剩余价值的两种基本方法：延长劳动日的长度和缩短必要劳动时间</p>
+<h3 id="相对剩余价值与超额剩余价值"><a class="markdownIt-Anchor" href="#相对剩余价值与超额剩余价值"></a> 相对剩余价值与超额剩余价值</h3>
+<p>绝对剩余价值是指在必要劳动时间不变的条件下，由于延长劳动日的长度而生产的剩余价值</p>
+<p>相对剩余价值是指<strong>在工作日长度不变的条件下，通过缩短必要劳动时间而相对延长剩余劳动时间生产的剩余价值</strong></p>
+<p>超额剩余价值是指<strong>企业由于提高劳动生产率而使商品的个别价值低于社会价值的差额</strong>。缩短必要劳动时间是通过全社会劳动生产率的提高实现的。<mark>全社会劳动生产率的提高是资本家追逐超额剩余价值的结果</mark></p>
+<h3 id="价值规律内容-表现形式和作用"><a class="markdownIt-Anchor" href="#价值规律内容-表现形式和作用"></a> 价值规律内容、 表现形式和作用</h3>
+<p>价值规律内容：<strong>价值规律是商品生产和商品交换的基本经济规律</strong>。 即商品的价值量取决于社会必要劳动时间， 商品按照价值相等的原则互相交换。在<strong>私有制社会中价值规律自发地调节生产</strong>，刺激生产技术的改进,加速商品生产者的分化。在社会主义社会中。由于社会主义经济是在公有制基础上的有计划的商品经济，因此<strong>社会主义市场经济必须自觉依据和运用价值规律，以促进社会主义经济的发展</strong></p>
+<p>价值规律的表现形式：<strong>价格围绕价值上下波动是价值规律的表现形式</strong>。理解这一问题，要注意三点：</p>
+<ul>
+<li>价格与价值“不一致”的原因：虽然价格由价值决定（价格是价值的货币表现），但价格不只受这一个因素的制约，价格还要受供求关系的影响。供求的变化影响价格，使价格上涨或下跌</li>
+<li>价格围绕价值“上下波动” 的原因： 虽然供求关系影响价格， 使价格与价值不一致， 但另一方面， 价格的变化也会影响“供求” 使供求趋于平衡</li>
+<li>价格围绕价值上下波动是价值规律的表现形式的原因：
+<ol>
+<li>价格的波动是以价值为轴的，不是脱离价值的无限上升或下降， 所以仍然是价值决定价格</li>
+<li>虽然每一次交易中价格与价值并不一致，但从较长时间看， 商品的平均价格和商品的价值是一致的</li>
+</ol>
+</li>
+</ul>
+<p>价值规律的作用：</p>
+<ol>
+<li><strong>价值规律调节生产资料和劳动力在各生产部分的分配</strong></li>
+<li><strong>价值规律刺激商品生产者改进生产技术， 改善经营管理， 提高劳动生产率</strong></li>
+<li><strong>价值规律促使商品生产者在竞争中优胜劣汰</strong></li>
+</ol>
+<h3 id="资本循环条件与影响资本周转因素"><a class="markdownIt-Anchor" href="#资本循环条件与影响资本周转因素"></a> 资本循环条件与影响资本周转因素</h3>
+<p>产业资本指投入物质生产领域的职能资本；产业资本的循环指产业资本依次经过购买、生产、售卖三个阶段</p>
+<p>产业资本循环条件：</p>
+<ol>
+<li><strong>并存性</strong>，产业资本必须按一定比例同时并存于<strong>货币、生产和商品资本</strong>三种职能形式上</li>
+<li><strong>继起性</strong>，产业资本三种职能形式必须保持时间上依次连续性</li>
+</ol>
+<p>影响因素：<strong>资本周转时间、固定资本和流动资本的比例</strong></p>
+<h3 id="两种资本划分不变资本和可变资本-固定资本与流动资本"><a class="markdownIt-Anchor" href="#两种资本划分不变资本和可变资本-固定资本与流动资本"></a> 两种资本划分（不变资本和可变资本、固定资本与流动资本）</h3>
+<p>生产资本可以划分为不变资本和可变资本，又可以划分为固定资本和流动资本。 这两种划分的依据、意义和内容是不同的不能混淆。这两种划分的区别是：</p>
+<ol>
+<li><strong>划分的目的和意义不同</strong>。 把资本区分为不变资本和可变资本是为了揭示剩余价值的真正来源, 并据此进一步分析资本家对工人的剥削程度；而固定资本和流动资本的划分则是为了揭示它们对资本周转速度的影响，并进而揭示资本周转速度对于预付资本量和剩余价值生产的影响</li>
+<li><strong>划分的标准和依据不同</strong>。 区分不变资本和可变资本的依据是生产资本的不同部分在剩余价值生产中的不同作用；区分固定资本和流动资本的依据是生产资本的不同部分在价值转移和价值周转方式上的不同</li>
+<li><strong>划分的内容不同</strong>。 不变资本的实物形式包括全部生产资料，可变资本的实物形式是劳动力；而固定资本的实物形式只包括生产资料中的劳动资料，流动资本的实物形式既包括生产资料中的劳动对象，也包括劳动力。 这就是说，固定资本是不变资本的一部分，可变资本则是流动资本的一部分</li>
+</ol>
+<h3 id="资本有机构成"><a class="markdownIt-Anchor" href="#资本有机构成"></a> 资本有机构成</h3>
+<p>资本的构成可以从<strong>物质形式</strong>和<strong>价值形式</strong>两个方面进行考察：</p>
+<ul>
+<li>
+<p>资本构成表现为<strong>生产过程中的生产资料数量</strong>和<strong>使用这些生产资料的劳动力数量</strong>的比例关系叫做资本技术构成</p>
+</li>
+<li>
+<p>从价值形式来看， 资本构成表现为生产资料价值和劳动力的价值即不变资本和可变资本数量的比例关系， 叫做资本价值构成</p>
+</li>
+<li>
+<p><strong>资本技术构成和资本价值构成有着密切的联系</strong>。 后者是由前者决定的， 资本价值构成的变化，一般地都是资本技术构成变化的反映。 马克思把这种由资本技术构成所决定并反映技术构成变化的资本价值构成，称为资本的有机构成</p>
+</li>
+</ul>
+<h3 id="影响利润率因素"><a class="markdownIt-Anchor" href="#影响利润率因素"></a> 影响利润率因素</h3>
+<p>利润率是剩余价值转化为利润， 剩余价值率就转化为利润率。 利润率是剩余价值与全部预付资本的比率。利润率和剩余价值率是同一个剩余价值量与不同资本数量的对比得出的不同比率。 利润率表示全部预付资本的增殖程度，而且在量上总是小于剩余价值率，从而掩盖了资本主义的剥削程度。 利润率是经常变动的，决定和影响利润率的主要因素有：</p>
+<ol>
+<li><strong>剩余价值率</strong>。在其他条件相同的情况下，剩余价值率高，利润率就高；反之，剩余价值率低，利润率也低。 因此是能够提高剩余价值率的方法，都会相应地提高利润率</li>
+<li><strong>资本有机构成</strong>。资本有机构成高，利润率低；资本有机构成低，利润率高</li>
+<li><strong>资本周转速度</strong>。资本周转速度加快，提高年剩余价值率，从而也提高年利润率。资本的年利润率与资本周转速度成同向变化</li>
+<li><strong>不变资本的节省</strong>。在剩余价值率、剩余价值量一定的情况下，节省不变资本，可以减少预付资本，从而提高利润率</li>
+</ol>
+<h3 id="社会资本再生产的核心问题"><a class="markdownIt-Anchor" href="#社会资本再生产的核心问题"></a> 社会资本再生产的核心问题</h3>
+<p>社会总产品的实现问题，包含价值补偿和实物替换</p>
+<h2 id="资本主义的发展趋势"><a class="markdownIt-Anchor" href="#资本主义的发展趋势"></a> 资本主义的发展趋势</h2>
+<h3 id="经济危机根源和实质"><a class="markdownIt-Anchor" href="#经济危机根源和实质"></a> 经济危机根源和实质</h3>
+<p>根源：资本主义基本矛盾尖锐化</p>
+<p>实质：生产过剩</p>
+<h3 id="资本主义发展的历史进程"><a class="markdownIt-Anchor" href="#资本主义发展的历史进程"></a> 资本主义发展的历史进程</h3>
+<p>从<strong>自由竞争资本主义</strong>到<strong>垄断资本主义</strong>， 经历两个阶段：</p>
+<ol>
+<li>
+<p>19 世纪 70 年代以前处于自由竞争阶段</p>
+</li>
+<li>
+<p>19 世纪末 20 世纪初垄断资本主义形成</p>
+</li>
+</ol>
+<h3 id="垄断产生"><a class="markdownIt-Anchor" href="#垄断产生"></a> 垄断产生</h3>
+<p>生产集中发展到一定阶段必然引起垄断首先， 生产日益集中使垄断成为可能其次， <strong>生产集中也使垄断具有必要性和必然性</strong>：</p>
+<ol>
+<li>第一，生产集中， 使企业规模扩大， 大企业的生产能力迅速膨胀。 <strong>为了保持与扩大利润， 大企业之间有必要结成垄断组织</strong>， 瓜分市场份额， 以调节生产</li>
+<li>第二， <strong>生产集中使大企业规模巨大， 资本雄厚</strong>， 这对中小企业进入大企业的生产经营领域构成较高的进入壁垒， 自由竞争受到限制， 逐步形成少数大企业寡头垄断的格局</li>
+<li>第三， <strong>少数大企业之间势均力敌， 为了避免过度竞争造成两败俱伤的灾难性后果， 必然寻求某种妥协， 达成垄断协定</strong></li>
+</ol>
+<h3 id="垄断与竞争关系"><a class="markdownIt-Anchor" href="#垄断与竞争关系"></a> 垄断与竞争关系</h3>
+<ul>
+<li>
+<p><strong>垄断在自由竞争中形成， 作为自由竞争对立面产生</strong></p>
+</li>
+<li>
+<p>但垄断并没有消灭竞争， <strong>垄断与竞争并存是垄断资本主义的特点</strong>。 其原因在于：</p>
+<ol>
+<li><strong>竞争是市场经济的必然产物， 只要存在着资本主义市场经济</strong>， <mark>各个商品生产者和经营者之间的竞争就不可避免， 并在经济中发挥主要调节作用</mark></li>
+<li><strong>在垄断资本主义阶段， 还存在着一些未被垄断组织吞并的局外企业和大量中小企业</strong>， 这些企业之间， 存在着私有制商品生产经营者间的自由竞争关系</li>
+<li><strong>在垄断占统治地位的部门内，垄断企业之间也存在更加激烈的竞争</strong></li>
+</ol>
+</li>
+</ul>
+<p>垄断时期的竞争与自由竞争相比有了新的特点：</p>
+<ol>
+<li><strong>竞争的目的不同</strong>。 自由竞争的目的是<strong>为了获得平均利润或超额利润</strong>， 而垄断时期竞争的目的则是<strong>为了获取高额的垄断利润</strong></li>
+<li><strong>竞争的手段有了新的变化</strong>。 自由竞争的手段主要是<strong>通过改进技术， 改善经营管理方法， 提高劳动生产率， 降低商品的生产成本</strong>。 而到了垄断时期， 竞争的手段更加多样化， 除了上述手段外， 更重要的是<strong>凭借垄断组织强大的经济实力和政治上的统治力量打垮对手</strong></li>
+<li><strong>竞争的程度和后果不同</strong>。 自由竞争时期<strong>企业规模较小， 力量单薄， 彼此分散</strong>。而垄断时期竞争的双方是实力雄厚、 势均力敌的垄断组织， 这就使得<strong>竞争特别激烈， 更具有持久性</strong></li>
+<li><strong>竞争的范围不同</strong>。 在自由竞争时期， 竞争的场所主要是在<strong>国内市场</strong>。 而垄断竞争的范围则<strong>由国内扩展到国外</strong>， 并扩张到了政治、 军事、 文化<strong>各个领域</strong></li>
+</ol>
+<h3 id="国家垄断资本主义产生-实质与作用"><a class="markdownIt-Anchor" href="#国家垄断资本主义产生-实质与作用"></a> 国家垄断资本主义产生、实质与作用</h3>
+<p>产生： <strong>国家垄断资本主义是国家政权与垄断资本溶为一体的垄断资本主义，它是从一般垄断资本主义转化而来的，是资本主义基本矛盾不断发展的必然结果</strong></p>
+<p>实质： 私人垄断资本利用国家政权的力量维护垄断统治并保证获得稳定的高额垄断的利润，是国家垄断资本主义的实质。 <strong>资产阶级国家力量同垄断组织力量结合在一起的垄断资本主义</strong></p>
+<p>国家垄断资本主义的双重作用：</p>
+<ol>
+<li><strong>对经济发展的促进作用</strong>：
+<ul>
+<li>私人垄断资本主义向国家垄断资本主义发展， 反映了生产社会化进一步发展的客观要求， 是<mark>资本主义基本矛盾日益激化的必然结果</mark>， 能允许生产力的进一步发展， 是资本主义生产关系具体形式的变化</li>
+<li>在保证垄断资产阶级获得高额垄断利润的同时促进了经济发展</li>
+<li>国家利用经济杠杆调节经济， 在一定程度上缓和了生产过剩的经济危机， 推动了科技进步和产业结构的高级化</li>
+<li>资产阶级内部各集团的矛盾和利害冲突得到缓解</li>
+<li>通过社会福利、 收入政策和直接干预劳资关系， 缓和了阶级矛盾</li>
+</ul>
+</li>
+<li><strong>历史局限性</strong>： 国家垄断资本主义没有改变资本主义私有制， 没有改变无产阶级被雇佣受剥削的地位， <strong>不可能解决资本主义的基本矛盾</strong>。这主要表现在：
+<ul>
+<li>国家干预不可能解决生产盲目扩大和劳动人民消费需求相对狭小的矛盾</li>
+<li>国家调节不可能根本克服生产的无政府状态和消除经济结构的失衡</li>
+<li>国家对分配、工资的调节及福利政策等不可能解决失业、贫富悬殊等问题</li>
+<li>国家对经济的调节和干预也不能保证经济稳定增长，不能消除周期性的经济危机</li>
+</ul>
+</li>
+</ol>
+<h3 id="经济全球化实质-作用积极和消极-及对中国影响"><a class="markdownIt-Anchor" href="#经济全球化实质-作用积极和消极-及对中国影响"></a> 经济全球化实质、 作用（积极和消极） 及对中国影响</h3>
+<p>实质： 经济全球化本质上是一个<strong>全球范围内的市场化过程</strong>。 在这个过程中竞争创造了效率， 同时也使财富越来越向少数国家或少数利益集团集中<strong>导致贫富差距的扩大</strong></p>
+<p>作用：</p>
+<p>积极方面：</p>
+<ul>
+<li>
+<p>发达国家是经济全球化的主要受益者</p>
+</li>
+<li>
+<p>经济全球化对发展中国家也具有积极的影响：经济全球化是资源在全球范围内加速流动，发展中国家可以利用这一机会引进先进技术和管理经验，以实现产业结构的高级化， 增强经济的竞争力，缩短与发达国家的差距； 发展中国家可以通过吸引外资，扩大就业，使劳动力资源的优势得以充分发挥</p>
+</li>
+<li>
+<p>发展中国家也可以利用不断扩大的国际市场解决产品销售问题， 以对外贸易带动本国经济的发展；发展中国家还可以借助投资自由化和比较优势组建大型跨国公司，积极参与经济全球化进程，以便从经济全球化中获取更大的利益</p>
+</li>
+</ul>
+<p>消极方面：</p>
+<ul>
+<li>发达国家与发展中国家之间差距扩大</li>
+<li>经济增长中忽视社会进步，环境恶化与经济全球化有可能同时发生</li>
+<li>各国特别是相对落后国家原有的体制、政府领导能力、社会设施、政策体系、价值观念和文化都面临全球化冲击。 国家内部和国际社会都出现不同程度治理危机</li>
+<li>经济全球化使各国间经济联系越来越密切，相互依赖越强，而有效的全球经济协调机制没有建立起来，使爆发全球经济危机的风险不断增大</li>
+</ul>
+<p>对中国影响：</p>
+<ol>
+<li>有利于吸引和利用外资，引进世界先进管理理论和经验并实现管理的创新</li>
+<li>有利于加速中国工业化进程，提升产业结构</li>
+<li>有利于深入地参与国际分工，发挥本国现实和潜在的比较优势，拓展海外市场</li>
+<li>可以抓住新技术革命带来的机遇，发挥后发优势，发展高新技术产业，实现经济的跨越式发展</li>
+</ol>
+<h3 id="当代资本主义经济政治新变化"><a class="markdownIt-Anchor" href="#当代资本主义经济政治新变化"></a> 当代资本主义经济政治新变化</h3>
+<ol>
+<li>
+<p>生产资料所有制变化</p>
+</li>
+<li>
+<p>劳资关系和分配关系的变化</p>
+</li>
+<li>
+<p>社会阶层、阶级结构的变化</p>
+</li>
+<li>
+<p>经济调节机制和经济危机形态的变化和政治制度的变化</p>
+</li>
+</ol>
+<h2 id="共产主义社会基本特征"><a class="markdownIt-Anchor" href="#共产主义社会基本特征"></a> 共产主义社会基本特征</h2>
+<ol>
+<li>社会生产力高度发展， 物质财富极大丰富， 达到了可以满足整个社会及其成员需要的程度</li>
+<li>生产资料的占有关系彻底摆脱了私有制的束缚， 生产资料和劳动产品归全社会公共所有</li>
+<li>实行各尽所能， 按需分配的原则</li>
+<li>由于生产力的高度发展， 产生剥削阶级的社会条件不复存在，阶级和阶级差别都将消灭， 城乡之间、 工农之间， 脑力劳动与体力劳动之间这些重大社会差别也将消失</li>
+<li>全体社会成员具有高度的共产主义觉悟和道德品质</li>
+<li>随着阶级和阶级差别的彻底消灭， 作为阶级统治工具的国家将完全消亡。那时， 管理公共事务的机构虽然存在， 但它的社会职能已经失去其阶级性质</li>
+</ol>
+]]></content>
+      <categories>
+        <category>大学文科类学习</category>
+      </categories>
+      <tags>
+        <tag>马克思主义基本原理</tag>
       </tags>
   </entry>
   <entry>
@@ -12832,12 +13230,13 @@ Bogo排序的最坏时间复杂度为 O(∞)，一辈子也不能输出排序结
 </ul>
 <h2 id="功能调用-09"><a class="markdownIt-Anchor" href="#功能调用-09"></a> 功能调用 <code>09</code></h2>
 <ul>
-<li>
-<p>功能：将一个字符串送显示器显示</p>
-</li>
-<li>
-<p>入口参数：将显示字符串在缓冲区的首地址存入 <code>dx</code> 寄存器</p>
-</li>
+<li>功能：将一个字符串送显示器显示</li>
+<li>入口参数：将显示字符串的串地址存入 <code>dx</code> 寄存器</li>
+</ul>
+<div class="note warning icon">
+            <p>注意和功能调用 <code>0ah</code> 的缓冲区的首地址区分，这个是将串的内容的首个字符的地址传给 <code>dx</code></p>
+          </div>
+<ul>
 <li>
 <p>出口参数：无</p>
 </li>
