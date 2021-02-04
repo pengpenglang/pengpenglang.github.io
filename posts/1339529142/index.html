@@ -1,0 +1,368 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ChinaOpenSSL公开课学习总结（一） | pengpenglang</title><meta name="description" content="文件存放位置   rocos&#x2F;ZBin 文件夹下的 CLien 与 Medusa 两个可执行文件是 OpenSLL 可视化客户端的前端与后端   rocos&#x2F;ZBin&#x2F;lua_scripts 文件夹下的 Config.lua 文件是配置软件运行的重要文件   rocos&#x2F;ZBin&#x2F;lua_scripts 文件夹下的 play 文件夹存放的 play 代码，其中分为三个子文件夹 Nor、Ref 和"><meta name="keywords" content="lua,ChinaOpenSSL"><meta name="author" content="pengpenglang"><meta name="copyright" content="pengpenglang"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://pengpenglang.gitee.io/posts/1339529142/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="ChinaOpenSSL公开课学习总结（一）"><meta property="og:url" content="https://pengpenglang.gitee.io/posts/1339529142/"><meta property="og:site_name" content="pengpenglang"><meta property="og:description" content="文件存放位置   rocos&#x2F;ZBin 文件夹下的 CLien 与 Medusa 两个可执行文件是 OpenSLL 可视化客户端的前端与后端   rocos&#x2F;ZBin&#x2F;lua_scripts 文件夹下的 Config.lua 文件是配置软件运行的重要文件   rocos&#x2F;ZBin&#x2F;lua_scripts 文件夹下的 play 文件夹存放的 play 代码，其中分为三个子文件夹 Nor、Ref 和"><meta property="og:image" content="https://gitee.com/pengpenglang/blogimg/raw/master/img/170.png"><meta property="article:published_time" content="2021-02-04T08:17:16.000Z"><meta property="article:modified_time" content="2021-02-04T08:32:54.896Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"limitCount":200,"languages":{"author":"作者: pengpenglang","link":"链接: ","source":"来源: pengpenglang","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#99CCCC","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-02-04 16:32:54'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://unpkg.com/xiaokang-style/butterfly/css/tags.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><link rel="stylesheet" href="https://unpkg.com/ifriend@1.0.1/friend.min.css"><link rel="stylesheet" href="/css/mogaicss.css"><meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="pengpenglang" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">64</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">53</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">25</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 整理</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/graph/"><i class="fa-fw fas fa-chart-bar"></i><span> 统计</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fab fa-pagelines"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/artitalk/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page" href="/essay/"><i class="fa-fw fas fa-book"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> 追番</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/journal/"><i class="fa-fw fas fa-journal-whills"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-box"></i><span> 资源</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/download/"><i class="fa-fw fas fa-download"></i><span> 项目源码</span></a></li><li><a class="site-page" href="/about/"><i class="fa-fw fa-fw fas fa-infinity faa-tada animated"></i><span> 常用链接</span></a></li></ul></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AD%98%E6%94%BE%E4%BD%8D%E7%BD%AE"><span class="toc-number">1.</span> <span class="toc-text"> 文件存放位置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#configlua%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text"> Config.lua文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mytestrunlua-%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E4%B9%A6%E5%86%99"><span class="toc-number">3.</span> <span class="toc-text"> MyTestRun.lua 代码文件书写</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="toc-number">3.1.</span> <span class="toc-text"> 文件结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#state-%E4%B9%A6%E5%86%99"><span class="toc-number">3.2.</span> <span class="toc-text"> state 书写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%B7%B3%E8%BD%AC-switch"><span class="toc-number">3.2.1.</span> <span class="toc-text"> 状态跳转 switch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%92%E8%89%B2-role-%E4%B8%8E-task"><span class="toc-number">3.2.2.</span> <span class="toc-text"> 角色 role 与 task</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%92%E8%89%B2%E5%8C%B9%E9%85%8D-match"><span class="toc-number">3.2.3.</span> <span class="toc-text"> 角色匹配 match</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#bufcnt-%E5%87%BD%E6%95%B0"><span class="toc-number">4.</span> <span class="toc-text"> bufcnt() 函数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%BE%E5%90%8E%E4%BD%9C%E4%B8%9A"><span class="toc-number">5.</span> <span class="toc-text"> 课后作业</span></a></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/pengpenglang/blogimg/raw/master/img/171.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">pengpenglang</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 整理</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/graph/"><i class="fa-fw fas fa-chart-bar"></i><span> 统计</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fab fa-pagelines"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/artitalk/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page" href="/essay/"><i class="fa-fw fas fa-book"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> 追番</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/journal/"><i class="fa-fw fas fa-journal-whills"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-box"></i><span> 资源</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/download/"><i class="fa-fw fas fa-download"></i><span> 项目源码</span></a></li><li><a class="site-page" href="/about/"><i class="fa-fw fa-fw fas fa-infinity faa-tada animated"></i><span> 常用链接</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">ChinaOpenSSL公开课学习总结（一）</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-04T08:17:16.000Z" title="发表于 2021-02-04 16:17:16">2021-02-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-04T08:32:54.896Z" title="更新于 2021-02-04 16:32:54">2021-02-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9C%BA%E5%99%A8%E4%BA%BA%E5%AD%A6%E4%B9%A0/">机器人学习</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="文件存放位置"><a class="markdownIt-Anchor" href="#文件存放位置"></a> 文件存放位置</h1>
+<ul>
+<li>
+<p><code>rocos/ZBin</code> 文件夹下的 <code>CLien</code> 与 <code>Medusa</code> 两个可执行文件是 OpenSLL 可视化客户端的前端与后端</p>
+</li>
+<li>
+<p><code>rocos/ZBin/lua_scripts</code> 文件夹下的 <code>Config.lua</code> 文件是配置软件运行的重要文件</p>
+</li>
+<li>
+<p><code>rocos/ZBin/lua_scripts</code> 文件夹下的 <code>play</code> 文件夹存放的 play 代码，其中分为三个子文件夹 <code>Nor</code>、<code>Ref</code> 和 <code>Test</code> 存放自动、裁判和测试代码</p>
+</li>
+<li>
+<p><code>rocos/ZBin/lua_scripts/worldmodel</code> 文件夹下存放我们书写 play 代码可以借助获取场上信息库函数</p>
+</li>
+<li>
+<p><code>rocos/ZBin/lua_scripts/utils</code> 文件夹下存放我们书写 play 代码可以借助的工具函数</p>
+</li>
+<li>
+<p><code>rocos/ZBin/lua_scripts/skill</code> 文件夹下存放小车执行状态时的不同的 sill 技能代码</p>
+</li>
+</ul>
+<h1 id="configlua文件"><a class="markdownIt-Anchor" href="#configlua文件"></a> <code>Config.lua</code>文件</h1>
+<p>测试一个自己写的 play 代码需要对 <code>Config.lua</code> 进行下列修改：</p>
+<ol>
+<li>将第 1 行 <code>IS_TEST_MODE</code> 设置为 <code>true</code></li>
+<li>将第 13 行 <code>gTestPlay</code> 改为要测试的代码文件名</li>
+<li>视情况而定大概指明 <code>gRoleFixNum</code> 用来固定某个序号的车担任某个任务</li>
+<li>将测试的代码文件放入 <code>rocos/ZBin/lua_scripts/play</code> 中的对应文件夹并在 <code>Config.lua</code> 文件中加入存放路径，客户端将跟踪到 <code>rocos/ZBin/lua_scripts/play</code> 中的三个文件夹寻找对应的代码文件</li>
+</ol>
+<blockquote>
+<p>存储如果是多层子文件夹分类嵌套那么就需要都写上直到执行某个代码文件</p>
+</blockquote>
+<h1 id="mytestrunlua-代码文件书写"><a class="markdownIt-Anchor" href="#mytestrunlua-代码文件书写"></a> <code>MyTestRun.lua</code> 代码文件书写</h1>
+<h2 id="文件结构"><a class="markdownIt-Anchor" href="#文件结构"></a> 文件结构</h2>
+<ul>
+<li>
+<p>一个文件就是一个用 lua 书写的脚本代码 play层</p>
+</li>
+<li>
+<p>开头写明需要用到的常量，或者需要用到记录位置信息等表</p>
+</li>
+<li>
+<p>文件中每个中括号代表一个状态 <code>state</code>，帮助小车确定不同情况下需要执行的相应动作，一个 play 层包含多个 <code>state</code> 互相跳转实现小车不同环境下实现不同的动作</p>
+</li>
+</ul>
+<h2 id="state-书写"><a class="markdownIt-Anchor" href="#state-书写"></a> <code>state</code> 书写</h2>
+<h3 id="状态跳转-switch"><a class="markdownIt-Anchor" href="#状态跳转-switch"></a> 状态跳转 switch</h3>
+<p><code>switch=function()</code> 函数帮助根据不同的信息确定是否需要跳转到其他 <code>state</code></p>
+<h3 id="角色-role-与-task"><a class="markdownIt-Anchor" href="#角色-role-与-task"></a> 角色 role 与 task</h3>
+<p><code>Config.lua</code> 文件中 <code>gRoleFixNum</code> 指明的车号就是在对应某个角色 role，只有指明的车号才能去执行任务 task，即 role 是与某个小车对应的，任务也是对应的小车执行的</p>
+<ul>
+<li>task function 对应 <code>skill.lua</code>，再对应 <code>skill.cpp</code></li>
+<li>task function 内部代码只执行一遍，因为本身就是在一张表中所以表内角色任务的赋值就是一次！</li>
+</ul>
+<div class="note warning">
+            <p>但是 switch function 是表内的函数所以会执行多次，注意区分表的赋值和函数返还的区别</p>
+          </div>
+<h3 id="角色匹配-match"><a class="markdownIt-Anchor" href="#角色匹配-match"></a> 角色匹配 match</h3>
+<blockquote>
+<p>除去守门员应该是固定车号的，在赛场上某个任务不应该是由指定车号完成的。比如更多需要的是采取“就近原则”来完成从而实现策略的动态高效，这就需要借助 match 实现角色匹配</p>
+</blockquote>
+<p>角色 role 与 task 指明动作后 match 写 role 的简写即可（角色对应可以去 <code>RoleMatch.lua</code> 文件中查看）匹配规则有三种对应三种括号：</p>
+<ol>
+<li>
+<p><code>&#123;&#125;</code> 当前状态维持之前的匹配车号，即当前状态不重新进行角色匹配</p>
+<blockquote>
+<p>第一次执行状态时会自动匹配一个车号，所以不用担心第一次 <code>&#123;&#125;</code> 没有匹配车号的情况</p>
+</blockquote>
+</li>
+<li>
+<p><code>[]</code> 当前状态内部实时进行角色匹配</p>
+</li>
+<li>
+<p><code>()</code> 每次状态切换执行一次角色匹配，即进入状态时进行一次角色匹配并在状态内部始终维持这个角色</p>
+</li>
+</ol>
+<p>一个括号内可以存放多个角色即进行多个角色匹配，若是多个括号则是执行完第一个括号内的角色匹配再执行第二个括号内的角色匹配</p>
+<h1 id="bufcnt-函数"><a class="markdownIt-Anchor" href="#bufcnt-函数"></a> <code>bufcnt()</code> 函数</h1>
+<p>不同状态跳转根据 <code>if-else</code> 语句直接跳转过于生硬，有时可能出现小车未执行完上一个状态就转而执行下一个状态，动作并不准准确。我们可以借助 <code>bufcnt()</code> 函数来延迟状态的跳转从而优化跳转是小车动作更加流畅</p>
+<p>函数第一个根据判断语句的 bool 值确定是否执行，第二个参数指定当返还为 <code>true</code> 时延迟多少帧数执行后面的代码</p>
+<p>例如我们想实现小车到达指定位置附近 10 cm时延迟 10 帧执行状态跳转就可以写为如下</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">&quot;run1&quot;</span>]=&#123; </span><br><span class="line">    switch=<span class="function"><span class="keyword">function</span><span class="params">()</span></span> </span><br><span class="line">        <span class="keyword">if</span> bufcnt(player.toTargetDist(<span class="string">&#x27;Kicker&#x27;</span>)&lt;<span class="number">10</span>,<span class="number">10</span>) <span class="keyword">then</span> </span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;run2&quot;</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    Kicker=task.goCmuRush(testPos[<span class="number">1</span>],<span class="number">0</span>),</span><br><span class="line">    <span class="built_in">match</span>=<span class="string">&quot;&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>其中判断语句借助 <code>player.toTargetDist('Kicker')</code> 获取前锋到指定点的距离，同样我们还可以借助 <code>enemy.lua</code>、<code>ball.lua</code> 或者 <code>pos.lua</code> 获取其他的信息用来状态判断</p>
+</blockquote>
+<h1 id="课后作业"><a class="markdownIt-Anchor" href="#课后作业"></a> 课后作业</h1>
+<p><strong>题目</strong>：</p>
+<ul>
+<li>没有球时让小车处于 <code>(0,0)</code></li>
+<li>球在进攻侧 <code>x&gt;0</code> 时靠近某个进攻位置</li>
+<li>球在防守侧 <code>x&lt;0</code> 时靠近某个防守位置</li>
+<li>利用 <code>bufcnt()</code> 使程序运行更加稳定</li>
+</ul>
+<p><strong>分析</strong>：</p>
+<ol>
+<li>借助一个 <code>check()</code> 函数判断小球在场的合法性</li>
+<li>设立三个 <code>state</code> 分别为 <code>outside</code>、<code>forward</code> 和 <code>backword</code></li>
+<li>状态跳转注意判断条件考虑齐全，跳转到 <code>forward</code> 和 <code>backword</code> 首先是必须小球在场合法然后才是判断到达攻防侧侧，否则直接考虑第二个那么小球在场外是小车到达 <code>(0,0)</code> 会紧接着又跑到攻防侧从而进入死循环</li>
+<li>小球几乎跑全场所以 <code>bufcnt</code> 设置帧数大一些尽可能避免小车出现漂移</li>
+<li>匹配前锋进行攻防不能进入禁区</li>
+</ol>
+<p><strong>代码</strong>：</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> testPos=&#123; 	<span class="comment">--confirm the positions of three state</span></span><br><span class="line">    CGeoPoint:new_local(<span class="number">0</span>,<span class="number">0</span>),     <span class="comment">-- position of outside</span></span><br><span class="line">    CGeoPoint:new_local(<span class="number">3400</span>,<span class="number">0</span>),   <span class="comment">-- position of forward</span></span><br><span class="line">    CGeoPoint:new_local(<span class="number">-3400</span>,<span class="number">0</span>),  <span class="comment">-- position of backward</span></span><br><span class="line">&#125;       </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span><span class="params">()</span></span> <span class="comment">-- help to check if a ball in yard</span></span><br><span class="line">    <span class="keyword">if</span> (ball.posY()&gt;<span class="number">3000</span> <span class="keyword">or</span> ball.posY()&lt;<span class="number">-3000</span> <span class="keyword">or</span> ball.posX()&gt;<span class="number">4500</span> <span class="keyword">or</span> ball.posX()&lt;<span class="number">-4500</span>) <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">gPlayTable.CreatePlay&#123;  </span><br><span class="line"></span><br><span class="line">firstState=<span class="string">&quot;outside&quot;</span>,    <span class="comment">--first put the ball at outside of yard</span></span><br><span class="line">    </span><br><span class="line">[<span class="string">&quot;outside&quot;</span>]=&#123;    <span class="comment">--the state of middle</span></span><br><span class="line">    switch=<span class="function"><span class="keyword">function</span><span class="params">()</span></span> </span><br><span class="line">        <span class="keyword">if</span> bufcnt(check()==<span class="literal">false</span> <span class="keyword">and</span> ball.posX()&lt;<span class="number">0</span>,<span class="number">10</span>) <span class="keyword">then</span>    <span class="comment">-- get the ball position to help judge machine next position</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;backward&quot;</span></span><br><span class="line">        <span class="keyword">elseif</span> bufcnt(check()==<span class="literal">false</span> <span class="keyword">and</span> ball.posX()&gt;<span class="number">0</span>,<span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;forward&quot;</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    Kicker=task.goCmuRush(testPos[<span class="number">1</span>],<span class="number">0</span>),</span><br><span class="line">    <span class="built_in">match</span>=<span class="string">&quot;&#123;K&#125;&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">[<span class="string">&quot;forward&quot;</span>]=&#123;    <span class="comment">-- the state of forward</span></span><br><span class="line">    switch=<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">if</span> bufcnt(check()==<span class="literal">true</span>,<span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;outside&quot;</span></span><br><span class="line">        <span class="keyword">elseif</span> bufcnt(check()==<span class="literal">false</span> <span class="keyword">and</span> ball.posX()&lt;<span class="number">0</span>,<span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;backward&quot;</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    Kicker=task.goCmuRush(testPos[<span class="number">2</span>],<span class="number">0</span>),</span><br><span class="line">    <span class="built_in">match</span>=<span class="string">&quot;&#123;K&#125;&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">[<span class="string">&quot;backward&quot;</span>]=&#123;   <span class="comment">-- the state of backward</span></span><br><span class="line">    switch=<span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">        <span class="keyword">if</span> bufcnt(check()==<span class="literal">true</span>,<span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;outside&quot;</span></span><br><span class="line">        <span class="keyword">elseif</span> bufcnt(check()==<span class="literal">false</span> <span class="keyword">and</span> ball.posX()&gt;<span class="number">0</span>,<span class="number">10</span>) <span class="keyword">then</span></span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;forward&quot;</span></span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    Kicker=task.goCmuRush(testPos[<span class="number">3</span>],<span class="number">0</span>),</span><br><span class="line">    <span class="built_in">match</span>=<span class="string">&quot;&#123;K&#125;&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">name=<span class="string">&quot;MyTestRun&quot;</span>,</span><br><span class="line">applicable=&#123;</span><br><span class="line">    <span class="built_in">exp</span>=<span class="string">&quot;a&quot;</span>,</span><br><span class="line">    a=<span class="literal">true</span></span><br><span class="line">&#125;,</span><br><span class="line">attribute = <span class="string">&quot;attack&quot;</span>,</span><br><span class="line">timeout = <span class="number">99999</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">pengpenglang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://pengpenglang.gitee.io/posts/1339529142/">https://pengpenglang.gitee.io/posts/1339529142/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://pengpenglang.gitee.io" target="_blank">pengpenglang</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/lua/">lua</a><a class="post-meta__tags" href="/tags/ChinaOpenSSL/">ChinaOpenSSL</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/pengpenglang/blogimg/raw/master/img/170.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/620701502/"><img class="next-cover" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/168.png" onerror="onerror=null;src='/img/404.png'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">EducationalCodeforcesRound103(Div.2)</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">Valine</span><label><input id="switch-comments-btn" type="checkbox"/><span class="slider"></span></label><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By pengpenglang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="running-time"><script>setInterval(()=>{let create_time=Math.round(new Date('2020-07-17 00:00:00').getTime()/1000);let timestamp=Math.round((new Date().getTime()+8*60*60*1000)/1000);let second=timestamp-create_time;let time=new Array(0,0,0,0,0);if(second>=365*24*3600){time[0]=parseInt(second/(365*24*3600));second%=365*24*3600;}if(second>=24*3600){time[1]=parseInt(second/(24*3600));second%=24*3600;}if(second>=3600){time[2]=parseInt(second/3600);second%=3600;}if(second>=60){time[3]=parseInt(second/60);second%=60;}if(second>0){time[4]=second;}currentTimeHtml='🌹 我已于此等候你 '+time[0]+' 年 '+time[1]+' 天 '+time[2]+' 时 '+time[3]+' 分 '+time[4]+' 秒 🌹';document.getElementById("running-time").innerHTML=currentTimeHtml;},1000);</script></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function loadValine () {
+  function initValine () {
+    window.valine = new Valine({
+      el: '#vcomment',
+      appId: 'A5hUxuVCphwgrdiSm4GWxskH-MdYXbMMI',
+      appKey: 'OCXLbcI3UqshaPgp1jd2ismX',
+      placeholder: '为了及时得到回复，记得留下邮箱和昵称哦',
+      avatar: 'mp',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    });
+    if ('nick,mail') { valine.config.requiredFields= 'nick,mail'.split(',') }
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: '8aa45f861c433178c2f3',
+      clientSecret: '23c67694dcdaf4f822d6620693666fc2da9c0ee3',
+      repo: 'blog-comments',
+      owner: 'pengpenglang',
+      admin: ['pengpenglang'],
+      id: '596888dc5277d1de655a9790488d2b63',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !false) {
+  if (false) loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script><script src="https://unpkg.com/xiaokang-style/butterfly/js/xkTool.js"></script><script src="/js/iconfont.js"></script><script src="/js/mogaijs.js"></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><div class="aplayer no-destroy" data-id="714285046" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="falsedata-order="player play order" data-preload="auto" data-autoplay="false" data-loop="all" muted></div><canvas class="fireworks"></canvas><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'pengpenglang/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  'meta[name=description]',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+const pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+})
+
+document.addEventListener('pjax:complete', function () {
+  refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+})
+
+document.addEventListener('pjax:send', function () {
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+  //reset font-size
+  $('body').css('font-size') !== originFontSize && $('body').css('font-size', parseFloat(originFontSize))
+})</script></div></body></html>
