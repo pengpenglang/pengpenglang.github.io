@@ -1,0 +1,401 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>科学与工程计算知识总结 | pengpenglang</title><meta name="description" content="本篇总结一下科学与工程计算课程的知识点,以便上机实验时用于查询😐"><meta name="keywords" content="数值分析"><meta name="author" content="pengpenglang"><meta name="copyright" content="pengpenglang"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://pengpenglang.gitee.io/posts/3994879127/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="科学与工程计算知识总结"><meta property="og:url" content="https://pengpenglang.gitee.io/posts/3994879127/"><meta property="og:site_name" content="pengpenglang"><meta property="og:description" content="本篇总结一下科学与工程计算课程的知识点,以便上机实验时用于查询😐"><meta property="og:image" content="https://gitee.com/pengpenglang/blogimg/raw/master/img/178.jpg"><meta property="article:published_time" content="2021-02-24T07:43:12.000Z"><meta property="article:modified_time" content="2021-02-24T12:12:20.370Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: {"limitCount":200,"languages":{"author":"作者: pengpenglang","link":"链接: ","source":"来源: pengpenglang","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: {"bookmark":{"message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#99CCCC","bgDark":"#121212","position":"bottom-left"},
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2021-02-24 20:12:20'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><link rel="stylesheet" href="https://unpkg.com/xiaokang-style/butterfly/css/tags.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sviptzk/StaticFile_HEXO@latest/butterfly/css/plugins.min.css"><link rel="stylesheet" href="https://unpkg.com/ifriend@1.0.1/friend.min.css"><link rel="stylesheet" href="/css/mogaicss.css"><meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="pengpenglang" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">68</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">56</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">27</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 整理</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/graph/"><i class="fa-fw fas fa-chart-bar"></i><span> 统计</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fab fa-pagelines"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/artitalk/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page" href="/essay/"><i class="fa-fw fas fa-book"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> 追番</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/journal/"><i class="fa-fw fas fa-journal-whills"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-box"></i><span> 资源</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/download/"><i class="fa-fw fas fa-download"></i><span> 项目分享</span></a></li><li><a class="site-page" href="/about/"><i class="fa-fw fa-fw fas fa-infinity faa-tada animated"></i><span> 常用链接</span></a></li></ul></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="color"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E7%9A%84%E8%83%8C%E6%99%AF%E4%B8%8E%E6%A6%82%E5%86%B5"><span class="toc-number">1.</span> <span class="toc-text"> 科学计算的背景与概况</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text"> 数值分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%91%E5%AD%A6%E8%AE%A1%E7%AE%97%E4%B8%8E%E6%95%B0%E5%80%BC%E7%AE%97%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text"> 科学计算与数值算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.3.</span> <span class="toc-text"> 数值计算中的误差</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%A5%E6%BA%90%E4%B8%8E%E5%88%86%E7%B1%BB"><span class="toc-number">1.3.1.</span> <span class="toc-text"> 来源与分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E8%AF%AF%E5%B7%AE-%E7%9B%B8%E5%AF%B9%E8%AF%AF%E5%B7%AE"><span class="toc-number">1.3.2.</span> <span class="toc-text"> 绝对误差、相对误差</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E6%95%B0%E5%AD%97"><span class="toc-number">1.3.3.</span> <span class="toc-text"> 有效数字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97%E5%8E%9F%E5%88%99"><span class="toc-number">1.3.4.</span> <span class="toc-text"> 数值计算原则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%81%E4%BD%BF%E7%94%A8%E6%95%B0%E5%80%BC%E7%A8%B3%E5%AE%9A%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-number">1.3.4.1.</span> <span class="toc-text"> 要使用数值稳定的算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A6%81%E9%81%BF%E5%85%8D%E4%B8%A4%E4%B8%AA%E7%9B%B8%E4%BC%BC%E6%95%B0%E7%9A%84%E7%9B%B8%E5%87%8F"><span class="toc-number">1.3.4.2.</span> <span class="toc-text"> 要避免两个相似数的相减</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%80%BC%E5%A4%AA%E5%B0%8F%E7%9A%84%E6%95%B0%E4%B8%8D%E5%AE%9C%E4%BD%9C%E9%99%A4%E6%B3%95"><span class="toc-number">1.3.4.3.</span> <span class="toc-text"> 绝对值太小的数不宜作除法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%81%BF%E5%85%8D%E5%A4%A7%E6%95%B0%E5%90%83%E5%B0%8F%E6%95%B0"><span class="toc-number">1.3.4.4.</span> <span class="toc-text"> 避免大数吃小数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%88%E5%8C%96%E7%AE%80%E5%9C%A8%E8%AE%A1%E7%AE%97%E5%87%8F%E5%B0%91%E8%BF%91%E4%BC%BC%E5%80%BC%E7%9A%84%E8%AE%A1%E7%AE%97%E6%AD%A5%E9%AA%A4%E4%BB%8E%E8%80%8C%E9%81%BF%E5%85%8D%E8%AF%AF%E5%B7%AE%E7%9A%84%E8%BF%87%E5%BA%A6%E7%A7%AF%E7%B4%AF"><span class="toc-number">1.3.4.5.</span> <span class="toc-text"> 先化简在计算减少近似值的计算步骤从而避免误差的过度积累</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://gitee.com/pengpenglang/blogimg/raw/master/img/179.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">pengpenglang</a></span><span class="pull-right menus"><div id="search_button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fa fa-list"></i><span> 整理</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></li><li><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></li><li><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 分类</span></a></li><li><a class="site-page" href="/graph/"><i class="fa-fw fas fa-chart-bar"></i><span> 统计</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fab fa-pagelines"></i><span> 生活</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/artitalk/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page" href="/essay/"><i class="fa-fw fas fa-book"></i><span> 随笔</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-gamepad"></i><span> 娱乐</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fa fa-music"></i><span> 音乐</span></a></li><li><a class="site-page" href="/bangumis/"><i class="fa-fw fas fa-tv"></i><span> 追番</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fa-fw fas fa-video"></i><span> 电影</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/journal/"><i class="fa-fw fas fa-journal-whills"></i><span> 日志</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/aboutme/"><i class="fa-fw fa fa-heart"></i><span> 关于</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-box"></i><span> 资源</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/download/"><i class="fa-fw fas fa-download"></i><span> 项目分享</span></a></li><li><a class="site-page" href="/about/"><i class="fa-fw fa-fw fas fa-infinity faa-tada animated"></i><span> 常用链接</span></a></li></ul></div></div><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">科学与工程计算知识总结</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-02-24T07:43:12.000Z" title="发表于 2021-02-24 15:43:12">2021-02-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-02-24T12:12:20.370Z" title="更新于 2021-02-24 20:12:20">2021-02-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/">大学计算机学习</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/%E7%A7%91%E5%AD%A6%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%AE%A1%E7%AE%97/">科学与工程计算</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="科学计算的背景与概况"><a class="markdownIt-Anchor" href="#科学计算的背景与概况"></a> 科学计算的背景与概况</h1>
+<div class="snote info"><p>数值分析是研究科学计算中各种数学问题求解的数值计算方法法</p></div>
+<p><strong>数值分析、科学计算与数值计算是当今科学研究的三种基本手段之一</strong>，是数学和计算机应用于其他学科的桥梁，本课程只考虑软件方面即<strong>数值计算的有关算法</strong>（数值仿真软件），数值分析和数值计算是研究求解连续数学问题（对象）的算法（核心）的学科</p>
+<h2 id="数值分析"><a class="markdownIt-Anchor" href="#数值分析"></a> 数值分析</h2>
+<p>概念：数值分析是研究各种数学问题的数值方法的设计、分析、有关的数学理论和具体实现的一门学科，实际上就是介绍用计算机解决数学问题的计算方法及其理论，利用计算机高速的简单运算去实现各种复杂的功能</p>
+<p>地位：现代科学研究的三大支柱是科学理论、科学实验和科学计算，而科学计算的核心内容就是以现代化的计算机及数学软件为工具，以数学模型为基础进行模拟研究</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-1.png" style="zoom:80%;">
+<blockquote>
+<p>在建立了数学模型之后，并不能立刻用计算机直接求解，还必须寻找用计算机计算这些数学模型的<strong>数值方法</strong>，即将数学模型中的<strong>连续变量离散化</strong>，转换成一系列相应的算法步骤，编制出正确的计算程序，再上机计算得到满意的数值结果</p>
+</blockquote>
+<p>特点：</p>
+<ul>
+<li>与计算机应用密切结合的实用性很强的学科</li>
+<li>既要讨论 变量问题又要讨论离散变量问题，关心的是数值结果</li>
+<li>近代数学的一个重要分支，专门研究数学问题的数值解法</li>
+</ul>
+<p>研究内容：</p>
+<ul>
+<li>插值问题</li>
+<li>函数逼近</li>
+<li>数值积分与数值微分</li>
+<li>线性代数方程组的数值解法</li>
+<li>非线性方程组的数值解法</li>
+<li>代数特征值问题</li>
+<li>常微分方程的数值解法</li>
+</ul>
+<p>研究方法：递归迭代、近似代替、离散化、外推法</p>
+<p>评判标准：误差、稳定性、收敛性、计算量、存储量和自适应性</p>
+<h2 id="科学计算与数值算法"><a class="markdownIt-Anchor" href="#科学计算与数值算法"></a> 科学计算与数值算法</h2>
+<p>数值计算的特点：处理连续数学的量（实数量），问题中常涉及微分、积分和非线性。被求解的问题一般没有解析解、或理论上无法通过有限步计算求解，分为无解析解、有解析解等问题，目标是寻找快速结束的算法</p>
+<p>好数值算法的特点：</p>
+<ul>
+<li>计算效率高、计算复杂度低</li>
+<li>可靠性好：在考虑实际计算的各种误差情况下，结果尽可能的准确</li>
+</ul>
+<p>数值计算的步骤：</p>
+<ol>
+<li>建立数学模型</li>
+<li><strong>研究数值求解方程的算法</strong></li>
+<li><strong>通过计算机软件实现算法</strong></li>
+<li>在计算机上运行软件进行数值模拟</li>
+<li>将计算结果用较直观的方式输出，如图形可视化方法</li>
+<li>解释和验证计算结果，如果需要重复上面的某些步骤</li>
+</ol>
+<p>设计数值方法的关键：将问题简化（估计带来的误差），然后求解简化后的问题</p>
+<h2 id="数值计算中的误差"><a class="markdownIt-Anchor" href="#数值计算中的误差"></a> 数值计算中的误差</h2>
+<h3 id="来源与分类"><a class="markdownIt-Anchor" href="#来源与分类"></a> 来源与分类</h3>
+<ul>
+<li>从实际问题中抽象出数学模型是产生的误差——模型误差</li>
+<li>通过测量得到模型中参数的值，导致输入数据的误差——观测误差</li>
+<li>求解近似——截断误差（方法误差）</li>
+<li>机器字长限制——舍入误差</li>
+</ul>
+<div class="note info">
+            <p>由于前两种误差不可避免，因此在科学计算中主要研究截断误差和舍入误差对计算结果的影响</p>
+          </div>
+<h3 id="绝对误差-相对误差"><a class="markdownIt-Anchor" href="#绝对误差-相对误差"></a> 绝对误差、相对误差</h3>
+<p>绝对误差：近似值 x 与准确值 x<sup>*</sup> 的差值 <code>e</code>，误差一般不能准确计算，只能根据测量或计算情况估计出它的绝对值的一个上限，这个上限成为近似值 x 的绝对误差限，简称误差限，记为 ε，即</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-2.jpg" style="zoom: 3%;">
+<p>其意义是 -ε ≤ x-x<sup>*</sup> ≤ ε。在工程中常记为 x<sup>*</sup> = x ± ε</p>
+<blockquote>
+<p>厘米刻度尺去量物体的时候，如果边缘处在两个刻度值的中间，那么测量值和真实值也仅仅最多相差 0.5cm，所以误差限就是 0.5cm</p>
+</blockquote>
+<p><strong>注意：绝对误差有时并不能很好的反应近似程度的好坏，10000内差 5 显然比 10 内差 1 要好，所以生活中常用相对误差来作为评判标准</strong></p>
+<p>相对误差：理论上是绝对误差与准确值 x<sup>*</sup> 的比值，即</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-3.jpg" style="zoom:4%;">
+<p>相应的，若正数 ε<sub>r</sub> 满足则如下关系式称 ε<sub>r</sub>  为 x 的相对误差限</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-4.jpg" style="zoom:3%;">
+<p>相对误差和绝对误差之间如下满足关系式</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-5.jpg" style="zoom:6%;">
+<p>实际上由于 x<sup>*</sup> 不知道所以常用 x 代替 x<sup>*</sup> 作为分母，后来也就是用如下关系式计算相对误差了</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-6.jpg" style="zoom:2%;">
+<h3 id="有效数字"><a class="markdownIt-Anchor" href="#有效数字"></a> 有效数字</h3>
+<p>定义：如果 x 的误差限 ε 是它某一数位的半个单位，我们就说 x 准确到该位，x 从这一位其直到前面第一个非零数字为止的所有数字称为 x 的有效数字，即</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-7.jpg" style="zoom:5%;">
+<p>则说 x 近似表示 x<sup>*</sup> 准确到小数后第 n 为，并且 x 从这第 n 位其知道最左边的非零数字之间的一切数字称为有效数字，并把有效数字的位数称为有效数位</p>
+<div class="note warning">
+            <p>无疑近似值的有效数字越多，其计算结果的绝对误差就越小</p>
+          </div>
+<blockquote>
+<p>例如 <code>π=3.1415926535...</code>，如果近似值为 3.14 则 |e|=0.0015926，小于等于 0.5*10<sup>-2</sup>，所以有效数字就是 3.14，有效数位为 3。同理如果近似值为 3.1416 则 |e|=0.0000074，小于等于 0.5*10<sup>5</sup>，所以有效数字就是 3.1416。<strong>感觉有效数位就是近似值的非零数个数，关键是要会根据 |e| 和 准确值确定近似值的有效为主</strong></p>
+</blockquote>
+<p>定理：设近似值 x 有 n 为有效数字，则其相对误差限满足如下关系式，并且至少有 n 位有效数字</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-8.jpg" style="zoom:4%;">
+<p>注意问题：计算 <code>1/795 - 1/760</code>，视已知数为确切之，用四位浮点数计算</p>
+<ol>
+<li>如果将两个分数分别表示为 4 位有效数字的浮点数直接计算，最终答案得 0.2*10<sup>-5</sup>，只剩下一位后效数字，损失大量有效数字造成相对误差的扩大</li>
+<li>如果先将两个分数通分表示为 4 位有效数字的浮点数再计算，最终答案得 0.1734*10<sup>-5</sup>，得到 4 位有效数字与上面方案相比更加合理</li>
+</ol>
+<p>造成这个的原因就是误差的传播与积累，生活中常见的就是蝴蝶效应的病态问题</p>
+<h3 id="数值计算原则"><a class="markdownIt-Anchor" href="#数值计算原则"></a> 数值计算原则</h3>
+<h4 id="要使用数值稳定的算法"><a class="markdownIt-Anchor" href="#要使用数值稳定的算法"></a> 要使用数值稳定的算法</h4>
+<div class="gallery ">
+    <p>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-9.png" alt>
+        <span class="image-caption">讲解图-1</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-10.png" alt>
+        <span class="image-caption">讲解图-2</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-11.png" alt>
+        <span class="image-caption">讲解图-3</span>
+    </div><br>
+    <div class="fancybox">
+        <img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-12.png" alt>
+        <span class="image-caption">讲解图-4</span>
+    </div>
+    </p>
+</div>
+<h4 id="要避免两个相似数的相减"><a class="markdownIt-Anchor" href="#要避免两个相似数的相减"></a> 要避免两个相似数的相减</h4>
+<p>在数值计算中，两个相近的数作减法是有效数字会损失</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-13.png" style="zoom:80%;">
+<blockquote>
+<p>对于两个相近的数相减，若是找不到适当的方法代替只能在计算机上采用双倍字长计算来提高精度</p>
+</blockquote>
+<h4 id="绝对值太小的数不宜作除法"><a class="markdownIt-Anchor" href="#绝对值太小的数不宜作除法"></a> 绝对值太小的数不宜作除法</h4>
+<ul>
+<li>
+<p>由于除数很小，将导致商很大，很可能出现数据溢出</p>
+</li>
+<li>
+<p>另外设 x* 和 y* 的近似值为 x，y，则 <code>z=x/y</code> 是 z* 的近似值。此时 z 的绝对误差满足如下公式，可见除数太小会导致商的绝对误差很大</p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-14.jpg" style="zoom:14%;">
+</li>
+</ul>
+<blockquote>
+<p>例如 <code>2.1782/0.001=2718.2</code>，即使分母变化很小为 0.0011，也会导致结果变为 <code>2.1782/0.0011=2471.1</code></p>
+</blockquote>
+<h4 id="避免大数吃小数"><a class="markdownIt-Anchor" href="#避免大数吃小数"></a> 避免大数吃小数</h4>
+<p>求和计算时避免运算符左侧放大数，右侧放小数。<strong>选择从小到大相加可以使和的误差减小</strong></p>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-15.png" style="zoom:80%;">
+<p>正确的方法是求出 <code>x1</code> 后，为了减少大数+小数造成的误差借助韦达定理求 <code>x2</code></p>
+<h4 id="先化简在计算减少近似值的计算步骤从而避免误差的过度积累"><a class="markdownIt-Anchor" href="#先化简在计算减少近似值的计算步骤从而避免误差的过度积累"></a> 先化简在计算减少近似值的计算步骤从而避免误差的过度积累</h4>
+<img src= "/img/loading.gif" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/shuzhi-16.png" alt="shuzhi-16" style="zoom:80%;"></div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">pengpenglang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://pengpenglang.gitee.io/posts/3994879127/">https://pengpenglang.gitee.io/posts/3994879127/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://pengpenglang.gitee.io" target="_blank">pengpenglang</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90/">数值分析</a></div><div class="post_share"><div class="social-share" data-image="https://gitee.com/pengpenglang/blogimg/raw/master/img/178.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/1383409977/"><img class="next-cover" data-lazy-src="https://gitee.com/pengpenglang/blogimg/raw/master/img/176.jpg" onerror="onerror=null;src='/img/404.png'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">计算机网络基础知识总结</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div><div class="comment-switch"><span class="first-comment">Valine</span><label><input id="switch-comments-btn" type="checkbox"/><span class="slider"></span></label><span class="second-comment">Gitalk</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div><div><div id="gitalk-container"></div></div></div></div></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By pengpenglang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div id="running-time"><script>setInterval(()=>{let create_time=Math.round(new Date('2020-07-17 00:00:00').getTime()/1000);let timestamp=Math.round((new Date().getTime()+8*60*60*1000)/1000);let second=timestamp-create_time;let time=new Array(0,0,0,0,0);if(second>=365*24*3600){time[0]=parseInt(second/(365*24*3600));second%=365*24*3600;}if(second>=24*3600){time[1]=parseInt(second/(24*3600));second%=24*3600;}if(second>=3600){time[2]=parseInt(second/3600);second%=3600;}if(second>=60){time[3]=parseInt(second/60);second%=60;}if(second>0){time[4]=second;}currentTimeHtml='🌹 我已于此等候你 '+time[0]+' 年 '+time[1]+' 天 '+time[2]+' 时 '+time[3]+' 分 '+time[4]+' 秒 🌹';document.getElementById("running-time").innerHTML=currentTimeHtml;},1000);</script></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="放大字体"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="缩小字体"><i class="fas fa-minus"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="chat_btn" type="button" title="rightside.chat_btn"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a target="_blank" rel="noopener" href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"><script>$(function () {
+  $('span.katex-display').wrap('<div class="katex-wrap"></div>')
+})</script><script>function loadValine () {
+  function initValine () {
+    window.valine = new Valine({
+      el: '#vcomment',
+      appId: 'A5hUxuVCphwgrdiSm4GWxskH-MdYXbMMI',
+      appKey: 'OCXLbcI3UqshaPgp1jd2ismX',
+      placeholder: '为了及时得到回复，记得留下邮箱和昵称哦',
+      avatar: 'mp',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+    });
+    if ('nick,mail') { valine.config.requiredFields= 'nick,mail'.split(',') }
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else $.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js', initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) loadComment(document.querySelector('#vcomment'),loadValine)
+  else setTimeout(() => loadValine(), 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script><script>function addGitalkSource () {
+  const ele = document.createElement('link')
+  ele.rel = 'stylesheet'
+  ele.href= 'https://cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.css'
+  document.getElementsByTagName('head')[0].appendChild(ele)
+}
+
+function loadGitalk () {
+  function initGitalk () {
+    var gitalk = new Gitalk({
+      clientID: '8aa45f861c433178c2f3',
+      clientSecret: '23c67694dcdaf4f822d6620693666fc2da9c0ee3',
+      repo: 'blog-comments',
+      owner: 'pengpenglang',
+      admin: ['pengpenglang'],
+      id: '9e462f29fd70c08716eaafe3a2ca40d0',
+      language: 'zh-CN',
+      perPage: 10,
+      distractionFreeMode: false,
+      pagerDirection: 'last',
+      createIssueManually: false,
+      updateCountCallback: commentCount
+    })
+    gitalk.render('gitalk-container')
+  }
+
+  if (typeof Gitalk === 'function') initGitalk()
+  else {
+    addGitalkSource()
+    $.getScript('https://cdn.jsdelivr.net/npm/gitalk@latest/dist/gitalk.min.js', initGitalk)
+  }
+}
+
+function commentCount(n){
+  let isCommentCount = document.querySelector('#post-meta .gitalk-comment-count')
+  if (isCommentCount) {
+    isCommentCount.innerHTML= n
+  }
+}
+
+if ('Valine' === 'Gitalk' || !false) {
+  if (false) loadComment(document.getElementById('gitalk-container'), loadGitalk)
+  else loadGitalk()
+} else {
+  function loadOtherComment () {
+    loadGitalk()
+  }
+}</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script src="https://cdn.bootcss.com/jquery/3.2.1/core.js"></script><script src="https://unpkg.com/xiaokang-style/butterfly/js/xkTool.js"></script><script src="/js/iconfont.js"></script><script src="/js/mogaijs.js"></script><script src="/js/calendar.js"></script><script src="/js/languages.js"></script><div class="aplayer no-destroy" data-id="714285046" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="falsedata-order="player play order" data-preload="auto" data-autoplay="false" data-loop="all" muted></div><canvas class="fireworks"></canvas><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="/js/third-party/fireworks.js"></script><script>((window.gitter = {}).chat = {}).options = {
+  disableDefaultChat: true,
+};
+document.addEventListener('gitter-sidecar-ready', (e) => {
+  const GitterChat = e.detail.Chat
+  let chat
+
+  function initGitter () {
+    chat = new GitterChat({
+      room: 'pengpenglang/community',
+      activationElement: '#chat_btn'
+    });
+  }
+
+  initGitter()
+
+  if (true) {
+    document.addEventListener('pjax:complete', () => {
+      chat.destroy()
+      initGitter()
+    })
+  }
+
+})</script><script src="https://sidecar.gitter.im/dist/sidecar.v1.js" async="async" defer="defer"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  'meta[name=description]',
+  '#config_change',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+const pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+})
+
+document.addEventListener('pjax:complete', function () {
+  refreshFn()
+
+  $('script[data-pjax]').each(function () {
+    $(this).parent().append($(this).remove())
+  })
+
+  GLOBAL_CONFIG.islazyload && lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  if (typeof gtag === 'function') {
+    gtag('config', '', {'page_path': window.location.pathname});
+  }
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+})
+
+document.addEventListener('pjax:send', function () {
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  $(window).off('scroll')
+
+  //reset readmode
+  $('body').hasClass('read-mode') && $('body').removeClass('read-mode')
+
+  //reset font-size
+  $('body').css('font-size') !== originFontSize && $('body').css('font-size', parseFloat(originFontSize))
+})</script></div></body></html>
