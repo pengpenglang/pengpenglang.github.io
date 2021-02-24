@@ -1007,13 +1007,6 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/PTA/</loc>
-    <lastmod>2021-02-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/Vjudge/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
@@ -1029,6 +1022,13 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/categories/%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/</loc>
+    <lastmod>2021-02-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/PTA/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1071,6 +1071,20 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/categories/%E7%94%BB%E5%86%8C/</loc>
+    <lastmod>2021-02-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/categories/%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/%E7%A7%91%E5%AD%A6%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%AE%A1%E7%AE%97/</loc>
+    <lastmod>2021-02-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://pengpenglang.gitee.io/categories/%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1120,20 +1134,6 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/categories/ACM%E5%AD%A6%E4%B9%A0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</loc>
-    <lastmod>2021-02-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/categories/%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/%E7%A7%91%E5%AD%A6%E4%B8%8E%E5%B7%A5%E7%A8%8B%E8%AE%A1%E7%AE%97/</loc>
-    <lastmod>2021-02-24</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/categories/%E5%A4%A7%E5%AD%A6%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%AD%A6%E4%B9%A0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</loc>
     <lastmod>2021-02-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
