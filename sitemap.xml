@@ -655,14 +655,14 @@
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/tags/KMP/</loc>
+    <loc>https://pengpenglang.gitee.io/tags/ST/</loc>
     <lastmod>2021-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://pengpenglang.gitee.io/tags/ST/</loc>
+    <loc>https://pengpenglang.gitee.io/tags/KMP/</loc>
     <lastmod>2021-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1007,6 +1007,13 @@
   </url>
   
   <url>
+    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/PTA/</loc>
+    <lastmod>2021-03-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/Vjudge/</loc>
     <lastmod>2021-03-01</lastmod>
     <changefreq>daily</changefreq>
@@ -1015,13 +1022,6 @@
   
   <url>
     <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/nowcoder/</loc>
-    <lastmod>2021-03-01</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://pengpenglang.gitee.io/categories/OJ%E9%A2%98%E5%BA%93/PTA/</loc>
     <lastmod>2021-03-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
