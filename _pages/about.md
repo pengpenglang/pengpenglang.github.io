@@ -19,7 +19,9 @@ redirect_from:
 
 👋 Hello, here is pengpenglang, a junior computer vision alchemist!
 
-🙂 My research focuses on **Gait Recognition** and **Human Pose/Shape Estimation**. I'm also interested in **Generative Models** and **3D Vision**. Feel free to reach out if you share similar interests — let's learn and grow together!
+🙂 My research focuses on **Gait Recognition** and **Human Pose/Shape Estimation**. I'm also interested in **Generative Models** and **3D Vision**. 
+
+🍻 Feel free to reach out if you share similar interests — let's learn and grow together!
 
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University, BNU-IVC**
