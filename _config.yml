@@ -6,8 +6,8 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title: "pengpenglangの学术主页"
-description: # "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. "
+title: "pengpenglang"
+description: "郎文鹏, Third-year Master's Student"
 repository: "pengpenglang/pengpenglang.github.io"
 google_scholar_stats_use_cdn: true
 
@@ -21,7 +21,7 @@ baidu_site_verification: # get baidu_site_verification from https://ziyuan.baidu
 
 # Site Author
 author:
-  name: "Lang Wenpeng"
+  name: "Wenpeng Lang"
   avatar: "images/avatar.jpg"
   bio: "Beijing Normal University"
   location: "Beijing, China"
@@ -45,7 +45,7 @@ author:
   lastfm:
   linkedin: # e.g., "linkedin username"
   dblp: # e.g., "https://dblp.org/pid/xx/xxxx.html"
-  orcid: "https://orcid.org/0009-0000-2321-8895"
+  orcid: # "https://orcid.org/0009-0000-2321-8895"
   pinterest:
   soundcloud:
   stackoverflow: # http://stackoverflow.com/users/123456/username
