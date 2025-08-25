@@ -19,18 +19,18 @@ redirect_from:
 
 👋 Hello, here is pengpenglang, a junior computer vision alchemist!
 
-🙂 My research focuses on **Gait Recognition** and **Human Pose/Shape Estimation**. I'm also interested in **Generative Models** and **3D Vision**. 
-
 🍻 Feel free to reach out if you share similar interests — let's learn and grow together!
+
+🙂 My research focuses on **Gait Recognition** and **Human Pose/Shape Estimation**. I'm also interested in **Generative Models** and **3D Vision**. 
 
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University, BNU-IVC**
 
-  *2023.09 - Present*, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Supervisor: [Prof. Saihui Hou](https://housaihui.cn/)
+  *2023.09 - Present*, GPA: 3.59/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Supervisor: [Prof. Saihui Hou](https://housaihui.cn/))
 
 - **B.Eng. in Computer Science and Technology, China University of Geosciences (Beijing)**
 
-- *2019.09 - 2023.06*, GPA: 4.64/5.0 (Rank: 3/71)
+- *2019.09 - 2023.06*, GPA: 4.64/5.0, Supervisor: [Prof. Yuqing Zhang](https://www.cupk.edu.cn/gxy/c/2024-09-24/524112.shtml)
 
 
 # 🔥 News
@@ -45,7 +45,9 @@ redirect_from:
 
 **Wenpeng Lang**, Saihui Hou, Yongzhen Huang
 
-[**Paper**]() <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+[**[Paper]**]() [**[Code]**]()
+- We propose DPGait, the first dense pose-based framework for gait recognition. We systematically identify the limitations of sparse keypoint representations and introduce innovations spanning from pose estimation. On the upstream, we extend estimasion model acquires both human skeleton points and surface points. On the downstream, we design a divide-and-conquer architecture for efficient feature learning. Our method achieves state-of-the-art performance across multiple benchmark datasets, demonstrating the superiority and robustness of dense pose modeling in complex scenarios.
+
 
 # 🏅 Awards
 - Two Bronze Medal in ACM ICPC Asia Regional Contest, 2022 & 2023.
