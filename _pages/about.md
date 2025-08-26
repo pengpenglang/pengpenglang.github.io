@@ -45,9 +45,10 @@ redirect_from:
 
 **Wenpeng Lang**, Saihui Hou, Yongzhen Huang
 
-[**[Paper]**]() [**[Code]**]()
+[**[Paper]**]() [**[Code]**]() <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - We propose DPGait, the first dense pose-based framework for gait recognition. We systematically identify the limitations of sparse keypoint representations and introduce innovations spanning from pose estimation. On the upstream, we extend estimasion model acquires both human skeleton points and surface points. On the downstream, we design a divide-and-conquer architecture for efficient feature learning. Our method achieves state-of-the-art performance across multiple benchmark datasets, demonstrating the superiority and robustness of dense pose modeling in complex scenarios.
-<div></div>
+</div>
+</div>
 
 # 🏅 Awards
 - Two Bronze Medal in ACM ICPC Asia Regional Contest, 2022 & 2023.
@@ -61,5 +62,5 @@ redirect_from:
 
 # 📝 Miscellaneous
 
-- My creed in life is “On the ship of life, be a happy pirate”.
+- My creed is “On the ship of life, be a happy pirate”.
 - Love to learn any interesting thing: 🏊️, 🏸, 🎸, 🎨, 🎮 and so on.
