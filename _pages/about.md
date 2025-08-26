@@ -46,7 +46,7 @@ redirect_from:
 **Wenpeng Lang**, Saihui Hou, Yongzhen Huang
 
 [**[Paper]**]() [**[Code]**]() <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- We propose DPGait, the first dense pose-based framework for gait recognition. We systematically identify the limitations of sparse keypoint representations and introduce innovations spanning from pose estimation. On the upstream, we extend estimasion model acquires both human skeleton points and surface points. On the downstream, we design a divide-and-conquer architecture for efficient feature learning. Our method achieves state-of-the-art performance across multiple benchmark datasets, demonstrating the superiority and robustness of dense pose modeling in complex scenarios.
+- We propose DPGait, the first dense pose-based framework for gait recognition to solve the limitations of sparse keypoints. On the upstream, we extend estimasion model to acquire human skeleton points and surface points. On the downstream, we design a divide-and-conquer architecture for efficient feature learning. Our method achieves state-of-the-art performance across multiple benchmark datasets, demonstrating the superiority and robustness of dense pose modeling in complex scenarios.
 </div>
 </div>
 
