@@ -24,13 +24,13 @@ redirect_from:
 🙂 My research focuses on **Gait Recognition** and **Human Pose/Shape Estimation**. I'm also interested in **Generative Models** and **3D Vision**. 
 
 # 📖 Educations
-- **M.Eng. in Computer Science and Technology, Beijing Normal University, BNU-IVC**
+- **M.Eng. in Computer Science and Technology, Beijing Normal University, [BNU-IVC](https://github.com/BNU-IVC)**
 
-  *2023.09 - Present*, GPA: 3.59/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Supervisor: [Prof. Saihui Hou](https://housaihui.cn/))
+  *2023.09 - Present*, GPA: 3.60/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Supervisor: [Prof. Saihui Hou](https://housaihui.cn/))
 
 - **B.Eng. in Computer Science and Technology, China University of Geosciences (Beijing)**
 
-- *2019.09 - 2023.06*, GPA: 4.64/5.0, Supervisor: [Prof. Yuqing Zhang](https://www.cupk.edu.cn/gxy/c/2024-09-24/524112.shtml)
+  *2019.09 - 2023.06*, GPA: 4.64/5.0, Supervisor: [Prof. Yuqing Zhang](https://www.cupk.edu.cn/gxy/c/2024-09-24/524112.shtml)
 
 
 # 🔥 News
@@ -46,16 +46,16 @@ redirect_from:
 **Wenpeng Lang**, Saihui Hou, Yongzhen Huang
 
 [**[Paper]**]() [**[Code]**]() <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- We propose DPGait, a dense pose-based method  to solve the limitations of sparse keypoints. On the upstream, we extend estimasion model to output human dense points. On the downstream, we design a divide-and-conquer architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
+- We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
 </div>
 </div>
 
 # 🏅 Awards
-- Two Bronze Medal in ACM ICPC Asia Regional Contest, 2022 & 2023.
-- Campoin in Group Programming Ladder Tournament, 2022.
-- Finalist in America COMAP MCM/ICM Contest, 2022.
-- Second Prize in China Collegiate Mathematical Modeling Contest, 2021.
-- Bronze Medal in China Collegiate Programming Contest, 2021.
+- [ACM ICPC Asia Regional Contest](https://icpc.global), Bronze Medal, 2022 & 2023.
+- [China Group Programming Ladder Tournament](https://gplt.patest.cn), Campoin, 2022.
+- [American COMAP MCM/ICM Contest](https://www.comap.com/contests/mcm-icm), Finalist, 2022.
+- [China Collegiate Mathematical Modeling Contest](https://en.mcm.edu.cn), Second Prize, 2021.
+- [CCPC Regional Contest, Bronze Medal](https://ccpc.io/), 2021.
 
 # 🤠 Experience
 - *2020.09 - 2022.09*, Captain of the [CUGB-ACM](https://sai.cugb.edu.cn/c/2018-11-01/656924.shtml).
