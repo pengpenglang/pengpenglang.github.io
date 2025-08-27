@@ -34,7 +34,7 @@ redirect_from:
 
 
 # 🔥 News
-- *2025.07*: 🥳 One paper has been accepted by ACMM MM 2025 (CCF-A). 
+- *2025.07*: 🥳 One paper has been accepted by ACM MM 2025 (CCF-A). 
 
 # 📝 Publications 
 
