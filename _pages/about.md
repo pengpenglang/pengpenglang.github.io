@@ -55,7 +55,7 @@ redirect_from:
 - [China Group Programming Ladder Tournament](https://gplt.patest.cn), Campoin, 2022.
 - [American COMAP MCM/ICM Contest](https://www.comap.com/contests/mcm-icm), Finalist, 2022.
 - [China Collegiate Mathematical Modeling Contest](https://en.mcm.edu.cn), Second Prize, 2021.
-- [CCPC Regional Contest, Bronze Medal](https://ccpc.io/), 2021.
+- [CCPC Regional Contest](https://ccpc.io/), Bronze Medal, 2021.
 
 # 🤠 Experience
 - *2020.09 - 2022.09*, Captain of the [CUGB-ACM](https://sai.cugb.edu.cn/c/2018-11-01/656924.shtml).
