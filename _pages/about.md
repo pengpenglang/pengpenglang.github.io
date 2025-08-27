@@ -52,7 +52,7 @@ redirect_from:
 
 # 🏅 Awards
 - [ACM ICPC Asia Regional Contest](https://icpc.global), Bronze Medal, 2022 & 2023.
-- [China Group Programming Ladder Tournament](https://gplt.patest.cn), Campoin, 2022.
+- [China Group Programming Ladder Tournament](https://gplt.patest.cn), Champion, 2022.
 - [American COMAP MCM/ICM Contest](https://www.comap.com/contests/mcm-icm), Finalist, 2022.
 - [China Collegiate Mathematical Modeling Contest](https://en.mcm.edu.cn), Second Prize, 2021.
 - [CCPC Regional Contest](https://ccpc.io/), Bronze Medal, 2021.
