@@ -21,7 +21,7 @@ redirect_from:
 
 🍻 Feel free to reach out if you share similar interests — let's learn and grow together!
 
-🙂 My research focuses on **Gait Recognition** and **Human Pose/Shape Estimation**. I'm also interested in **Generative Models** and **3D Vision**. 
+🙂 My research focuses on **Gait Recognition** and **Human PoseEstimation**. I'm also interested in **Generative Models** and **3D Vision**. 
 
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University, [BNU-IVC](https://github.com/BNU-IVC)**
@@ -61,6 +61,5 @@ redirect_from:
 - *2020.09 - 2022.09*, Captain of the [CUGB-ACM](https://sai.cugb.edu.cn/c/2018-11-01/656924.shtml).
 
 # 📝 Miscellaneous
-
-- My creed is “On the ship of life, be a happy pirate”.
+- My creed is *“On the ship of life, be a happy pirate”*.
 - Love to learn any interesting thing: 🏊️, 🏸, 🎸, 🎨, 🎮 and so on.
