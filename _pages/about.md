@@ -21,7 +21,7 @@ redirect_from:
 
 🍻 Feel free to reach out if you share similar interests — let's learn and grow together!
 
-🙂 My research focuses on **Gait Recognition** and **Human PoseEstimation**. I'm also interested in **Generative Models** and **3D Vision**. 
+🙂 My research focuses on **Gait Recognition** and **Human Pose Estimation**. I'm also interested in **Generative Models** and **3D Vision**. 
 
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University, [BNU-IVC](https://github.com/BNU-IVC)**
