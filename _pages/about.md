@@ -60,6 +60,6 @@ redirect_from:
 # 🤠 Experience
 - *2020.09 - 2022.09*, Captain of the [CUGB-ACM](https://sai.cugb.edu.cn/c/2018-11-01/656924.shtml).
 
-# 📝 Miscellaneous
+# 🌱 Miscellaneous
 - My creed is *“On the ship of life, be a happy pirate”*.
 - Love to learn any interesting thing: 🏊️, 🏸, 🎸, 🎨, 🎮 and so on.
