@@ -30,7 +30,7 @@ redirect_from:
 
 - **B.Eng. in Computer Science and Technology, China University of Geosciences (Beijing)**
 
-  *2019.09 - 2023.06*, GPA: 4.64/5.0, Supervisor: [Prof. Yuqing Zhang](https://www.cupk.edu.cn/gxy/c/2024-09-24/524112.shtml)
+  *2019.09 - 2023.06*, GPA: 4.69/5.0, Supervisor: [Prof. Yuqing Zhang](https://www.cupk.edu.cn/gxy/c/2024-09-24/524112.shtml)
 
 
 # 🔥 News
