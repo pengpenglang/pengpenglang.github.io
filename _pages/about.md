@@ -26,7 +26,7 @@ redirect_from:
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University, [BNU-IVC](https://github.com/BNU-IVC)**
 
-  *2023.09 - Present*, GPA: 3.60/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Supervisor: [Prof. Saihui Hou](https://housaihui.cn/))
+  *2023.09 - Present*, GPA: 3.60/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Supervisor: [Prof. Saihui Hou](https://ai.bnu.edu.cn/xygk/szdw/fgj/170e0faaf01d4a0e8c50a6c889c786c3.htm))
 
 - **B.Eng. in Computer Science and Technology, China University of Geosciences (Beijing)**
 
