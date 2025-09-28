@@ -45,7 +45,7 @@ redirect_from:
 
 **Wenpeng Lang**, Saihui Hou, Yongzhen Huang
 
-[**[Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[Paper]**](https://dpgait.github.io/static/paper/2025%20-%20[DPGait]%20Beyond%20Sparse%20Keypoints%20Dense%20Pose%20Model.pdf) [**[Code]**](https://github.com/DPGait/DPGait) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
+[**[Website]**](https://dpgait.github.io/) [**[Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[Paper]**](https://dpgait.github.io/static/paper/2025%20-%20[DPGait]%20Beyond%20Sparse%20Keypoints%20Dense%20Pose%20Model.pdf) [**[Code]**](https://github.com/DPGait/DPGait) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
 - We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
 </div>
 </div>
