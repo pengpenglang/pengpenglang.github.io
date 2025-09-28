@@ -41,7 +41,7 @@ redirect_from:
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025</div><img src='images/DPGait.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
-[**Beyond Sparse Keypoints: Dense Pose Modeling for Robust Gait Recognition**]()
+**Beyond Sparse Keypoints: Dense Pose Modeling for Robust Gait Recognition**
 
 **Wenpeng Lang**, Saihui Hou, Yongzhen Huang
 
