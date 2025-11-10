@@ -34,7 +34,8 @@ redirect_from:
 
 
 # 🔥 News
-- *2025.07*: 🥳 One paper has been accepted by ACM MM 2025 (CCF-A). 
+- *2025.11*: 🥳 One paper has been accepted by AAAI 2026 (CCF-A, Student-first-author).
+- *2025.07*: 🥳 One paper has been accepted by ACM MM 2025 (CCF-A, Oral, First-author). 
 
 # 📝 Publications 
 
