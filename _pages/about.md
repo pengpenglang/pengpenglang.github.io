@@ -39,15 +39,27 @@ redirect_from:
 
 # 📝 Publications 
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025</div><img src='images/DPGait.png' alt="sym" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2026</div><img src='images/DPGait.png' alt="sym" width="100%"></div></div>
+<div class='paper-box-text' markdown="1">
+
+**Gait Transformer: End-to-End Transformer Backbone for Gait Recognition**
+
+Saihui Hou, **Wenpeng Lang**, Jilong Wang, Jilong Wang, Jilong Wang, Yongzhen Huang*
+
+[[**[Poster]**]() [**[Code]**]()<br/>
+We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ACM MM 2025 Oral</div><img src='images/DPGait.png' alt="sym" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 **Beyond Sparse Keypoints: Dense Pose Modeling for Robust Gait Recognition**
 
 **Wenpeng Lang**, Saihui Hou, Yongzhen Huang*
 
-[**[Website]**](https://dpgait.github.io/) [**[Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[Paper]**](https://dl.acm.org/doi/pdf/10.1145/3746027.3755685) [**[Code]**](https://github.com/DPGait/DPGait) <strong><span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span></strong>
-- We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
+[**[Website]**](https://dpgait.github.io/) [**[Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[Paper]**](https://dl.acm.org/doi/pdf/10.1145/3746027.3755685) [**[Code]**](https://github.com/DPGait/DPGait)<br/>
+We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
 </div>
 </div>
 
