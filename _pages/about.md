@@ -47,7 +47,7 @@ redirect_from:
 
 Saihui Hou, **Wenpeng Lang**, Jilong Wang, Yan Huang, Liang Wang, Yongzhen Huang*
 
-[**[Paper]**]() [[**[Poster]**]() [**[Code]**]()<br/>
+[**[Paper]**]() [**[Poster]**]() [**[Code]**]()<br/>
 We propose GaT, an end-to-end Transformer for gait recognition. It addresses spatial-temporal dynamics, fine-grained motion, and data scarcity via three modules: hybrid patch embedding with group-batch bormalization, decomposed token mixer for context dependencies, and hybrid positional encoding strategy. Without any pretraining, GaT achieves SOTA performance on popular datasets.
 </div>
 </div>
