@@ -47,7 +47,7 @@ redirect_from:
 
 Saihui Hou, ***Wenpeng Lang***, Jilong Wang, Yan Huang, Liang Wang, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**]() [**[🖼️Poster]**]() [**[🧩Code]**]()<br/>
+[**[📜Paper]**]() [**[🖼️Poster]**](https://github.com/pengpenglang/pengpenglang.github.io/blob/3b00139db3674689d443c65296c7d243e2c55852/images/GaT_poster.pdf) [**[🧩Code]**]()<br/>
 We propose GaT, an end-to-end Transformer for gait recognition. It addresses spatial-temporal dynamics, fine-grained motion, and data scarcity via three modules: hybrid patch embedding with group-batch bormalization, decomposed token mixer for context dependencies, and hybrid positional encoding strategy. Without any pretraining, GaT achieves SOTA performance on popular datasets.
 </div>
 </div>
@@ -73,6 +73,13 @@ We propose DPGait, a dense pose-based method to solve the limitations of sparse 
 - [CCPC Regional Contest](https://ccpc.io/), 🥉Bronze Medal, 2021.
 
 # 🤠 Experience
+- *2023.09 - 2024.06*, Teaching Assistant of BNU.
+  - *Introduction to Computer Systems*, Fall 2023.
+  - *Introduction to Data Science*, Spring 2024.
+
+- *2021.09 - 2022.02*, Teaching Assistant of CUGB.
+  - *Algorithm Analysis and Design*, Fall 2021.
+
 - *2020.09 - 2022.09*, Captain of the [CUGB-ACM](https://sai.cugb.edu.cn/c/2018-11-01/656924.shtml).
 
 # 🌱 Miscellaneous
