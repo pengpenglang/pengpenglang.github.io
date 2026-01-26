@@ -34,10 +34,24 @@ redirect_from:
 
 
 # 🔥 News
-- *2025.11*: 🥳 One paper has been accepted by AAAI 2026 (CCF-A, Student-first-author).
-- *2025.07*: 🥳 One paper has been accepted by ACM MM 2025 (CCF-A, Oral, First-author). 
+- *2026.01*: 🥳 One paper has been accepted by ICLR 2026 (CCF-A, 2nd Student Author).
+- *2025.11*: 🥳 One paper has been accepted by AAAI 2026 (CCF-A, 1st Student Author).
+- *2025.07*: 🥳 One paper has been accepted by ACM MM 2025 (CCF-A, Oral, 1st Author). 
 
 # 📝 Publications 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2026</div><img src='images/GaitSnippet.png' alt="sym" width="100%"></div></div>
+
+<div class='paper-box-text' markdown="1">
+
+**GaitSnippet: Gait Recognition Beyond Unordered Sets and Ordered Sequences**
+
+Saihui Hou, Chenye Wang, ***Wenpeng Lang***, Zhengxiang Lan, Yongzhen Huang<sup>†</sup>
+
+[**[📜Paper]**]() [**[📝Arxiv]**](https://arxiv.org/pdf/2508.07782)<br/>
+We propose GaitSnippet, a novel snippet-based paradigm for gait recognition, treating a gait sequence as a union of individualized actions to capture multi-scale temporal contexts. Based on the new modeling concept called snippet, we design speical sampling and modeling methods,  through extensive experiments shows SOTA performance using only with 2D CNN backbone.
+</div>
+</div>
+
 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">AAAI 2026</div><img src='images/GaT.png' alt="sym" width="100%"></div></div>
 
@@ -47,7 +61,7 @@ redirect_from:
 
 Saihui Hou, ***Wenpeng Lang***, Jilong Wang, Yan Huang, Liang Wang, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**]() [**[🖼️Poster]**](https://pengpenglang.github.io/images/GaT_poster.jpg) [**[🧩Code]**]()<br/>
+[**[📜Paper]**]() [**[🖼️Poster]**](https://pengpenglang.github.io/images/GaT_poster.jpg)<br/>
 We propose GaT, an end-to-end Transformer for gait recognition. It addresses spatial-temporal dynamics, fine-grained motion, and data scarcity via three modules: hybrid patch embedding with group-batch bormalization, decomposed token mixer for context dependencies, and hybrid positional encoding strategy. Without any pretraining, GaT achieves SOTA performance on popular datasets.
 </div>
 </div>
@@ -68,7 +82,7 @@ We propose DPGait, a dense pose-based method to solve the limitations of sparse 
 # 🏅 Awards
 - [ACM ICPC Asia Regional Contest](https://icpc.global), 🥉Bronze Medal, 2022 & 2023.
 - [China Group Programming Ladder Tournament](https://gplt.patest.cn), 🏆Champion, 2022.
-- [American COMAP MCM/ICM Contest](https://www.comap.com/contests/mcm-icm), 🥇Finalist, 2022.
+- [American COMAP MCM/ICM Contest](https://www.comap.com/contests/mcm-icm), 🥇Finalist, 2022.  
 - [China Collegiate Mathematical Modeling Contest](https://en.mcm.edu.cn), 🥈Second Prize, 2021.
 - [CCPC Regional Contest](https://ccpc.io/), 🥉Bronze Medal, 2021.
 
