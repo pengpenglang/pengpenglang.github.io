@@ -116,7 +116,7 @@
       <li><a href="https://en.wikipedia.org/wiki/User:{{ author.wikipedia }}"><i class="fab fa-fw fa-wikipedia-w" aria-hidden="true"></i> Wikipedia</a></li>
       {% endif %}
       {% if author.huggingface %}
-        <li><a href="{{ author.huggingface }}">🤗 Huggingface</a></li>
+        <li><a href="{{ author.huggingface }}"><i style="font-style: normal;">🤗</i> Huggingface</a></li>
       {% endif %}
       {% if author.googlescholar %}
         <li><a href="{{ author.googlescholar }}"><i class="fas fa-fw fa-graduation-cap"></i> Google Scholar</a></li>
@@ -214,7 +214,7 @@
         <a href="https://en.wikipedia.org/wiki/User:{{ author.wikipedia }}"><i class="fab fa-fw fa-wikipedia-w" aria-hidden="true"></i></a>
       {% endif %}
       {% if author.huggingface %}
-        <a href="{{ author.huggingface }}">🤗</a>
+        <a href="{{ author.huggingface }}"><i style="font-style: normal;">🤗</i></a>
       {% endif %}
       {% if author.googlescholar %}
         <a href="{{ author.googlescholar }}"><i class="fas fa-fw fa-graduation-cap"></i></a>
