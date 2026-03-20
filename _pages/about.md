@@ -61,7 +61,7 @@ We propose GaitSnippet, a novel snippet-based paradigm for gait recognition, tre
 
 Saihui Hou, ***Wenpeng Lang***, Jilong Wang, Yan Huang, Liang Wang, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**]() [**[🖼️Poster]**](https://pengpenglang.github.io/images/GaT_poster.jpg)<br/>
+[**[📜Paper]**](https://ojs.aaai.org/index.php/AAAI/article/view/42479) [**[🖼️Poster]**](https://pengpenglang.github.io/images/GaT_poster.jpg)<br/>
 We propose GaT, an end-to-end Transformer for gait recognition. It addresses spatial-temporal dynamics, fine-grained motion, and data scarcity via three modules: hybrid patch embedding with group-batch bormalization, decomposed token mixer for context dependencies, and hybrid positional encoding strategy. Without any pretraining, GaT achieves SOTA performance on popular datasets.
 </div>
 </div>
@@ -74,7 +74,7 @@ We propose GaT, an end-to-end Transformer for gait recognition. It addresses spa
 
 ***Wenpeng Lang***, Saihui Hou, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**](https://dl.acm.org/doi/pdf/10.1145/3746027.3755685) [**[🌐Website]**](https://dpgait.github.io/) [**[🎬Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[🧩Code]**](https://github.com/DPGait/DPGait)<br/>
+[**[📜Paper]**](https://dl.acm.org/doi/pdf/10.1145/3746027.3755685) [**[🌐Website]**](https://dpgait.github.io/) [**[🎬Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[🧩Code]**](https://github.com/DPGait/DPGait)[**[🤗Model]**](https://huggingface.co/pengpenglang/DPGait-Models)<br/>
 We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
 </div>
 </div>
