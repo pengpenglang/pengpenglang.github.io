@@ -26,7 +26,7 @@ redirect_from:
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University, [BNU-IVC](https://github.com/BNU-IVC)**
 
-  *2023.09 - Present*, GPA: 3.60/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-advisor: [Prof. Saihui Hou](https://ai.bnu.edu.cn/xygk/szdw/fgj/170e0faaf01d4a0e8c50a6c889c786c3.htm))
+  *2023.09 - Present*, GPA: 3.60/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Advisor: [Prof. Saihui Hou](https://ai.bnu.edu.cn/xygk/szdw/fgj/170e0faaf01d4a0e8c50a6c889c786c3.htm))
 
 - **B.Eng. in Computer Science and Technology, China University of Geosciences (Beijing)**
 
@@ -74,7 +74,7 @@ We propose GaT, an end-to-end Transformer for gait recognition. It addresses spa
 
 ***Wenpeng Lang***, Saihui Hou, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**](https://dl.acm.org/doi/pdf/10.1145/3746027.3755685) [**[🌐Website]**](https://dpgait.github.io/) [**[🎬Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[🧩Code]**](https://github.com/DPGait/DPGait)[**[🤗Model]**](https://huggingface.co/pengpenglang/DPGait-Models)<br/>
+[**[📜Paper]**](https://dl.acm.org/doi/pdf/10.1145/3746027.3755685) [**[🌐Website]**](https://dpgait.github.io/) [**[🎬Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[🧩Code]**](https://github.com/DPGait/DPGait) [**[🤗Model]**](https://huggingface.co/pengpenglang/DPGait-Models)<br/>
 We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
 </div>
 </div>
