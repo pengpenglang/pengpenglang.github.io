@@ -102,7 +102,7 @@ We propose DPGait, a dense pose-based method to solve the limitations of sparse 
 
 # 🤝 Friends
 
-🌟 I am fortunate to have made friends and co-authors who share the same interests during my study!
+🌟 I'm fortunate to have made friends and co-authors who share the similar interests during my study!
 
 | **Name** | **Role** | **Affiliation** | **Interests** |
 | :---: | :---: | :---: | :---: |

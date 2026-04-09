@@ -1,20 +1,23 @@
 # main links links
 main:
 
-  - title: "Educations"
-    url: "/#-educations"
-    
-  - title: "News"
-    url: "/#-news"
+- title: "Educations"
+  url: "/#-educations"
 
-  - title: "Publications"
-    url: "/#-publications"
+- title: "News"
+  url: "/#-news"
 
-  - title: "Awards"
-    url: "/#-awards"
+- title: "Publications"
+  url: "/#-publications"
 
-  - title: "Experience"
-    url: "/#-experience"
+- title: "Awards"
+  url: "/#-awards"
 
-  - title: "Miscellaneous"
-    url: "/#-miscellaneous"
+- title: "Experience"
+  url: "/#-experience"
+
+- title: "Miscellaneous"
+  url: "/#-miscellaneous"
+
+- title: "Friends"
+  url: "/#-friends"
