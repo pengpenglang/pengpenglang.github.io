@@ -21,7 +21,7 @@ redirect_from:
 
 🍻 Feel free to reach out if you share similar interests — let's learn and grow together!
 
-🙂 My research focuses on **Gait Recognition** and **Human Pose Estimation**. I'm also interested in **Multimodal LLM** and **3D Vision**. 
+🙂 My research focuses on **Biometric Recognition** and **Human Pose Estimation**. I'm also interested in **Multimodal LLM** and **3D Vision**. 
 
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University, [BNU-IVC](https://github.com/BNU-IVC)**
@@ -47,7 +47,7 @@ redirect_from:
 
 Saihui Hou, Chenye Wang, ***Wenpeng Lang***, Zhengxiang Lan, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**]() [**[📝Arxiv]**](https://arxiv.org/pdf/2508.07782)<br/>
+[**[📜Paper]**]() [**[📝Arxiv]**](https://arxiv.org/pdf/2508.07782)[**[🖼️Poster]**](https://pengpenglang.github.io/images/GaitSnippet_poster.jpg)<br/>
 We propose GaitSnippet, a novel snippet-based paradigm for gait recognition, treating a gait sequence as a union of individualized actions to capture multi-scale temporal contexts. Based on the new modeling concept called snippet, we design speical sampling and modeling methods,  through extensive experiments shows SOTA performance using only with 2D CNN backbone.
 </div>
 </div>
@@ -99,3 +99,12 @@ We propose DPGait, a dense pose-based method to solve the limitations of sparse 
 # 🌱 Miscellaneous
 - My creed is *“On the ship of life, be a happy pirate”*.
 - Love to learn any interesting thing: 🏊️, 🏸, 🎸, 🎨, 🎮 and so on.
+
+# 🤝 Notable Friends
+
+🌟 I am fortunate to have made friends and co-authors who share the same interests during my study.
+
+| **Name** | **Role** | **Affiliation** | **Interests** |
+| :--- | :--- | :--- | :--- |
+| **[Qingyuan Cai](https://andyen512.github.io/)** | Ph.D. | Beijing Normal University | 3D Human Pose Estimation, Biometrics, Diffusion Models and Embodied AI |
+| **[Chenye Wang](https://chenye2001.github.io/chenye.wang.github.io/)** | M.Eng. | Beijing Normal University | Human-centered Computer Vision, Multi-modal Learning and VLA Models |
