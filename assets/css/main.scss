@@ -107,3 +107,350 @@ h1:before, .anchor:before {
     background-color: #00369f;
     font-size: .8em;
 }
+
+.guppy-chat {
+    position: fixed;
+    right: 2.1rem;
+    bottom: 1.4rem;
+    z-index: 40;
+}
+
+.guppy-chat__panel[hidden] {
+    display: none !important;
+}
+
+.guppy-chat__toggle {
+    display: flex;
+    align-items: center;
+    border: 0;
+    border-radius: 999px;
+    padding: 0.35rem;
+    background: transparent;
+    color: #224b8d;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.guppy-chat__toggle:hover {
+    transform: translateY(-2px);
+}
+
+.guppy-chat.is-open .guppy-chat__toggle {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px);
+}
+
+.guppy-chat__tooltip {
+    position: absolute;
+    right: calc(100% + 0.7rem);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    border-radius: 999px;
+    padding: 0.45rem 0.7rem;
+    background: rgba(34, 75, 141, 0.94);
+    color: #fff;
+    font-size: 1em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.guppy-chat__toggle:hover .guppy-chat__tooltip,
+.guppy-chat__toggle:focus-visible .guppy-chat__tooltip {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+.guppy-chat__panel {
+    width: min(280px, calc(100vw - 1.5rem));
+    height: min(470px, calc(100vh - 1.5rem));
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid rgba(34, 75, 141, 0.12);
+    border-radius: 24px;
+    background:
+      radial-gradient(circle at top right, rgba(34, 75, 141, 0.08), transparent 36%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.99), rgba(247, 250, 255, 0.99));
+    box-shadow: none;
+    backdrop-filter: blur(14px);
+    transform-origin: bottom right;
+    animation: guppy-panel-pop 0.22s ease-out;
+}
+
+.guppy-chat__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1rem 0.75rem;
+}
+
+.guppy-chat__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.guppy-chat__tank {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 25%, #ffffff 0%, #eef5ff 38%, #d7e8ff 100%);
+    border: 2px solid rgba(34, 75, 141, 0.16);
+    overflow: hidden;
+    animation: guppy-float 2.8s ease-in-out infinite;
+}
+
+.guppy-chat__tank--toggle {
+    width: 78px;
+    height: 78px;
+}
+
+.guppy-chat__tank--header {
+    width: 72px;
+    height: 72px;
+}
+
+.guppy-chat__tank-water {
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: 8%;
+    height: 52%;
+    border-radius: 999px 999px 44% 44%;
+    background: linear-gradient(180deg, rgba(207, 229, 255, 0.15), rgba(207, 229, 255, 0.82));
+}
+
+.guppy-chat__tank-creature {
+    position: relative;
+    z-index: 1;
+    transform: translateY(4px);
+    font-size: 2rem;
+    line-height: 1;
+    animation: guppy-creature-sway 2.4s ease-in-out infinite;
+}
+
+.guppy-chat__title-wrap h3 {
+    margin: 0;
+    color: #224b8d;
+    font-size: 1em;
+    font-weight: 700;
+}
+
+.guppy-chat__credit {
+    display: inline-block;
+    margin-top: 0.15rem;
+    color: #58739b;
+    font-size: 0.86em;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.guppy-chat__credit:hover {
+    color: #224b8d;
+}
+
+.guppy-chat__icon-btn {
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(34, 75, 141, 0.08);
+    color: #224b8d;
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.guppy-chat__samples {
+    margin: 0 0.85rem 0.7rem;
+    padding: 0.8rem;
+    border-radius: 18px;
+    background: rgba(34, 75, 141, 0.06);
+}
+
+.guppy-chat__notice {
+    margin: 0 0.85rem 0.7rem;
+    border-radius: 12px;
+    padding: 0.55rem 0.7rem;
+    background: #fff1a8;
+    color: #7a5b00;
+    font-size: 0.86em;
+    line-height: 1.4;
+}
+
+.guppy-chat__pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.guppy-chat__pill {
+    border: 0;
+    border-radius: 999px;
+    padding: 0.45rem 0.75rem;
+    background: #fff;
+    color: #224b8d;
+    font-size: 1em;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(34, 75, 141, 0.12);
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.guppy-chat__pill:hover {
+    background: #f4f8ff;
+    box-shadow: inset 0 0 0 1px rgba(34, 75, 141, 0.22);
+    transform: translateY(-1px);
+}
+
+.guppy-chat__log {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 0.85rem 0.85rem;
+}
+
+.guppy-chat__msg {
+    max-width: 88%;
+    margin-bottom: 0.7rem;
+    padding: 0.75rem 0.85rem;
+    border-radius: 18px;
+}
+
+.guppy-chat__msg--user {
+    margin-left: auto;
+    background: #f4f8ff;
+    color: #224b8d;
+    border: 1px solid rgba(34, 75, 141, 0.12);
+    border-bottom-right-radius: 6px;
+}
+
+.guppy-chat__msg--fish {
+    background: #f4f8ff;
+    color: #2a3d5b;
+    border: 1px solid rgba(34, 75, 141, 0.1);
+    border-bottom-left-radius: 6px;
+}
+
+.guppy-chat__msg-body {
+    font-size: 1em;
+    line-height: 1.45;
+    word-break: break-word;
+}
+
+.guppy-chat__typing {
+    margin-bottom: 0.8rem;
+    color: #58739b;
+    font-size: 1em;
+}
+
+.guppy-chat__form {
+    display: flex;
+    align-items: stretch;
+    gap: 0.65rem;
+    padding: 0.85rem;
+    border-top: 1px solid rgba(34, 75, 141, 0.08);
+    background: rgba(255, 255, 255, 0.82);
+}
+
+.guppy-chat__input {
+    flex: 1;
+    min-width: 0;
+    border: 1px solid rgba(34, 75, 141, 0.16);
+    border-radius: 14px;
+    background: #fff;
+    height: 42px;
+    padding: 0 0.82rem;
+    color: #2a3d5b;
+    font-size: 1em;
+}
+
+.guppy-chat__input:focus {
+    border-color: #224b8d;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(34, 75, 141, 0.12);
+}
+
+.guppy-chat__send {
+    border: 0;
+    border-radius: 14px;
+    height: 42px;
+    padding: 0 0.9rem;
+    background: #224b8d;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.guppy-chat__send:disabled,
+.guppy-chat__input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.author__signature {
+    margin: 0.7rem 3.5rem 0 0;
+    text-align: center;
+}
+
+.author__signature img {
+    display: inline-block;
+    max-width: 80%;
+    height: auto;
+}
+
+@keyframes guppy-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes guppy-creature-sway {
+    0%, 100% { transform: translateY(4px) rotate(-7deg); }
+    50% { transform: translateY(1px) rotate(7deg); }
+}
+
+@keyframes guppy-panel-pop {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.96);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@include breakpoint(max-width $medium) {
+    .guppy-chat {
+        right: 1rem;
+        bottom: 0.75rem;
+    }
+
+    .guppy-chat__toggle {
+        padding: 0.25rem;
+    }
+
+    .guppy-chat__tank--toggle {
+        width: 68px;
+        height: 68px;
+    }
+
+    .guppy-chat__tank-creature {
+        font-size: 1.8rem;
+    }
+
+    .guppy-chat__panel {
+        width: min(100vw - 1rem, 240px);
+        height: min(68vh, 460px);
+        border-radius: 22px;
+    }
+
+    .guppy-chat__tooltip {
+        display: none;
+    }
+}

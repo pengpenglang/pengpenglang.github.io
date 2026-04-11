@@ -1,0 +1,75 @@
+<div
+  id="guppy-chat-root"
+  class="guppy-chat"
+  data-model-base="{{ '/assets/guppy' | relative_url }}"
+>
+  <button
+    id="guppy-chat-toggle"
+    class="guppy-chat__toggle"
+    type="button"
+    aria-expanded="false"
+    aria-controls="guppy-chat-panel"
+    title="Talk to my Guppy"
+  >
+    <span class="guppy-chat__tank guppy-chat__tank--toggle" aria-hidden="true">
+      <span class="guppy-chat__tank-water"></span>
+      <span class="guppy-chat__tank-creature">🐙</span>
+    </span>
+    <span class="guppy-chat__tooltip" aria-hidden="true">Talk to my Guppy</span>
+  </button>
+
+  <section
+    id="guppy-chat-panel"
+    class="guppy-chat__panel"
+    aria-label="Peng's Guppy chat"
+    hidden
+  >
+    <header class="guppy-chat__header">
+      <div class="guppy-chat__title-wrap">
+        <span class="guppy-chat__tank guppy-chat__tank--header" aria-hidden="true">
+          <span class="guppy-chat__tank-water"></span>
+          <span class="guppy-chat__tank-creature">🐙</span>
+        </span>
+        <div>
+          <center><h3>Peng の Guppy</h3></center>
+          <a
+            class="guppy-chat__credit"
+            href="https://github.com/arman-bd/guppylm"
+            target="_blank"
+            rel="noreferrer"
+          >🎣From GuppyLLM</a>
+        </div>
+      </div>
+      <button id="guppy-chat-close" class="guppy-chat__icon-btn" type="button" aria-label="Close chat">&times;</button>
+    </header>
+
+    <div class="guppy-chat__notice">🧠 A web-based 9M LLM. Take care it!</div>
+    <div id="guppy-chat-samples" class="guppy-chat__samples">
+      <div class="guppy-chat__pill-list">
+        <button class="guppy-chat__pill" type="button" data-msg="Hello~">Hello~</button>
+        <button class="guppy-chat__pill" type="button" data-msg="Are you hungry?">Are you hungry?</button>
+        <button class="guppy-chat__pill" type="button" data-msg="What is the meaning of life?"> What is the meaning of life?</button>
+        <button class="guppy-chat__pill" type="button" data-msg="You like bubbles?"> You like bubbles?</button>
+        <button class="guppy-chat__pill" type="button" data-msg="Hungry?"> Hungry?</button>
+        <button class="guppy-chat__pill" type="button" data-msg="Tell me a funny joke."> Tell me a funny joke, Guppy</button>
+        <button class="guppy-chat__pill" type="button" data-msg="Oh!"> Oh!</button>
+        <button class="guppy-chat__pill" type="button" data-msg="Goodnight guppy~"> Goodnight guppy~</button>
+        <button class="guppy-chat__pill" type="button" data-msg="What is the meaning of life?">What is the meaning of life?</button>
+
+      </div>
+    </div>
+
+    <div id="guppy-chat-log" class="guppy-chat__log" aria-live="polite"></div>
+
+    <form id="guppy-chat-form" class="guppy-chat__form">
+      <input
+        id="guppy-chat-input"
+        class="guppy-chat__input"
+        type="text"
+        placeholder="Ask me anything..."
+        autocomplete="off"
+      />
+      <button id="guppy-chat-send" class="guppy-chat__send" type="submit">Send</button>
+    </form>
+  </section>
+</div>
