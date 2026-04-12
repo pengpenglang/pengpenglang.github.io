@@ -35,6 +35,7 @@ redirect_from:
 
 # 🔥 News
 - *2026.01*: 🥳 One paper has been accepted by ICLR 2026 (CCF-A, 2nd Student Author).
+- *2025.12*: 🤓 Invited talk at Gait 2025 hosted by [Chao Fan](https://ai.szu.edu.cn/info/1103/2670.htm) @ Shenzhen University .
 - *2025.11*: 🥳 One paper has been accepted by AAAI 2026 (CCF-A, 1st Student Author).
 - *2025.07*: 🥳 One paper has been accepted by ACM MM 2025 (CCF-A, Oral, 1st Author). 
 
@@ -106,6 +107,6 @@ We propose DPGait, a dense pose-based method to solve the limitations of sparse 
 
 | **Name** | **Role** | **Affiliation** | **Interests** |
 | :---: | :---: | :---: | :---: |
-| **[Qingyuan Cai](https://andyen512.github.io/)** | 👨🏻 Ph.D. | Beijing Normal University | 3D Human Pose Estimation, Biometrics, Diffusion Models and Embodied AI |
-| **[Yang Fu](https://www.yangfu.site/)** | 👨🏻 Ph.D. | Fudan University | Generative Models, Reinforcement Learning and Human Motion Analysis |
-| **[Chenye Wang](https://chenye2001.github.io/chenye.wang.github.io/)** | 👨🏻 M.Eng. | Beijing Normal University | Human-centered Computer Vision, Multi-modal Learning and VLA Models |
+| **[Qingyuan Cai](https://andyen512.github.io/)** | 👨🏻‍🦱 Ph.D. | Beijing Normal University | 3D Human Pose Estimation, Biometrics, Diffusion Models and Embodied AI |
+| **[Yang Fu](https://www.yangfu.site/)** | 👦🏻 Ph.D. | Fudan University | Generative Models, Reinforcement Learning and Human Motion Analysis |
+| **[Chenye Wang](https://chenye2001.github.io/chenye.wang.github.io/)** | 🧒🏻 M.Eng. | Beijing Normal University | Human-centered Computer Vision, Multi-modal Learning and VLA Models |
