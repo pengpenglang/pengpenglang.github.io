@@ -21,7 +21,7 @@ redirect_from:
 
 🍻 Feel free to reach out if you share similar interests — let's learn and grow together!
 
-🙂 My research focuses on **Biometric Recognition** and **Human Pose Estimation**. I'm also interested in **Multimodal LLM** and **3D Vision**. 
+🙂 My research focuses on **Biometric Recognition** and **Human Estimation**. I'm also interested in **MLLM** and **3D Vision**. 
 
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University @ [BNU-IVC](https://github.com/BNU-IVC)**
