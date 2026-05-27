@@ -21,7 +21,7 @@ redirect_from:
 
 🍻 Feel free to reach out if you share similar interests — let's learn and grow together!
 
-🙂 My research focuses on **Biometric Recognition** and **Human Estimation**. I'm also interested in **MLLM** and **3D Vision**. 
+🙂 My research focuses on **Biometric Recognition** and **Human Pose Estimation**. I'm also interested in **MLLM** and **3D Vision**. 
 
 # 📖 Educations
 - **M.Eng. in Computer Science and Technology, Beijing Normal University @ [BNU-IVC](https://github.com/BNU-IVC)**
@@ -34,10 +34,10 @@ redirect_from:
 
 
 # 🔥 News
-- *2026.01*: 🥳 One paper has been accepted by ICLR 2026 (CCF-A, 2nd Student Author).
+- *2026.01*: 🥳 One paper has been accepted by **ICLR 2026** (CCF-A, Co-Author).
 - *2025.12*: 🤓 Invited talk at Gait 2025 hosted by [Chao Fan](https://ai.szu.edu.cn/info/1103/2670.htm) @ Shenzhen University .
-- *2025.11*: 🥳 One paper has been accepted by AAAI 2026 (CCF-A, 1st Student Author).
-- *2025.07*: 🥳 One paper has been accepted by ACM MM 2025 (CCF-A, Oral, 1st Author). 
+- *2025.11*: 🥳 One paper has been accepted by **AAAI 2026** (CCF-A, 1st Student Author).
+- *2025.07*: 🥳 One paper has been accepted by **ACM MM 2025** (CCF-A, Oral, 1st Author). 
 
 # 📝 Publications 
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICLR 2026</div><img src='images/GaitSnippet.png' alt="sym" width="100%"></div></div>
