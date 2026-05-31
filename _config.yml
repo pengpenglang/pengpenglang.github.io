@@ -22,7 +22,7 @@ baidu_site_verification: # get baidu_site_verification from https://ziyuan.baidu
 # Site Author
 author:
   name: "Wenpeng Lang"
-  avatar: "images/avatar.jpg"
+  avatar: "assets/images/avatar.jpg"
   bio: "Beijing Normal University"
   location: "Beijing, China"
   employer:
@@ -43,7 +43,7 @@ author:
   instagram:
   impactstory: # e.g., "https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm:
-  linkedin: # e.g., "linkedin username"
+  linkedin: "wenpeng-lang-7499043ab"
   dblp: # e.g., "https://dblp.org/pid/xx/xxxx.html"
   orcid: "https://orcid.org/0009-0000-2321-8895"
   huggingface: "https://huggingface.co/pengpenglang"
