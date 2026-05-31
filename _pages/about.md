@@ -48,7 +48,7 @@ redirect_from:
 
 Saihui Hou, Chenye Wang, ***Wenpeng Lang***, Zhengxiang Lan, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**]() [**[📝Arxiv]**](https://arxiv.org/pdf/2508.07782) [**[🖼️Poster]**](https://pengpenglang.github.io/assets/images/GaitSnippet_poster.jpg)<br/>
+[**[📜Paper]**]() [**[📝Arxiv]**](https://arxiv.org/pdf/2508.07782) [**[🖼️Poster]**](https://pengpenglang.github.io/assets/images/GaitSnippet_poster.jpg) [**[✨Comic]**](https://pengpenglang.github.io/assets/images/GaitSnippet_comic.pdf)<br/>
 We propose GaitSnippet, a novel snippet-based paradigm for gait recognition, treating a gait sequence as a union of individualized actions to capture multi-scale temporal contexts. Based on the new modeling concept called snippet, we design speical sampling and modeling methods,  through extensive experiments shows SOTA performance using only with 2D CNN backbone.
 </div>
 </div>
@@ -62,7 +62,7 @@ We propose GaitSnippet, a novel snippet-based paradigm for gait recognition, tre
 
 Saihui Hou, ***Wenpeng Lang***, Jilong Wang, Yan Huang, Liang Wang, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**](https://ojs.aaai.org/index.php/AAAI/article/view/42479) [**[🖼️Poster]**](https://pengpenglang.github.io/assets/images/GaT_poster.jpg)<br/>
+[**[📜Paper]**](https://ojs.aaai.org/index.php/AAAI/article/view/42479) [**[🖼️Poster]**](https://pengpenglang.github.io/assets/images/GaT_poster.jpg) [**[✨Comic]**](https://pengpenglang.github.io/assets/images/GaT_comic.pdf)<br/>
 We propose GaT, an end-to-end Transformer for gait recognition. It addresses spatial-temporal dynamics, fine-grained motion, and data scarcity via three modules: hybrid patch embedding with group-batch bormalization, decomposed token mixer for context dependencies, and hybrid positional encoding strategy. Without any pretraining, GaT achieves SOTA performance on popular datasets.
 </div>
 </div>
@@ -75,7 +75,7 @@ We propose GaT, an end-to-end Transformer for gait recognition. It addresses spa
 
 ***Wenpeng Lang***, Saihui Hou, Yongzhen Huang<sup>†</sup>
 
-[**[📜Paper]**](https://dl.acm.org/doi/10.1145/3746027.3755685) [**[🌐Website]**](https://dpgait.github.io/) [**[🎬Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[🧩Code]**](https://github.com/DPGait/DPGait) [**[🤗Model]**](https://huggingface.co/pengpenglang/DPGait-Models)<br/>
+[**[📜Paper]**](https://dl.acm.org/doi/10.1145/3746027.3755685) [**[🌐Website]**](https://dpgait.github.io/) [**[🎬Video]**](https://dpgait.github.io/static/videos/DPGait.mp4) [**[🧩Code]**](https://github.com/DPGait/DPGait) [**[🤗Model]**](https://huggingface.co/pengpenglang/DPGait-Models) [**[✨Comic]**](https://pengpenglang.github.io/assets/images/DPGait_comic.pdf)<br/>
 We propose DPGait, a dense pose-based method to solve the limitations of sparse keypoints. On the upstream, we extend estimation model to output human dense points. On the downstream, we design a divide-and-conquer modeling architecture. Our method achieves SOTA performance across three datasets, demonstrating the effectiveness of method in complex scenarios.
 </div>
 </div>
