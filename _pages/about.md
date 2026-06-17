@@ -24,11 +24,15 @@ redirect_from:
 🙂 My research focuses on **Biometric Recognition** and **Human Pose Estimation**. I'm also interested in **MLLM** and **3D Vision**. 
 
 # 📖 Educations
-- **M.Eng. in Computer Science and Technology, Beijing Normal University @ [BNU-IVC](https://github.com/BNU-IVC)**
+- <a href="https://www.zju.edu.cn/"><img class="svg" src="/assets/images/zju.svg" width="25pt"></a> **Ph.D. in Computer Science and Technology, Zhejiang University @ [CAD&CG](http://www.cad.zju.edu.cn/)**
 
-  *2023.09 - Present*, GPA: 3.60/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Advisor: [Prof. Saihui Hou](https://ai.bnu.edu.cn/xygk/szdw/fgj/170e0faaf01d4a0e8c50a6c889c786c3.htm))
+  *2026.09*, About to start learning, Supervisor: [Prof. Yusheng Liu](https://person.zju.edu.cn/0003172)
 
-- **B.Eng. in Computer Science and Technology, China University of Geosciences (Beijing)**
+- <a href="https://www.bnu.edu.cn/"><img class="svg" src="/assets/images/bnu.svg" width="23pt"></a> **M.Eng. in Computer Science and Technology, Beijing Normal University @ [BNU-IVC](https://github.com/BNU-IVC)**
+
+  *2023.09 - 2026.06*, GPA: 3.60/4.0, Supervisor: [Prof. Yongzhen Huang](https://ai.bnu.edu.cn/xygk/szdw/zgj/bfed57e2f8fc4de2a6b370063517f801.htm) (Co-Advisor: [Prof. Saihui Hou](https://ai.bnu.edu.cn/xygk/szdw/fgj/170e0faaf01d4a0e8c50a6c889c786c3.htm))
+
+- <a href="https://www.cugb.edu.cn/"><img class="svg" src="/assets/images/cugb.svg" width="23pt"></a> **B.Eng. in Computer Science and Technology, China University of Geosciences (Beijing)**
 
   *2019.09 - 2023.06*, GPA: 4.69/5.0, Supervisor: [Prof. Yuqing Zhang](https://www.cupk.edu.cn/gxy/c/2024-09-24/524112.shtml)
 
@@ -106,7 +110,8 @@ We propose DPGait, a dense pose-based method to solve the limitations of sparse 
 🌟 I'm fortunate to have made friends and co-authors who share the similar interests during my study!
 
 | **Name** | **Role** | **Affiliation** | **Interests** |
-| :---: | :---: | :---: | :---: |
-| **[Qingyuan Cai](https://andyen512.github.io/)** | 👨🏻‍🦱 Ph.D. | Beijing Normal University | 3D Human Pose Estimation, Biometrics, Diffusion Models and Embodied AI |
-| **[Yang Fu](https://www.yangfu.site/)** | 👦🏻 Ph.D. | Fudan University | Generative Models, Reinforcement Learning and Human Motion Analysis |
-| **[Chenye Wang](https://chenye2001.github.io/chenye.wang.github.io/)** | 🧒🏻 M.Eng. | Beijing Normal University | Human-centered Computer Vision, Multi-modal Learning and VLA Models |
+| :---: | :---: | :--- | :--- |
+| **[Qingyuan Cai](https://andyen512.github.io/)** | 👨🏻‍🦱 Ph.D. | <a href="https://www.bnu.edu.cn/"><img class="svg" src="/assets/images/bnu.svg" width="23pt"></a> BNU | 3D Human Pose Estimation, Biometrics, Diffusion Models and Embodied AI |
+| **[Yang Fu](https://www.yangfu.site/)** | 👦🏻 Ph.D. | <a href="https://www.fudan.edu.cn/"><img class="svg" src="/assets/images/fdu.svg" width="23pt"></a> FDU | Generative Models, Reinforcement Learning and Human Motion Analysis |
+| **[Chenye Wang](https://chenye2001.github.io/chenye.wang.github.io/)** | 🧒🏻 Ph.D. | <a href="https://hkust.edu.hk/"><img class="svg" src="/assets/images/hkust.svg" width="21pt"></a> HKUST | Human-centered Computer Vision, Multi-Modal Learning and VLA Models |
+| **[Junbo Zhao]()** | 👨🏻 Ph.D. | <a href="https://www.uq.edu.au/"><img class="svg" src="/assets/images/uq.svg" width="23pt"></a> UQ | Educational AI, Multi-Modal LLM and Computer Vision |
