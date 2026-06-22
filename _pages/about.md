@@ -112,7 +112,7 @@ We propose DPGait, a dense pose-based method to solve the limitations of sparse 
 | **Name** | **Role** | **Affiliation** | **Interests** |
 | :---: | :---: | :--- | :--- |
 | **[Qingyuan Cai](https://andyen512.github.io/)** | 👨🏻‍🦱 Ph.D. | <a href="https://www.bnu.edu.cn/"><img class="svg" src="/assets/images/bnu.svg" width="23pt"></a> BNU | 3D Human Pose Estimation, Biometrics, Diffusion Models and Embodied AI |
-| **[Qiannan Guo](https://luckyg-1203.github.io/)** | 👩🏻  Ph.D. | <a href="https://www.bnu.edu.cn/"><img class="svg" src="/assets/images/bnu.svg" width="23pt"></a> BNU | Human-Centered Computer Vision, Human-Centered Computer Vision |
+| **[Qiannan Guo](https://luckyg-1203.github.io/)** | 👩🏻  Ph.D. | <a href="https://www.bnu.edu.cn/"><img class="svg" src="/assets/images/bnu.svg" width="23pt"></a> BNU | Human-Centered Computer Vision, Autonomous Driving |
 | **[Yang Fu](https://www.yangfu.site/)** | 👦🏻 Ph.D. | <a href="https://www.fudan.edu.cn/"><img class="svg" src="/assets/images/fdu.svg" width="23pt"></a> FDU | Generative Models, Reinforcement Learning and Human Motion Analysis |
 | **[Chenye Wang](https://chenye2001.github.io/chenye.wang.github.io/)** | 🧒🏻 Ph.D. | <a href="https://hkust.edu.hk/"><img class="svg" src="/assets/images/hkust.svg" width="21pt"></a> HKUST | Human-Centered Computer Vision, Multi-Modal Learning and VLA Models |
 | **[Junbo Zhao](https://bestjob2000.github.io/)** | 👨🏻 Ph.D. | <a href="https://www.uq.edu.au/"><img class="svg" src="/assets/images/uq.svg" width="23pt"></a> UQ | Educational AI, Multi-Modal LLM and Computer Vision |
